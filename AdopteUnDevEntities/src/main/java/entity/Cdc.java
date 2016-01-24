@@ -1,0 +1,156 @@
+package entity;
+
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="cdc")
+public class Cdc {
+
+    /**
+     * Default constructor
+     */
+    public Cdc() {
+    }
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer idCdc;
+
+    /**
+     * 
+     */
+    private String Contexte;
+
+    /**
+     * 
+     */
+    private String Besoin;
+
+    /**
+     * 
+     */
+    private String Existant;
+
+    /**
+     * 
+     */
+    private Double tarif;
+
+    /**
+     * 
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="date_fin_estimee")
+    private Date dateFinEstimee;
+
+    @ManyToOne
+    @JoinColumn(name="idProjet")
+ private Projet projet;
+
+    @OneToMany(mappedBy="cdc")
+    private Set<AssociationCdcTechnologie> AssociationCdcTechnologie;
+
+    @ManyToOne
+    @JoinColumn(name="idTypeCdc")
+    private TypeCdc typeCdc;
+
+    @OneToMany(mappedBy="cdc")
+    private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
+
+	public Integer getIdCdc() {
+		return idCdc;
+	}
+
+	public void setIdCdc(Integer idCdc) {
+		this.idCdc = idCdc;
+	}
+
+	public String getContexte() {
+		return Contexte;
+	}
+
+	public void setContexte(String contexte) {
+		Contexte = contexte;
+	}
+
+	public String getBesoin() {
+		return Besoin;
+	}
+
+	public void setBesoin(String besoin) {
+		Besoin = besoin;
+	}
+
+	public String getExistant() {
+		return Existant;
+	}
+
+	public void setExistant(String existant) {
+		Existant = existant;
+	}
+
+	public Double getTarif() {
+		return tarif;
+	}
+
+	public void setTarif(Double tarif) {
+		this.tarif = tarif;
+	}
+
+	public Date getDateFinEstimee() {
+		return dateFinEstimee;
+	}
+
+	public void setDateFinEstimee(Date dateFinEstimee) {
+		this.dateFinEstimee = dateFinEstimee;
+	}
+
+	public Projet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
+
+	public Set<AssociationCdcTechnologie> getAssociationCdcTechnologie() {
+		return AssociationCdcTechnologie;
+	}
+
+	public void setAssociationCdcTechnologie(
+			Set<AssociationCdcTechnologie> associationCdcTechnologie) {
+		AssociationCdcTechnologie = associationCdcTechnologie;
+	}
+
+	public TypeCdc getTypeCdc() {
+		return typeCdc;
+	}
+
+	public void setTypeCdc(TypeCdc typeCdc) {
+		this.typeCdc = typeCdc;
+	}
+
+	public Set<AssociationCdcFonctionnalite> getLesAssociationCdcFonctionnalite() {
+		return lesAssociationCdcFonctionnalite;
+	}
+
+	public void setLesAssociationCdcFonctionnalite(
+			Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite) {
+		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
+	}
+
+    
+}
