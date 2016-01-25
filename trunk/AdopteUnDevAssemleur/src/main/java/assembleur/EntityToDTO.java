@@ -425,7 +425,7 @@ public class EntityToDTO {
     private static Set<DTOOperation> listOperationToDtoOperation(Set<Operation> listEntity) {
         Set<DTOOperation>listDto = new HashSet<DTOOperation>();
         for (Operation entity:
-             listEntity) {
+                listEntity) {
             listDto.add(operationToDTOOperation(entity));
         }
         return listDto;
