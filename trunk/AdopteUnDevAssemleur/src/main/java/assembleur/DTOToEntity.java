@@ -194,14 +194,15 @@ public class DTOToEntity {
         return entity;
     }
 
-    //FIXME : cette methode est une boucle infinie !! a voir avec remi
     public static Message dtoMessageToMessage(DTOMessage dto) {
         Message entity = new Message();
         entity.setIdMessage(dto.getIdMessage());
         entity.setDateEnvoi(dto.getDateEnvoi());
         entity.setMessage(dto.getMessage());
-        entity.setMessFille(dtoMessageToMessage(dto.getMessFille()));
-        entity.setMessMere(dtoMessageToMessage(dto.getMessMere()));
+        if (entity.getMessFille()!= null)
+            entity.setMessFille(dtoMessageToMessage(dto.getMessFille()));
+        if (entity.getMessMere()!= null)
+            entity.setMessMere(dtoMessageToMessage(dto.getMessMere()));
         entity.setTitre(dto.getTitre());
         entity.setUtilisateur1(dtoUtilisateurToUtilisateur(dto.getUtilisateur1()));
         entity.setUtilisateur2(dtoUtilisateurToUtilisateur(dto.getUtilisateur2()));
