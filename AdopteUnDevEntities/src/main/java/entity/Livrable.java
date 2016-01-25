@@ -23,9 +23,7 @@ public class Livrable {
     public Livrable() {
     }
 
-    /**
-     * 
-     */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date echeance;
 
     @Id

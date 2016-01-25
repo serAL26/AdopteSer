@@ -4,10 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="developpeur")
 public class Developpeur extends Utilisateur {
 
     /**
