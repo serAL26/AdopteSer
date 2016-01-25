@@ -28,7 +28,7 @@ public class Appli {
 	@Column(name="id_appli")
 	private Integer idAppli;
 
-	@OneToOne(mappedBy="appli")
+	@OneToOne
 	private Projet projet;
 
 	@OneToMany(mappedBy="appli")

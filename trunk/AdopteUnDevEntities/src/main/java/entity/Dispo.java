@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="dispo")
@@ -26,14 +28,10 @@ public class Dispo {
     @Column(name="id_dispo")
     private Integer idDispo;
 
-    /**
-     * 
-     */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date debutDispo;
 
-    /**
-     * 
-     */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date finDispo;
 
     @ManyToOne

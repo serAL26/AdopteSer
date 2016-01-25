@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="operation")
@@ -26,9 +28,7 @@ public class Operation {
      */
     private Double montant;
 
-    /**
-     * 
-     */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @Id

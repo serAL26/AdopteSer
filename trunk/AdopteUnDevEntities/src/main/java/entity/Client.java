@@ -7,7 +7,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="client")
 public class Client extends Utilisateur {
 
     /**
