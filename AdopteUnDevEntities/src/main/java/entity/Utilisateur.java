@@ -85,7 +85,7 @@ public class Utilisateur {
     private Set<Message> lesMessages1;
 
      @ManyToOne
-     @JoinColumn(name="idAdresse")
+     @JoinColumn(name="idAdresse", nullable=false)
     private Adresse adresse;
 
      @OneToMany(mappedBy="utilisateur")
