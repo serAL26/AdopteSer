@@ -46,7 +46,6 @@ public class Livrable {
 
     @ManyToOne
     @JoinColumn(name="idProjet")
-    @Column(nullable=false)
     private Projet projet;
 
     @ManyToOne

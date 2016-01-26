@@ -84,7 +84,6 @@ public class Utilisateur {
 
      @ManyToOne
      @JoinColumn(name="idAdresse")
-     @Column(nullable=false)
     private Adresse adresse;
 
      @OneToMany(mappedBy="utilisateur")

@@ -57,7 +57,6 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name="idProjet")
-    @Column(nullable=false)
     private Projet projet;
 
 	public Integer getIdNote() {

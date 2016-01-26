@@ -26,12 +26,10 @@ public class Service {
 
 	@ManyToOne
 	@JoinColumn(name="idAppli")
-	@Column(nullable=false)
 	private Appli appli;
 
 	@ManyToOne
 	@JoinColumn(name="idTypeService")
-	@Column(nullable=false)
 	private TypeService typeService;
 
 	public Integer getIdService() {

@@ -35,11 +35,9 @@ public class ReponsesPreDefinies {
 
     @ManyToOne
     @JoinColumn(name="idQuestion")
-    @Column(nullable=false)
     private Questions question;
 
     @OneToMany(mappedBy="reponse")
-    @Column(nullable=false)
     private Set<AssociationTechnoRep> lesAssociationTechnoRep;
 
 	public Integer getIdReponsesPreDefinies() {

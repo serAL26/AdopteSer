@@ -39,7 +39,6 @@ public class Litige {
 
     @ManyToOne
     @JoinColumn(name="idProjet")
-    @Column(nullable=false)
     private Projet projet;
 
 	public String getMotif() {

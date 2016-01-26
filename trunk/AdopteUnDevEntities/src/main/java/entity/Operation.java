@@ -40,12 +40,10 @@ public class Operation {
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur")
-    @Column(nullable=false)
     private Utilisateur utilisateur;
 
     @ManyToOne
     @JoinColumn(name="idTypeOperation")
-    @Column(nullable=false)
     private TypeOperation typeOperation;
 
 	public Double getMontant() {
