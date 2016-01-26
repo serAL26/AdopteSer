@@ -57,12 +57,10 @@ private Message messFille;
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur1")
-    @Column(nullable=false)
     private Utilisateur utilisateur1;
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur2")
-    @Column(nullable=false)
     private Utilisateur utilisateur2;
 
 	public Integer getIdMessage() {

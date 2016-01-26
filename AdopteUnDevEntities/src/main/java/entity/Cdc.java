@@ -63,7 +63,6 @@ public class Cdc {
 
     @ManyToOne
     @JoinColumn(name="idProjet")
-    @Column(nullable=false)
  private Projet projet;
 
     @OneToMany(mappedBy="cdc")
@@ -71,11 +70,9 @@ public class Cdc {
 
     @ManyToOne
     @JoinColumn(name="idTypeCdc")
-    @Column(nullable=false)
     private TypeCdc typeCdc;
 
     @OneToMany(mappedBy="cdc")
-    @Column(nullable=false)
     private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
 
 	public Integer getIdCdc() {

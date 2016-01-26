@@ -26,12 +26,10 @@ public class AssociationCdcTechnologie {
 
     @ManyToOne
     @JoinColumn(name="idCdc")
-    @Column(nullable=false)
     private Cdc cdc;
 
     @ManyToOne
     @JoinColumn(name="idTechnologie")
-    @Column(nullable=false)
     private Technologie technologie;
 
 	public Integer getIdAssociationCdcTechnologie() {

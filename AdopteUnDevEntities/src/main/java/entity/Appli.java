@@ -29,16 +29,14 @@ public class Appli {
 	private Integer idAppli;
 
 	@OneToOne
-	@Column(nullable=false)
+	@JoinColumn(name="id_projet")
 	private Projet projet;
 
 	@OneToMany(mappedBy="appli")
-	@Column(nullable=false)
 	private Set<Service> lesService;
 
 	@ManyToOne
 	@JoinColumn(name="idTypeAppli")
-	@Column(nullable=false)
 	private TypeAppli typeAppli;
 
 	public Integer getIdAppli() {

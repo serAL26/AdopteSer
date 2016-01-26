@@ -35,7 +35,6 @@ public class Projet {
 
 	@ManyToOne
 	@JoinColumn(name="idClient")
-	@Column(nullable=false)
 	private Client client;
 
 	@OneToMany(mappedBy="projet")
@@ -43,23 +42,19 @@ public class Projet {
 
 	@ManyToOne
 	@JoinColumn(name="idEtatProjet")
-	@Column(nullable=false)
 	private EtatProjet etatProjet;
 
 	@OneToMany(mappedBy="projet")
-	@Column(nullable=false)
 	private Set<Cdc> lesCdc;
 
 	@ManyToOne
 	@JoinColumn(name="idProjetAppli")
-	@Column(nullable=false)
 	private Appli appli;
 
 	@OneToMany(mappedBy="projet")
 	private Set<Litige> lesLitige;
 
 	@OneToMany(mappedBy="projet")
-	@Column(nullable=false)
 	private Set<Livrable> lesLivrable;
 
 	@OneToMany(mappedBy="projet")

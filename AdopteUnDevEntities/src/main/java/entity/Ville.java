@@ -38,7 +38,6 @@ public class Ville {
 
     @ManyToOne
     @JoinColumn(name="idDepartemen")
-    @Column(nullable=false)
     private Departement departement;
 
 	public Integer getIdVille() {

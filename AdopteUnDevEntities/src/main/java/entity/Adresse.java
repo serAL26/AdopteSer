@@ -39,7 +39,6 @@ public class Adresse {
 
     @ManyToOne
     @JoinColumn(name="idVille")
-    @Column(nullable=false)
     private Ville ville;
 
 

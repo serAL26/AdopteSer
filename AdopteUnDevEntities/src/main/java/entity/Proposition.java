@@ -49,17 +49,14 @@ public class Proposition {
 
     @ManyToOne
     @JoinColumn(name="idProjet")
-    @Column(nullable=false)
     private Projet projet;
 
     @ManyToOne
     @JoinColumn(name="idDeveloppeur")
-    @Column(nullable=false)
     private Developpeur developpeur;
 
     @ManyToOne
     @JoinColumn(name="idTypeProposition")
-    @Column(nullable=false)
     private TypeProposition typeProposition;
 
 	public Boolean getLu() {

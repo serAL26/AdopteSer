@@ -38,12 +38,10 @@ public class Dispo {
 
     @ManyToOne
     @JoinColumn(name="idDeveloppeur")
-    @Column(nullable=false)
     private Developpeur developpeur;
 
     @ManyToOne
     @JoinColumn(name="idTypeDispo")
-    @Column(nullable=false)
     private TypeDispo typeDispo;
 
 

@@ -27,12 +27,10 @@ public class AssociationCdcFonctionnalite {
 
 	@ManyToOne
 	@JoinColumn(name="idCdc")
-	@Column(nullable=false)
 	private Cdc cdc;
 
 	@ManyToOne
 	@JoinColumn(name="idFonctionnalite")
-	@Column(nullable=false)
 	private Fonctionnalite fonctionnalite;
 
 	public Integer getIdAssocCdcFonctionnalite() {
