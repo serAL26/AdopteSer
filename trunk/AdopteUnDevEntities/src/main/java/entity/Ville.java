@@ -27,15 +27,18 @@ public class Ville {
     /**
      * 
      */
+    @Column(nullable=false)
     private String nom;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String cp;
 
     @ManyToOne
     @JoinColumn(name="idDepartemen")
+    @Column(nullable=false)
     private Departement departement;
 
 	public Integer getIdVille() {

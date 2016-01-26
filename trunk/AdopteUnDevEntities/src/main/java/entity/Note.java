@@ -25,19 +25,19 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_note")
+    @Column(name="id_note",nullable=false)
     private Integer idNote;
 
     /**
      * 
      */
-    @Column(name="id_noteur")
+    @Column(name="id_noteur",nullable=false)
     private int idNoteur;
 
     /**
      * 
      */
-      @Column(name="id_est_note")
+      @Column(name="id_est_note",nullable=false)
     private int idEstNote;
 
     /**
@@ -48,13 +48,16 @@ public class Note {
     /**
      * 
      */
+    @Column(nullable=false)
     private Double Note;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date Date;
 
     @ManyToOne
     @JoinColumn(name="idProjet")
+    @Column(nullable=false)
     private Projet projet;
 
 	public Integer getIdNote() {

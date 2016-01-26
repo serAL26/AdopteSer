@@ -21,15 +21,17 @@ public class AssociationDevTechno {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_association_dev_techno")
+    @Column(name="id_association_dev_techno",nullable=false)
     private Integer idAssociationDevTechno;
 
     @ManyToOne
     @JoinColumn(name="idDeveloppeur")
+    @Column(nullable=false)
     private Developpeur developpeur;
 
     @ManyToOne
     @JoinColumn(name="idTechnologie")
+    @Column(nullable=false)
     private Technologie technologie;
 
 	public Integer getIdAssociationDevTechno() {

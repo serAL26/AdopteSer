@@ -20,12 +20,13 @@ public class EtatProjet {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-     @Column(name="id_etat_projet")
+     @Column(name="id_etat_projet",nullable=false)
     private Integer idEtatProjet;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String libelle;
 
 	public Integer getIdEtatProjet() {

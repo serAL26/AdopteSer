@@ -21,22 +21,25 @@ public class Adresse {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_adresse")
+    @Column(name="id_adresse", nullable=false)
     private Integer idAdresse;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String numero;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String rue;
 
 
     @ManyToOne
     @JoinColumn(name="idVille")
+    @Column(nullable=false)
     private Ville ville;
 
 

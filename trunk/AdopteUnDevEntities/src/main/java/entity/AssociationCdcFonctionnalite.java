@@ -22,15 +22,17 @@ public class AssociationCdcFonctionnalite {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_assoc_cdc_fonctionnalite")
+	@Column(name="id_assoc_cdc_fonctionnalite", nullable=false)
 	private Integer idAssocCdcFonctionnalite;
 
 	@ManyToOne
 	@JoinColumn(name="idCdc")
+	@Column(nullable=false)
 	private Cdc cdc;
 
 	@ManyToOne
 	@JoinColumn(name="idFonctionnalite")
+	@Column(nullable=false)
 	private Fonctionnalite fonctionnalite;
 
 	public Integer getIdAssocCdcFonctionnalite() {

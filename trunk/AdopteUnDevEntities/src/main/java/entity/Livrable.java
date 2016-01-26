@@ -24,11 +24,12 @@ public class Livrable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date echeance;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_livrable")
+    @Column(name="id_livrable",nullable=false)
     private Integer idLivrable;
 
     /**
@@ -40,11 +41,12 @@ public class Livrable {
      * 
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_livraison")
+    @Column(name="date_livraison",nullable=false)
     private Date dateLivraison;
 
     @ManyToOne
     @JoinColumn(name="idProjet")
+    @Column(nullable=false)
     private Projet projet;
 
     @ManyToOne

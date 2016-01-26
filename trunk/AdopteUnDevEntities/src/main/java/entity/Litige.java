@@ -23,20 +23,23 @@ public class Litige {
     /**
      * 
      */
+    @Column(nullable=false)
     private String motif;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_litige")
+    @Column(name="id_litige",nullable=false)
     private Integer idLitige;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String libelle;
 
     @ManyToOne
     @JoinColumn(name="idProjet")
+    @Column(nullable=false)
     private Projet projet;
 
 	public String getMotif() {

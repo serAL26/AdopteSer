@@ -25,6 +25,7 @@ public class TypeDispo {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeDispo() {

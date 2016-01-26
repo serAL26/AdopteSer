@@ -25,24 +25,26 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_message")
+    @Column(name="id_message",nullable=false)
     private Integer idMessage;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String message;
 
     /**
      * 
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_envoi")
+    @Column(name="date_envoi",nullable=false)
     private Date dateEnvoi;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String titre;
 
     @ManyToOne
@@ -55,10 +57,12 @@ private Message messFille;
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur1")
+    @Column(nullable=false)
     private Utilisateur utilisateur1;
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur2")
+    @Column(nullable=false)
     private Utilisateur utilisateur2;
 
 	public Integer getIdMessage() {

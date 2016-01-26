@@ -25,6 +25,7 @@ public class TypeService {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeService() {

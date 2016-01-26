@@ -25,6 +25,7 @@ public class TypeEvaluation {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeEvaluation() {

@@ -25,21 +25,25 @@ public class Dispo {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_dispo")
+    @Column(name="id_dispo",nullable=false)
     private Integer idDispo;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date debutDispo;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date finDispo;
 
     @ManyToOne
     @JoinColumn(name="idDeveloppeur")
+    @Column(nullable=false)
     private Developpeur developpeur;
 
     @ManyToOne
     @JoinColumn(name="idTypeDispo")
+    @Column(nullable=false)
     private TypeDispo typeDispo;
 
 

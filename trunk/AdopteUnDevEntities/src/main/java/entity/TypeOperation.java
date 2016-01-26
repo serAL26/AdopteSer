@@ -25,6 +25,7 @@ public class TypeOperation {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeOperation() {

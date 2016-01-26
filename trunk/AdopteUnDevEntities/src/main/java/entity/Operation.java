@@ -26,22 +26,26 @@ public class Operation {
     /**
      * 
      */
+    @Column(nullable=false)
     private Double montant;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date date;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_operation")
+    @Column(name="id_operation",nullable=false)
     private Integer idOperation;
 
     @ManyToOne
     @JoinColumn(name="idUtilisateur")
+    @Column(nullable=false)
     private Utilisateur utilisateur;
 
     @ManyToOne
     @JoinColumn(name="idTypeOperation")
+    @Column(nullable=false)
     private TypeOperation typeOperation;
 
 	public Double getMontant() {

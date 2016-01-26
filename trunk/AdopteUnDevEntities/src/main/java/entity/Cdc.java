@@ -27,37 +27,43 @@ public class Cdc {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id_cdc",nullable=false)
     private Integer idCdc;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String Contexte;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String Besoin;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String Existant;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private Double tarif;
 
     /**
      * 
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_fin_estimee")
+    @Column(name="date_fin_estimee",nullable=false)
     private Date dateFinEstimee;
 
     @ManyToOne
     @JoinColumn(name="idProjet")
+    @Column(nullable=false)
  private Projet projet;
 
     @OneToMany(mappedBy="cdc")
@@ -65,9 +71,11 @@ public class Cdc {
 
     @ManyToOne
     @JoinColumn(name="idTypeCdc")
+    @Column(nullable=false)
     private TypeCdc typeCdc;
 
     @OneToMany(mappedBy="cdc")
+    @Column(nullable=false)
     private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
 
 	public Integer getIdCdc() {
