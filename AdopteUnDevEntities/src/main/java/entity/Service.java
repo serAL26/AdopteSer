@@ -21,15 +21,17 @@ public class Service {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_service")
+	@Column(name="id_service",nullable=false)
 	private Integer idService;
 
 	@ManyToOne
 	@JoinColumn(name="idAppli")
+	@Column(nullable=false)
 	private Appli appli;
 
 	@ManyToOne
 	@JoinColumn(name="idTypeService")
+	@Column(nullable=false)
 	private TypeService typeService;
 
 	public Integer getIdService() {

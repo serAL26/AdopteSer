@@ -20,14 +20,15 @@ public class Departement {
     /**
      * 
      */
+    @Column(nullable=false)
     private String nom;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_departement")
+    @Column(name="id_departement",nullable=false)
     private Integer idDepartement;
 
-    
+    @Column(nullable=false)
     private String numero;
 
 

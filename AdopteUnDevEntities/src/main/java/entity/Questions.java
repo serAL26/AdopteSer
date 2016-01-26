@@ -22,12 +22,13 @@ public class Questions {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_question")
+	@Column(name="id_question",nullable=false)
 	private Integer idQuestion;
 
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	@OneToMany(mappedBy="question")

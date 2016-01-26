@@ -25,17 +25,20 @@ public class Appli {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_appli")
+	@Column(name="id_appli", nullable=false)
 	private Integer idAppli;
 
 	@OneToOne
+	@Column(nullable=false)
 	private Projet projet;
 
 	@OneToMany(mappedBy="appli")
+	@Column(nullable=false)
 	private Set<Service> lesService;
 
 	@ManyToOne
 	@JoinColumn(name="idTypeAppli")
+	@Column(nullable=false)
 	private TypeAppli typeAppli;
 
 	public Integer getIdAppli() {

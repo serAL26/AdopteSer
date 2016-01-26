@@ -25,6 +25,7 @@ public class TypeCdc {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeCdc() {

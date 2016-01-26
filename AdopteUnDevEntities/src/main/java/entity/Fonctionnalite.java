@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,19 +23,21 @@ public class Fonctionnalite {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_fonctionnalite")
+	@Column(name="id_fonctionnalite",nullable=false)
 	private Integer idFonctionnalite;
 
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String commentaire;
 
 	@ManyToOne
-	@JoinColumn(name="idTypeFonctionnalite")
+	@Column(nullable=false)
 	private TypeFonctionnalite typeFonctionnalite;
 
 	@OneToMany(mappedBy="fonctionnalite")
+	@Column(nullable=false)
 	private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
 
 	public Integer getIdFonctionnalite() {

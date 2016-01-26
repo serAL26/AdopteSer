@@ -27,7 +27,7 @@ public class Technologie {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_technologie")
+	@Column(name="id_technologie",nullable=false)
 	private Integer idTechnologie;
 
 	@OneToMany(mappedBy="technologie")

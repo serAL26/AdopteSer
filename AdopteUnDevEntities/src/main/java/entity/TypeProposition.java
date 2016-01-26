@@ -25,6 +25,7 @@ public class TypeProposition {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeProposition() {

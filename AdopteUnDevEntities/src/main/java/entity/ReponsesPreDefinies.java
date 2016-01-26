@@ -24,19 +24,22 @@ public class ReponsesPreDefinies {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_reponses_pre_definies")
+    @Column(name="id_reponses_pre_definies",nullable=false)
     private Integer idReponsesPreDefinies;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String libelle;
 
     @ManyToOne
     @JoinColumn(name="idQuestion")
+    @Column(nullable=false)
     private Questions question;
 
     @OneToMany(mappedBy="reponse")
+    @Column(nullable=false)
     private Set<AssociationTechnoRep> lesAssociationTechnoRep;
 
 	public Integer getIdReponsesPreDefinies() {

@@ -26,34 +26,40 @@ public class Proposition {
     /**
      * 
      */
+    @Column(nullable=false)
     private Boolean Lu;
 
     /**
      * 
      */
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date date;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_proposition")
+    @Column(name="id_proposition",nullable=false)
     private Integer idProposition;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String titre;
 
     @ManyToOne
     @JoinColumn(name="idProjet")
+    @Column(nullable=false)
     private Projet projet;
 
     @ManyToOne
     @JoinColumn(name="idDeveloppeur")
+    @Column(nullable=false)
     private Developpeur developpeur;
 
     @ManyToOne
     @JoinColumn(name="idTypeProposition")
+    @Column(nullable=false)
     private TypeProposition typeProposition;
 
 	public Boolean getLu() {

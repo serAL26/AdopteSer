@@ -25,6 +25,7 @@ public class TypeFonctionnalite {
 	/**
 	 * 
 	 */
+	@Column(nullable=false)
 	private String libelle;
 
 	public Integer getIdTypeFonctionnalite() {

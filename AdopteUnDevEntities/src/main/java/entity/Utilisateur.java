@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
- @Table(name="utilisateur")
+@Table(name="utilisateur")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Utilisateur {
 
@@ -31,21 +31,25 @@ public class Utilisateur {
     /**
      * 
      */
+    @Column(nullable=false)
     private String mail;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String mdp;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String Nom;
 
     /**
      * 
      */
+    @Column(nullable=false)
     private String Prenom;
 
     /**
@@ -65,14 +69,14 @@ public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_utilisateur")
+    @Column(name="id_utilisateur",nullable=false)
     private Integer idUtilisateur;
 
     /**
      * 
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_inscription")
+    @Column(name="date_inscription",nullable=false)
     private Date DateInscription;
 
     @OneToMany(mappedBy="utilisateur1")
@@ -80,6 +84,7 @@ public class Utilisateur {
 
      @ManyToOne
      @JoinColumn(name="idAdresse")
+     @Column(nullable=false)
     private Adresse adresse;
 
      @OneToMany(mappedBy="utilisateur")
