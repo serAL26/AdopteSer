@@ -2,10 +2,12 @@ package entity;
 
 import java.util.Set;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
+@DiscriminatorValue(value="CLIENT")
 public class Client extends Utilisateur {
 
     /**
