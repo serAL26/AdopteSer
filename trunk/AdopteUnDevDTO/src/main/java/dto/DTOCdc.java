@@ -19,6 +19,9 @@ public class DTOCdc {
      */
     private Integer idCdc;
 
+    
+    private Boolean lu;
+    
     /**
      * 
      */
@@ -146,5 +149,11 @@ public class DTOCdc {
 		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
 	}
 
-    
+	public Boolean getLu() {
+		return lu;
+	}
+
+	public void setLu(Boolean lu) {
+		this.lu = lu;
+	}
 }

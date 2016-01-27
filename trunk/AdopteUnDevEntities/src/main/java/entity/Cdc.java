@@ -36,6 +36,9 @@ public class Cdc {
     @Column(nullable=false)
     private String Contexte;
 
+    @Column(nullable=false)
+    private Boolean lu;
+    
     /**
      * 
      */
@@ -62,14 +65,14 @@ public class Cdc {
     private Date dateFinEstimee;
 
     @ManyToOne
-    @JoinColumn(name="idProjet")
+    @JoinColumn(name="idProjet",nullable=false)
  private Projet projet;
 
     @OneToMany(mappedBy="cdc")
     private Set<AssociationCdcTechnologie> AssociationCdcTechnologie;
 
     @ManyToOne
-    @JoinColumn(name="idTypeCdc")
+    @JoinColumn(name="idTypeCdc",nullable=false)
     private TypeCdc typeCdc;
 
     @OneToMany(mappedBy="cdc")
@@ -157,5 +160,12 @@ public class Cdc {
 		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
 	}
 
+	public Boolean getLu() {
+		return lu;
+	}
+
+	public void setLu(Boolean lu) {
+		this.lu = lu;
+	}
     
 }
