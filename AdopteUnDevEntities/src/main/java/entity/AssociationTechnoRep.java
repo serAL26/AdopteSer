@@ -25,11 +25,11 @@ public class AssociationTechnoRep {
     private Integer idAssociationTechnoRep;
 
      @ManyToOne
-     @JoinColumn(name="idTechnologie")
+     @JoinColumn(name="idTechnologie",nullable=false)
     private Technologie technologie;
 
      @ManyToOne
-     @JoinColumn(name="idReponse")
+     @JoinColumn(name="idReponse",nullable=false)
     private ReponsesPreDefinies reponse;
 
 	public Integer getIdAssociationTechnoRep() {
