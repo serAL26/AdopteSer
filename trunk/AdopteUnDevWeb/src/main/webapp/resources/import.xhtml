@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"
+		type="text/css"></link>
+	<link rel="stylesheet" href="resources/css/main.css" type="text/css"></link>
+	<link rel="stylesheet"
+		href="resources/font-awesome/css/font-awesome.css" type="text/css"></link>
+	<ui:insert name="head"></ui:insert>
+</h:head>
+<h:body>
+	<ui:include src="/WEB-INF/navbar.xhtml"></ui:include>
+	<ui:insert name="body">
+
+	</ui:insert>
+	<ui:include src="/WEB-INF/footer.xhtml"></ui:include>
+</h:body>
+</html>
