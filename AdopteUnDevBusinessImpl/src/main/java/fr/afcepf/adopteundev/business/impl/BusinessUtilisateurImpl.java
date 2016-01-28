@@ -3,7 +3,7 @@ package fr.afcepf.adopteundev.business.impl;
 import assembleur.EntityToDTO;
 import dto.DTOUtilisateur;
 import entity.Utilisateur;
-import fr.afcepf.adopteundev.api.utilisateur.IDaoUtilisateur;
+import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
 import fr.afcepf.adopteundev.business.api.IBusinessUtilisateur;
 
 import javax.ejb.Stateless;

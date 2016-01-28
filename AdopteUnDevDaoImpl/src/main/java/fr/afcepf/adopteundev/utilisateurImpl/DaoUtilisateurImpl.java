@@ -1,7 +1,7 @@
 package fr.afcepf.adopteundev.utilisateurImpl;
 
 import entity.Utilisateur;
-import fr.afcepf.adopteundev.api.utilisateur.IDaoUtilisateur;
+import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
