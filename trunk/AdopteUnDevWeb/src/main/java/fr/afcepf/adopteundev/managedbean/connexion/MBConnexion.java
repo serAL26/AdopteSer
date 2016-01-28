@@ -15,16 +15,28 @@ public class MBConnexion {
     private String mail;
     private String mdp;
     private  IUcConnexion connexion;
-    @PostConstruct
+    
+    
+    
+    public MBConnexion() {
+		super();
+	}
+
+	@PostConstruct
     private void obtenirLesInterfaces(){
         connexion = (IUcConnexion) ContextFactory.createProxy(UcName.UCCONNEXION);
     }
 
     public String seConnecter() {
         DTOUtilisateur utilisateur = connexion.seConnecter(mail, mdp);
-        if (utilisateur == null)
-            return "";
-        else return "";
+        String retour = "";
+        if (utilisateur == null){
+            retour = "null";
+        }
+        else {
+        	retour = "pas null";
+        }
+        	return retour;
     }
 
     public void setMail(String mail) {
