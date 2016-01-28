@@ -19,9 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="utilisateur")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_utilisateur")
+@Table(name = "utilisateur")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_utilisateur")
 public class Utilisateur {
 
     /**
@@ -31,163 +31,172 @@ public class Utilisateur {
     }
 
     /**
-     * 
+     *
      */
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String mail;
 
     /**
-     * 
+     *
      */
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String mdp;
 
     /**
-     * 
+     *
      */
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String Nom;
 
     /**
-     * 
+     *
      */
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String Prenom;
 
     /**
-     * 
+     *
      */
     private String Portable;
 
     /**
-     * 
+     *
      */
     private String Fixe;
 
     /**
-     * 
+     *
      */
     private String Photo;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_utilisateur",nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_utilisateur", nullable = false)
     private Integer idUtilisateur;
 
     /**
-     * 
+     *
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_inscription",nullable=false)
+    @Column(name = "date_inscription", nullable = false)
     private Date DateInscription;
 
-    @OneToMany(mappedBy="utilisateur1")
+    @OneToMany(mappedBy = "utilisateur1")
     private Set<Message> lesMessages1;
 
-     @ManyToOne
-     @JoinColumn(name="idAdresse", nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "idAdresse", nullable = false)
     private Adresse adresse;
 
-    
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<Operation> lesOperation;
 
-     @OneToMany(mappedBy="utilisateur2")
+    @OneToMany(mappedBy = "utilisateur2")
     private Set<Message> lesMessages2;
 
-	public String getMail() {
-		return mail;
-	}
+    public String getMail() {
+        return mail;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public String getMdp() {
-		return mdp;
-	}
+    public String getMdp() {
+        return mdp;
+    }
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
 
-	public String getNom() {
-		return Nom;
-	}
+    public String getNom() {
+        return Nom;
+    }
 
-	public void setNom(String nom) {
-		Nom = nom;
-	}
+    public void setNom(String nom) {
+        Nom = nom;
+    }
 
-	public String getPrenom() {
-		return Prenom;
-	}
+    public String getPrenom() {
+        return Prenom;
+    }
 
-	public void setPrenom(String prenom) {
-		Prenom = prenom;
-	}
+    public void setPrenom(String prenom) {
+        Prenom = prenom;
+    }
 
-	public String getPortable() {
-		return Portable;
-	}
+    public String getPortable() {
+        return Portable;
+    }
 
-	public void setPortable(String portable) {
-		Portable = portable;
-	}
+    public void setPortable(String portable) {
+        Portable = portable;
+    }
 
-	public String getFixe() {
-		return Fixe;
-	}
+    public String getFixe() {
+        return Fixe;
+    }
 
-	public void setFixe(String fixe) {
-		Fixe = fixe;
-	}
+    public void setFixe(String fixe) {
+        Fixe = fixe;
+    }
 
-	public String getPhoto() {
-		return Photo;
-	}
+    public String getPhoto() {
+        return Photo;
+    }
 
-	public void setPhoto(String photo) {
-		Photo = photo;
-	}
+    public void setPhoto(String photo) {
+        Photo = photo;
+    }
 
-	public Integer getIdUtilisateur() {
-		return idUtilisateur;
-	}
+    public Integer getIdUtilisateur() {
+        return idUtilisateur;
+    }
 
-	public void setIdUtilisateur(Integer idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
+    public void setIdUtilisateur(Integer idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
 
-	public Date getDateInscription() {
-		return DateInscription;
-	}
+    public Date getDateInscription() {
+        return DateInscription;
+    }
 
-	public void setDateInscription(Date dateInscription) {
-		DateInscription = dateInscription;
-	}
+    public void setDateInscription(Date dateInscription) {
+        DateInscription = dateInscription;
+    }
 
-	public Set<Message> getLesMessages1() {
-		return lesMessages1;
-	}
+    public Set<Message> getLesMessages1() {
+        return lesMessages1;
+    }
 
-	public void setLesMessages1(Set<Message> lesMessages1) {
-		this.lesMessages1 = lesMessages1;
-	}
+    public void setLesMessages1(Set<Message> lesMessages1) {
+        this.lesMessages1 = lesMessages1;
+    }
 
-	public Adresse getAdresse() {
-		return adresse;
-	}
+    public Adresse getAdresse() {
+        return adresse;
+    }
 
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
 
-	public Set<Message> getLesMessages2() {
-		return lesMessages2;
-	}
+    public Set<Operation> getLesOperation() {
+        return lesOperation;
+    }
 
-	public void setLesMessages2(Set<Message> lesMessages2) {
-		this.lesMessages2 = lesMessages2;
-	}
+    public void setLesOperation(Set<Operation> lesOperation) {
+        this.lesOperation = lesOperation;
+    }
 
-     
+    public Set<Message> getLesMessages2() {
+        return lesMessages2;
+    }
+
+    public void setLesMessages2(Set<Message> lesMessages2) {
+        this.lesMessages2 = lesMessages2;
+    }
+
+
 }
