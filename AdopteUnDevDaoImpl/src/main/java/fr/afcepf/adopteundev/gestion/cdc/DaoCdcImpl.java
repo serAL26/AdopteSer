@@ -12,7 +12,7 @@ import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 @Stateless
 public class DaoCdcImpl implements IDaoCdc {
 
-	 @PersistenceContext
+	 @PersistenceContext(unitName = "AdopteUnDevEntities")
 	    EntityManager em;
 	
 	@Override
