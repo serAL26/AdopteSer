@@ -46,8 +46,7 @@ public class DTOProjet {
     /**
      * 
      */
-    public DTOAppli appli;
-
+    private Set<DTOTypeService> lesServices;
     /**
      * 
      */
@@ -111,14 +110,8 @@ public class DTOProjet {
 		this.lesCdc = lesCdc;
 	}
 
-	public DTOAppli getAppli() {
-		return appli;
-	}
 
-	public void setAppli(DTOAppli appli) {
-		this.appli = appli;
-	}
-
+	
 	public Set<DTOLitige> getLesLitige() {
 		return lesLitige;
 	}
@@ -141,6 +134,14 @@ public class DTOProjet {
 
 	public void setLesProposition(Set<DTOProposition> lesProposition) {
 		this.lesProposition = lesProposition;
+	}
+
+	public Set<DTOTypeService> getLesServices() {
+		return lesServices;
+	}
+
+	public void setLesServices(Set<DTOTypeService> lesServices) {
+		this.lesServices = lesServices;
 	}
 
     

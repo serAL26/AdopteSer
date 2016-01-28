@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Set;
+
 
 /**
  * 
@@ -22,6 +24,8 @@ public class DTOTypeAppli {
      */
     private String libelle;
 
+	private Set<DTOTypeService> lesServices;
+	
 	public Integer getIdTypeAppli() {
 		return idTypeAppli;
 	}
@@ -36,6 +40,14 @@ public class DTOTypeAppli {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+
+	public Set<DTOTypeService> getLesServices() {
+		return lesServices;
+	}
+
+	public void setLesServices(Set<DTOTypeService> lesServices) {
+		this.lesServices = lesServices;
 	}
 
 

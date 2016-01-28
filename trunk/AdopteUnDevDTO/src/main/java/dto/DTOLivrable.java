@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 
@@ -42,6 +43,8 @@ public class DTOLivrable {
      * 
      */
     public DTOTypeEvaluation typeEvaluation;
+    
+    private Set<DTOOperation> lesOperation;
 
 	public Date getEcheance() {
 		return echeance;
@@ -89,6 +92,14 @@ public class DTOLivrable {
 
 	public void setTypeEvaluation(DTOTypeEvaluation typeEvaluation) {
 		this.typeEvaluation = typeEvaluation;
+	}
+
+	public Set<DTOOperation> getLesOperation() {
+		return lesOperation;
+	}
+
+	public void setLesOperation(Set<DTOOperation> lesOperation) {
+		this.lesOperation = lesOperation;
 	}
 
     
