@@ -37,6 +37,8 @@ public class DTOOperation {
      * 
      */
     public DTOTypeOperation typeOperation;
+    
+	 private DTOLivrable livrable;
 
 	public Double getMontant() {
 		return montant;
@@ -76,6 +78,14 @@ public class DTOOperation {
 
 	public void setTypeOperation(DTOTypeOperation typeOperation) {
 		this.typeOperation = typeOperation;
+	}
+
+	public DTOLivrable getLivrable() {
+		return livrable;
+	}
+
+	public void setLivrable(DTOLivrable livrable) {
+		this.livrable = livrable;
 	}
 
     
