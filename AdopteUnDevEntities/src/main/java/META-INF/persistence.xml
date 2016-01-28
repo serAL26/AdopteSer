@@ -9,6 +9,7 @@
 		<class>entity.AssociationDevTechno</class>
 		<class>entity.Cdc</class>
 		<class>entity.Client</class>
+		<class>entity.AssociationTypeServiceTechno</class>
 		<class>entity.Departement</class>
 		<class>entity.Developpeur</class>
 		<class>entity.Dispo</class>
