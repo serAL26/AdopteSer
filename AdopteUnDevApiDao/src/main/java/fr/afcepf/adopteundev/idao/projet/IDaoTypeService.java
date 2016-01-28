@@ -8,6 +8,6 @@ import entity.TypeService;
 public interface IDaoTypeService {
 	
 	public List<TypeService> getAllServices();
-	public List<TypeService> getSericesById(Integer id);
+	public TypeService getSericesById(Integer id);
 	public List<TypeService> getServicesByAppli(TypeAppli appli);
 }
