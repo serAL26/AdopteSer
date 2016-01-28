@@ -7,6 +7,12 @@
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-ejb-client-bom</artifactId>
+			<type>pom</type>
+			 <version>7.1.1.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>fr.afcepf.al26.g1.projet</groupId>
 			<artifactId>AdopteUnDevApiUc</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -44,14 +50,6 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
