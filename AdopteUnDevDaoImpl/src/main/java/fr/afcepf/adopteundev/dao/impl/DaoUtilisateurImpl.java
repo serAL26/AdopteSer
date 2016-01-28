@@ -1,14 +1,16 @@
-package fr.afcepf.adopteundev.utilisateurImpl;
+package fr.afcepf.adopteundev.dao.impl;
 
 import entity.Utilisateur;
 import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Remote
 @Stateless
 public class DaoUtilisateurImpl implements IDaoUtilisateur{
     @PersistenceContext

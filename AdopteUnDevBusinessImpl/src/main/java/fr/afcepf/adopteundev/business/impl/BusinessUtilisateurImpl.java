@@ -6,8 +6,10 @@ import entity.Utilisateur;
 import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
 import fr.afcepf.adopteundev.business.api.IBusinessUtilisateur;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+@Remote
 @Stateless
 public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
     private IDaoUtilisateur daoUtilisateur;
