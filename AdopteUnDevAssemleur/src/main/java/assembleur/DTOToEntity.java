@@ -16,13 +16,6 @@ public class DTOToEntity {
         return associationCdcFonctionnalite;
     }
 
-    public static AssociationCdcTechnologie dtoAssociationCdcTechnologiesToAssociationTechnologies(DTOAssociationCdcTechnologie dto) {
-        AssociationCdcTechnologie entity = new AssociationCdcTechnologie();
-        entity.setIdAssociationCdcTechnologie(dto.getIdAssociationCdcTechnologie());
-        entity.setCdc(dtoCdcToCdc(dto.getCdc()));
-        entity.setTechnologie(dtoTechnologieToTechnologie(dto.getTechnologie()));
-        return entity;
-    }
 
 
     public static AssociationDevTechno dtoAssociationDevTechnoToAssociationDevTechno(DTOAssociationDevTechno dto) {
@@ -89,7 +82,6 @@ public class DTOToEntity {
         Cdc cdc = new Cdc();
         cdc.setIdCdc(dtoCdc.getIdCdc());
         cdc.setProjet(dtoProjetToProjet(dtoCdc.getProjet()));
-        cdc.setAssociationCdcTechnologie(listDtoAssociationCdcTechnologiesToAssociationTechnologies(dtoCdc.getAssociationCdcTechnologie()));
         cdc.setBesoin(dtoCdc.getBesoin());
         cdc.setContexte(dtoCdc.getContexte());
         cdc.setDateFinEstimee(dtoCdc.getDateFinEstimee());
@@ -109,7 +101,6 @@ public class DTOToEntity {
     public static Technologie dtoTechnologieToTechnologie(DTOTechnologie dtoTechnologie) {
         Technologie technologie = new Technologie();
         technologie.setIdTechnologie(dtoTechnologie.getIdTechnologie());
-        technologie.setLesAssociationCdcTechnologie(listDtoAssociationCdcTechnologiesToAssociationTechnologies(dtoTechnologie.getLesAssociationCdcTechnologie()));
         technologie.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoTechnologie.getLesAssociationDevTechno()));
         technologie.setLesAssociationTypeServiceTechno(listDtoAssoTypeServTechnoToAssoTypeServTechno(dtoTechnologie.getLesAssociationTypeServiceTechno()));
         technologie.setTechnologieLibelle(dtoTechnologie.getTechnologieLibelle());
@@ -335,14 +326,6 @@ public class DTOToEntity {
         return listAssociationFonctionnalite;
     }
 
-    public static Set<AssociationCdcTechnologie> listDtoAssociationCdcTechnologiesToAssociationTechnologies(Set<DTOAssociationCdcTechnologie> dtoAssociationCdcTechnologies) {
-        Set<AssociationCdcTechnologie> listAssociationTechnologies = new HashSet<AssociationCdcTechnologie>();
-        for (DTOAssociationCdcTechnologie dto :
-                dtoAssociationCdcTechnologies) {
-            listAssociationTechnologies.add(dtoAssociationCdcTechnologiesToAssociationTechnologies(dto));
-        }
-        return listAssociationTechnologies;
-    }
 
 
     public static Set<AssociationDevTechno> listDtoAssoDevTechnoToAssoDevTechno(Set<DTOAssociationDevTechno> listDto) {
