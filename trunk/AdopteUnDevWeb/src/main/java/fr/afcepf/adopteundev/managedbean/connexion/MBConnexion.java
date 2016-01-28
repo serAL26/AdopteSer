@@ -14,10 +14,11 @@ import javax.faces.bean.SessionScoped;
 public class MBConnexion {
     private String mail;
     private String mdp;
+    private String message;
     private  IUcConnexion connexion;
-    
-    
-    
+
+
+
     public MBConnexion() {
 		super();
 	}
@@ -53,5 +54,13 @@ public class MBConnexion {
 
     public String getMdp() {
         return mdp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
