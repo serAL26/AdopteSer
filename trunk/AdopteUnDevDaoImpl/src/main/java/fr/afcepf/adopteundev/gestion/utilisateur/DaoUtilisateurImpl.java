@@ -13,7 +13,7 @@ import java.util.List;
 @Remote
 @Stateless
 public class DaoUtilisateurImpl implements IDaoUtilisateur{
-    @PersistenceContext(unitName = "AdopteUnDevEntities")
+    @PersistenceContext(unitName = "AdopteUnDev")
     EntityManager em;
 
     @Override

@@ -11,7 +11,7 @@ import fr.afcepf.adopteundev.idao.messagerie.IDaoMessagerie;
 @Stateless
 public class DaoMessage implements IDaoMessagerie{
 
-	@PersistenceContext(unitName="AdopteUnDevEntities")
+	@PersistenceContext(unitName="AdopteUnDev")
 	private EntityManager em;
 	
 	@Override
