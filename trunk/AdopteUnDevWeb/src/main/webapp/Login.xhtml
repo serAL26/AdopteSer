@@ -16,11 +16,11 @@
                         <div class="basic-login">
                             <h:form >
                                 <div class="form-group">
-                                    <label for="login-username"><i class="icon-user"></i> <b>Votre Email</b></label>
+                                    <label for="login-username"><i class="icon-user"/> <b>Votre Email</b></label>
                                     <h:inputText styleClass="form-control" id="login-username" value="#{mBConnexion.mail}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="login-password"><i class="icon-lock"></i>
+                                    <label for="login-password"><i class="icon-lock"/>
                                         <b>Votre mot de passe</b></label>
                                     <h:inputSecret styleClass="form-control" id="login-password" value="#{mBConnexion.mdp}"/>
                                 </div>
@@ -29,14 +29,16 @@
                                         <input type="checkbox"/> Remember me
                                     </label>
                                     <a href="page-password-reset.html" class="forgot-password">Forgot password?</a>
-                                    <h:commandButton value="se connecter" action="#{mBConnexion.seConnecter}"/>
-                                    <button type="submit" class="btn pull-right" >Login</button>
+                                    <h:commandButton styleClass="btn pull-right" value="se connecter" action="#{mBConnexion.seConnecter}"/>
                                     <div class="clearfix"></div>
                                 </div>
                             </h:form>
                         </div>
                     </div>
                     <div class="col-sm-7 social-login">
+                        <p>
+                            <h:outputLabel value="#{mBConnexion.message}" />
+                        </p>
                         <p>Or login with your Facebook or Twitter</p>
                         <div class="social-login-buttons">
                             <a href="#" class="btn-facebook-login">Login with Facebook</a>
