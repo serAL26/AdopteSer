@@ -15,7 +15,7 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTypeAppli;
 @Stateless
 public class DaoTypeAppli implements IDaoTypeAppli {
 
-	@PersistenceContext(unitName = "AdopteUnDev")
+	@PersistenceContext(unitName="AdopteUnDev")
 	EntityManager em;
 
 	@Override
