@@ -58,6 +58,12 @@ public class TypeAppli {
 		this.lesServices = lesServices;
 	}
 
+	@Override
+	public String toString() {
+		return "TypeAppli [idTypeAppli=" + idTypeAppli + ", libelle=" + libelle
+				+ ", lesServices=" + lesServices + "]";
+	}
+
 
     
 }
