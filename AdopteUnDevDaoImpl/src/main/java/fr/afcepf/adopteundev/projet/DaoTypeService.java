@@ -17,7 +17,8 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTypeService;
 @Remote(IDaoTypeService.class)
 @Stateless
 public class DaoTypeService implements IDaoTypeService {
-	@PersistenceContext(unitName = "AdopteUnDev")
+	@PersistenceContext(unitName="AdopteUnDev")
+
 
 	EntityManager em;
 
