@@ -14,6 +14,16 @@
 </h:head>
 <h:body>
 	<ui:include src="/WEB-INF/navbar.xhtml"></ui:include>
+	<!-- Page Title -->
+		<div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1><ui:insert name="title"> </ui:insert></h1>
+					</div>
+				</div>
+			</div>
+		</div>
 	<ui:insert name="body">
 
 	</ui:insert>
