@@ -14,7 +14,7 @@ public class DaoTypeAppli implements IDaoTypeAppli {
 	}
 
 	@Override
-	public List<TypeAppli> getAppliById(Integer id) {
+	public TypeAppli getAppliById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

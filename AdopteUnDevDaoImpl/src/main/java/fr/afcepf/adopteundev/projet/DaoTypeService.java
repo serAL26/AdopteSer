@@ -2,28 +2,49 @@ package fr.afcepf.adopteundev.projet;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import entity.TypeAppli;
 import entity.TypeService;
+import fr.afcepf.adopteundev.idao.projet.IDaoTypeAppli;
 import fr.afcepf.adopteundev.idao.projet.IDaoTypeService;
 
+@Remote(IDaoTypeService.class)
+@Stateless
 public class DaoTypeService implements IDaoTypeService {
+	@PersistenceContext
+	EntityManager em;
+	@EJB
+	IDaoTypeAppli daoTypeAppli;
 
 	@Override
 	public List<TypeService> getAllServices() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("FROM TypeService t", TypeService.class)
+				.getResultList();
 	}
 
 	@Override
-	public List<TypeService> getSericesById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public TypeService getSericesById(Integer id) {
+		return em.find(TypeService.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<TypeService> getServicesByAppli(TypeAppli appli) {
-		// TODO Auto-generated method stub
-		return null;
+		List<TypeService> liste = null;
+		if (daoTypeAppli.getAppliById(appli.getIdTypeAppli()) != null) {
+			Query query = em
+					.createQuery("SELECT serv FROM TypeService serv WHERE serv.typeAppli=:p_typeAppli");
+			query.setParameter("p_typeAppli", appli);
+			liste = query.getResultList();
+		}
+
+		return liste;
 	}
 
 }
