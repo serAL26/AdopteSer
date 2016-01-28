@@ -21,4 +21,9 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 
 	}
 
+	@Override
+	public void modifierCdcDto(DTOCdc cdcDto) {
+		businessCdc.modifierCdcDto(cdcDto);
+	}
+
 }

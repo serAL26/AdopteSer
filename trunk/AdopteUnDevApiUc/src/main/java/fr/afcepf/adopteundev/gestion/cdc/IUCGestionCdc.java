@@ -5,5 +5,6 @@ import dto.DTOCdc;
 public interface IUCGestionCdc {
 	
 	void ajouterCdcDto (DTOCdc cdcDto);
+	void modifierCdcDto (DTOCdc cdcDto);
 
 }

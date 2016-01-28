@@ -5,5 +5,6 @@ import entity.Cdc;
 public interface IDaoCdc {
 	
 	void ajouterCdc (Cdc cdc);
+	void modifierCdc (Cdc cdc);
 
 }

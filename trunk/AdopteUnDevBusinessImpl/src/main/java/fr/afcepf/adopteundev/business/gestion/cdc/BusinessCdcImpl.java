@@ -23,4 +23,11 @@ public class BusinessCdcImpl implements IBusinessCdc{
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		daoCdc.ajouterCdc(cdc);
 	}
+
+	@Override
+	public void modifierCdcDto(DTOCdc cdcDto) {
+		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
+		daoCdc.modifierCdc(cdc);
+		
+	}
 }
