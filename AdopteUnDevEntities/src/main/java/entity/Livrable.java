@@ -57,6 +57,14 @@ public class Livrable {
     @OneToMany(mappedBy="livrable")
     private Set<Operation> lesOperation;
 
+	public Set<Operation> getLesOperation() {
+		return lesOperation;
+	}
+
+	public void setLesOperation(Set<Operation> lesOperation) {
+		this.lesOperation = lesOperation;
+	}
+
 	public Date getEcheance() {
 		return echeance;
 	}
