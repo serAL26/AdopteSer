@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.business.api;
+package fr.afcepf.adopteundev.ibusiness.gestion.utilisateur;
 
 import dto.DTOUtilisateur;
 

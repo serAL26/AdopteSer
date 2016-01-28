@@ -1,7 +1,7 @@
-package fr.afcepf.adopteundev.dao.impl;
+package fr.afcepf.adopteundev.gestion.utilisateur;
 
 import entity.Utilisateur;
-import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;

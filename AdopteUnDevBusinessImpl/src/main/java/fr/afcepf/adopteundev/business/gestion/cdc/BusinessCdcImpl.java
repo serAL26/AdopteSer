@@ -1,10 +1,10 @@
-package fr.afcepf.adopteundev.business.impl;
+package fr.afcepf.adopteundev.business.gestion.cdc;
 
 import assembleur.DTOToEntity;
 import dto.DTOCdc;
 import entity.Cdc;
-import fr.afcepf.adopteundev.business.api.IBusinessCdc;
-import fr.afcepf.adopteundev.dao.api.IDaoCdc;
+import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
 public class BusinessCdcImpl implements IBusinessCdc{
 	

@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.uc.api;
+package fr.afcepf.adopteundev.gestion.cdc;
 
 import dto.DTOCdc;
 

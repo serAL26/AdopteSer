@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.utilisateurImpl;
+package fr.afcepf.adopteundev.gestion.cdc;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entity.Cdc;
-import fr.afcepf.adopteundev.dao.api.IDaoCdc;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
 @Remote
 @Stateless
