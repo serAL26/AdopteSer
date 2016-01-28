@@ -16,6 +16,10 @@ public class ContextFactory {
 		
 		Properties props = new Properties();
 		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming" );
+		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
+		props.put(Context.PROVIDER_URL, "remote://192.168.100.154:4447");
+		props.put("jboss.naming.client.ejb.context", true);
+		
 		try {
 			ctx = new InitialContext(props);
 			objet = ctx.lookup(ucJNDI);
