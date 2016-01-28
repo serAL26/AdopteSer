@@ -2,6 +2,8 @@ package fr.afcepf.adopteundev.managedbean.gestioncdc;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -9,6 +11,8 @@ import dto.DTOCdc;
 import dto.DTOProjet;
 import dto.DTOTypeCdc;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
+import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
+import fr.afcepf.adopteundev.managedbean.util.UcName;
 
 @ManagedBean
 @SessionScoped
@@ -22,7 +26,14 @@ public class MBAjoutCdc {
 	
 	private DTOCdc cdc;
 	
-	private IUCGestionCdc ucGestionCdc;
+	@EJB
+	private IUCGestionCdc gestionCdc;
+	
+	@PostConstruct
+	private void obtenirLesInterfaces()
+	{
+		 gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
+	}
 
 	public String getBesoin() {
 		return besoin;
@@ -76,7 +87,7 @@ public class MBAjoutCdc {
 	{
 		cdc = new DTOCdc(contexte, besoin, existant, tarif, dateFin, new DTOProjet(), new DTOTypeCdc());
 		
-		ucGestionCdc.ajouterCdcDto(cdc);
+		gestionCdc.ajouterCdcDto(cdc);
 	}
 
 }
