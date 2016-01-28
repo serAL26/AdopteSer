@@ -31,19 +31,6 @@ public class EntityToDTO {
 		return dTOAssociationCdcFonctionnalite;
 	}
 
-	public static DTOAssociationCdcTechnologie associationCdcTechnologieToDTOAssociationCdcTechnologie(
-			AssociationCdcTechnologie associationCdcTechnologie) {
-		DTOAssociationCdcTechnologie dTOAssociationCdcTechnologie = new DTOAssociationCdcTechnologie();
-		dTOAssociationCdcTechnologie
-				.setIdAssociationCdcTechnologie(associationCdcTechnologie
-						.getIdAssociationCdcTechnologie());
-		dTOAssociationCdcTechnologie
-				.setCdc(cdcToDTOCdc(associationCdcTechnologie.getCdc()));
-		dTOAssociationCdcTechnologie
-				.setTechnologie(technologieToDTOTechnologie(associationCdcTechnologie
-						.getTechnologie()));
-		return dTOAssociationCdcTechnologie;
-	}
 
 	public static DTOAssociationDevTechno associationDevTechnoToDTOAssociationDevTechno(
 			AssociationDevTechno associationDevTechno) {
@@ -62,8 +49,6 @@ public class EntityToDTO {
 	public static DTOCdc cdcToDTOCdc(Cdc cdc) {
 		DTOCdc dtoCdc = new DTOCdc();
 		dtoCdc.setIdCdc(cdc.getIdCdc());
-		dtoCdc.setAssociationCdcTechnologie(listAssoCdcTechnologieToDtoAssoCdcTechno(cdc
-				.getAssociationCdcTechnologie()));
 		dtoCdc.setBesoin(cdc.getBesoin());
 		dtoCdc.setContexte(cdc.getContexte());
 		dtoCdc.setDateFinEstimee(cdc.getDateFinEstimee());
@@ -381,14 +366,6 @@ public class EntityToDTO {
 		return dTOVille;
 	}
 
-	private static Set<DTOAssociationCdcTechnologie> listAssoCdcTechnologieToDtoAssoCdcTechno(
-			Set<AssociationCdcTechnologie> listEntity) {
-		Set<DTOAssociationCdcTechnologie> listDto = new HashSet<DTOAssociationCdcTechnologie>();
-		for (AssociationCdcTechnologie entity : listEntity) {
-			listDto.add(associationCdcTechnologieToDTOAssociationCdcTechnologie(entity));
-		}
-		return listDto;
-	}
 
 	private static Set<DTOAssociationCdcFonctionnalite> listAssoCdcFonctionToDtoAssoCdcFonction(
 			Set<AssociationCdcFonctionnalite> listEntity) {
