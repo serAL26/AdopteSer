@@ -51,6 +51,8 @@ public class DTOCdc {
      * 
      */
     public DTOProjet projet;
+    
+    public DTODeveloppeur developpeur;
 
     /**
      * 
@@ -148,9 +150,17 @@ public class DTOCdc {
 		this.lu = lu;
 	}
 
+	public DTODeveloppeur getDeveloppeur() {
+		return developpeur;
+	}
+
+	public void setDeveloppeur(DTODeveloppeur developpeur) {
+		this.developpeur = developpeur;
+	}
+
 	public DTOCdc(String contexte, String besoin, String existant,
 			Double tarif, Date dateFinEstimee, DTOProjet projet,
-			DTOTypeCdc typeCdc) {
+			DTOTypeCdc typeCdc, DTODeveloppeur developpeur) {
 		super();
 		Contexte = contexte;
 		Besoin = besoin;
@@ -159,6 +169,7 @@ public class DTOCdc {
 		this.dateFinEstimee = dateFinEstimee;
 		this.projet = projet;
 		this.typeCdc = typeCdc;
+		this.developpeur = developpeur;
 	}
 	
 	

@@ -21,4 +21,10 @@ public class DaoCdcImpl implements IDaoCdc {
 		em.flush();	
 	}
 
+	@Override
+	public void modifierCdc(Cdc cdc) {
+		em.merge(cdc);
+		
+	}
+
 }

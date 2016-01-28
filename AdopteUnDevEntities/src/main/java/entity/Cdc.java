@@ -82,6 +82,10 @@ public class Cdc {
 	@ManyToOne
 	@JoinColumn(name = "idTypeCdc", nullable = false)
 	private TypeCdc typeCdc;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_developpeur", nullable = false)
+	private Developpeur developpeurCdc;
 
 	@OneToMany(mappedBy = "cdc")
 	private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
@@ -184,5 +188,15 @@ public class Cdc {
 	public void setLesCdc(List<Cdc> lesCdc) {
 		this.lesCdc = lesCdc;
 	}
+
+	public Developpeur getDeveloppeurCdc() {
+		return developpeurCdc;
+	}
+
+	public void setDeveloppeurCdc(Developpeur developpeurCdc) {
+		this.developpeurCdc = developpeurCdc;
+	}
+	
+	
 
 }
