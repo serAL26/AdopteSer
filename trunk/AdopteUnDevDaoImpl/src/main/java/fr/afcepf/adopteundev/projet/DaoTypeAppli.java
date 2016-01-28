@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.projet;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -18,9 +19,8 @@ public class DaoTypeAppli implements IDaoTypeAppli {
 	EntityManager em;
 
 	@Override
-	public List<TypeAppli> getAllApplis() {
-		return em.createQuery("FROM TypeAppli t", TypeAppli.class)
-				.getResultList();
+	public Set<TypeAppli> getAllApplis() {
+		return  new HashSet<>(em.createQuery("FROM TypeAppli t", TypeAppli.class).getResultList());
 	}
 
 	@Override
