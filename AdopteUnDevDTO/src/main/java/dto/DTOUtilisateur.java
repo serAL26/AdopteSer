@@ -72,7 +72,6 @@ public class DTOUtilisateur {
     /**
      * 
      */
-    public Set<DTOOperation> lesOperation;
 
     /**
      * 
@@ -167,13 +166,6 @@ public class DTOUtilisateur {
 		this.adresse = adresse;
 	}
 
-	public Set<DTOOperation> getLesOperation() {
-		return lesOperation;
-	}
-
-	public void setLesOperation(Set<DTOOperation> lesOperation) {
-		this.lesOperation = lesOperation;
-	}
 
 	public Set<DTOMessage> getLesMessages2() {
 		return lesMessages2;

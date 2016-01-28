@@ -16,7 +16,7 @@ public class DTOTechnologie {
     /**
      * 
      */
-    private String Technologie;
+    private String technologieLibelle;
 
     /**
      * 
@@ -26,8 +26,7 @@ public class DTOTechnologie {
     /**
      * 
      */
-    public Set<DTOAssociationTechnoRep> lesAssociationTechnoRep;
-
+    private Set<DTOAssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
     /**
      * 
      */
@@ -38,13 +37,7 @@ public class DTOTechnologie {
      */
     public Set<DTOAssociationDevTechno> lesAssociationDevTechno;
 
-	public String getTechnologie() {
-		return Technologie;
-	}
 
-	public void setTechnologie(String technologie) {
-		Technologie = technologie;
-	}
 
 	public Integer getIdTechnologie() {
 		return idTechnologie;
@@ -54,14 +47,6 @@ public class DTOTechnologie {
 		this.idTechnologie = idTechnologie;
 	}
 
-	public Set<DTOAssociationTechnoRep> getLesAssociationTechnoRep() {
-		return lesAssociationTechnoRep;
-	}
-
-	public void setLesAssociationTechnoRep(
-			Set<DTOAssociationTechnoRep> lesAssociationTechnoRep) {
-		this.lesAssociationTechnoRep = lesAssociationTechnoRep;
-	}
 
 	public Set<DTOAssociationCdcTechnologie> getLesAssociationCdcTechnologie() {
 		return lesAssociationCdcTechnologie;
@@ -79,6 +64,23 @@ public class DTOTechnologie {
 	public void setLesAssociationDevTechno(
 			Set<DTOAssociationDevTechno> lesAssociationDevTechno) {
 		this.lesAssociationDevTechno = lesAssociationDevTechno;
+	}
+
+	public Set<DTOAssociationTypeServiceTechno> getLesAssociationTypeServiceTechno() {
+		return lesAssociationTypeServiceTechno;
+	}
+
+	public void setLesAssociationTypeServiceTechno(
+			Set<DTOAssociationTypeServiceTechno> lesAssociationTypeServiceTechno) {
+		this.lesAssociationTypeServiceTechno = lesAssociationTypeServiceTechno;
+	}
+
+	public String getTechnologieLibelle() {
+		return technologieLibelle;
+	}
+
+	public void setTechnologieLibelle(String technologieLibelle) {
+		this.technologieLibelle = technologieLibelle;
 	}
 
     
