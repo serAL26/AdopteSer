@@ -23,7 +23,6 @@ public class Technologie {
 	/**
 	 * 
 	 */
-	private String Technologie;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,13 +41,7 @@ public class Technologie {
 	@OneToMany(mappedBy = "technologie")
 	private Set<AssociationDevTechno> lesAssociationDevTechno;
 
-	public String getTechnologie() {
-		return Technologie;
-	}
 
-	public void setTechnologie(String technologie) {
-		Technologie = technologie;
-	}
 
 	public Integer getIdTechnologie() {
 		return idTechnologie;
