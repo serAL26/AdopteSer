@@ -88,9 +88,6 @@ public class Utilisateur {
     @JoinColumn(name = "idAdresse", nullable = false)
     private Adresse adresse;
 
-    @OneToMany(mappedBy = "utilisateur")
-    private Set<Operation> lesOperation;
-
     @OneToMany(mappedBy = "utilisateur2")
     private Set<Message> lesMessages2;
 
@@ -180,14 +177,6 @@ public class Utilisateur {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
-    }
-
-    public Set<Operation> getLesOperation() {
-        return lesOperation;
-    }
-
-    public void setLesOperation(Set<Operation> lesOperation) {
-        this.lesOperation = lesOperation;
     }
 
     public Set<Message> getLesMessages2() {
