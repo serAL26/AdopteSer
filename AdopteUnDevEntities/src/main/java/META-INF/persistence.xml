@@ -5,11 +5,9 @@
 	<persistence-unit name="AdopteUnDevEntities">
 		<jta-data-source>java:jboss/AdopteUnDev</jta-data-source>
 		<class>entity.Adresse</class>
-		<class>entity.Appli</class>
 		<class>entity.AssociationCdcFonctionnalite</class>
 		<class>entity.AssociationCdcTechnologie</class>
 		<class>entity.AssociationDevTechno</class>
-		<class>entity.AssociationTechnoRep</class>
 		<class>entity.Cdc</class>
 		<class>entity.Client</class>
 		<class>entity.Departement</class>
@@ -24,9 +22,6 @@
 		<class>entity.Operation</class>
 		<class>entity.Projet</class>
 		<class>entity.Proposition</class>
-		<class>entity.Questions</class>
-		<class>entity.ReponsesPreDefinies</class>
-		<class>entity.Service</class>
 		<class>entity.Technologie</class>
 		<class>entity.TypeCdc</class>
 		<class>entity.TypeAppli</class>
