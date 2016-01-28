@@ -455,9 +455,9 @@ public class EntityToDTO {
 		return listDto;
 	}
 	
-	public static List<DTOTypeAppli> listTypeAppliotoDTOtypeAppli(List<TypeAppli> listEntity) {
-		List<DTOTypeAppli> listDto = new ArrayList<>();
-		for (TypeAppli entity : listEntity) {
+	public static Set<DTOTypeAppli> listTypeAppliotoDTOtypeAppli(Set<TypeAppli> set) {
+		Set<DTOTypeAppli> listDto = new HashSet<>();
+		for (TypeAppli entity : set) {
 			listDto.add(typeAppliToDTOTypeAppli((entity)));
 		}
 		return listDto;
