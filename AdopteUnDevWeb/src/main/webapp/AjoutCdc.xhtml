@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Création Cahier des Charges</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="basic-login">
+							<div class="form-group">
+								<label for="register-username">
+								<i class="icon-user"></i>
+									<b>Besoin Client</b></label> 
+									<h:inputText class="form-control" id="register-username" value="#{mBAjoutCdc.besoin}" />
+							</div>
+							<div class="form-group">
+								<label for="register-password"><i class="icon-lock"></i>
+									<b>Contexte</b></label> 
+									<h:inputText class="form-control" id="register-username" value="#{mBAjoutCdc.contexte}" />
+							</div>
+							<div class="form-group">
+								<label for="register-password2"><i class="icon-lock"></i>
+									<b>Existant</b></label> 
+									<h:inputText class="form-control" id="register-username" value="#{mBAjoutCdc.existant}" />
+							</div>
+							<div class="form-group">
+								<label for="register-password2"><i class="icon-lock"></i>
+									<b>Date de fin</b></label> 
+									<h:inputText class="form-control" id="register-username" value="#{mBAjoutCdc.dateFin}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+							</div>
+							<div class="form-group">
+								<label for="register-password2"><i class="icon-lock"></i>
+									<b>Budget</b></label> 
+									<h:inputText class="form-control" id="register-username" value="#{mBAjoutCdc.tarif}" />
+							</div>
+							<h:commandButton class="btn pull-right" action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

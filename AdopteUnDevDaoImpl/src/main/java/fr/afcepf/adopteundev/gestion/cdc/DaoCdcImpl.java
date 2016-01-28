@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import entity.Cdc;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
-@Remote
+@Remote(IDaoCdc.class)
 @Stateless
 public class DaoCdcImpl implements IDaoCdc {
 

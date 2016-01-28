@@ -147,4 +147,19 @@ public class DTOCdc {
 	public void setLu(Boolean lu) {
 		this.lu = lu;
 	}
+
+	public DTOCdc(String contexte, String besoin, String existant,
+			Double tarif, Date dateFinEstimee, DTOProjet projet,
+			DTOTypeCdc typeCdc) {
+		super();
+		Contexte = contexte;
+		Besoin = besoin;
+		Existant = existant;
+		this.tarif = tarif;
+		this.dateFinEstimee = dateFinEstimee;
+		this.projet = projet;
+		this.typeCdc = typeCdc;
+	}
+	
+	
 }
