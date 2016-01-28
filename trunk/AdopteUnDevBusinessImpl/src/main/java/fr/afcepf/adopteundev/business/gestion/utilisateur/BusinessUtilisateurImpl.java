@@ -6,12 +6,14 @@ import entity.Utilisateur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
 
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-@Remote
+@Remote(IBusinessUtilisateur.class)
 @Stateless
 public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
+	@EJB
     private IDaoUtilisateur daoUtilisateur;
 
     @Override

@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Remote
+@Remote(IDaoUtilisateur.class)
 @Stateless
 public class DaoUtilisateurImpl implements IDaoUtilisateur{
     @PersistenceContext(unitName="AdopteUnDev")
@@ -18,13 +18,15 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur{
 
     @Override
     public Utilisateur seConnecter(String mail, String password) {
-        TypedQuery<Utilisateur> query = em.createQuery("FROM Utilisateur u WHERE u.mail like :email AND u.mdp like :password", Utilisateur.class)
-                .setParameter("email",mail)
-                .setParameter("password",password);
+        TypedQuery<Utilisateur> query = em.createQuery("FROM Utilisateur u WHERE u.mail like :email AND u.mdp like :password", Utilisateur.class);
+                query.setParameter("email",mail);
+                query.setParameter("password",password);
         List<Utilisateur> list = query.getResultList();
-        if (list.size()==1)
+        if (list.size()==1) {
             return list.get(0);
-        else
+        }
+        else {
             return null;
+        }
     }
 }
