@@ -17,14 +17,12 @@ public class MBConnexion {
     private String message;
     private  IUcConnexion connexion;
 
-
-
     public MBConnexion() {
 		super();
 	}
 
 	@PostConstruct
-    private void obtenirLesInterfaces(){
+    public void obtenirLesInterfaces(){
         connexion = (IUcConnexion) ContextFactory.createProxy(UcName.UCCONNEXION);
     }
 
