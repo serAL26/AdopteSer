@@ -24,19 +24,20 @@ public class DTOToEntity {
         return entity;
     }
 
-    public static AssociationTechnoRep dtoAssociationTechnoRepToAssociationTechnoRep(DTOAssociationTechnoRep dto) {
-        AssociationTechnoRep entity = new AssociationTechnoRep();
-        entity.setIdAssociationTechnoRep(dto.getIdAssociationTechnoRep());
-        entity.setTechnologie(dtoTechnologieToTechnologie(dto.getTechnologie()));
-        entity.setReponse(dtoReponsePreDefiniToReponsePreDefini(dto.getReponse()));
-        return entity;
-    }
 
     public static AssociationDevTechno dtoAssociationDevTechnoToAssociationDevTechno(DTOAssociationDevTechno dto) {
         AssociationDevTechno entity = new AssociationDevTechno();
         entity.setIdAssociationDevTechno(dto.getIdAssociationDevTechno());
         entity.setDeveloppeur(dtoDeveloppeurToDeveloppeur(dto.getDeveloppeur()));
         entity.setTechnologie(dtoTechnologieToTechnologie(dto.getTechnologie()));
+        return entity;
+    }
+    
+    public static AssociationTypeServiceTechno dtoAssociationTypeServTechnoToAssociationTypeServTechno(DTOAssociationTypeServiceTechno dto) {
+    	AssociationTypeServiceTechno entity = new AssociationTypeServiceTechno();
+    	entity.setIdAssociationTypeServiceTechno(dto.getIdAssociationTypeServiceTechno());
+    	entity.setTechnologie(dtoTechnologieToTechnologie(dto.getTechnologie()));
+    	entity.setTypeService(dtoTypeServiceToTypeService(dto.getTypeService()));
         return entity;
     }
 
@@ -66,14 +67,7 @@ public class DTOToEntity {
         return ville;
     }
 
-    public static Appli dtoAppliToAppli(DTOAppli dtoAppli) {
-        Appli appli = new Appli();
-        appli.setIdAppli(dtoAppli.getIdAppli());
-        appli.setLesService(listDTOServiceToService(dtoAppli.getLesService()));
-        appli.setProjet(dtoProjetToProjet(dtoAppli.getProjet()));
-        appli.setTypeAppli(dtoTypeAppliToTypeAppli(dtoAppli.getTypeAppli()));
-        return appli;
-    }
+  
 
     public static Fonctionnalite dtoFonctionnaliteToFonctionnalite(DTOFonctionnalite dtoFonctionnalite) {
         Fonctionnalite fonctionnalite = new Fonctionnalite();
@@ -117,26 +111,12 @@ public class DTOToEntity {
         technologie.setIdTechnologie(dtoTechnologie.getIdTechnologie());
         technologie.setLesAssociationCdcTechnologie(listDtoAssociationCdcTechnologiesToAssociationTechnologies(dtoTechnologie.getLesAssociationCdcTechnologie()));
         technologie.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoTechnologie.getLesAssociationDevTechno()));
-        technologie.setLesAssociationTechnoRep(listDtoAssoTechnoRepToAssoTecnoRep(dtoTechnologie.getLesAssociationTechnoRep()));
+        technologie.setLesAssociationTypeServiceTechno(listDtoAssoTypeServTechnoToAssoTypeServTechno(dtoTechnologie.getLesAssociationTypeServiceTechno()));
+        technologie.setTechnologieLibelle(dtoTechnologie.getTechnologieLibelle());
         return technologie;
     }
 
-    public static ReponsesPreDefinies dtoReponsePreDefiniToReponsePreDefini(DTOReponsesPreDefinies dtoReponse) {
-        ReponsesPreDefinies entity = new ReponsesPreDefinies();
-        entity.setIdReponsesPreDefinies(dtoReponse.getIdReponsesPreDefinies());
-        entity.setLibelle(dtoReponse.getLibelle());
-        entity.setLesAssociationTechnoRep(listDtoAssoTechnoRepToAssoTecnoRep(dtoReponse.getLesAssociationTechnoRep()));
-        entity.setQuestion(dtoQuestionToQuestion(dtoReponse.getQuestion()));
-        return entity;
-    }
-
-    public static Questions dtoQuestionToQuestion(DTOQuestions dtoQuestions) {
-        Questions entity = new Questions();
-        entity.setIdQuestion(dtoQuestions.getIdQuestion());
-        entity.setLibelle(dtoQuestions.getLibelle());
-        entity.setLesReponses(listDtoReponseToReponse(dtoQuestions.getLesReponses()));
-        return entity;
-    }
+   
 
     public static Developpeur dtoDeveloppeurToDeveloppeur(DTODeveloppeur dtoDeveloppeur) {
         Developpeur entity = new Developpeur();
@@ -155,7 +135,6 @@ public class DTOToEntity {
         entity.setListeProposition(listDtoPropositionToProposition(dtoDeveloppeur.getListeProposition()));
         entity.setLesMessages1(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
         entity.setLesMessages2(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
-        entity.setLesOperation(listDtoOperationsToOperation(dtoDeveloppeur.getLesOperation()));
         return entity;
     }
 
@@ -165,7 +144,7 @@ public class DTOToEntity {
         entity.setDate(dto.getDate());
         entity.setMontant(dto.getMontant());
         entity.setTypeOperation(dtoTypeOperationToTypeOperation(dto.getTypeOperation()));
-        entity.setUtilisateur(dtoUtilisateurToUtilisateur(dto.getUtilisateur()));
+        entity.setLivrable(dtoLivrableToLivrable(dto.getLivrable()));
         return entity;
     }
 
@@ -182,8 +161,7 @@ public class DTOToEntity {
         entity.setDateInscription(dto.getDateInscription());
         entity.setAdresse(dtoAdresseToAdresse(dto.getAdresse()));
         entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
-        entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages1()));
-        entity.setLesOperation(listDtoOperationsToOperation(dto.getLesOperation()));
+        entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages2()));
         return entity;
     }
 
@@ -245,13 +223,6 @@ public class DTOToEntity {
         return entity;
     }
 
-    public static Service dtoServiceToService(DTOService dtoService) {
-        Service service = new Service();
-        service.setIdService(dtoService.getIdService());
-        service.setAppli(dtoAppliToAppli(dtoService.getAppli()));
-        service.setTypeService(dtoTypeServiceToTypeService(dtoService.getTypeService()));
-        return service;
-    }
 
     public static TypeService dtoTypeServiceToTypeService(DTOTypeService dtoTypeService) {
         TypeService typeService = new TypeService();
@@ -270,7 +241,6 @@ public class DTOToEntity {
     public static Projet dtoProjetToProjet(DTOProjet dto) {
         Projet entity = new Projet();
         entity.setIdProjet(dto.getIdProjet());
-        entity.setAppli(dtoAppliToAppli(dto.getAppli()));
         entity.setClient(dtoClientToClient(dto.getClient()));
         entity.setEtatProjet(dtoEtatProjetToEtatProjet(dto.getEtatProjet()));
         entity.setLesCdc(listDtoCdcToCdc(dto.getLesCdc()));
@@ -279,10 +249,21 @@ public class DTOToEntity {
         entity.setLesNotes(listDtoNotesToNotes(dto.getLesNotes()));
         entity.setLesProposition(listDtoPropositionToProposition(dto.getLesProposition()));
         entity.setLibelle(dto.getLibelle());
+        entity.setLesServices(lisDtoTypeServToTypeServ(dto.getLesServices()));
         return entity;
     }
 
-    public static Note dtoNoteToNote(DTONote dto) {
+    public static Set<TypeService> lisDtoTypeServToTypeServ(
+			Set<DTOTypeService> listDto) {
+    	 Set<TypeService> listEntity = new HashSet<TypeService>();
+         for (DTOTypeService dto :
+                 listDto) {
+             listEntity.add(dtoTypeServiceToTypeService(dto));
+         }
+         return listEntity;
+	}
+
+	public static Note dtoNoteToNote(DTONote dto) {
         Note entity = new Note();
         entity.setIdNote(dto.getIdNote());
         entity.setIdEstNote(dto.getIdEstNote());
@@ -341,17 +322,9 @@ public class DTOToEntity {
         entity.setAdresse(dtoAdresseToAdresse(dto.getAdresse()));
         entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
         entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages1()));
-        entity.setLesOperation(listDtoOperationsToOperation(dto.getLesOperation()));
         return entity;
     }
 
-    public static Set<Service> listDTOServiceToService(Set<DTOService> dtoServices) {
-        Set<Service> listeServices = new HashSet<Service>();
-        for (DTOService dtoService : dtoServices) {
-            listeServices.add(dtoServiceToService(dtoService));
-        }
-        return listeServices;
-    }
 
     public static Set<AssociationCdcFonctionnalite> listDtoAssociationsCdcFonctionnaliteToAssociationFonctionnalite(Set<DTOAssociationCdcFonctionnalite> dtoFonctionnaliteLesAssociationCdcFonctionnalite) {
         Set<AssociationCdcFonctionnalite> listAssociationFonctionnalite = new HashSet<AssociationCdcFonctionnalite>();
@@ -371,23 +344,6 @@ public class DTOToEntity {
         return listAssociationTechnologies;
     }
 
-    public static Set<AssociationTechnoRep> listDtoAssoTechnoRepToAssoTecnoRep(Set<DTOAssociationTechnoRep> listDto) {
-        Set<AssociationTechnoRep> listEntity = new HashSet<AssociationTechnoRep>();
-        for (DTOAssociationTechnoRep dto :
-                listDto) {
-            listEntity.add(dtoAssociationTechnoRepToAssociationTechnoRep(dto));
-        }
-        return listEntity;
-    }
-
-    public static Set<ReponsesPreDefinies> listDtoReponseToReponse(Set<DTOReponsesPreDefinies> listDto) {
-        Set<ReponsesPreDefinies> listEntities = new HashSet<ReponsesPreDefinies>();
-        for (DTOReponsesPreDefinies dto :
-                listDto) {
-            listEntities.add(dtoReponsePreDefiniToReponsePreDefini(dto));
-        }
-        return listEntities;
-    }
 
     public static Set<AssociationDevTechno> listDtoAssoDevTechnoToAssoDevTechno(Set<DTOAssociationDevTechno> listDto) {
         Set<AssociationDevTechno> listEntity = new HashSet<AssociationDevTechno>();
@@ -397,7 +353,14 @@ public class DTOToEntity {
         }
         return listEntity;
     }
-
+    public static Set<AssociationTypeServiceTechno> listDtoAssoTypeServTechnoToAssoTypeServTechno(Set<DTOAssociationTypeServiceTechno> listDto) {
+        Set<AssociationTypeServiceTechno> listEntity = new HashSet<AssociationTypeServiceTechno>();
+        for (DTOAssociationTypeServiceTechno dto :
+                listDto) {
+            listEntity.add(dtoAssociationTypeServTechnoToAssociationTypeServTechno(dto));
+        }
+        return listEntity;
+    }
     public static Set<Operation> listDtoOperationsToOperation(Set<DTOOperation> listDto) {
         Set<Operation> listEntity = new HashSet<Operation>();
         for (DTOOperation dto :
