@@ -2,21 +2,30 @@ package fr.afcepf.adopteundev.projet;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import entity.TypeAppli;
 import fr.afcepf.adopteundev.idao.projet.IDaoTypeAppli;
 
+@Remote(IDaoTypeAppli.class)
+@Stateless
 public class DaoTypeAppli implements IDaoTypeAppli {
+
+	@PersistenceContext
+	EntityManager em;
 
 	@Override
 	public List<TypeAppli> getAllApplis() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("FROM TypeAppli t", TypeAppli.class)
+				.getResultList();
 	}
 
 	@Override
 	public TypeAppli getAppliById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(TypeAppli.class, id);
 	}
 
 }

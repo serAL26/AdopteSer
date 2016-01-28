@@ -19,8 +19,7 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTypeService;
 public class DaoTypeService implements IDaoTypeService {
 	@PersistenceContext
 	EntityManager em;
-	@EJB
-	IDaoTypeAppli daoTypeAppli;
+	IDaoTypeAppli daoTypeAppli = new DaoTypeAppli();
 
 	@Override
 	public List<TypeService> getAllServices() {
