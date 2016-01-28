@@ -6,7 +6,6 @@
 		<jta-data-source>java:jboss/AdopteUnDev</jta-data-source>
 		<class>entity.Adresse</class>
 		<class>entity.AssociationCdcFonctionnalite</class>
-		<class>entity.AssociationCdcTechnologie</class>
 		<class>entity.AssociationDevTechno</class>
 		<class>entity.Cdc</class>
 		<class>entity.Client</class>
