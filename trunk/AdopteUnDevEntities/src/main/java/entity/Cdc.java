@@ -1,8 +1,10 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,67 +18,75 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="cdc")
+@Table(name = "cdc")
 public class Cdc {
 
-    /**
-     * Default constructor
-     */
-    public Cdc() {
-    }
+	/**
+	 * Default constructor
+	 */
+	public Cdc() {
+	}
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_cdc",nullable=false)
-    private Integer idCdc;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cdc", nullable = false)
+	private Integer idCdc;
 
-    /**
+	/**
      * 
      */
-    @Column(nullable=false)
-    private String Contexte;
+	@Column(nullable = false)
+	private String Contexte;
 
-    @Column(nullable=false)
-    private Boolean lu;
-    
-    /**
+	@Column(nullable = false)
+	private Boolean lu;
+
+	/**
      * 
      */
-    @Column(nullable=false)
-    private String Besoin;
+	@Column(nullable = false)
+	private String Besoin;
 
-    /**
+	/**
      * 
      */
-    @Column(nullable=false)
-    private String Existant;
+	@Column(nullable = false)
+	private String Existant;
 
-    /**
+	/**
      * 
      */
-    @Column(nullable=false)
-    private Double tarif;
+	@Column(nullable = false)
+	private Double tarif;
 
-    /**
+	/**
      * 
      */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_fin_estimee",nullable=false)
-    private Date dateFinEstimee;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_fin_estimee", nullable = false)
+	private Date dateFinEstimee;
 
-    @ManyToOne
-    @JoinColumn(name="idProjet",nullable=false)
- private Projet projet;
+	@ManyToOne
+	@JoinColumn(name = "idProjet", nullable = false)
+	private Projet projet;
 
-    @OneToMany(mappedBy="cdc")
-    private Set<AssociationCdcTechnologie> AssociationCdcTechnologie;
+	@OneToMany(mappedBy = "cdc")
+	private Set<AssociationCdcTechnologie> AssociationCdcTechnologie;
+	
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="id_remarque")
+	private Cdc remarque;
 
-    @ManyToOne
-    @JoinColumn(name="idTypeCdc",nullable=false)
-    private TypeCdc typeCdc;
+	@OneToMany(mappedBy="remarque")
+    private List<Cdc> lesCdc ;
+	
+	@ManyToOne
+	@JoinColumn(name = "idTypeCdc", nullable = false)
+	private TypeCdc typeCdc;
 
-    @OneToMany(mappedBy="cdc")
-    private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
+	@OneToMany(mappedBy = "cdc")
+	private Set<AssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite;
 
 	public Integer getIdCdc() {
 		return idCdc;
@@ -167,5 +177,21 @@ public class Cdc {
 	public void setLu(Boolean lu) {
 		this.lu = lu;
 	}
-    
+
+	public Cdc getRemarque() {
+		return remarque;
+	}
+
+	public void setRemarque(Cdc remarque) {
+		this.remarque = remarque;
+	}
+
+	public List<Cdc> getLesCdc() {
+		return lesCdc;
+	}
+
+	public void setLesCdc(List<Cdc> lesCdc) {
+		this.lesCdc = lesCdc;
+	}
+
 }

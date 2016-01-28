@@ -47,10 +47,10 @@ public class Projet {
 	@OneToMany(mappedBy="projet")
 	private Set<Cdc> lesCdc;
 
-	@ManyToOne
-	@JoinColumn(name="idProjetAppli")
-	private Appli appli;
-
+	
+	@OneToMany(mappedBy="projet")
+	private Set<TypeService> lesServices;
+	
 	@OneToMany(mappedBy="projet")
 	private Set<Litige> lesLitige;
 
@@ -108,14 +108,6 @@ public class Projet {
 		this.lesCdc = lesCdc;
 	}
 
-	public Appli getAppli() {
-		return appli;
-	}
-
-	public void setAppli(Appli appli) {
-		this.appli = appli;
-	}
-
 	public Set<Litige> getLesLitige() {
 		return lesLitige;
 	}
@@ -138,6 +130,14 @@ public class Projet {
 
 	public void setLesProposition(Set<Proposition> lesProposition) {
 		this.lesProposition = lesProposition;
+	}
+
+	public Set<TypeService> getLesServices() {
+		return lesServices;
+	}
+
+	public void setLesServices(Set<TypeService> lesServices) {
+		this.lesServices = lesServices;
 	}
 
 	
