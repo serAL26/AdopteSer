@@ -39,8 +39,8 @@ public class Operation {
     private Integer idOperation;
 
     @ManyToOne
-    @JoinColumn(name="idUtilisateur")
-    private Utilisateur utilisateur;
+    @JoinColumn(name="idLivrable")
+	 private Livrable livrable;
 
     @ManyToOne
     @JoinColumn(name="idTypeOperation")
@@ -70,20 +70,20 @@ public class Operation {
 		this.idOperation = idOperation;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
 	public TypeOperation getTypeOperation() {
 		return typeOperation;
 	}
 
 	public void setTypeOperation(TypeOperation typeOperation) {
 		this.typeOperation = typeOperation;
+	}
+
+	public Livrable getLivrable() {
+		return livrable;
+	}
+
+	public void setLivrable(Livrable livrable) {
+		this.livrable = livrable;
 	}
 
     

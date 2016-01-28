@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="technologie")
+@Table(name = "technologie")
 public class Technologie {
 
 	/**
@@ -26,17 +26,20 @@ public class Technologie {
 	private String Technologie;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_technologie",nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_technologie", nullable = false)
 	private Integer idTechnologie;
 
-	@OneToMany(mappedBy="technologie")
-	private Set<AssociationTechnoRep> lesAssociationTechnoRep;
+	@Column(name = "libelle", nullable = false)
+	private String technologieLibelle;
 
-	@OneToMany(mappedBy="technologie")
+	@OneToMany(mappedBy = "technologie")
+	private Set<AssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
+
+	@OneToMany(mappedBy = "technologie")
 	private Set<AssociationCdcTechnologie> lesAssociationCdcTechnologie;
 
-	@OneToMany(mappedBy="technologie")
+	@OneToMany(mappedBy = "technologie")
 	private Set<AssociationDevTechno> lesAssociationDevTechno;
 
 	public String getTechnologie() {
@@ -55,15 +58,6 @@ public class Technologie {
 		this.idTechnologie = idTechnologie;
 	}
 
-	public Set<AssociationTechnoRep> getLesAssociationTechnoRep() {
-		return lesAssociationTechnoRep;
-	}
-
-	public void setLesAssociationTechnoRep(
-			Set<AssociationTechnoRep> lesAssociationTechnoRep) {
-		this.lesAssociationTechnoRep = lesAssociationTechnoRep;
-	}
-
 	public Set<AssociationCdcTechnologie> getLesAssociationCdcTechnologie() {
 		return lesAssociationCdcTechnologie;
 	}
@@ -80,6 +74,23 @@ public class Technologie {
 	public void setLesAssociationDevTechno(
 			Set<AssociationDevTechno> lesAssociationDevTechno) {
 		this.lesAssociationDevTechno = lesAssociationDevTechno;
+	}
+
+	public Set<AssociationTypeServiceTechno> getLesAssociationTypeServiceTechno() {
+		return lesAssociationTypeServiceTechno;
+	}
+
+	public void setLesAssociationTypeServiceTechno(
+			Set<AssociationTypeServiceTechno> lesAssociationTypeServiceTechno) {
+		this.lesAssociationTypeServiceTechno = lesAssociationTypeServiceTechno;
+	}
+
+	public String getTechnologieLibelle() {
+		return technologieLibelle;
+	}
+
+	public void setTechnologieLibelle(String technologieLibelle) {
+		this.technologieLibelle = technologieLibelle;
 	}
 
 }
