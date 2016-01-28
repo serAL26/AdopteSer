@@ -3,7 +3,9 @@ package assembleur;
 import dto.*;
 import entity.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class EntityToDTO {
@@ -232,7 +234,7 @@ public class EntityToDTO {
 		return dTOProjet;
 	}
 
-	private static Set<DTOTypeService> listTypeServToDtoTypeServ(
+	public static Set<DTOTypeService> listTypeServToDtoTypeServ(
 			Set<TypeService> listEntity) {
 		Set<DTOTypeService> listDto = new HashSet<DTOTypeService>();
 		for (TypeService entity : listEntity) {
@@ -449,6 +451,14 @@ public class EntityToDTO {
 		Set<DTODispo> listDto = new HashSet<>();
 		for (Dispo entity : listEntity) {
 			listDto.add(dispoToDTODispo(entity));
+		}
+		return listDto;
+	}
+	
+	public static List<DTOTypeAppli> listTypeAppliotoDTOtypeAppli(List<TypeAppli> listEntity) {
+		List<DTOTypeAppli> listDto = new ArrayList<>();
+		for (TypeAppli entity : listEntity) {
+			listDto.add(typeAppliToDTOTypeAppli((entity)));
 		}
 		return listDto;
 	}
