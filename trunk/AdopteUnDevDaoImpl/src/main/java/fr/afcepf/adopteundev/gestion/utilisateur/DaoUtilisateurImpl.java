@@ -29,4 +29,9 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur{
             return null;
         }
     }
+
+	@Override
+	public Utilisateur obtenirUtilisateurParId(int idUtilisateur) {
+		return em.find(Utilisateur.class, idUtilisateur);
+	}
 }

@@ -4,4 +4,5 @@ import entity.Utilisateur;
 
 public interface IDaoUtilisateur {
     Utilisateur seConnecter(String mail,String password);
+    Utilisateur obtenirUtilisateurParId(int idUtilisateur);
 }
