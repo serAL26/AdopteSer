@@ -70,8 +70,6 @@ public class Cdc {
 	@JoinColumn(name = "idProjet", nullable = false)
 	private Projet projet;
 
-	@OneToMany(mappedBy = "cdc")
-	private Set<AssociationCdcTechnologie> AssociationCdcTechnologie;
 	
 	
 	@ManyToOne(cascade={CascadeType.ALL})
@@ -144,14 +142,7 @@ public class Cdc {
 		this.projet = projet;
 	}
 
-	public Set<AssociationCdcTechnologie> getAssociationCdcTechnologie() {
-		return AssociationCdcTechnologie;
-	}
-
-	public void setAssociationCdcTechnologie(
-			Set<AssociationCdcTechnologie> associationCdcTechnologie) {
-		AssociationCdcTechnologie = associationCdcTechnologie;
-	}
+	
 
 	public TypeCdc getTypeCdc() {
 		return typeCdc;

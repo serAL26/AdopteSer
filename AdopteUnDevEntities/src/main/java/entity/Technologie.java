@@ -35,8 +35,6 @@ public class Technologie {
 	@OneToMany(mappedBy = "technologie")
 	private Set<AssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
 
-	@OneToMany(mappedBy = "technologie")
-	private Set<AssociationCdcTechnologie> lesAssociationCdcTechnologie;
 
 	@OneToMany(mappedBy = "technologie")
 	private Set<AssociationDevTechno> lesAssociationDevTechno;
@@ -51,14 +49,6 @@ public class Technologie {
 		this.idTechnologie = idTechnologie;
 	}
 
-	public Set<AssociationCdcTechnologie> getLesAssociationCdcTechnologie() {
-		return lesAssociationCdcTechnologie;
-	}
-
-	public void setLesAssociationCdcTechnologie(
-			Set<AssociationCdcTechnologie> lesAssociationCdcTechnologie) {
-		this.lesAssociationCdcTechnologie = lesAssociationCdcTechnologie;
-	}
 
 	public Set<AssociationDevTechno> getLesAssociationDevTechno() {
 		return lesAssociationDevTechno;
