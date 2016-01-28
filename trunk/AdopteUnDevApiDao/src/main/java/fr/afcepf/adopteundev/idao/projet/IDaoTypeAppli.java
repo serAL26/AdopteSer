@@ -8,5 +8,5 @@ import entity.TypeAppli;
 
 public interface IDaoTypeAppli {
 	public List<TypeAppli> getAllApplis();
-	public List<TypeAppli> getAppliById(Integer id);
+	public TypeAppli getAppliById(Integer id);
 }
