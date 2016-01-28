@@ -1,10 +1,10 @@
-package fr.afcepf.adopteundev.business.impl;
+package fr.afcepf.adopteundev.business.gestion.utilisateur;
 
 import assembleur.EntityToDTO;
 import dto.DTOUtilisateur;
 import entity.Utilisateur;
-import fr.afcepf.adopteundev.dao.api.IDaoUtilisateur;
-import fr.afcepf.adopteundev.business.api.IBusinessUtilisateur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
+import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;

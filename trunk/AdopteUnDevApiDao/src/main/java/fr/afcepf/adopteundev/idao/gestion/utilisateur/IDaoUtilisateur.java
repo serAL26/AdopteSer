@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.dao.api;
+package fr.afcepf.adopteundev.idao.gestion.utilisateur;
 
 import entity.Utilisateur;
 
