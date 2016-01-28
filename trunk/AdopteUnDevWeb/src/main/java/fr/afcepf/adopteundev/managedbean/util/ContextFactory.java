@@ -10,7 +10,7 @@ public class ContextFactory {
 
 	private ContextFactory() {}
 	
-	public static Object createProxy(String ucName) {
+	public static Object createProxy(String ucJNDI) {
 		Context ctx = null;
 		Object objet = null;
 		
@@ -18,7 +18,7 @@ public class ContextFactory {
 		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming" );
 		try {
 			ctx = new InitialContext(props);
-			objet = ctx.lookup(ucName);
+			objet = ctx.lookup(ucJNDI);
 		} catch (NamingException e) {
 			System.out.println("ca ne marche pas au niveau de la transition entre tomcat et jboss (contextFactory)");
 			// TODO Auto-generated catch block
