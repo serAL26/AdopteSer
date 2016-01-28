@@ -30,7 +30,6 @@ public class DTOTechnologie {
     /**
      * 
      */
-    public Set<DTOAssociationCdcTechnologie> lesAssociationCdcTechnologie;
 
     /**
      * 
@@ -48,14 +47,6 @@ public class DTOTechnologie {
 	}
 
 
-	public Set<DTOAssociationCdcTechnologie> getLesAssociationCdcTechnologie() {
-		return lesAssociationCdcTechnologie;
-	}
-
-	public void setLesAssociationCdcTechnologie(
-			Set<DTOAssociationCdcTechnologie> lesAssociationCdcTechnologie) {
-		this.lesAssociationCdcTechnologie = lesAssociationCdcTechnologie;
-	}
 
 	public Set<DTOAssociationDevTechno> getLesAssociationDevTechno() {
 		return lesAssociationDevTechno;

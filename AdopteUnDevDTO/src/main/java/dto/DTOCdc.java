@@ -55,7 +55,6 @@ public class DTOCdc {
     /**
      * 
      */
-    public Set<DTOAssociationCdcTechnologie> AssociationCdcTechnologie;
 
     /**
      * 
@@ -123,14 +122,6 @@ public class DTOCdc {
 		this.projet = projet;
 	}
 
-	public Set<DTOAssociationCdcTechnologie> getAssociationCdcTechnologie() {
-		return AssociationCdcTechnologie;
-	}
-
-	public void setAssociationCdcTechnologie(
-			Set<DTOAssociationCdcTechnologie> associationCdcTechnologie) {
-		AssociationCdcTechnologie = associationCdcTechnologie;
-	}
 
 	public DTOTypeCdc getTypeCdc() {
 		return typeCdc;
