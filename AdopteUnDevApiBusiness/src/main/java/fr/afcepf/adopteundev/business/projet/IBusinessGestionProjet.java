@@ -5,7 +5,8 @@ import java.util.List;
 import dto.DTOProjet;
 
 public interface IBusinessGestionProjet {
-	
-	List<DTOProjet> recupProjetParIdClient(Integer id);
 
+	public List<DTOProjet> recupProjetParIdClient(Integer id);
+
+	public void ajouter(DTOProjet projet);
 }
