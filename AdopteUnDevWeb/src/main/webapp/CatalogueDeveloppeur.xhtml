@@ -13,7 +13,7 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <ui:repeat value="#{mBCatalogueDeveloppeur.listeDeveloppeur}" var="developpeur">
+                    <ui:repeat value="#{mBCatalogueDeveloppeur.listFiche}" var="fiche">
                         <div class="col-md-4 col-sm-6">
                             <div class="portfolio-item">
                                 <div class="portfolio-image">
@@ -21,16 +21,9 @@
                                 </div>
                                 <div class="portfolio-info">
                                     <ul>
-                                        <li class="portfolio-project-name">#{developpeur.nom} #{developpeur.prenom}</li>
-                                        <li>#{developpeur.listeProposition.size}</li>
-                                        <li> </li>
-                                        <!--
-                                        <li>
-                                            <ui:repeat value="#{developpeur.lesAssociationDevTechno}" var="techno" size="2">
-
-                                            </ui:repeat>
-                                        </li>
-                                        -->
+                                        <li class="portfolio-project-name">#{fiche.developpeur.nom} #{fiche.developpeur.prenom}</li>
+                                        <li>#{fiche.developpeur.listeProposition.size}</li>
+                                        <li><p:rating value="#{fiche.note}" readonly="true" /> </li>
                                         <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
                                     </ul>
                                 </div>
