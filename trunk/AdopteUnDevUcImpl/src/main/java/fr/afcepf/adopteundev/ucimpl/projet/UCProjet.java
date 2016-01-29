@@ -1,13 +1,16 @@
 package fr.afcepf.adopteundev.ucimpl.projet;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import dto.DTOProjet;
 import dto.DTOTypeAppli;
 import dto.DTOTypeService;
+import fr.afcepf.adopteundev.business.projet.IBusinessGestionProjet;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeAppli;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeService;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
@@ -21,6 +24,9 @@ public class UCProjet implements IUCProjet {
 
 	@EJB
 	private IBusinessTypeService businessTypeService;
+	
+	@EJB
+	private IBusinessGestionProjet businessGestionProjet;
 
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
@@ -36,6 +42,12 @@ public class UCProjet implements IUCProjet {
 	public Set<DTOTypeService> rechercherServicesParAppli(
 			DTOTypeAppli application) {
 		return businessTypeService.getServicesByAppli(application);
+	}
+
+	@Override
+	public List<DTOProjet> recupProjetParIdClient(Integer id) {
+		
+		return businessGestionProjet.recupProjetParIdClient(id);
 	}
 
 }

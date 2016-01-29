@@ -19,9 +19,6 @@ public class BusinessCdcImpl implements IBusinessCdc{
 
 	@Override
 	public void ajouterCdcDto(DTOCdc cdcDto) {
-		
-		System.out.println("Je suis dans le business");
-		
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		daoCdc.ajouterCdc(cdc);
 	}

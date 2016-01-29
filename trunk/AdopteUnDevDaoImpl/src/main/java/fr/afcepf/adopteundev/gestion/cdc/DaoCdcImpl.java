@@ -17,7 +17,6 @@ public class DaoCdcImpl implements IDaoCdc {
 	
 	@Override
 	public void ajouterCdc(Cdc cdc) {
-		System.out.println("je passe par la méthode ajout cdc");
 		em.persist(cdc);
 		em.flush();	
 	}
