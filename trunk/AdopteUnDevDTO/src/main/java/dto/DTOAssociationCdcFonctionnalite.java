@@ -58,5 +58,10 @@ public class DTOAssociationCdcFonctionnalite implements Serializable{
 		this.fonctionnalite = fonctionnalite;
 	}
 
-    
+	public DTOAssociationCdcFonctionnalite(DTOCdc cdc,
+			DTOFonctionnalite fonctionnalite) {
+		super();
+		this.cdc = cdc;
+		this.fonctionnalite = fonctionnalite;
+	}
 }

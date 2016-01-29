@@ -1,5 +1,6 @@
 package test;
 
+import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
 import dto.DTOProjet;
@@ -39,26 +40,27 @@ public class test {
 	private Double tarif;
 	private DTOFonctionnalite fonctionnalite;
 	private DTOTypeCdc typeCdc;
+	private String commentaire;
 
 	private DTOCdc cdc;
 	private List<DTOTypeFonctionnalite> listetypefonct;
 	private DTOTypeFonctionnalite typefonct;
 
-	@EJB
+
 	private IUCGestionCdc gestionCdc;
 
-	@EJB IUCProjet gestionProjet;
+	private IUCProjet gestionProjet;
 
 	@PostConstruct
 	private void obtenirLesInterfaces() {
 		gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
 		gestionProjet = (IUCProjet)ContextFactory.createProxy(UcName.UCGESTIONPROJET);
-		
-//		listetypefonct = gestionCdc.recupTousLesTypesFonctionnalites();
-//		typefonct = new DTOTypeFonctionnalite();
+
+		listetypefonct = gestionCdc.recupTousLesTypesFonctionnalites();
+		typefonct = new DTOTypeFonctionnalite();
 	}
 
-	
+
 	public DTOFonctionnalite getFonctionnalite() {
 		return fonctionnalite;
 	}
@@ -118,7 +120,7 @@ public class test {
 	public void setCdc(DTOCdc cdc) {
 		this.cdc = cdc;
 	}
-	
+
 
 	public List<DTOTypeFonctionnalite> getListetypefonct() {
 		return listetypefonct;
@@ -127,7 +129,7 @@ public class test {
 	public void setListetypefonct(List<DTOTypeFonctionnalite> listetypefonct) {
 		this.listetypefonct = listetypefonct;
 	}
-	
+
 
 	public DTOTypeFonctionnalite getTypefonct() {
 		return typefonct;
@@ -136,7 +138,7 @@ public class test {
 	public void setTypefonct(DTOTypeFonctionnalite typefonct) {
 		this.typefonct = typefonct;
 	}
-	
+
 
 	public DTOTypeCdc getTypeCdc() {
 		return typeCdc;
@@ -148,15 +150,25 @@ public class test {
 	}
 
 
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+
 	public void ajouterCdc()
 	{
-		//ajoutF();
-		
+
 		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
 		List<DTOTypeCdc> listeCdc = gestionCdc.recupTousLesTypeCdc();
-		
+
 		//cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFin, null, null);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date dateFinEstimee = null;
 		try {
@@ -168,6 +180,10 @@ public class test {
 		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee, liste.get(1), listeCdc.get(1));
 
 		gestionCdc.ajouterCdcDto(cdc);
+
+		DTOAssociationCdcFonctionnalite dtoAssociation = new DTOAssociationCdcFonctionnalite(cdc, fonctionnalite);
+
+		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
 	}
 
 	public void test()
@@ -180,10 +196,17 @@ public class test {
 		List<DTOTypeFonctionnalite> liste = gestionCdc.recupTousLesTypesFonctionnalites();
 		System.out.println("Taille de la liste dans le MB" + liste.size());
 	}
-	
+
 	public void ajoutF()
 	{
-		fonctionnalite = new DTOFonctionnalite("Test fonct", typefonct);
+		fonctionnalite = new DTOFonctionnalite(commentaire, typefonct);
 		gestionCdc.ajouterFonctionnalite(fonctionnalite);
+	}
+
+	public void ajoutA()
+	{
+		DTOAssociationCdcFonctionnalite dtoAssociation = new DTOAssociationCdcFonctionnalite(cdc, fonctionnalite);
+
+		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
 	}
 }
