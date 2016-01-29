@@ -18,7 +18,11 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 
     @Override
     public DTOUtilisateur connecterDtoUtilisateur(String mail, String mdp) {
-        Utilisateur utilisateur = daoUtilisateur.seConnecter(mail, mdp);
-        return EntityToDTO.utilisateurToDTOUtilisateur(utilisateur);
+      Utilisateur utilisateur = daoUtilisateur.seConnecter(mail, mdp);
+      DTOUtilisateur dtoUtilisateur = null;
+      if(utilisateur!=null) {
+    	  dtoUtilisateur = EntityToDTO.utilisateurToDTOUtilisateur(utilisateur);
+      }
+      return dtoUtilisateur;
     }
 }

@@ -20,7 +20,8 @@ public class BusinessTypeAppli implements IBusinessTypeAppli {
 
 	@Override
 	public Set<DTOTypeAppli> getAllApplis() {
-		return EntityToDTO.listTypeAppliotoDTOtypeAppli(daoTypeAppli.getAllApplis());
+		// return EntityToDTO.listTypeAppliotoDTOtypeAppli(daoTypeAppli.getAllApplis());
+		return null;
 	}
 
 	@Override
