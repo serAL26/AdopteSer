@@ -34,7 +34,10 @@ private static Logger log = Logger.getLogger(DaoTypeAppli.class);
 
 	@Override
 	public TypeAppli getAppliById(Integer id) {
-		return em.find(TypeAppli.class, id);
+		log.info("dans dao recup id typeAppli");
+		TypeAppli type = em.find(TypeAppli.class, id);
+		log.info(type);
+		return type;
 	}
 
 }
