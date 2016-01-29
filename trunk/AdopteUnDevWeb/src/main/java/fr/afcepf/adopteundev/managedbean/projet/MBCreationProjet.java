@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import dto.DTOProjet;
 import dto.DTOTypeAppli;
 import dto.DTOTypeService;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
@@ -24,6 +25,7 @@ public class MBCreationProjet {
 	private Set<DTOTypeService> listeServices;
 	private DTOTypeAppli selectedAppli;
 	private DTOTypeService selectedService;
+	private DTOProjet projetcree;
 	@EJB
 	private IUCProjet ucProjet;
 
@@ -71,6 +73,14 @@ public class MBCreationProjet {
 
 	public void setSelectedService(DTOTypeService selectedService) {
 		this.selectedService = selectedService;
+	}
+
+	public DTOProjet getProjetcree() {
+		return projetcree;
+	}
+
+	public void setProjetcree(DTOProjet projetcree) {
+		this.projetcree = projetcree;
 	}
 
 }
