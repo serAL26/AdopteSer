@@ -31,7 +31,7 @@ public class MBConnexion {
         utilisateur = connexion.seConnecter(mail, mdp);
         String retour = "";
         if (utilisateur == null){
-            message = "Login/Mdp erroné";
+            message = "Login/Mdp errone";
         }
         else {
         	message = "Bienvenue";

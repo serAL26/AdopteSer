@@ -12,26 +12,25 @@ import java.util.List;
 
 @Remote(IDaoUtilisateur.class)
 @Stateless
-public class DaoUtilisateurImpl implements IDaoUtilisateur{
-    @PersistenceContext(unitName="AdopteUnDev")
+public class DaoUtilisateurImpl implements IDaoUtilisateur {
+    @PersistenceContext(unitName = "AdopteUnDev")
     EntityManager em;
 
     @Override
     public Utilisateur seConnecter(String mail, String password) {
         TypedQuery<Utilisateur> query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.mail = :email AND u.mdp = :password", Utilisateur.class);
-                query.setParameter("email",mail);
-                query.setParameter("password",password);
+        query.setParameter("email", mail);
+        query.setParameter("password", password);
         List<Utilisateur> list = query.getResultList();
-        if (list.size()==1) {
+        if (list.size() == 1) {
             return list.get(0);
-        }
-        else {
+        } else {
             return null;
         }
     }
 
-	@Override
-	public Utilisateur obtenirUtilisateurParId(int idUtilisateur) {
-		return em.find(Utilisateur.class, idUtilisateur);
-	}
+    @Override
+    public Utilisateur obtenirUtilisateurParId(int idUtilisateur) {
+        return em.find(Utilisateur.class, idUtilisateur);
+    }
 }

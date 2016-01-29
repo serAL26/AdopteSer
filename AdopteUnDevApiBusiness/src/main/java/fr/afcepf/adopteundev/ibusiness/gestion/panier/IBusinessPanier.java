@@ -1,14 +1,14 @@
-package fr.afcepf.adopteundev.gestion.panier;
+package fr.afcepf.adopteundev.ibusiness.gestion.panier;
 
 import dto.DTODeveloppeur;
 import dto.DTOProposition;
-import dto.DTOUtilisateur;
 
 import java.util.List;
 
-public interface IUCPanier {
+public interface IBusinessPanier {
     List<DTOProposition> recupererPanier();
     List<DTODeveloppeur> recupererTousLesDeveloppeurs();
-    void ajouterProposition(DTOProposition proposition);
+
+    void ajouterProposition(DTODeveloppeur developpeur);
     void retirerProposition(DTOProposition proposition);
 }
