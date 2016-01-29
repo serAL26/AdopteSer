@@ -86,10 +86,12 @@ public class MBAjoutCdc {
 	}
 	
 	
-	public void ajouterCdc()
+	public String ajouterCdc()
 	{
 		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
 		
 		gestionCdc.ajouterCdcDto(cdc);
+		
+		return "";
 	}
 }
