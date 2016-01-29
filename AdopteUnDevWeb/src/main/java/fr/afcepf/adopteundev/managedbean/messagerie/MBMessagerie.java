@@ -23,6 +23,7 @@ import fr.afcepf.adopteundev.message.IUCMessage;
 public class MBMessagerie {
 	private String message;
 	private String titre;
+	private DTOMessage messMereDeLaConverse = new DTOMessage();
 	private DTOMessage messageAjoute = new DTOMessage();
 	private List<DTOMessage> filConversation = new ArrayList<>();
 	private List<NoMessage> listeNoMessage = new ArrayList<>();
@@ -52,6 +53,7 @@ public class MBMessagerie {
 	public String ajoutCompletMessAUnFil() {
 		ajouterMessAUnFil();
 		majDuMessMere();
+		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse);
 		return "";
 	}
 	
@@ -75,7 +77,8 @@ public class MBMessagerie {
 	
 	public String obtenirFilConversation(DTOMessage messMere, NoMessage noMess) {
 		mecEnFace = noMess.getMecEnFace();
-		filConversation = ucMessage.recupererFilConversation(messMere);
+		messMereDeLaConverse = messMere;
+		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse);
 		return "";
 	}
 	
@@ -141,5 +144,20 @@ public class MBMessagerie {
 	public void setDernierMessFilConversation(DTOMessage dernierMessFilConversation) {
 		this.dernierMessFilConversation = dernierMessFilConversation;
 	}
-	
+
+	public DTOMessage getMessMereDeLaConverse() {
+		return messMereDeLaConverse;
+	}
+
+	public void setMessMereDeLaConverse(DTOMessage messMereDeLaConverse) {
+		this.messMereDeLaConverse = messMereDeLaConverse;
+	}
+
+	public DTOMessage getMessageAjoute() {
+		return messageAjoute;
+	}
+
+	public void setMessageAjoute(DTOMessage messageAjoute) {
+		this.messageAjoute = messageAjoute;
+	}
 }
