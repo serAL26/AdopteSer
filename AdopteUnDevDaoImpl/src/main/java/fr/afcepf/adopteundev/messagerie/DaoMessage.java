@@ -50,4 +50,18 @@ public class DaoMessage implements IDaoMessagerie{
 		em.flush();
 	}
 
+	@Override
+	public Message obtenirMessageParId(Message message) {
+		return em.find(Message.class, message.getIdMessage());
+	}
+
+	@Override
+	public Message majDuMessMere(Message messMere) {
+		em.merge(messMere);
+		em.flush();
+		return messMere;
+	}
+
+	
+
 }

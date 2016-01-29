@@ -9,4 +9,6 @@ public interface IDaoMessagerie {
 	List<Message> recupereTousLesMessMere(int idUtilisateur);
 	Message ecrireUnNouveauMesssage(Message messageNouveau);
 	void majMessageMere(Message messageFille);
+	Message obtenirMessageParId(Message message);
+	Message majDuMessMere(Message messMere);
 }

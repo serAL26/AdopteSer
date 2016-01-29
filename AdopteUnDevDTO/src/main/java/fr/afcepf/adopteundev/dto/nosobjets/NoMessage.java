@@ -1,11 +1,16 @@
 package fr.afcepf.adopteundev.dto.nosobjets;
 
+import java.io.Serializable;
 import java.util.List;
 
 import dto.DTOMessage;
 import dto.DTOUtilisateur;
 
-public class NoMessage {
+public class NoMessage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<DTOMessage> listeMessageMere;
 	private DTOUtilisateur mecEnFace;
 	public DTOUtilisateur getMecEnFace() {

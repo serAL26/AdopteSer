@@ -10,4 +10,6 @@ public interface IUCMessage {
 	List<DTOMessage> recupererTousLesMessMere(int idUtilisateur);
 	List<NoMessage> recupereNoMessage(int idUtilisateur);
 	DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau);
+	List<DTOMessage> recupererFilConversation(DTOMessage messMere);
+	DTOMessage majDuMessMere(DTOMessage messMere);
 }

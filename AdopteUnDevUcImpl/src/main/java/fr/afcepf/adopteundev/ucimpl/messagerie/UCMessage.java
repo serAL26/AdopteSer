@@ -37,5 +37,15 @@ public class UCMessage implements IUCMessage{
 	public DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau) {
 		return businessMessagerie.ecrireUnNouveauMesssage(messageNouveau);
 	}
+
+	@Override
+	public List<DTOMessage> recupererFilConversation(DTOMessage messMere) {
+		return businessMessagerie.recupererFilConversation(messMere);
+	}
+
+	@Override
+	public DTOMessage majDuMessMere(DTOMessage messMere) {
+		return businessMessagerie.majDuMessMere(messMere) ;
+	}
 	
 }

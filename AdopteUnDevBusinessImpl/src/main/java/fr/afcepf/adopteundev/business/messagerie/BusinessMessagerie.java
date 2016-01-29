@@ -47,6 +47,7 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 			noMessage.setListeMessageMere(new ArrayList<DTOMessage>());
 			noMessage.setMecEnFace(trouveMecEnFace(idUtilisateur, dtoMessage));
 			noMessage.getListeMessageMere().add(dtoMessage);
+			listeNoMessage.add(noMessage);
 		}
 		return listeNoMessage;
 	}
@@ -65,10 +66,10 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 	
 	public List<NoMessage> creerListeNoMessageComplete(int idUtilisateur, List<NoMessage> listeNonComplete) {
 		List<NoMessage> listeComplete = new ArrayList<>();
-		for (NoMessage noMessage : listeComplete) {
+		for (NoMessage noMessage : listeNonComplete) {
 			boolean plusieursFilsAvecMemePersonne = false;
 			for (NoMessage noMessageComplet : listeComplete) {
-				if(noMessageComplet.getMecEnFace() == noMessage.getMecEnFace()) {
+				if(noMessageComplet.getMecEnFace().getIdUtilisateur() == noMessage.getMecEnFace().getIdUtilisateur()) {
 					plusieursFilsAvecMemePersonne = true;
 					noMessageComplet.getListeMessageMere().add(noMessage.getListeMessageMere().get(0));
 				}
@@ -92,5 +93,24 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 		message = daoMessagerie.ecrireUnNouveauMesssage(message);
 		daoMessagerie.majMessageMere(message);
 		return EntityToDTO.messageToDTOMessage(message);
+	}
+
+	@Override
+	public List<DTOMessage> recupererFilConversation(DTOMessage messMere) {
+		List<DTOMessage> listeDTO = new ArrayList<>();
+		listeDTO.add(messMere);
+		Message messMereEntity = DTOToEntity.dtoMessageToMessage(messMere);
+		DTOMessage messMereDTO = EntityToDTO.messageToDTOMessage(daoMessagerie.obtenirMessageParId(messMereEntity));
+		while (messMereDTO.getMessFille() != null) {
+			messMereDTO  = messMereDTO.getMessFille();
+			listeDTO.add(messMereDTO);
+		}
+		return listeDTO;
+	}
+
+	@Override
+	public DTOMessage majDuMessMere(DTOMessage message) {
+		Message messageEntity = daoMessagerie.majDuMessMere(DTOToEntity.dtoMessageToMessage(message));
+		return EntityToDTO.messageToDTOMessage(messageEntity);
 	}
 }

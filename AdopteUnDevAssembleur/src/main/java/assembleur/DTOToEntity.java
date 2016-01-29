@@ -170,13 +170,17 @@ public class DTOToEntity {
         entity.setIdMessage(dto.getIdMessage());
         entity.setDateEnvoi(dto.getDateEnvoi());
         entity.setMessage(dto.getMessage());
-        if (entity.getMessFille()!= null)
+        if (dto.getMessFille()!= null)
             entity.setMessFille(dtoMessageToMessage(dto.getMessFille()));
-        if (entity.getMessMere()!= null)
+        if (dto.getMessMere()!= null)
             entity.setMessMere(dtoMessageToMessage(dto.getMessMere()));
         entity.setTitre(dto.getTitre());
+        if (dto.getUtilisateur1()!=null){
         entity.setUtilisateur1(dtoUtilisateurToUtilisateur(dto.getUtilisateur1()));
+        }
+        if (dto.getUtilisateur2() != null) {
         entity.setUtilisateur2(dtoUtilisateurToUtilisateur(dto.getUtilisateur2()));
+        }
         return entity;
     }
 
