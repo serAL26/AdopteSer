@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+    <ui:define name="head">
+
+    </ui:define>
+    <ui:define name="titre">Notre Selection de développeurs</ui:define>
+    <ui:define name="body">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <ui:repeat value="#{mBCatalogueDeveloppeur.listeDeveloppeur}" var="developpeur">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="portfolio-item">
+                                <div class="portfolio-image">
+                                    <a href="page-portfolio-item.html"><img src="img/portfolio1.jpg" alt="Developpeur"/></a>
+                                </div>
+                                <div class="portfolio-info">
+                                    <ul>
+                                        <li class="portfolio-project-name">#{developpeur.nom} #{developpeur.prenom}</li>
+                                        <li>#{developpeur.listeProposition.size}</li>
+                                        <li> </li>
+                                        <!--
+                                        <li>
+                                            <ui:repeat value="#{developpeur.lesAssociationDevTechno}" var="techno" size="2">
+
+                                            </ui:repeat>
+                                        </li>
+                                        -->
+                                        <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

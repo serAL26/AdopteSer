@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 /**
- * 
+ *
  */
 public class DTOTypeProposition implements Serializable{
 
@@ -19,33 +19,35 @@ public class DTOTypeProposition implements Serializable{
     public DTOTypeProposition() {
     }
 
+    public DTOTypeProposition(Integer idTypeProposition) {
+        this.idTypeProposition = idTypeProposition;
+    }
+
     /**
-     * 
+     *
      */
     private Integer idTypeProposition;
 
     /**
-     * 
+     *
      */
     private String libelle;
 
-	public Integer getIdTypeProposition() {
-		return idTypeProposition;
-	}
+    public Integer getIdTypeProposition() {
+        return idTypeProposition;
+    }
 
-	public void setIdTypeProposition(Integer idTypeProposition) {
-		this.idTypeProposition = idTypeProposition;
-	}
+    public void setIdTypeProposition(Integer idTypeProposition) {
+        this.idTypeProposition = idTypeProposition;
+    }
 
-	public String getLibelle() {
-		return libelle;
-	}
+    public String getLibelle() {
+        return libelle;
+    }
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
 
 
-    
-	
 }

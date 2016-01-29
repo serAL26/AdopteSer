@@ -19,7 +19,16 @@ public class DTOProposition implements Serializable{
     public DTOProposition() {
     }
 
-    /**
+	public DTOProposition(Boolean lu, Date date, String titre, DTOProjet projet, DTODeveloppeur developpeur, DTOTypeProposition typeProposition) {
+		Lu = lu;
+		this.date = date;
+		this.titre = titre;
+		this.projet = projet;
+		this.developpeur = developpeur;
+		this.typeProposition = typeProposition;
+	}
+
+	/**
      * 
      */
     private Boolean Lu;
