@@ -27,4 +27,10 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		
 		return query.getResultList();
 	}
+
+	@Override
+	public void ajouter(Projet projet) {
+		em.persist(projet);
+		em.flush();
+	}
 }
