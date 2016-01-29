@@ -150,7 +150,9 @@ public class DTOToEntity {
         entity.setMdp(dto.getMdp());
         entity.setPhoto(dto.getPhoto());
         entity.setDateInscription(dto.getDateInscription());
+        if(dto.getAdresse() != null) {
         entity.setAdresse(dtoAdresseToAdresse(dto.getAdresse()));
+        }
         //entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
         //entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages2()));
         return entity;

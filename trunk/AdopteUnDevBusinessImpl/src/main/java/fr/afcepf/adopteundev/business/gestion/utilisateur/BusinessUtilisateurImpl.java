@@ -25,4 +25,10 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
       }
       return dtoUtilisateur;
     }
+
+	@Override
+	public DTOUtilisateur obtenirUtilisateurById(int idUtilisateur) {
+		Utilisateur utilisateur = daoUtilisateur.obtenirUtilisateurParId(idUtilisateur); 
+		return EntityToDTO.utilisateurToDTOUtilisateur(utilisateur);
+	}
 }

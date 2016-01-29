@@ -17,7 +17,7 @@ public class DaoMessage implements IDaoMessagerie{
 	@PersistenceContext(unitName="AdopteUnDev")
 	private EntityManager em;
 	
-	private String recupTousLesMessMere = "SELECT m FROM Message m WHERE (m.utilisateur1.idUtilisateur = :id OR m.utilisateur2.idUtilisateur) AND m.messMere IS NULL";
+	private String recupTousLesMessMere = "SELECT m FROM Message m WHERE (m.utilisateur1.idUtilisateur = :id1 OR m.utilisateur2.idUtilisateur = :id2) AND m.messMere IS NULL";
 	
 	@Override
 	public Message creerNouveauFil(Message message) {
@@ -30,8 +30,8 @@ public class DaoMessage implements IDaoMessagerie{
 	@Override
 	public List<Message> recupereTousLesMessMere(int idUtilisateur) {
 		Query query = em.createQuery(recupTousLesMessMere);
-		query.setParameter(1, idUtilisateur);
-		query.setParameter(2, idUtilisateur);
+		query.setParameter("id1", idUtilisateur);
+		query.setParameter("id2", idUtilisateur);
 		return query.getResultList();
 	}
 

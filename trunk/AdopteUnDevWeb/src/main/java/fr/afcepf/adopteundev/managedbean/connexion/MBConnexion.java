@@ -16,6 +16,7 @@ public class MBConnexion {
     private String mdp;
     private String message;
     private  IUcConnexion connexion;
+    private DTOUtilisateur utilisateur;
 
     public MBConnexion() {
 		super();
@@ -27,13 +28,14 @@ public class MBConnexion {
     }
 
     public String seConnecter() {
-        DTOUtilisateur utilisateur = connexion.seConnecter(mail, mdp);
+        utilisateur = connexion.seConnecter(mail, mdp);
         String retour = "";
         if (utilisateur == null){
-            retour = "null";
+            message = "Login/Mdp erroné";
         }
         else {
-        	retour = "pas null";
+        	message = "Bienvenue";
+        	//retour = "/Messagerie.xhtml?faces-redirect=true";
         }
         	return retour;
     }
@@ -61,4 +63,12 @@ public class MBConnexion {
     public void setMessage(String message) {
         this.message = message;
     }
+
+	public DTOUtilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(DTOUtilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 }
