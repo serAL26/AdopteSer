@@ -18,29 +18,29 @@
 								<label>
 								<i class="icon-user"></i>
 									<b>Besoin Client</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.besoin}" />
+									<h:inputText class="form-control" value="#{test.besoin}" />
 							</div>
 							<div class="form-group">
 								<label><i class="icon-lock"></i>
 									<b>Contexte</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.contexte}" />
+									<h:inputText class="form-control" value="#{test.contexte}" />
 							</div>
 							<div class="form-group">
 								<label><i class="icon-lock"></i>
 									<b>Existant</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.existant}" />
+									<h:inputText class="form-control" value="#{test.existant}" />
 							</div>
 							<div class="form-group">
 								<label><i class="icon-lock"></i>
 									<b>Date de fin</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.dateFin}" >
+									<h:inputText class="form-control" value="#{test.dateFin}" >
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:inputText>
 							</div>
 							<div class="form-group">
 								<label><i class="icon-lock"></i>
 									<b>Budget</b></label> 
-									<div style="max-width: 150px"><h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" /></div>
+									<div style="max-width: 150px"><h:inputText class="form-control" value="#{test.tarif}" /></div>
 							</div>
 							<div class="form-group">
 								<label><i class="icon-lock"></i>
@@ -50,8 +50,8 @@
 							</h:selectOneMenu>
 							</div>
 							</div>
-							<h:commandButton class="btn pull-right" action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
-							<h:commandButton class="btn pull-right" action="#{mBAjoutCdc.test()}" value="Test" />
+							<h:commandButton class="btn pull-right" action="#{test.ajouterCdc()}" value="Valider" />
+							<h:commandButton class="btn pull-right" action="#{test.test()}" value="Test" />
 							<div class="clearfix"></div>
 						</div>
 					</div>

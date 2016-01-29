@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.business.projet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -21,6 +22,7 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@Override
 	public List<DTOProjet> recupProjetParIdClient(Integer id) {
+		
 		List<Projet> listeProjets = daoGestionProjet.recupProjetParIdClient(id);
 		
 		return EntityToDTO.listeProjetToDtoProjet(listeProjets);
