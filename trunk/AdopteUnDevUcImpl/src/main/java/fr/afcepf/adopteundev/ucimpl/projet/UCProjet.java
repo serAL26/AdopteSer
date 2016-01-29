@@ -26,7 +26,7 @@ public class UCProjet implements IUCProjet {
 
 	@EJB
 	private IBusinessTypeService businessTypeService;
-	
+
 	@EJB
 	private IBusinessGestionProjet businessGestionProjet;
 
@@ -49,14 +49,20 @@ public class UCProjet implements IUCProjet {
 
 	@Override
 	public List<DTOProjet> recupProjetParIdClient(Integer id) {
-		
+
 		return businessGestionProjet.recupProjetParIdClient(id);
 	}
 
 	@Override
 	public void creerProjet(DTOProjet projet) {
 		businessGestionProjet.ajouter(projet);
-		
+
+	}
+
+	@Override
+	public DTOTypeAppli recupTypeAppliById(Integer id) {
+
+		return businessTypeAppli.getAppliById(id);
 	}
 
 }
