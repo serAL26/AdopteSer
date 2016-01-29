@@ -141,6 +141,28 @@ a:hover {
   padding-top: 15px;
   text-align: center;
 }
+fieldset {
+    border: 2px solid #933939;
+    margin: 0px 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+legend {
+    display: block;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 21px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #324F93;
+    border-width: 0px 0px 2px;
+    border-style: none none solid;
+    border-color: -moz-use-text-color -moz-use-text-color #C04343;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+}
 .service-wrapper-row .service-image img {
   max-width: 80%;
   vertical-align: bottom;
