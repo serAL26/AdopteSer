@@ -53,4 +53,10 @@ public class UCProjet implements IUCProjet {
 		return businessGestionProjet.recupProjetParIdClient(id);
 	}
 
+	@Override
+	public void creerProjet(DTOProjet projet) {
+		businessGestionProjet.ajouter(projet);
+		
+	}
+
 }
