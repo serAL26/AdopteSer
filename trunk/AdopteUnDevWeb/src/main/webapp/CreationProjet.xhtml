@@ -14,32 +14,42 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="basic-login">
-							<div class="form-group">
-								<label> <i class="icon-user"></i> <b>Application</b></label>
-							</div>
-							<h:commandButton class="btn pull-right"
-								action="#{mbCreationProjet.init()}" value="Valider" />
 							<h:form>
-								<div>
-									<h:selectOneMenu value="#{mbCreationProjet.selectedAppli}"
-										id="applic">
-										<f:selectItems var="appli"
-											value="#{mbCreationProjet.listeAppli}"
-											itemLabel="#{appli.libelle}" itemValue="#{appli}" />
-										<f:ajax listener="#{mbCreationProjet.changeAppli()}"
-											render="service" />
-									</h:selectOneMenu>
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>A quel service
+											de développement votre application fait partie ?</b>
+									</label>
+									<div>
+										<h:selectOneMenu
+											value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
+											id="applic">
+											<f:selectItem itemValue="-1" itemLabel="-------" />
+											<f:selectItems var="appli"
+												value="#{mbCreationProjet.listeAppli}"
+												itemLabel="#{appli.libelle}"
+												itemValue="#{appli.idTypeAppli}" />
+											<f:ajax listener="#{mbCreationProjet.remplirServices}"
+												render="service" execute="applic" />
+										</h:selectOneMenu>
+									</div>
 								</div>
-								<div>
-									<h:selectOneMenu id="service"
-										value="#{mbCreationProjet.selectedService}">
-										<f:selectItems var="serv"
-											value="#{mbCreationProjet.listeServices}"
-											itemLabel="#{serv.libelle}" itemValue="#{serv}" />
-									</h:selectOneMenu>
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Quel Type
+											d'application vous voulez développer ?</b>
+									</label>
+									<div>
+										<h:selectOneMenu id="service"
+											value="#{mbCreationProjet.selectedService.idTypeService}">
+											<f:selectItem itemValue="-1" itemLabel="-------" />
+											<f:selectItems var="serv"
+												value="#{mbCreationProjet.listeServices}"
+												itemLabel="#{serv.libelle}"
+												itemValue="#{serv.idTypeService}" />
+										</h:selectOneMenu>
+									</div>
 								</div>
-								<h:form>
-									<div class="clearfix"></div>
+							</h:form>
+							<div class="clearfix"></div>
 						</div>
 					</div>
 				</div>
