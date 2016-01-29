@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Création Projet</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="basic-login">
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>Application</b></label>
+							</div>
+							<h:commandButton class="btn pull-right"
+								action="#{mbCreationProjet.init()}" value="Valider" />
+							<h:form>
+								<div>
+									<h:selectOneMenu value="#{mbCreationProjet.selectedAppli}"
+										id="applic">
+										<f:selectItems var="appli"
+											value="#{mbCreationProjet.listeAppli}"
+											itemLabel="#{appli.libelle}" itemValue="#{appli}" />
+										<f:ajax listener="#{mbCreationProjet.changeAppli()}"
+											render="service" />
+									</h:selectOneMenu>
+								</div>
+								<div>
+									<h:selectOneMenu id="service"
+										value="#{mbCreationProjet.selectedService}">
+										<f:selectItems var="serv"
+											value="#{mbCreationProjet.listeServices}"
+											itemLabel="#{serv.libelle}" itemValue="#{serv}" />
+									</h:selectOneMenu>
+								</div>
+								<h:form>
+									<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>
