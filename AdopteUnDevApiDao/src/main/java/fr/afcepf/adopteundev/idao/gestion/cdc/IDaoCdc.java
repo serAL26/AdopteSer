@@ -5,6 +5,7 @@ import java.util.List;
 import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
 import entity.Fonctionnalite;
+import entity.TypeCdc;
 import entity.TypeFonctionnalite;
 
 public interface IDaoCdc {
@@ -14,5 +15,6 @@ public interface IDaoCdc {
 	List<TypeFonctionnalite> getAll();
 	void ajouterFonctionnalite (Fonctionnalite fonct);
 	void ajouterAssociationCdcFonctionnalite (AssociationCdcFonctionnalite association);
+	List<TypeCdc> recupTouslesTypesCdc();
 
 }
