@@ -21,7 +21,7 @@ import fr.afcepf.adopteundev.idao.messagerie.IDaoMessagerie;
 @Stateless
 public class BusinessMessagerie implements IBusinessMessagerie{
 
-	@EJB
+	@EJB 
 	private IDaoMessagerie daoMessagerie;
 	@EJB
 	private IDaoUtilisateur daoUtilisateur;
@@ -38,6 +38,8 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 		return  EntityToDTO.listeMessageToDTOMessage(listeMessage);
 	}
 
+	
+	
 	@Override
 	public List<NoMessage> creerListeNoMessage(int idUtilisateur) {
 		List<NoMessage> listeNoMessage = new ArrayList<>();
