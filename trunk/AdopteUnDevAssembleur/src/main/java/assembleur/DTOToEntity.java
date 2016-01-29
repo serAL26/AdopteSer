@@ -85,9 +85,10 @@ public class DTOToEntity {
         cdc.setBesoin(dtoCdc.getBesoin());
         cdc.setContexte(dtoCdc.getContexte());
         cdc.setDateFinEstimee(dtoCdc.getDateFinEstimee());
-        cdc.setExistant(cdc.getExistant());
-        cdc.setTarif(cdc.getTarif());
-        cdc.setTypeCdc(dtoTypeCdcToTypeCdc(dtoCdc.getTypeCdc()));
+        cdc.setExistant(dtoCdc.getExistant());
+        cdc.setTarif(dtoCdc.getTarif());
+        cdc.setLu(dtoCdc.getLu());
+       // cdc.setTypeCdc(dtoTypeCdcToTypeCdc(dtoCdc.getTypeCdc()));
         return cdc;
     }
 

@@ -2,7 +2,9 @@ package fr.afcepf.adopteundev.ibusiness.gestion.cdc;
 
 import java.util.List;
 
+import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
+import dto.DTOFonctionnalite;
 import dto.DTOTypeFonctionnalite;
 
 public interface IBusinessCdc {
@@ -10,6 +12,7 @@ public interface IBusinessCdc {
 	void ajouterCdcDto (DTOCdc cdcDto);
 	void modifierCdcDto (DTOCdc cdcDto);
 	List<DTOTypeFonctionnalite> recupererTousLesTypesFonctionnalites();
-	
+	void ajouterFonctionnalite(DTOFonctionnalite dtoFonct);
+	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 
 }

@@ -74,6 +74,10 @@ public class DTOFonctionnalite implements Serializable{
 		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
 	}
 
-    
-	
+	public DTOFonctionnalite(String commentaire,
+			DTOTypeFonctionnalite typeFonctionnalite) {
+		super();
+		this.commentaire = commentaire;
+		this.typeFonctionnalite = typeFonctionnalite;
+	}
 }

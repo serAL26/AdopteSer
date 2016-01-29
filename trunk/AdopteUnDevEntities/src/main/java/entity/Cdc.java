@@ -56,7 +56,7 @@ public class Cdc implements Serializable{
 	/**
      * 
      */
-	@Column(nullable = false)
+	@Column(nullable = false, name="EXISTANT")
 	private String Existant;
 
 	/**
@@ -73,7 +73,7 @@ public class Cdc implements Serializable{
 	private Date dateFinEstimee;
 
 	@ManyToOne
-	@JoinColumn(name = "idProjet", nullable = false)
+	@JoinColumn(name = "idProjet")
 	private Projet projet;
 
 	

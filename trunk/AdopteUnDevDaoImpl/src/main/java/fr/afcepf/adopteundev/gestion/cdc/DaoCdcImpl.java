@@ -7,7 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
+import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
@@ -34,6 +36,21 @@ public class DaoCdcImpl implements IDaoCdc {
 	public List<TypeFonctionnalite> getAll() {
 		
 		return em.createQuery("Select t from TypeFonctionnalite t", TypeFonctionnalite.class).getResultList();
+	}
+
+	@Override
+	public void ajouterFonctionnalite(Fonctionnalite fonct) {
+		em.persist(fonct);
+		em.flush();	
+		
+	}
+
+	@Override
+	public void ajouterAssociationCdcFonctionnalite(
+			AssociationCdcFonctionnalite association) {
+		em.persist(association);
+		em.flush();	
+		
 	}
 
 }
