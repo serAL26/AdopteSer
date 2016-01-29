@@ -1,10 +1,13 @@
 package fr.afcepf.adopteundev.ucimpl.gestioncdc;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import dto.DTOCdc;
+import dto.DTOTypeFonctionnalite;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
 
@@ -24,6 +27,12 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	@Override
 	public void modifierCdcDto(DTOCdc cdcDto) {
 		businessCdc.modifierCdcDto(cdcDto);
+	}
+
+	@Override
+	public List<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites() {
+		
+		return businessCdc.recupererTousLesTypesFonctionnalites();
 	}
 
 }
