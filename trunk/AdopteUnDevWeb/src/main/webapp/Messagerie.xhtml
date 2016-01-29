@@ -27,12 +27,12 @@
 				<summary>
 					<label>#{noMessage.mecEnFace.nom}</label>
 				</summary>
-			</details>
 			<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
 				<div>
 				<h:commandButton action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}" value="#{messDuMec.titre}" />
 				</div>
 			</ui:repeat>
+			</details>
 		</ui:repeat>
 
 
