@@ -32,7 +32,7 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 	@Override
 	public List<DTOMessage> recupereTousLesMessMere(int idUtilisateur) {
 		List<Message> listeMessage = daoMessagerie.recupereTousLesMessMere(idUtilisateur);
-		return  EntityToDTO.listeDTOMessageToMessage(listeMessage);
+		return  EntityToDTO.listeMessageToDTOMessage(listeMessage);
 	}
 
 	@Override
