@@ -270,6 +270,7 @@ public class EntityToDTO {
         DTOTypeAppli dTOTypeAppli = new DTOTypeAppli();
         dTOTypeAppli.setIdTypeAppli(typeAppli.getIdTypeAppli());
         dTOTypeAppli.setLibelle(typeAppli.getLibelle());
+        dTOTypeAppli.setLesServices(listTypeServToDtoTypeServ(typeAppli.getLesServices()));
         return dTOTypeAppli;
     }
 
