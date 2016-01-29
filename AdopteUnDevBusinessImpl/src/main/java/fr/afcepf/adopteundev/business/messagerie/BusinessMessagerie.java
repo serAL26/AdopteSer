@@ -35,20 +35,18 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 
 	@Override
 	public List<DTOMessage> recupereTousLesMessMere(int idUtilisateur) {
-		//List<Message> listeMessage = daoMessagerie.recupereTousLesMessMere(idUtilisateur);
-		//  return EntityToDTO.listeDTOMessageToMessage(listeMessage);
-		return null;
+		List<Message> listeMessage = daoMessagerie.recupereTousLesMessMere(idUtilisateur);
+		return EntityToDTO.listeMessageToDTOMessage(listeMessage);
 	}
 
-
-	@Override
-	public List<NoMessage> creerListeNoMessage(int idUtilisateur) {
+	public List<NoMessage> creerListeNoMessageIncomplete (int idUtilisateur) {
 		List<NoMessage> listeNoMessage = new ArrayList<>();
-		for (DTOMessage dtoMessage : recupereTousLesMessMere(idUtilisateur)) {
+		List<DTOMessage> listeMessMere = recupereTousLesMessMere(idUtilisateur);
+		for (DTOMessage dtoMessage : listeMessMere) {
 			NoMessage noMessage = new NoMessage();
+			noMessage.setListeMessageMere(new ArrayList<DTOMessage>());
 			noMessage.setMecEnFace(trouveMecEnFace(idUtilisateur, dtoMessage));
-			noMessage.setDtoMessage(dtoMessage);
-			listeNoMessage.add(noMessage);
+			noMessage.getListeMessageMere().add(dtoMessage);
 		}
 		return listeNoMessage;
 	}
@@ -62,5 +60,37 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 			mecEnFace = daoUtilisateur.obtenirUtilisateurParId(dtoMessage.getUtilisateur1().getIdUtilisateur());
 		}
 		return EntityToDTO.utilisateurToDTOUtilisateur(mecEnFace);
+	}
+	
+	
+	public List<NoMessage> creerListeNoMessageComplete(int idUtilisateur, List<NoMessage> listeNonComplete) {
+		List<NoMessage> listeComplete = new ArrayList<>();
+		for (NoMessage noMessage : listeComplete) {
+			boolean plusieursFilsAvecMemePersonne = false;
+			for (NoMessage noMessageComplet : listeComplete) {
+				if(noMessageComplet.getMecEnFace() == noMessage.getMecEnFace()) {
+					plusieursFilsAvecMemePersonne = true;
+					noMessageComplet.getListeMessageMere().add(noMessage.getListeMessageMere().get(0));
+				}
+			}
+			if(!plusieursFilsAvecMemePersonne) {
+				listeComplete.add(noMessage);
+			}
+		}
+	return listeComplete;
+	}
+
+	@Override
+	public List<NoMessage> creerListeNoMessage(int idUtilisateur) {
+		List<NoMessage> listeNonComplete = creerListeNoMessageIncomplete(idUtilisateur);
+		return creerListeNoMessageComplete(idUtilisateur, listeNonComplete);
+	}
+
+	@Override
+	public DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau) {
+		Message message = DTOToEntity.dtoMessageToMessage(messageNouveau);
+		message = daoMessagerie.ecrireUnNouveauMesssage(message);
+		daoMessagerie.majMessageMere(message);
+		return EntityToDTO.messageToDTOMessage(message);
 	}
 }

@@ -35,4 +35,19 @@ public class DaoMessage implements IDaoMessagerie{
 		return query.getResultList();
 	}
 
+	@Override
+	public Message ecrireUnNouveauMesssage(Message messageNouveau) {
+		em.persist(messageNouveau);
+		em.flush();
+		return messageNouveau;
+	}
+
+	@Override
+	public void majMessageMere(Message messageFille) {
+		Message messMere = em.find(Message.class, messageFille.getMessMere().getIdMessage());
+		messMere.setMessFille(messageFille);
+		em.merge(messMere);
+		em.flush();
+	}
+
 }
