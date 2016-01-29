@@ -470,4 +470,12 @@ public class EntityToDTO {
         }
         return listDto;
     }
+    
+    public static List<DTOProjet> listeProjetToDtoProjet(List<Projet> listeProjet) {
+        List<DTOProjet> listeDTO = new ArrayList<>();
+        for (Projet projet : listeProjet) {
+        	listeDTO.add(projetToDTOProjet(projet));
+        }
+        return listeDTO;
+    }
 }
