@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,9 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="typeAppli")
-public class TypeAppli {
+public class TypeAppli implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public TypeAppli() {
