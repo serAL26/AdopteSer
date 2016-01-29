@@ -1,14 +1,20 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 
 /**
  * 
  */
-public class DTOTypeAppli {
+public class DTOTypeAppli implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOTypeAppli() {
@@ -48,6 +54,12 @@ public class DTOTypeAppli {
 
 	public void setLesServices(Set<DTOTypeService> lesServices) {
 		this.lesServices = lesServices;
+	}
+
+	@Override
+	public String toString() {
+		return "DTOTypeAppli [idTypeAppli=" + idTypeAppli + ", libelle="
+				+ libelle + ", lesServices=" + lesServices + "]";
 	}
 
 

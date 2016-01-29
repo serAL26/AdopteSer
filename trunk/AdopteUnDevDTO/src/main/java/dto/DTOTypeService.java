@@ -1,14 +1,22 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 
 /**
  * 
  */
-public class DTOTypeService {
+public class DTOTypeService implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+	/**
      * Default constructor
      */
     public DTOTypeService() {
