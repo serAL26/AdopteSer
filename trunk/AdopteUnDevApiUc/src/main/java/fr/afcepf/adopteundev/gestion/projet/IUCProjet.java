@@ -9,6 +9,7 @@ import dto.DTOTypeService;
 
 public interface IUCProjet {
 	public Set<DTOTypeAppli> rechercherTousApplication();
+	public DTOTypeAppli recupTypeAppliById(Integer id);
 	public Set<DTOTypeService> rechercherTousServices();
 	public Set<DTOTypeService> rechercherServicesParAppli(DTOTypeAppli application);
 	public List<DTOProjet> recupProjetParIdClient(Integer id);
