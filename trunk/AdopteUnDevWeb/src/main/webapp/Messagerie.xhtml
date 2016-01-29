@@ -12,34 +12,84 @@
 	<ui:define name="title">
 	</ui:define>
 	<ui:define name="body">
-		<div>
-			<label>titre</label>
-			<h:inputText value="#{mBMessagerie.titre}" />
-		</div>
-		<h:inputText value="#{mBMessagerie.message}" />
-		<h:commandButton action="#{mBMessagerie.creerNouveauFil()}"
-			value="test pour nouveau fil" />
-<h:commandButton action="#{mBMessagerie.ajoutCompletMessAUnFil()}" value="completer fil existant" />
-
-		<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
-		
-			<details>
-				<summary>
-					<label>#{noMessage.mecEnFace.nom}</label>
-				</summary>
-			<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
+		<div class="row">
+			<div class="col-md-3">
 				<div>
-				<h:commandButton action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}" value="#{messDuMec.titre}" />
+					<label>titre</label>
+					<h:inputText value="#{mBMessagerie.titre}" />
 				</div>
-			</ui:repeat>
-			</details>
-		</ui:repeat>
+
+				<h:commandLink immediate="true"
+					action="#{mBMessagerie.creerNouveauFil()}"
+					value="creer nouveau fil">
+					<f:ajax render="filConversation" />
+				</h:commandLink>
+
+				<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
+					<details>
+						<summary>
+							<label>#{noMessage.mecEnFace.nom}</label>
+						</summary>
+						<div class="col-md-offset-2">
+							<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
+								<div>
+									<h:commandLink
+										action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}">
+										<label>#{messDuMec.titre}</label>.
+								</h:commandLink>
+								</div>
+							</ui:repeat>
+						</div>
+					</details>
+				</ui:repeat>
+			</div>
+
+			
+				<div class="row ">
+				
+				
+				
+				
+				
+				<div class="col-md-offset-1 col-md-5">
+				<h:panelGroup id="filConversation">
+					<ui:repeat var="messConversation" value="#{mBMessagerie.filConversation}">
+						<h:panelGroup
+							rendered="#{messConversation.utilisateur1.idUtilisateur == mBMessagerie.mecEnFace.idUtilisateur}">
+							<p class="speech messageRecu">
+								<h:outputText value="#{messConversation.message}" />
+							</p>
+							<h:panelGroup
+								rendered="#{messConversation.utilisateur1.idUtilisateur != mBMessagerie.mecEnFace.idUtilisateur}">
+								<p class="speech monMessage">
+									<h:outputText value="#{messConversation.message}" />
+								</p>
+							</h:panelGroup>
+						</h:panelGroup>
+
+					</ui:repeat>
+				</h:panelGroup>
+				
+				
+				
+				
+				
+				
+					<div class="col-md-offset-1 col-md-6">
+						<h:inputText value="#{mBMessagerie.message}" />
+					</div>
+					<div class="col-md-offset-1 col-md-3">
+						<h:commandLink immediate="true"
+							action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
+							value="répondre">
+							<f:ajax render="filConversation" />
+						</h:commandLink>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-
-<ui:repeat var="messConversation" value="#{mBMessagerie.filConversation}">
-#{messConversation.message}
-</ui:repeat>
 	</ui:define>
 </ui:composition>
 </html>

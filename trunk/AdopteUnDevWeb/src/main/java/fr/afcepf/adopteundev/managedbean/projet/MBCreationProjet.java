@@ -3,8 +3,6 @@ package fr.afcepf.adopteundev.managedbean.projet;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -17,7 +15,6 @@ import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
 @ManagedBean(name = "mbCreationProjet")
-@Remote(MBCreationProjet.class)
 @SessionScoped
 public class MBCreationProjet {
 
@@ -27,7 +24,6 @@ public class MBCreationProjet {
 	private DTOTypeService selectedService;
 	private DTOProjet projetcree;
 	
-	@EJB
 	private IUCProjet ucProjet;
 
 	@PostConstruct

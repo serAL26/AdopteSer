@@ -28,6 +28,7 @@ public class MBMessagerie {
 	private List<DTOMessage> filConversation = new ArrayList<>();
 	private List<NoMessage> listeNoMessage = new ArrayList<>();
 	private DTOUtilisateur mecEnFace = new DTOUtilisateur();
+	private NoMessage noMessage = new NoMessage();
 	private IUCMessage ucMessage;
 	private DTOMessage dernierMessFilConversation = new DTOMessage();
 	private IUcUtilisateur ucUtilisateur;
@@ -53,7 +54,7 @@ public class MBMessagerie {
 	public String ajoutCompletMessAUnFil() {
 		ajouterMessAUnFil();
 		majDuMessMere();
-		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse);
+		obtenirFilConversation(messMereDeLaConverse, noMessage);
 		return "";
 	}
 	
@@ -75,9 +76,10 @@ public class MBMessagerie {
 		return "";
 	}
 	
-	public String obtenirFilConversation(DTOMessage messMere, NoMessage noMess) {
-		mecEnFace = noMess.getMecEnFace();
+	public String obtenirFilConversation(DTOMessage messMere, NoMessage noMessParam) {
+		mecEnFace = noMessParam.getMecEnFace();
 		messMereDeLaConverse = messMere;
+		noMessage = noMessParam;
 		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse);
 		return "";
 	}
@@ -159,5 +161,13 @@ public class MBMessagerie {
 
 	public void setMessageAjoute(DTOMessage messageAjoute) {
 		this.messageAjoute = messageAjoute;
+	}
+
+	public NoMessage getNoMessage() {
+		return noMessage;
+	}
+
+	public void setNoMessage(NoMessage noMessage) {
+		this.noMessage = noMessage;
 	}
 }
