@@ -7,13 +7,48 @@
 	<ui:define name="head">
 
 	</ui:define>
-	<ui:define name="title">Création Cahier des Charges</ui:define>
+	<ui:define name="title">Création Projet</ui:define>
 	<ui:define name="body">
 		<div class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="basic-login">
+						<h:form>
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>A quel service
+											de développement votre application fait partie ?</b>
+									</label>
+									<div>
+										<h:selectOneMenu
+											value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
+											id="applic">
+											<f:selectItem itemValue="-1" itemLabel="-------" />
+											<f:selectItems var="appli"
+												value="#{mbCreationProjet.listeAppli}"
+												itemLabel="#{appli.libelle}"
+												itemValue="#{appli.idTypeAppli}" />
+											<f:ajax listener="#{mbCreationProjet.remplirServices}"
+												render="service" execute="applic" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Quel Type
+											d'application vous voulez développer ?</b>
+									</label>
+									<div>
+										<h:selectOneMenu id="service"
+											value="#{mbCreationProjet.selectedService.idTypeService}">
+											<f:selectItem itemValue="-1" itemLabel="-------" />
+											<f:selectItems var="serv"
+												value="#{mbCreationProjet.listeServices}"
+												itemLabel="#{serv.libelle}"
+												itemValue="#{serv.idTypeService}" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</h:form>
 							<div class="form-group">
 								<label>
 								<i class="icon-user"></i>
