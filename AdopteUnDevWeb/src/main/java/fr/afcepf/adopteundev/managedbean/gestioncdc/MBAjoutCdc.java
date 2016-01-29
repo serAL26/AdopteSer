@@ -58,17 +58,6 @@ public class MBAjoutCdc {
     public Date getDateFin() {
         return dateFin;
     }
-
-	public void setCdc(DTOCdc cdc) {
-		this.cdc = cdc;
-	}
-	
-	public void ajouterCdc()
-	{
-		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
-		
-		gestionCdc.ajouterCdcDto(cdc);
-	}
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
@@ -84,4 +73,17 @@ public class MBAjoutCdc {
     public DTOCdc getCdc() {
         return cdc;
     }
+
+	public void setCdc(DTOCdc cdc) {
+		this.cdc = cdc;
+	}
+	
+	
+	public void ajouterCdc()
+	{
+		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
+		
+		gestionCdc.ajouterCdcDto(cdc);
+	}
+
 }
