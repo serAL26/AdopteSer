@@ -9,10 +9,13 @@ import javax.ejb.Stateless;
 
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
+import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
 import dto.DTOTypeFonctionnalite;
+import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
+import entity.Fonctionnalite;
 import entity.Projet;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
@@ -27,6 +30,7 @@ public class BusinessCdcImpl implements IBusinessCdc{
 
 	@Override
 	public void ajouterCdcDto(DTOCdc cdcDto) {
+		System.out.println("je passe par le cdc");
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		daoCdc.ajouterCdc(cdc);
 	}
@@ -52,5 +56,20 @@ public class BusinessCdcImpl implements IBusinessCdc{
 		}
 		
 		return listeDto;
+	}
+
+	@Override
+	public void ajouterFonctionnalite(DTOFonctionnalite dtoFonct) {
+		Fonctionnalite fonct  = DTOToEntity.dtoFonctionnaliteToFonctionnalite(dtoFonct);
+		daoCdc.ajouterFonctionnalite(fonct);
+		
+	}
+
+	@Override
+	public void ajouterAssociationCdcFonctionnalite(
+			DTOAssociationCdcFonctionnalite dtoAssociation) {
+		AssociationCdcFonctionnalite association = DTOToEntity.dtoAssociationCdcFonctionnaliteToAssociationCdcFonctionnalite(dtoAssociation);
+		daoCdc.ajouterAssociationCdcFonctionnalite(association);
+		
 	}
 }

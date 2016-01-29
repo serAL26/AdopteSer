@@ -36,7 +36,7 @@ public class Fonctionnalite implements Serializable{
 	/**
 	 * 
 	 */
-	@Column(nullable=false)
+	@Column
 	private String commentaire;
 
 	@ManyToOne
@@ -79,5 +79,10 @@ public class Fonctionnalite implements Serializable{
 		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
 	}
 
-	
+	public Fonctionnalite(String commentaire,
+			TypeFonctionnalite typeFonctionnalite) {
+		super();
+		this.commentaire = commentaire;
+		this.typeFonctionnalite = typeFonctionnalite;
+	}
 }

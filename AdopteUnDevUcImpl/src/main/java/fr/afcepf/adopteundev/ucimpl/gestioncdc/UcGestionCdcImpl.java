@@ -6,7 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
+import dto.DTOFonctionnalite;
 import dto.DTOTypeFonctionnalite;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
@@ -33,6 +35,19 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	public List<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites() {
 		
 		return businessCdc.recupererTousLesTypesFonctionnalites();
+	}
+
+	@Override
+	public void ajouterFonctionnalite(DTOFonctionnalite dtofonct) {
+		businessCdc.ajouterFonctionnalite(dtofonct);
+		
+	}
+
+	@Override
+	public void ajouterAssociationCdcFonctionnalite(
+			DTOAssociationCdcFonctionnalite dtoAssociation) {
+		businessCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
+		
 	}
 
 }

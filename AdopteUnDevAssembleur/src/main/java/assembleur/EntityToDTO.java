@@ -56,9 +56,9 @@ public class EntityToDTO {
         dtoCdc.setDateFinEstimee(cdc.getDateFinEstimee());
         dtoCdc.setExistant(cdc.getExistant());
         //dtoCdc.setLesAssociationCdcFonctionnalite(listAssoCdcFonctionToDtoAssoCdcFonction(cdc.getLesAssociationCdcFonctionnalite()));
-        dtoCdc.setProjet(projetToDTOProjet(cdc.getProjet()));
+       // dtoCdc.setProjet(projetToDTOProjet(cdc.getProjet()));
         dtoCdc.setTarif(cdc.getTarif());
-        dtoCdc.setTypeCdc(typeCdcToDTOTypeCdc(cdc.getTypeCdc()));
+        //dtoCdc.setTypeCdc(typeCdcToDTOTypeCdc(cdc.getTypeCdc()));
         return dtoCdc;
     }
 
