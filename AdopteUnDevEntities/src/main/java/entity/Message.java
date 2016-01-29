@@ -37,7 +37,7 @@ public class Message implements Serializable{
     /**
      * 
      */
-    @Column(nullable=false)
+    @Column(nullable=false, name="MESSAGE")
     private String message;
 
     /**
@@ -50,7 +50,7 @@ public class Message implements Serializable{
     /**
      * 
      */
-    @Column(nullable=false)
+    @Column(nullable=false, name="TITRE")
     private String titre;
 
     @ManyToOne

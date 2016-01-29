@@ -1,19 +1,16 @@
 package fr.afcepf.adopteundev.managedbean.gestioncdc;
 
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 import dto.DTOCdc;
-import dto.DTOProjet;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-import java.util.Date;
-import java.util.List;
 
 @ManagedBean
 @SessionScoped
@@ -27,10 +24,9 @@ public class MBAjoutCdc {
 
     private DTOCdc cdc;
 
-    @EJB
     private IUCGestionCdc gestionCdc;
     
-    @EJB IUCProjet gestionProjet;
+    private IUCProjet gestionProjet;
 
     @PostConstruct
     private void obtenirLesInterfaces() {
