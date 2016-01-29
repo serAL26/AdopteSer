@@ -16,6 +16,6 @@ public class UcConnexion implements IUcConnexion {
 
     @Override
     public DTOUtilisateur seConnecter(String mail, String mdp) {
-        return businessUtilisateur.connecterDtoUtilisateur(mail, mdp);
+      return businessUtilisateur.connecterDtoUtilisateur(mail, mdp);
     }
 }

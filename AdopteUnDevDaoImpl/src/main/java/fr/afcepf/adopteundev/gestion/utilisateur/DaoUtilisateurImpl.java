@@ -18,7 +18,7 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur{
 
     @Override
     public Utilisateur seConnecter(String mail, String password) {
-        TypedQuery<Utilisateur> query = em.createQuery("FROM Utilisateur u WHERE u.mail like :email AND u.mdp like :password", Utilisateur.class);
+        TypedQuery<Utilisateur> query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.mail = :email AND u.mdp = :password", Utilisateur.class);
                 query.setParameter("email",mail);
                 query.setParameter("password",password);
         List<Utilisateur> list = query.getResultList();

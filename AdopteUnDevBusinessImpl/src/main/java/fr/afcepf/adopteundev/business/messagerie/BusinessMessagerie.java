@@ -17,6 +17,7 @@ import fr.afcepf.adopteundev.dto.nosobjets.NoMessage;
 import fr.afcepf.adopteundev.ibusiness.messagerie.IBusinessMessagerie;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.messagerie.IDaoMessagerie;
+
 @Remote(IBusinessMessagerie.class)
 @Stateless
 public class BusinessMessagerie implements IBusinessMessagerie{
@@ -34,12 +35,12 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 
 	@Override
 	public List<DTOMessage> recupereTousLesMessMere(int idUtilisateur) {
-		List<Message> listeMessage = daoMessagerie.recupereTousLesMessMere(idUtilisateur);
-		return  EntityToDTO.listeMessageToDTOMessage(listeMessage);
+		//List<Message> listeMessage = daoMessagerie.recupereTousLesMessMere(idUtilisateur);
+		//  return EntityToDTO.listeDTOMessageToMessage(listeMessage);
+		return null;
 	}
 
-	
-	
+
 	@Override
 	public List<NoMessage> creerListeNoMessage(int idUtilisateur) {
 		List<NoMessage> listeNoMessage = new ArrayList<>();
