@@ -5,7 +5,7 @@ import java.util.List;
 import entity.Projet;
 
 public interface IDaoGestionProjet {
-	
-	List<Projet> recupProjetParIdClient(Integer id);
+	public void ajouter(Projet projet);
+	public List<Projet> recupProjetParIdClient(Integer id);
 
 }
