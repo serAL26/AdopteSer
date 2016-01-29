@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 import dto.DTOProjet;
 import dto.DTOTypeAppli;
 import dto.DTOTypeService;
@@ -18,7 +20,7 @@ import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 @Remote(IUCProjet.class)
 @Stateless
 public class UCProjet implements IUCProjet {
-	
+	private static Logger log = Logger.getLogger(UCProjet.class);
 	@EJB
 	private IBusinessTypeAppli businessTypeAppli;
 
@@ -30,6 +32,7 @@ public class UCProjet implements IUCProjet {
 
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
+		log.info("UC tous les applis");
 		return businessTypeAppli.getAllApplis();
 	}
 
