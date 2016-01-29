@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="basic-login">
-						<h:form>
+							<h:form>
 								<div class="form-group">
 									<label> <i class="icon-user"></i> <b>A quel service
 											de développement votre application fait partie ?</b>
@@ -50,42 +50,51 @@
 								</div>
 							</h:form>
 							<div class="form-group">
-								<label>
-								<i class="icon-user"></i>
-									<b>Besoin Client</b></label> 
+								<label> <i class="icon-user"></i> <b>Sur quoi porte
+										votre projet?</b></label>
+								<h:inputText class="form-control"
+									value="#{mbCreationProjet.projetcree.libelle}" />
+							</div>
+							<FIELDSET>
+								<legend>Dites-nous en plus concernant votre projet!</legend>
+
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Besoin Client</b></label>
 									<h:inputText class="form-control" value="#{mBAjoutCdc.besoin}" />
-							</div>
-							<div class="form-group">
-								<label><i class="icon-lock"></i>
-									<b>Contexte</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.contexte}" />
-							</div>
-							<div class="form-group">
-								<label><i class="icon-lock"></i>
-									<b>Existant</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.existant}" />
-							</div>
-							<div class="form-group">
-								<label><i class="icon-lock"></i>
-									<b>Date de fin</b></label> 
-									<h:inputText class="form-control" value="#{mBAjoutCdc.dateFin}" >
-									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Contexte</b></label>
+									<h:inputText class="form-control"
+										value="#{mBAjoutCdc.contexte}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Existant</b></label>
+									<h:inputText class="form-control"
+										value="#{mBAjoutCdc.existant}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Date de fin</b></label>
+									<h:inputText class="form-control" value="#{mBAjoutCdc.dateFin}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:inputText>
-							</div>
-							<div class="form-group">
-								<label><i class="icon-lock"></i>
-									<b>Budget</b></label> 
-									<div style="max-width: 150px"><h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" /></div>
-							</div>
-							<div class="form-group">
-								<label><i class="icon-lock"></i>
-									<b>Fonctionnalités</b></label> 
-							<div style="max-width: 150px"><h:selectOneMenu class="form-control">
-								<f:selectItems />
-							</h:selectOneMenu>
-							</div>
-							</div>
-							<h:commandButton class="btn pull-right" action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Budget</b></label>
+									<div style="max-width: 150px">
+										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Fonctionnalités</b></label>
+									<div style="max-width: 150px">
+										<h:selectOneMenu class="form-control">
+											<f:selectItems />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</FIELDSET>
+							<h:commandButton class="btn pull-right"
+								action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
 							<div class="clearfix"></div>
 						</div>
 					</div>
