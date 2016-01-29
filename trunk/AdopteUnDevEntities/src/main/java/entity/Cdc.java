@@ -84,7 +84,7 @@ public class Cdc {
 	private TypeCdc typeCdc;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_developpeur", nullable = false)
+	@JoinColumn(name = "id_developpeur")
 	private Developpeur developpeurCdc;
 
 	@OneToMany(mappedBy = "cdc")
