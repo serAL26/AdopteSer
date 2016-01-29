@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="typeFonctionnalite")
-public class TypeFonctionnalite {
+public class TypeFonctionnalite implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor

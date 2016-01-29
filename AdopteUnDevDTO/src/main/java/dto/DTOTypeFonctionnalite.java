@@ -1,5 +1,7 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
@@ -8,9 +10,14 @@ package dto;
  * @author Jajar
  *
  */
-public class DTOTypeFonctionnalite {
+public class DTOTypeFonctionnalite implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOTypeFonctionnalite() {

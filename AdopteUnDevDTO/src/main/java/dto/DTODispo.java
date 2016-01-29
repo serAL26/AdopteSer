@@ -1,13 +1,19 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 
  */
-public class DTODispo {
+public class DTODispo implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTODispo() {

@@ -1,5 +1,7 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
@@ -8,9 +10,14 @@ package dto;
  * @author Jajar
  *
  */
-public class DTOAssociationDevTechno {
+public class DTOAssociationDevTechno implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOAssociationDevTechno() {

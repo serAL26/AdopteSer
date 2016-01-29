@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,9 +18,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="livrable")
-public class Livrable {
+public class Livrable implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public Livrable() {

@@ -1,12 +1,19 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
  */
-public class DTOAssociationCdcFonctionnalite {
+public class DTOAssociationCdcFonctionnalite implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOAssociationCdcFonctionnalite() {
