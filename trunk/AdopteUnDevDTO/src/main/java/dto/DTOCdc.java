@@ -1,14 +1,20 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * 
  */
-public class DTOCdc {
+public class DTOCdc implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOCdc() {
@@ -171,6 +177,15 @@ public class DTOCdc {
 		this.typeCdc = typeCdc;
 		this.developpeur = developpeur;
 	}
-	
-	
+
+	public DTOCdc(Boolean lu, String contexte, String besoin,
+			String existant, Double tarif, Date dateFinEstimee) {
+		super();
+		this.lu = lu;
+		Contexte = contexte;
+		Besoin = besoin;
+		Existant = existant;
+		this.tarif = tarif;
+		this.dateFinEstimee = dateFinEstimee;
+	}
 }
