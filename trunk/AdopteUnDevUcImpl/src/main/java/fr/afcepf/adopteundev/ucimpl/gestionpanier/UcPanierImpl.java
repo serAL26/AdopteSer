@@ -3,6 +3,7 @@ package fr.afcepf.adopteundev.ucimpl.gestionpanier;
 import dto.DTODeveloppeur;
 import dto.DTOProposition;
 import dto.DTOUtilisateur;
+import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
 import fr.afcepf.adopteundev.ibusiness.gestion.panier.IBusinessPanier;
 
@@ -24,6 +25,11 @@ public class UcPanierImpl implements IUCPanier {
     @Override
     public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
         return businessPanier.recupererTousLesDeveloppeurs();
+    }
+
+    @Override
+    public List<NoDeveloppeur> recupererFicheResumeDeveloppeur() {
+        return businessPanier.recupererFicheResumeDeveloppeur();
     }
 
     @Override
