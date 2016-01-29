@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/WEB-INF/lesimports.xhtml">
-<ui:define name="head">
+	<ui:define name="head">
 
-</ui:define>
-<ui:define name="title"> </ui:define>
-<ui:define name="body">
-<div>
-<label>titre</label>
-<h:inputText value="#{mBMessagerie.titre}" />
-</div>
-<h:inputText value="#{mBMessagerie.message}" />
-<h:commandButton action="#{mBMessagerie.creerNouveauFil()}" value="test" />
-</ui:define>
+	</ui:define>
+	<ui:define name="title">
+	</ui:define>
+	<ui:define name="body">
+		<div>
+			<label>titre</label>
+			<h:inputText value="#{mBMessagerie.titre}" />
+		</div>
+		<h:inputText value="#{mBMessagerie.message}" />
+		<h:commandButton action="#{mBMessagerie.creerNouveauFil()}"
+			value="test pour nouveau fil" />
+<h:commandButton action="#{mBMessagerie.ajoutCompletMessAUnFil()}" value="completer fil existant" />
+
+		<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
+		
+			<details>
+				<summary>
+					<label>#{noMessage.mecEnFace.nom}</label>
+				</summary>
+			</details>
+			<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
+				<div>
+				<h:commandButton action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}" value="#{messDuMec.titre}" />
+				</div>
+			</ui:repeat>
+		</ui:repeat>
+
+
+
+<ui:repeat var="messConversation" value="#{mBMessagerie.filConversation}">
+#{messConversation.message}
+</ui:repeat>
+	</ui:define>
 </ui:composition>
 </html>

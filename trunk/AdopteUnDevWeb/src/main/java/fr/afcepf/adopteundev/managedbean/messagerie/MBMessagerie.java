@@ -22,11 +22,13 @@ import fr.afcepf.adopteundev.message.IUCMessage;
 @SessionScoped
 public class MBMessagerie {
 	private String message;
-	private DTOMessage messageCree;
 	private String titre;
+	private DTOMessage messageAjoute = new DTOMessage();
+	private List<DTOMessage> filConversation = new ArrayList<>();
 	private List<NoMessage> listeNoMessage = new ArrayList<>();
 	private DTOUtilisateur mecEnFace = new DTOUtilisateur();
 	private IUCMessage ucMessage;
+	private DTOMessage dernierMessFilConversation = new DTOMessage();
 	private IUcUtilisateur ucUtilisateur;
 	@ManagedProperty(value="#{mBConnexion}")
 	private MBConnexion mBConnexion;
@@ -47,6 +49,36 @@ public class MBMessagerie {
 		initListeNoMessage();
 	}
 
+	public String ajoutCompletMessAUnFil() {
+		ajouterMessAUnFil();
+		majDuMessMere();
+		return "";
+	}
+	
+	public void majDuMessMere() {
+		dernierMessFilConversation.setMessFille(messageAjoute);
+		ucMessage.majDuMessMere(dernierMessFilConversation);
+	}
+	
+	public String ajouterMessAUnFil(){
+		DTOMessage messageCree = new DTOMessage();
+		dernierMessFilConversation = filConversation.get(filConversation.size()-1);
+		messageCree.setMessMere(dernierMessFilConversation);
+		messageCree.setDateEnvoi(new Date());
+		messageCree.setMessage(message);
+		messageCree.setTitre(dernierMessFilConversation.getTitre());
+		messageCree.setUtilisateur1(mBConnexion.getUtilisateur());
+		messageCree.setUtilisateur2(mecEnFace);
+		messageAjoute = ucMessage.ecrireUnNouveauMesssage(messageCree);
+		return "";
+	}
+	
+	public String obtenirFilConversation(DTOMessage messMere, NoMessage noMess) {
+		mecEnFace = noMess.getMecEnFace();
+		filConversation = ucMessage.recupererFilConversation(messMere);
+		return "";
+	}
+	
 	public String creerNouveauFil() {
 		DTOMessage nouveauMessage = new DTOMessage();
 		nouveauMessage.setMessage(message);
@@ -54,7 +86,7 @@ public class MBMessagerie {
 		nouveauMessage.setTitre(titre);
 		nouveauMessage.setUtilisateur1(mBConnexion.getUtilisateur());
 		//TODO changer le new en mec en face
-		nouveauMessage.setUtilisateur2(ucUtilisateur.obtenirUtilisateurById(2));
+		nouveauMessage.setUtilisateur2(ucUtilisateur.obtenirUtilisateurById(3));
 		ucMessage.creerNouveauFil(nouveauMessage);
 		return "";
 	}
@@ -64,12 +96,6 @@ public class MBMessagerie {
 	}
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	public DTOMessage getMessageCree() {
-		return messageCree;
-	}
-	public void setMessageCree(DTOMessage messageCree) {
-		this.messageCree = messageCree;
 	}
 	public List<NoMessage> getListeNoMessage() {
 		return listeNoMessage;
@@ -98,6 +124,22 @@ public class MBMessagerie {
 
 	public void setmBConnexion(MBConnexion mBConnexion) {
 		this.mBConnexion = mBConnexion;
+	}
+
+	public List<DTOMessage> getFilConversation() {
+		return filConversation;
+	}
+
+	public void setFilConversation(List<DTOMessage> filConversation) {
+		this.filConversation = filConversation;
+	}
+
+	public DTOMessage getDernierMessFilConversation() {
+		return dernierMessFilConversation;
+	}
+
+	public void setDernierMessFilConversation(DTOMessage dernierMessFilConversation) {
+		this.dernierMessFilConversation = dernierMessFilConversation;
 	}
 	
 }

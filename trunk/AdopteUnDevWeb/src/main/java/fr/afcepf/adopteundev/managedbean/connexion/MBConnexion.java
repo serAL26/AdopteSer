@@ -35,7 +35,7 @@ public class MBConnexion {
         }
         else {
         	message = "Bienvenue";
-        	//retour = "/Messagerie.xhtml?faces-redirect=true";
+        	retour = "/Messagerie.xhtml?faces-redirect=true";
         }
         	return retour;
     }
