@@ -45,17 +45,26 @@
 								<label><i class="icon-lock"></i>
 									<b>Fonctionnalités</b></label> 
 							<div style="max-width: 150px">
-<!-- 							<h:selectOneMenu class="form-control" value="#{test.typefonct.idTypeFonctionnalite}">
+							<h:selectOneMenu class="form-control" value="#{test.typefonct.idTypeFonctionnalite}">
 											<f:selectItems value="#{test.listetypefonct}" var="type"
 												itemLabel="#{type.libelle}"
 												itemValue="#{type.idTypeFonctionnalite}" />
-							</h:selectOneMenu> -->
+							</h:selectOneMenu>
 							</div>
+							<div class="form-group">
+								<label><i class="icon-lock"></i>
+									<b>Commentaires</b></label> 
+									<h:inputText class="form-control" value="#{test.commentaire}" >
+									</h:inputText>
+							</div>
+							<div></div>
+							
 							</div>
 							<h:commandButton class="btn pull-right" action="#{test.ajouterCdc()}" value="Valider" />
 							<h:commandButton class="btn pull-right" action="#{test.test()}" value="Test" />
 							<h:commandButton class="btn pull-right" action="#{test.test2()}" value="Test 2" />
 							<h:commandButton class="btn pull-right" action="#{test.ajoutF()}" value="Ajout Fonct" />
+							<h:commandButton class="btn pull-right" action="#{test.ajoutA()}" value="Ajout Association" />
 							<div class="clearfix"></div>
 						</div>
 					</div>
