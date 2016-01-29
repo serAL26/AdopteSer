@@ -80,6 +80,14 @@ public class DTOTypeService implements Serializable{
 		this.typeAppli = typeAppli;
 	}
 
+	@Override
+	public String toString() {
+		return "DTOTypeService [idTypeService=" + idTypeService
+				+ ", typeAppli=" + typeAppli + ", libelle=" + libelle
+				+ ", lesAssociationTypeServiceTechno="
+				+ lesAssociationTypeServiceTechno + ", projet=" + projet + "]";
+	}
+
 
     
 	
