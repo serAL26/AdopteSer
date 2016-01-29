@@ -81,7 +81,7 @@ public class DTOToEntity {
     public static Cdc dtoCdcToCdc(DTOCdc dtoCdc) {
         Cdc cdc = new Cdc();
         cdc.setIdCdc(dtoCdc.getIdCdc());
-        cdc.setProjet(dtoProjetToProjet(dtoCdc.getProjet()));
+        //cdc.setProjet(dtoProjetToProjet(dtoCdc.getProjet()));
         cdc.setBesoin(dtoCdc.getBesoin());
         cdc.setContexte(dtoCdc.getContexte());
         cdc.setDateFinEstimee(dtoCdc.getDateFinEstimee());
