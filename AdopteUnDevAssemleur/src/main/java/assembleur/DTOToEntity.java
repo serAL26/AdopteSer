@@ -66,7 +66,7 @@ public class DTOToEntity {
         Fonctionnalite fonctionnalite = new Fonctionnalite();
         fonctionnalite.setIdFonctionnalite(dtoFonctionnalite.getIdFonctionnalite());
         fonctionnalite.setCommentaire(dtoFonctionnalite.getCommentaire());
-        fonctionnalite.setLesAssociationCdcFonctionnalite(listDtoAssociationsCdcFonctionnaliteToAssociationFonctionnalite(dtoFonctionnalite.getLesAssociationCdcFonctionnalite()));
+        //fonctionnalite.setLesAssociationCdcFonctionnalite(listDtoAssociationsCdcFonctionnaliteToAssociationFonctionnalite(dtoFonctionnalite.getLesAssociationCdcFonctionnalite()));
         fonctionnalite.setTypeFonctionnalite(dtoTypeFonctionnaliteToTypeFonctionnalite(dtoFonctionnalite.getTypeFonctionnalite()));
         return fonctionnalite;
     }
@@ -101,8 +101,8 @@ public class DTOToEntity {
     public static Technologie dtoTechnologieToTechnologie(DTOTechnologie dtoTechnologie) {
         Technologie technologie = new Technologie();
         technologie.setIdTechnologie(dtoTechnologie.getIdTechnologie());
-        technologie.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoTechnologie.getLesAssociationDevTechno()));
-        technologie.setLesAssociationTypeServiceTechno(listDtoAssoTypeServTechnoToAssoTypeServTechno(dtoTechnologie.getLesAssociationTypeServiceTechno()));
+        //technologie.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoTechnologie.getLesAssociationDevTechno()));
+        //technologie.setLesAssociationTypeServiceTechno(listDtoAssoTypeServTechnoToAssoTypeServTechno(dtoTechnologie.getLesAssociationTypeServiceTechno()));
         technologie.setTechnologieLibelle(dtoTechnologie.getTechnologieLibelle());
         return technologie;
     }
@@ -121,11 +121,11 @@ public class DTOToEntity {
         entity.setPhoto(dtoDeveloppeur.getPhoto());
         entity.setDateInscription(dtoDeveloppeur.getDateInscription());
         entity.setAdresse(dtoAdresseToAdresse(dtoDeveloppeur.getAdresse()));
-        entity.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoDeveloppeur.getLesAssociationDevTechno()));
-        entity.setListeDispo(listDtoDispoToDispo(dtoDeveloppeur.getListeDispo()));
-        entity.setListeProposition(listDtoPropositionToProposition(dtoDeveloppeur.getListeProposition()));
-        entity.setLesMessages1(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
-        entity.setLesMessages2(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
+        //entity.setLesAssociationDevTechno(listDtoAssoDevTechnoToAssoDevTechno(dtoDeveloppeur.getLesAssociationDevTechno()));
+       // entity.setListeDispo(listDtoDispoToDispo(dtoDeveloppeur.getListeDispo()));
+        //entity.setListeProposition(listDtoPropositionToProposition(dtoDeveloppeur.getListeProposition()));
+        //entity.setLesMessages1(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
+        //entity.setLesMessages2(listDtoMessageToMessage(dtoDeveloppeur.getLesMessages1()));
         return entity;
     }
 
@@ -151,8 +151,8 @@ public class DTOToEntity {
         entity.setPhoto(dto.getPhoto());
         entity.setDateInscription(dto.getDateInscription());
         entity.setAdresse(dtoAdresseToAdresse(dto.getAdresse()));
-        entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
-        entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages2()));
+        //entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
+        //entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages2()));
         return entity;
     }
 
@@ -234,25 +234,15 @@ public class DTOToEntity {
         entity.setIdProjet(dto.getIdProjet());
         entity.setClient(dtoClientToClient(dto.getClient()));
         entity.setEtatProjet(dtoEtatProjetToEtatProjet(dto.getEtatProjet()));
-        entity.setLesCdc(listDtoCdcToCdc(dto.getLesCdc()));
-        entity.setLesLitige(listDtoLitigesToLitiges(dto.getLesLitige()));
-        entity.setLesLivrable(listDtoLivrableToLivrable(dto.getLesLivrable()));
-        entity.setLesNotes(listDtoNotesToNotes(dto.getLesNotes()));
-        entity.setLesProposition(listDtoPropositionToProposition(dto.getLesProposition()));
+        //entity.setLesCdc(listDtoCdcToCdc(dto.getLesCdc()));
+        //entity.setLesLitige(listDtoLitigesToLitiges(dto.getLesLitige()));
+        //entity.setLesLivrable(listDtoLivrableToLivrable(dto.getLesLivrable()));
+        //entity.setLesNotes(listDtoNotesToNotes(dto.getLesNotes()));
+        //entity.setLesProposition(listDtoPropositionToProposition(dto.getLesProposition()));
         entity.setLibelle(dto.getLibelle());
-        entity.setLesServices(lisDtoTypeServToTypeServ(dto.getLesServices()));
+        //entity.setLesServices(listDtoTypeServToTypeServ(dto.getLesServices()));
         return entity;
     }
-
-    public static Set<TypeService> lisDtoTypeServToTypeServ(
-			Set<DTOTypeService> listDto) {
-    	 Set<TypeService> listEntity = new HashSet<TypeService>();
-         for (DTOTypeService dto :
-                 listDto) {
-             listEntity.add(dtoTypeServiceToTypeService(dto));
-         }
-         return listEntity;
-	}
 
 	public static Note dtoNoteToNote(DTONote dto) {
         Note entity = new Note();
@@ -311,8 +301,8 @@ public class DTOToEntity {
         entity.setPhoto(dto.getPhoto());
         entity.setDateInscription(dto.getDateInscription());
         entity.setAdresse(dtoAdresseToAdresse(dto.getAdresse()));
-        entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
-        entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages1()));
+        //entity.setLesMessages1(listDtoMessageToMessage(dto.getLesMessages1()));
+        //entity.setLesMessages2(listDtoMessageToMessage(dto.getLesMessages1()));
         return entity;
     }
 
@@ -416,4 +406,13 @@ public class DTOToEntity {
         return listEntity;
     }
 
+    public static Set<TypeService> listDtoTypeServToTypeServ(
+            Set<DTOTypeService> listDto) {
+        Set<TypeService> listEntity = new HashSet<TypeService>();
+        for (DTOTypeService dto :
+                listDto) {
+            listEntity.add(dtoTypeServiceToTypeService(dto));
+        }
+        return listEntity;
+    }
 }
