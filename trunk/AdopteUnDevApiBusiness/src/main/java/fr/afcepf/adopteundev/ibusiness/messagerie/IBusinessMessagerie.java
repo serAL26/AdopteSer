@@ -9,4 +9,5 @@ public interface IBusinessMessagerie {
 	DTOMessage creerNouveauFil(DTOMessage message);
 	List<DTOMessage> recupereTousLesMessMere(int idUtilisateur);
 	List<NoMessage> creerListeNoMessage(int idUtilisateur);
+	DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau);
 }
