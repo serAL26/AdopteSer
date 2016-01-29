@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.managedbean.gestioncdc;
+package test;
 
 import dto.DTOCdc;
 import dto.DTOProjet;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @ManagedBean
 @SessionScoped
-public class MBAjoutCdc {
+public class test {
 
     private String besoin;
     private String contexte;
@@ -91,5 +91,14 @@ public class MBAjoutCdc {
 		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
 		
 		gestionCdc.ajouterCdcDto(cdc);
+	}
+	
+	public void test()
+	{
+		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
+		for (DTOProjet projet : liste)
+		{
+			System.out.println(projet.getLibelle());
+		}
 	}
 }
