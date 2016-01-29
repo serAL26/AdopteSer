@@ -34,13 +34,19 @@ public class MBCreationProjet {
 		ucProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
 		listeAppli = ucProjet.rechercherTousApplication();
-		// listeServices =ucProjet.rechercherTousServices();
+		selectedAppli = new DTOTypeAppli();
+		selectedService = new DTOTypeService();
 	}
 
-	public void changeAppli(AjaxBehaviorEvent event) {
-		System.out.println("je suis dans ajax");
-		if (selectedAppli != null)
-			listeServices = selectedAppli.getLesServices();
+	public void remplirServices(AjaxBehaviorEvent event) {
+		if (selectedAppli.getIdTypeAppli() > 0) {
+			listeServices = ucProjet.recupTypeAppliById(
+					selectedAppli.getIdTypeAppli()).getLesServices();
+		} else {
+			if (listeServices != null)
+				listeServices.clear();
+		}
+
 	}
 
 	public Set<DTOTypeAppli> getListeAppli() {
