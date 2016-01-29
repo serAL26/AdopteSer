@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOProjet;
 import entity.Projet;
@@ -24,4 +25,12 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 		
 		return EntityToDTO.listeProjetToDtoProjet(listeProjets);
 	}
+
+	@Override
+	public void ajouter(DTOProjet projet) {
+		daoGestionProjet.ajouter(DTOToEntity.dtoProjetToProjet(projet));
+		
+	}
+	
+	
 }
