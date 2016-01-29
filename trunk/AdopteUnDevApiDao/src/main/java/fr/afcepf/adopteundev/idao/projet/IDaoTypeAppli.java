@@ -1,6 +1,5 @@
 package fr.afcepf.adopteundev.idao.projet;
 
-import java.util.List;
 import java.util.Set;
 
 import entity.TypeAppli;
