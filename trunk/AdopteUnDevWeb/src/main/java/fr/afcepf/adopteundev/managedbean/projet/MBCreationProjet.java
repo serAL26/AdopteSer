@@ -26,6 +26,7 @@ public class MBCreationProjet {
 	private DTOTypeAppli selectedAppli;
 	private DTOTypeService selectedService;
 	private DTOProjet projetcree;
+	
 	@EJB
 	private IUCProjet ucProjet;
 
@@ -36,6 +37,7 @@ public class MBCreationProjet {
 		listeAppli = ucProjet.rechercherTousApplication();
 		selectedAppli = new DTOTypeAppli();
 		selectedService = new DTOTypeService();
+		projetcree = new DTOProjet();
 	}
 
 	public void remplirServices(AjaxBehaviorEvent event) {
