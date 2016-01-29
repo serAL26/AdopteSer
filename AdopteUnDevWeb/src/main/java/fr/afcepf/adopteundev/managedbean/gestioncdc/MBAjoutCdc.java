@@ -1,9 +1,6 @@
 package fr.afcepf.adopteundev.managedbean.gestioncdc;
 
 import dto.DTOCdc;
-import dto.DTODeveloppeur;
-import dto.DTOProjet;
-import dto.DTOTypeCdc;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
@@ -62,6 +59,16 @@ public class MBAjoutCdc {
         return dateFin;
     }
 
+	public void setCdc(DTOCdc cdc) {
+		this.cdc = cdc;
+	}
+	
+	public void ajouterCdc()
+	{
+		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
+		
+		gestionCdc.ajouterCdcDto(cdc);
+	}
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
@@ -77,15 +84,4 @@ public class MBAjoutCdc {
     public DTOCdc getCdc() {
         return cdc;
     }
-
-    public void setCdc(DTOCdc cdc) {
-        this.cdc = cdc;
-    }
-
-    public void ajouterCdc() {
-        cdc = new DTOCdc(contexte, besoin, existant, tarif, dateFin, new DTOProjet(), new DTOTypeCdc(), new DTODeveloppeur());
-
-        gestionCdc.ajouterCdcDto(cdc);
-    }
-
 }

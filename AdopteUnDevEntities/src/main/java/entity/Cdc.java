@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "cdc")
-public class Cdc {
+public class Cdc implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor
@@ -63,7 +69,7 @@ public class Cdc {
      * 
      */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_fin_estimee", nullable = false)
+	@Column(name = "date_fin_estimee")
 	private Date dateFinEstimee;
 
 	@ManyToOne
@@ -196,7 +202,4 @@ public class Cdc {
 	public void setDeveloppeurCdc(Developpeur developpeurCdc) {
 		this.developpeurCdc = developpeurCdc;
 	}
-	
-	
-
 }

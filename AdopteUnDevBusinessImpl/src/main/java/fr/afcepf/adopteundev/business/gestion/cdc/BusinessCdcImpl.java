@@ -10,7 +10,7 @@ import entity.Cdc;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
-@Remote
+@Remote(IBusinessCdc.class)
 @Stateless
 public class BusinessCdcImpl implements IBusinessCdc{
 	
@@ -19,6 +19,8 @@ public class BusinessCdcImpl implements IBusinessCdc{
 
 	@Override
 	public void ajouterCdcDto(DTOCdc cdcDto) {
+		
+		System.out.println("Je suis dans le business");
 		
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		daoCdc.ajouterCdc(cdc);
