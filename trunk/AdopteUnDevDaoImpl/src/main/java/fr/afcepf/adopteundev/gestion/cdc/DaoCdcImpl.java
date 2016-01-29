@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
 import entity.Fonctionnalite;
+import entity.TypeCdc;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 
@@ -51,6 +52,12 @@ public class DaoCdcImpl implements IDaoCdc {
 		em.persist(association);
 		em.flush();	
 		
+	}
+
+	@Override
+	public List<TypeCdc> recupTouslesTypesCdc() {
+		
+		return em.createQuery("Select t from TypeCdc t", TypeCdc.class).getResultList();
 	}
 
 }

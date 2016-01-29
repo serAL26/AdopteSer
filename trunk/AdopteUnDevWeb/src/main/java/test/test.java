@@ -152,6 +152,8 @@ public class test {
 	{
 		//ajoutF();
 		
+		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
+		List<DTOTypeCdc> listeCdc = gestionCdc.recupTousLesTypeCdc();
 		
 		//cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFin, null, null);
 		
@@ -163,7 +165,7 @@ public class test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee);
+		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee, liste.get(1), listeCdc.get(1));
 
 		gestionCdc.ajouterCdcDto(cdc);
 	}
@@ -171,10 +173,6 @@ public class test {
 	public void test()
 	{
 		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
-		for (DTOProjet projet : liste)
-		{
-			System.out.println(projet.getLibelle());
-		}
 	}
 
 	public void test2()

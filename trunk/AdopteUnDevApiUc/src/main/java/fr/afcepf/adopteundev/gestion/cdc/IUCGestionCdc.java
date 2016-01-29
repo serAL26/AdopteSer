@@ -5,6 +5,7 @@ import java.util.List;
 import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
+import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
 
 public interface IUCGestionCdc {
@@ -14,5 +15,6 @@ public interface IUCGestionCdc {
 	List<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
 	void ajouterFonctionnalite(DTOFonctionnalite dtofonct);
 	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
+	List<DTOTypeCdc> recupTousLesTypeCdc();
 
 }

@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
+import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
@@ -50,4 +51,8 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 		
 	}
 
+	@Override
+	public List<DTOTypeCdc> recupTousLesTypeCdc() {
+		return businessCdc.recupererTousLesTypesCdc();
+	}
 }

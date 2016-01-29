@@ -12,11 +12,13 @@ import assembleur.EntityToDTO;
 import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
+import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
 import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
 import entity.Fonctionnalite;
 import entity.Projet;
+import entity.TypeCdc;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
@@ -71,5 +73,17 @@ public class BusinessCdcImpl implements IBusinessCdc{
 		AssociationCdcFonctionnalite association = DTOToEntity.dtoAssociationCdcFonctionnaliteToAssociationCdcFonctionnalite(dtoAssociation);
 		daoCdc.ajouterAssociationCdcFonctionnalite(association);
 		
+	}
+
+	@Override
+	public List<DTOTypeCdc> recupererTousLesTypesCdc() {
+		List<TypeCdc> listeTypeCdc = daoCdc.recupTouslesTypesCdc();
+		List<DTOTypeCdc> listeDto = new ArrayList<DTOTypeCdc>();
+		
+		for (TypeCdc typeCdc : listeTypeCdc) {
+			DTOTypeCdc dtotypecdc = EntityToDTO.typeCdcToDTOTypeCdc(typeCdc);
+			listeDto.add(dtotypecdc);
+		}
+		return listeDto;
 	}
 }
