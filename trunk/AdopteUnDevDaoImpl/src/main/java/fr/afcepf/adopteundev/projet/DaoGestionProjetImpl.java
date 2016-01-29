@@ -20,7 +20,9 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 	@Override
 	public List<Projet> recupProjetParIdClient(Integer id) {
 		
-		TypedQuery<Projet> query = em.createQuery("from projet p where p.client.idClient =:id", Projet.class);
+		System.out.println("je passe dans le dao");
+		
+		TypedQuery<Projet> query = em.createQuery("Select p from Projet p where p.client.idUtilisateur =:id", Projet.class);
 		query.setParameter("id", id);
 		
 		return query.getResultList();

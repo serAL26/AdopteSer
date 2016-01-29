@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,7 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "technologie")
-public class Technologie {
+public class Technologie implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 
 	/**
 	 * Default constructor

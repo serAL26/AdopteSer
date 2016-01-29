@@ -1,12 +1,19 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
  */
-public class DTODepartement {
+public class DTODepartement implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTODepartement() {

@@ -1,7 +1,14 @@
 package dto;
 
-public class DTOAssociationTypeServiceTechno {
-	  private Integer idAssociationTypeServiceTechno;
+import java.io.Serializable;
+
+public class DTOAssociationTypeServiceTechno implements Serializable{
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer idAssociationTypeServiceTechno;
 	  
 	  private DTOTypeService typeService;
 

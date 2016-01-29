@@ -1,12 +1,19 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
  */
-public class DTOLitige {
+public class DTOLitige implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOLitige() {

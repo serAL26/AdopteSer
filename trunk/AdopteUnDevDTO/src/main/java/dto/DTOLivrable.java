@@ -1,14 +1,20 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * 
  */
-public class DTOLivrable {
+public class DTOLivrable implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOLivrable() {

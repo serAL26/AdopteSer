@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="association_dev_techno")
-public class AssociationDevTechno {
+public class AssociationDevTechno implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public AssociationDevTechno() {

@@ -1,12 +1,20 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
  */
-public class DTOVille {
+public class DTOVille implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	/**
      * Default constructor
      */
     public DTOVille() {

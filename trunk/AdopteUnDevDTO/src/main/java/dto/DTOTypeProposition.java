@@ -1,12 +1,19 @@
 package dto;
 
+import java.io.Serializable;
+
 
 /**
  * 
  */
-public class DTOTypeProposition {
+public class DTOTypeProposition implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public DTOTypeProposition() {
