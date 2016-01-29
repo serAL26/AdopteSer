@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
@@ -15,14 +17,15 @@ import fr.afcepf.adopteundev.dto.nosobjets.NoMessage;
 import fr.afcepf.adopteundev.ibusiness.messagerie.IBusinessMessagerie;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.messagerie.IDaoMessagerie;
-
+@Remote(IBusinessMessagerie.class)
+@Stateless
 public class BusinessMessagerie implements IBusinessMessagerie{
 
 	@EJB
 	private IDaoMessagerie daoMessagerie;
 	@EJB
 	private IDaoUtilisateur daoUtilisateur;
-	
+
 	@Override
 	public DTOMessage creerNouveauFil(DTOMessage message) {
 		Message messageEntity = daoMessagerie.creerNouveauFil(DTOToEntity.dtoMessageToMessage(message));
