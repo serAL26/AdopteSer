@@ -1,5 +1,18 @@
 package fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import org.apache.log4j.Logger;
+
 import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
@@ -7,14 +20,10 @@ import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.util.*;
-
-@ManagedBean
+@ManagedBean(name="mBCatalogueDeveloppeur")
 @SessionScoped
 public class MBCatalogueDeveloppeur {
+	private Logger log = Logger.getLogger(MBCatalogueDeveloppeur.class);
     private List<NoDeveloppeur> listFiche = new ArrayList<>();
     private List<DTOProjet> projetList = new ArrayList<>();
     private Map<Integer, Set<DTODeveloppeur>> panier = new HashMap<>();
@@ -26,12 +35,21 @@ public class MBCatalogueDeveloppeur {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         List<DTODeveloppeur> listeDeveloppeur = initListeDeveloppeur();
         listFiche = initFichesDeveloppeur();
+        log.info(listFiche);
         projetList = initListeProjet(16);
-        panier = initPanier();
     }
 
-    public String ajouterDeveloppeurAuPanier(Integer idProjet, Integer idDeveloppeur) {
-        panierUc.ajouterDeveloppeur(idProjet, idDeveloppeur);
+    public String renvoieVersPanier() {
+    	return "/Panier.xhtml?faces-redirect=true";
+    }
+    
+    public String ajouterDeveloppeurAuPanier(Integer idProjet, DTODeveloppeur developpeur) {
+    	Set<DTODeveloppeur> setDeveloppeur = panier.get(idProjet);
+    	if(setDeveloppeur == null) {
+    		setDeveloppeur = new HashSet<>();
+    	}
+    	setDeveloppeur.add(developpeur);
+    	panier.put(idProjet, setDeveloppeur);
         return "";
     }
 
@@ -74,10 +92,6 @@ public class MBCatalogueDeveloppeur {
 
     public void setPanier(Map<Integer, Set<DTODeveloppeur>> panier) {
         this.panier = panier;
-    }
-
-    private Map<Integer, Set<DTODeveloppeur>> initPanier() {
-        return panierUc.recupererPanier();
     }
 
     private List<DTOProjet> initListeProjet(Integer idUtilisateur) {

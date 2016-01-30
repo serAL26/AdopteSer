@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Remarque </ui:define>
+	<ui:define name="body">
+
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+
+				<p:accordionPanel multiple="true">
+					<p:tab title="Besoin">
+						<h:panelGrid columns="2" cellpadding="10">
+							<div class="row besoins">
+								<div class="besoinsClient">
+									<label> <i class="icon-user"></i> <b> Les besoins
+											du client : </b></label>
+									<div>
+										<h:inputTextarea class="icon-user"
+											value="#{mBAjoutCdc.besoin}" />
+									</div>
+								</div>
+								<div>
+									<details>
+										<summary> Mes remarques : </summary>
+										<div class="col-md-offset-1 col-md-10">
+											<h:inputTextarea value="" />
+										</div>
+									</details>
+
+								</div>
+							</div>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Contexte">
+						<h:panelGrid columns="2" cellpadding="10">
+							<div class="row contexte">
+								<div class="contexteClient">
+									<label><i class="icon-lock"></i> <b>Le contexte du
+											projet : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.contexte}" />
+								</div>
+								<div>
+									<details>
+										<summary>Mes remarques :</summary>
+										<div class="col-md-offset-1 col-md-10">
+											<h:inputTextarea value="" />
+										</div>
+									</details>
+								</div>
+							</div>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Existant">
+						<h:panelGrid columns="2" cellpadding="10">
+							<div class="row existant">
+								<div class="existantClient">
+									<label><i class="icon-lock"></i> <b>Existant : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.existant}" />
+								</div>
+								<details>
+									<summary>Mes remarques :</summary>
+									<div class="col-md-offset-1 col-md-10">
+										<h:inputTextarea value="" />
+									</div>
+								</details>
+							</div>
+						</h:panelGrid>
+					</p:tab>
+
+					<p:tab title="Faut trouver un nom">
+						<h:panelGrid columns="2" cellpadding="10">
+							<div class="row dateFin">
+								<div class="dateFinClient">
+									<label><i class="icon-lock"></i> <b>Date de fin
+											prevue : </b></label>
+									<h:inputText class="form-control" value="#{mBAjoutCdc.dateFin}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+								</div>
+								<div>
+									<details>
+										<summary>Ma proposition :</summary>
+										<div class="col-md-offset-1 col-md-10">
+											<p:calendar id="button" showOn="button" />
+										</div>
+									</details>
+								</div>
+							</div>
+
+							<div class="row budget">
+								<div class="budgetClient">
+									<label><i class="icon-lock"></i> <b>Budget</b></label>
+									<div style="max-width: 150px">
+										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
+									</div>
+								</div>
+								<div>
+									<details>
+										<summary>Ma proposition :</summary>
+										<div class="col-md-offset-1 col-md-10">
+											<h:inputText value="" />
+										</div>
+									</details>
+								</div>
+							</div>
+						</h:panelGrid>
+					</p:tab>
+				</p:accordionPanel>
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

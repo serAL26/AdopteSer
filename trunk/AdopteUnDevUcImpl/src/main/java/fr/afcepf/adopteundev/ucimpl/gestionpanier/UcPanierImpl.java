@@ -22,11 +22,6 @@ public class UcPanierImpl implements IUCPanier {
     private IBusinessPanier businessPanier;
 
     @Override
-    public Map<Integer, Set<DTODeveloppeur>> recupererPanier() {
-        return businessPanier.recupererPanier();
-    }
-
-    @Override
     public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
         return businessPanier.recupererTousLesDeveloppeurs();
     }
@@ -34,18 +29,6 @@ public class UcPanierImpl implements IUCPanier {
     @Override
     public List<NoDeveloppeur> recupererFicheResumeDeveloppeur() {
         return businessPanier.recupererFicheResumeDeveloppeur();
-    }
-
-    @Override
-    public void ajouterDeveloppeur(int idProjet, int developpeur) {
-        log.info("AjoutDeveloppeur UC : In");
-        businessPanier.ajouterDeveloppeur(idProjet, developpeur);
-        log.info("AjoutDeveloppeur UC : Out");
-    }
-
-    @Override
-    public void retirerDeveloppeur(DTODeveloppeur developpeur) {
-        businessPanier.retirerDeveloppeur(developpeur);
     }
 
     @Override

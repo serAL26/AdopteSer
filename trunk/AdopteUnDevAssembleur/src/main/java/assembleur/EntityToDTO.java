@@ -549,4 +549,12 @@ public class EntityToDTO {
 		}
 		return listeDTO;
 	}
+	
+	public static List<DTOProposition> listePropositionToDtoProposition(List<Proposition> listeProposition) {
+		List<DTOProposition> listeDTOProposition = new ArrayList<>();
+		for (Proposition proposition : listeProposition) {
+			listeDTOProposition.add(EntityToDTO.propositionToDTOProposition(proposition));
+		}
+		return listeDTOProposition;
+	}
 }

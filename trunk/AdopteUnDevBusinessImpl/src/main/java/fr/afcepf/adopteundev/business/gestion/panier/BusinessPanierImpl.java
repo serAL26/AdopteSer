@@ -10,11 +10,13 @@ import fr.afcepf.adopteundev.ibusiness.gestion.panier.IBusinessPanier;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
+
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+
 import java.util.*;
 
 @Remote(IBusinessPanier.class)
@@ -28,8 +30,6 @@ public class BusinessPanierImpl implements IBusinessPanier {
     private IDaoGestionProjet daoGestionProjet;
 
     Logger log = Logger.getLogger(BusinessPanierImpl.class);
-    private Map<Integer, Set<DTODeveloppeur>> panierDeveloppeur = new HashMap<>();
-    private Set<DTODeveloppeur> dtoDeveloppeurList = new HashSet<>();
 
     @Override
     public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
@@ -56,33 +56,6 @@ public class BusinessPanierImpl implements IBusinessPanier {
     }
 
     @Override
-    public Map<Integer, Set<DTODeveloppeur>> recupererPanier() {
-        return panierDeveloppeur;
-    }
-
-    @Override
-    public void ajouterDeveloppeur(int idProjet, int idDeveloppeur) {
-        log.info("Business ajouter Developpeur au panier : In");
-        Developpeur developpeur = (Developpeur) daoUtilisateur.obtenirUtilisateurParId(idDeveloppeur);
-        DTODeveloppeur dtoDeveloppeur = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
-        dtoDeveloppeurList.add(dtoDeveloppeur);
-        panierDeveloppeur.put(idProjet, dtoDeveloppeurList);
-        log.info("developpeur ajouter : " + dtoDeveloppeur.getNom());
-        log.info("taille du panier : " + panierDeveloppeur.size());
-        log.info("taille de la liste : " + dtoDeveloppeurList.size());
-    }
-
-    @Override
-    public void retirerDeveloppeur(DTODeveloppeur developpeur) {
-        log.info("Business Retirer developpeur au panier : In");
-        log.info("taille de la liste avant: " + dtoDeveloppeurList.size());
-        dtoDeveloppeurList.remove(developpeur);
-        log.info("taille de la liste apres: " + dtoDeveloppeurList.size());
-        log.info("taille du panier : " + panierDeveloppeur.size());
-        log.info("Business Retirer developpeur au panier : OUT");
-    }
-
-    @Override
     public List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur) {
         log.info("Business recup projets par utilisateur : In");
         //Pour le test
@@ -104,12 +77,12 @@ public class BusinessPanierImpl implements IBusinessPanier {
         return dtoProjetList;
     }
 
-    public Integer calculNote(DTODeveloppeur dev) {
+    public Double calculNote(DTODeveloppeur dev) {
         return getNoteDeProjetFini(dev);
     }
 
-    private Integer getNoteDeProjetFini(DTODeveloppeur developpeur) {
-        Integer valeur = 0;
+    private Double getNoteDeProjetFini(DTODeveloppeur developpeur) {
+        Double valeur = new Double(0);
         Set<DTOProposition> listePropositionsTotales = developpeur.getListeProposition();
         if (listePropositionsTotales != null) {
             for (DTOProposition proposition :
