@@ -59,21 +59,24 @@
 								<legend>Dites-nous en plus concernant votre projet!</legend>
 
 								<div class="form-group">
-									<label> <i class="icon-user"></i> <b>Besoin Client</b></label>
-									<h:inputText class="form-control" value="#{mBAjoutCdc.besoin}" />
+									<label> <i class="icon-user"></i> <b>Votre besoin : </b></label>
+									<div>
+										<h:inputTextarea class="icon-user"
+											value="#{mBAjoutCdc.besoin}" />
+									</div>
 								</div>
 								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Contexte</b></label>
-									<h:inputText class="form-control"
+									<label><i class="icon-lock"></i> <b>Contexte de votre projet : </b></label>
+									<h:inputTextarea class="icon-user"
 										value="#{mBAjoutCdc.contexte}" />
 								</div>
 								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Existant</b></label>
-									<h:inputText class="form-control"
+									<label><i class="icon-lock"></i> <b>Mode de fonctionnement actuel : </b></label>
+									<h:inputTextarea class="icon-user"
 										value="#{mBAjoutCdc.existant}" />
 								</div>
 								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Date de fin</b></label>
+									<label><i class="icon-lock"></i> <b>Date de fin prevue : </b></label>
 									<h:inputText class="form-control" value="#{mBAjoutCdc.dateFin}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:inputText>
@@ -85,12 +88,16 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Fonctionnalités</b></label>
+									<label><i class="icon-lock"></i> <b>Quelles sont les principales Fonctionnalités de votre application?</b></label>
+									<LABEL>choisir un Type : </LABEL>
 									<div style="max-width: 150px">
 										<h:selectOneMenu class="form-control">
 											<f:selectItems />
 										</h:selectOneMenu>
 									</div>
+									<LABEL>Desciption : </LABEL>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.existant}" />
 								</div>
 							</FIELDSET>
 							<h:commandButton class="btn pull-right"
