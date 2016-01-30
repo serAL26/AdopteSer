@@ -7,10 +7,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/WEB-INF/lesimports.xhtml">
 	<ui:define name="head">
-
+		<link rel="stylesheet" href="resources/css/messagerie.css"
+			type="text/css" />
 	</ui:define>
-	<ui:define name="title">
-	</ui:define>
+	<ui:define name="title">#{mBMessagerie.messMereDeLaConverse.titre}</ui:define>
 	<ui:define name="body">
 		<div class="row">
 			<div class="col-md-3">
@@ -18,12 +18,9 @@
 					<label>titre</label>
 					<h:inputText value="#{mBMessagerie.titre}" />
 				</div>
-
 				<h:commandLink immediate="true"
 					action="#{mBMessagerie.creerNouveauFil()}"
-					value="creer nouveau fil">
-					<f:ajax render="filConversation" />
-				</h:commandLink>
+					value="creer nouveau fil" />
 
 				<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
 					<details>
@@ -34,62 +31,59 @@
 							<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
 								<div>
 									<h:commandLink
-										action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}">
-										<label>#{messDuMec.titre}</label>.
-								</h:commandLink>
+										action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}"
+										value="#{messDuMec.titre}" />
 								</div>
 							</ui:repeat>
 						</div>
 					</details>
 				</ui:repeat>
 			</div>
-
-			
-				<div class="row ">
-				
-				
-				
-				
-				
-				<div class="col-md-offset-1 col-md-5">
-				<h:panelGroup id="filConversation">
-					<ui:repeat var="messConversation" value="#{mBMessagerie.filConversation}">
-						<h:panelGroup
-							rendered="#{messConversation.utilisateur1.idUtilisateur == mBMessagerie.mecEnFace.idUtilisateur}">
-							<p class="speech messageRecu">
-								<h:outputText value="#{messConversation.message}" />
-							</p>
-							<h:panelGroup
-								rendered="#{messConversation.utilisateur1.idUtilisateur != mBMessagerie.mecEnFace.idUtilisateur}">
-								<p class="speech monMessage">
-									<h:outputText value="#{messConversation.message}" />
-								</p>
-							</h:panelGroup>
+			<div class="col-md-offset-1 col-md-5">
+				<div class="row">
+					<div id="listeMessage" class="listeMessage">
+						<h:panelGroup rendered="#{mBMessagerie.premierChargement == true}">
+							<div id="vide">
+								<h4>Veuillez choisir une conversation sur la gauche pour
+									afficher la discussion.</h4>
+							</div>
 						</h:panelGroup>
-
-					</ui:repeat>
-				</h:panelGroup>
-				
-				
-				
-				
-				
-				
-					<div class="col-md-offset-1 col-md-6">
-						<h:inputText value="#{mBMessagerie.message}" />
+						<h:panelGroup id="filConversation"
+							rendered="#{mBMessagerie.premierChargement == false}">
+							<ui:repeat var="messConversation"
+								value="#{mBMessagerie.filConversation}">
+								<h:panelGroup
+									rendered="#{messConversation.utilisateur1.idUtilisateur == mBMessagerie.mecEnFace.idUtilisateur}">
+									<p class="speech messageRecu">
+										<h:outputText value="#{messConversation.message}" />
+									</p>
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{messConversation.utilisateur1.idUtilisateur != mBMessagerie.mecEnFace.idUtilisateur}">
+									<p class="speech monMessage">
+										<h:outputText value="#{messConversation.message}" />
+									</p>
+								</h:panelGroup>
+							</ui:repeat>
+						</h:panelGroup>
 					</div>
-					<div class="col-md-offset-1 col-md-3">
-						<h:commandLink immediate="true"
-							action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
-							value="répondre">
-							<f:ajax render="filConversation" />
-						</h:commandLink>
+					<div class="row rep" style="height:100px;">
+						<div class="col-md-9 espaceReponse">
+							<h:inputTextarea styleClass="form-control textReponse"
+								 value="#{mBMessagerie.leMessage}" />
+						</div>
+						<div class="col-md-3 btnRep" >
+							<h:commandButton immediate="true"
+								action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
+								value="répondre" styleClass="btn btn-info" />
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
+		<script type="text/javascript">
+ 								var elem = document.getElementById('listeMessage');
+								   elem.scrollTop = elem.scrollHeight;</script>
 	</ui:define>
 </ui:composition>
 </html>

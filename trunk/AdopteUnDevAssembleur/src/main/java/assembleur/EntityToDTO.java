@@ -226,12 +226,9 @@ public class EntityToDTO {
 		dTOMessage.setDateEnvoi(message.getDateEnvoi());
 		dTOMessage.setMessage(message.getMessage());
 		if (message.getMessFille() != null) {
-			dTOMessage
-					.setMessFille(messageToDTOMessage(message.getMessFille()));
+			dTOMessage.setMessFille(messageToDTOMessage(message.getMessFille()));
 		}
-		// if (message.getMessMere() != null) {
-		// dTOMessage.setMessMere(messageToDTOMessage(message.getMessMere()));
-		// }
+		
 		dTOMessage.setTitre(message.getTitre());
 		dTOMessage.setUtilisateur1(utilisateurToDTOUtilisateur(message
 				.getUtilisateur1()));

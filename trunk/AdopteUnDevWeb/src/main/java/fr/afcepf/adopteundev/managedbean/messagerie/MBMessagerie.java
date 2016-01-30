@@ -21,8 +21,9 @@ import fr.afcepf.adopteundev.message.IUCMessage;
 @ManagedBean
 @SessionScoped
 public class MBMessagerie {
-	private String message;
+	private String leMessage;
 	private String titre;
+	private boolean premierChargement = true;
 	private DTOMessage messMereDeLaConverse = new DTOMessage();
 	private DTOMessage messageAjoute = new DTOMessage();
 	private List<DTOMessage> filConversation = new ArrayList<>();
@@ -53,7 +54,6 @@ public class MBMessagerie {
 
 	public String ajoutCompletMessAUnFil() {
 		ajouterMessAUnFil();
-		majDuMessMere();
 		obtenirFilConversation(messMereDeLaConverse, noMessage);
 		return "";
 	}
@@ -68,7 +68,7 @@ public class MBMessagerie {
 		dernierMessFilConversation = filConversation.get(filConversation.size()-1);
 		messageCree.setMessMere(dernierMessFilConversation);
 		messageCree.setDateEnvoi(new Date());
-		messageCree.setMessage(message);
+		messageCree.setMessage(leMessage);
 		messageCree.setTitre(dernierMessFilConversation.getTitre());
 		messageCree.setUtilisateur1(mBConnexion.getUtilisateur());
 		messageCree.setUtilisateur2(mecEnFace);
@@ -86,7 +86,7 @@ public class MBMessagerie {
 	
 	public String creerNouveauFil() {
 		DTOMessage nouveauMessage = new DTOMessage();
-		nouveauMessage.setMessage(message);
+		nouveauMessage.setMessage(leMessage);
 		nouveauMessage.setDateEnvoi(new Date());
 		nouveauMessage.setTitre(titre);
 		nouveauMessage.setUtilisateur1(mBConnexion.getUtilisateur());
@@ -96,12 +96,6 @@ public class MBMessagerie {
 		return "";
 	}
 	
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
 	public List<NoMessage> getListeNoMessage() {
 		return listeNoMessage;
 	}
@@ -170,4 +164,25 @@ public class MBMessagerie {
 	public void setNoMessage(NoMessage noMessage) {
 		this.noMessage = noMessage;
 	}
+
+	public String getLeMessage() {
+		return leMessage;
+	}
+
+	public void setLeMessage(String leMessage) {
+		this.leMessage = leMessage;
+	}
+
+	public boolean isPremierChargement() {
+		if(premierChargement) {
+			premierChargement = false;
+			return true;
+		}
+		return premierChargement;
+	}
+
+	public void setPremierChargement(boolean premierChargement) {
+		this.premierChargement = premierChargement;
+	}
+	
 }
