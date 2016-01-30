@@ -7,5 +7,6 @@ import entity.Projet;
 public interface IDaoGestionProjet {
 	public void ajouter(Projet projet);
 	public List<Projet> recupProjetParIdClient(Integer id);
+	public void modifierProjet(Projet projet);
 
 }
