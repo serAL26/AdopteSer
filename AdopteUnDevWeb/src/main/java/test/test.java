@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -42,7 +43,7 @@ public class test {
 	private String commentaire;
 
 	private DTOCdc cdc;
-	private List<DTOTypeFonctionnalite> listetypefonct;
+	private Set<DTOTypeFonctionnalite> listetypefonct;
 	private DTOTypeFonctionnalite typefonct;
 
 
@@ -121,11 +122,11 @@ public class test {
 	}
 
 
-	public List<DTOTypeFonctionnalite> getListetypefonct() {
+	public Set<DTOTypeFonctionnalite> getListetypefonct() {
 		return listetypefonct;
 	}
 
-	public void setListetypefonct(List<DTOTypeFonctionnalite> listetypefonct) {
+	public void setListetypefonct(Set<DTOTypeFonctionnalite> listetypefonct) {
 		this.listetypefonct = listetypefonct;
 	}
 
@@ -192,7 +193,7 @@ public class test {
 
 	public void test2()
 	{
-		List<DTOTypeFonctionnalite> liste = gestionCdc.recupTousLesTypesFonctionnalites();
+		Set<DTOTypeFonctionnalite> liste = gestionCdc.recupTousLesTypesFonctionnalites();
 		System.out.println("Taille de la liste dans le MB" + liste.size());
 	}
 
