@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import dto.DTOClient;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeAppli;
@@ -87,5 +88,16 @@ public class UCProjet implements IUCProjet {
 	@Override
 	public List<DTOTypeProposition> recupTousLesTypesProps() {
 		return businessProposition.recupToutsLesTyesPropos();
+	}
+
+	@Override
+	public List<DTOProjet> recupProjerParEtat(String etat) {
+		return businessGestionProjet.recupProjerParEtat(etat);
+	}
+
+	@Override
+	public List<DTOProjet> recupProjerParEtatParClient(String etat,
+			DTOClient client) {
+		return businessGestionProjet.recupProjerParEtatParClient(etat, client);
 	}
 }
