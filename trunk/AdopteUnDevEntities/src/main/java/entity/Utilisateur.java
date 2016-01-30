@@ -78,7 +78,7 @@ public class Utilisateur implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_utilisateur", nullable = false)
-    private Integer idUtilisateur;
+    protected Integer idUtilisateur;
 
     /**
      *
