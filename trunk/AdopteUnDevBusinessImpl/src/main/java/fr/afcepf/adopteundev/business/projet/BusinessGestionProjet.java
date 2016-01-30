@@ -12,6 +12,7 @@ import dto.DTOClient;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import entity.Projet;
+import enumeration.EtatProjetEnum;
 import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
