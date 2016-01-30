@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.business.projet;
+package enumeration;
 
 public enum EtatProjetEnum {
 
