@@ -6,9 +6,19 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
-
+        <link rel="stylesheet" href="resources/css/catalogueUtilisateur.css"
+              type="text/css"/>
     </ui:define>
-    <ui:define name="titre">Notre Selection de développeurs</ui:define>
+    <ui:define name="title">
+        <p>Choisissez le projet qui vous appartient : #{mBCatalogueDeveloppeur.projetSelectionne.libelle}</p>
+        <h:selectOneMenu id="listprojet" value="#{mBCatalogueDeveloppeur.projetSelectionne.idProjet}">
+            <f:selectItem itemValue="-1" itemLabel="----------"/>
+            <f:selectItems var="projet"
+                           value="#{mBCatalogueDeveloppeur.projetList}"
+                           itemLabel="#{projet.libelle}"
+                           itemValue="#{projet.idProjet}"/>
+        </h:selectOneMenu>
+    </ui:define>
     <ui:define name="body">
         <div class="section">
             <div class="container">
@@ -17,14 +27,19 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="portfolio-item">
                                 <div class="portfolio-image">
-                                    <a href="page-portfolio-item.html"><img src="img/portfolio1.jpg" alt="Developpeur"/></a>
+                                    <a href="page-portfolio-item.html"><img src="#{fiche.developpeur.photo}"
+                                                                            alt="Developpeur"/></a>
                                 </div>
                                 <div class="portfolio-info">
                                     <ul>
                                         <li class="portfolio-project-name">#{fiche.developpeur.nom} #{fiche.developpeur.prenom}</li>
-                                        <li>#{fiche.developpeur.listeProposition.size}</li>
-                                        <li><p:rating value="#{fiche.note}" readonly="true" /> </li>
-                                        <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                                        <li class="center">#{fiche.developpeur.listeProposition.size}</li>
+                                        <li><p:rating value="#{fiche.note}" readonly="true" styleClass="center-rating"/>
+                                        </li>
+                                        <li class="read-more"><h:commandButton styleClass="btn"
+                                                                               action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur.idUtilisateur)}"
+                                                                               value="Ajouter au panier"/></li>
+
                                     </ul>
                                 </div>
                             </div>

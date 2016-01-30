@@ -34,7 +34,6 @@ public class MBConnexion {
             message = "Login/Mdp errone";
         }
         else {
-        	message = "Bienvenue";
         	retour = "/Messagerie.xhtml?faces-redirect=true";
         }
         	return retour;

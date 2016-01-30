@@ -24,6 +24,12 @@ public class DTOProjet implements Serializable {
         this.libelle = libelle;
     }
 
+    public DTOProjet(Integer idProjet, String libelle, DTOClient client) {
+        this.idProjet = idProjet;
+        this.libelle = libelle;
+        this.client = client;
+    }
+
     /**
      *
      */
