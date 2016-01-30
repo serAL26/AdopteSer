@@ -305,8 +305,7 @@ public class EntityToDTO {
 		dTOProposition.setLu(proposition.getLu());
 		dTOProposition.setProjet(projetToDTOProjet(proposition.getProjet()));
 		dTOProposition.setTitre(proposition.getTitre());
-		dTOProposition
-				.setTypeProposition(typePropositionToDTOTypeProposition(proposition
+		dTOProposition.setTypeProposition(typePropositionToDTOTypeProposition(proposition
 						.getTypeProposition()));
 		return dTOProposition;
 	}
