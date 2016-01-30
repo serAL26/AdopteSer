@@ -33,28 +33,7 @@ public class DaoCdcImpl implements IDaoCdc {
 		
 	}
 
-	@Override
-	public List<TypeFonctionnalite> getAll() {
-		
-		return em.createQuery("Select t from TypeFonctionnalite t", TypeFonctionnalite.class).getResultList();
-	}
 
-	@Override
-	public void ajouterFonctionnalite(Fonctionnalite fonct) {
-		em.persist(fonct);
-		em.flush();	
-		
-	}
-
-	@Override
-	public void ajouterAssociationCdcFonctionnalite(
-			AssociationCdcFonctionnalite association) {
-		em.persist(association);
-		em.flush();	
-		
-	}
-
-	@Override
 	public List<TypeCdc> recupTouslesTypesCdc() {
 		
 		return em.createQuery("Select t from TypeCdc t", TypeCdc.class).getResultList();
