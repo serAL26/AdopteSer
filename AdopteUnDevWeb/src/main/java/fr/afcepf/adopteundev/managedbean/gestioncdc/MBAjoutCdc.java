@@ -129,14 +129,17 @@ public class MBAjoutCdc {
 		return "";
 	}
 
-	public void ajouterFonctionnaliteSaisi() {
+	public String ajouterFonctionnaliteSaisi() {
 		if (listeFonctionnaliteCree == null)
 			listeFonctionnaliteCree = new HashSet<>();
 		if (fonctionnaliteCree != null){
+			fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
 			System.out.println(fonctionnaliteCree.getCommentaire());
 			listeFonctionnaliteCree.add(fonctionnaliteCree);
 		}
 		
+		
+		return "";
 		
 	}
 
