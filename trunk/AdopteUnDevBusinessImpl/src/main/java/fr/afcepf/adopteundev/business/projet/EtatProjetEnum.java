@@ -1,12 +1,12 @@
-package fr.afcepf.adopteundev.gestion.projet;
+package fr.afcepf.adopteundev.business.projet;
 
-public enum EtatProjet {
+public enum EtatProjetEnum {
 
 	ENCOURS("EN COURS"), ARRETE("ARRETE"), FINI("FINI"), ENATTENTE("EN ATTENTE");
 	
 	private String libelle = "";
 
-	EtatProjet(String name) {
+	EtatProjetEnum(String name) {
 		this.libelle = name;
 	}
 
