@@ -5,13 +5,16 @@ import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface IBusinessPanier {
-    List<DTODeveloppeur> recupererPanier();
 
     List<DTODeveloppeur> recupererTousLesDeveloppeurs();
 
     List<NoDeveloppeur> recupererFicheResumeDeveloppeur();
+
+    Map<Integer,Set<DTODeveloppeur>> recupererPanier();
 
     void ajouterDeveloppeur(int idProjet, int idDeveloppeur);
 
