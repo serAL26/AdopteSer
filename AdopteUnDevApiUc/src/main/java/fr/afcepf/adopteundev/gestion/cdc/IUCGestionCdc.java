@@ -18,5 +18,6 @@ public interface IUCGestionCdc {
 	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	List<DTOTypeCdc> recupTousLesTypeCdc();
 	void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
+	DTOCdc recupCdcParId(Integer id);
 
 }

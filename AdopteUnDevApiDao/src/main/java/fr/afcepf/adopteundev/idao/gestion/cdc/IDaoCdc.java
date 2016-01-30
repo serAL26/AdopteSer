@@ -16,5 +16,6 @@ public interface IDaoCdc {
 	Fonctionnalite ajouterFonctionnalite (Fonctionnalite fonct);
 	AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite (AssociationCdcFonctionnalite association);
 	List<TypeCdc> recupTouslesTypesCdc();
+	Cdc recupCdcParId(Integer id);
 
 }

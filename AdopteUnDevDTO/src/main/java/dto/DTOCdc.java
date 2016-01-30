@@ -202,4 +202,19 @@ public class DTOCdc implements Serializable{
 		this.projet = projet;
 		this.typeCdc = typeCdc;
 	}
+
+	public DTOCdc(Integer idCdc, Boolean lu, String contexte, String besoin,
+			String existant, Double tarif, Date dateFinEstimee,
+			DTOProjet projet, DTOTypeCdc typeCdc) {
+		super();
+		this.idCdc = idCdc;
+		this.lu = lu;
+		Contexte = contexte;
+		Besoin = besoin;
+		Existant = existant;
+		this.tarif = tarif;
+		this.dateFinEstimee = dateFinEstimee;
+		this.projet = projet;
+		this.typeCdc = typeCdc;
+	}
 }
