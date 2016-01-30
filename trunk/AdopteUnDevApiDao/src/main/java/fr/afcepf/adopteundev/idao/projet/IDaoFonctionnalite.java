@@ -2,6 +2,7 @@ package fr.afcepf.adopteundev.idao.projet;
 
 import java.util.Set;
 
+import entity.AssociationCdcFonctionnalite;
 import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
 
@@ -14,4 +15,7 @@ public interface IDaoFonctionnalite {
 			TypeFonctionnalite typeFonctionnalite);
 	
 	public Fonctionnalite recupFonctionnaliteParID(Integer id);
+	public void ajouterAssociationCdcFonctionnalite(
+			AssociationCdcFonctionnalite association);	
+		
 }
