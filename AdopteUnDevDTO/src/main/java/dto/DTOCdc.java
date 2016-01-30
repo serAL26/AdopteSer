@@ -59,6 +59,8 @@ public class DTOCdc implements Serializable{
     public DTOProjet projet;
     
     public DTODeveloppeur developpeur;
+    
+    public DTOCdc remarque;
 
     /**
      * 
@@ -147,6 +149,15 @@ public class DTOCdc implements Serializable{
 			Set<DTOAssociationCdcFonctionnalite> lesAssociationCdcFonctionnalite) {
 		this.lesAssociationCdcFonctionnalite = lesAssociationCdcFonctionnalite;
 	}
+	
+
+	public DTOCdc getRemarque() {
+		return remarque;
+	}
+
+	public void setRemarque(DTOCdc remarque) {
+		this.remarque = remarque;
+	}
 
 	public Boolean getLu() {
 		return lu;
@@ -215,6 +226,37 @@ public class DTOCdc implements Serializable{
 		this.tarif = tarif;
 		this.dateFinEstimee = dateFinEstimee;
 		this.projet = projet;
+		this.typeCdc = typeCdc;
+	}
+
+	public DTOCdc(Boolean lu, String contexte, String besoin, String existant,
+			Double tarif, Date dateFinEstimee, DTOProjet projet,
+			DTODeveloppeur developpeur, DTOTypeCdc typeCdc) {
+		super();
+		this.lu = lu;
+		Contexte = contexte;
+		Besoin = besoin;
+		Existant = existant;
+		this.tarif = tarif;
+		this.dateFinEstimee = dateFinEstimee;
+		this.projet = projet;
+		this.developpeur = developpeur;
+		this.typeCdc = typeCdc;
+	}
+
+	public DTOCdc(Boolean lu, String contexte, String besoin, String existant,
+			Double tarif, Date dateFinEstimee, DTOProjet projet,
+			DTODeveloppeur developpeur, DTOCdc remarque, DTOTypeCdc typeCdc) {
+		super();
+		this.lu = lu;
+		Contexte = contexte;
+		Besoin = besoin;
+		Existant = existant;
+		this.tarif = tarif;
+		this.dateFinEstimee = dateFinEstimee;
+		this.projet = projet;
+		this.developpeur = developpeur;
+		this.remarque = remarque;
 		this.typeCdc = typeCdc;
 	}
 }

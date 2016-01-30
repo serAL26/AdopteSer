@@ -1,4 +1,4 @@
-package test;
+package fr.afcepf.adopteundev.managedbean.gestioncdc;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTODeveloppeur;
 import dto.DTOFonctionnalite;
@@ -24,18 +23,10 @@ import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
-/**
- * @author Stagiaire
- *
- */
-/**
- * @author Stagiaire
- *
- */
 @ManagedBean
 @SessionScoped
-public class test {
-
+public class MBRemarque {
+	
 	private String besoin;
 	private String contexte;
 	private String existant;
@@ -175,93 +166,6 @@ public class test {
 	public void setListeFonct(List<DTOFonctionnalite> listeFonct) {
 		this.listeFonct = listeFonct;
 	}
-
-
-	public void ajouterCdc()
-	{
-
-		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
-		List<DTOTypeCdc> listeCdc = gestionCdc.recupTousLesTypeCdc();
-
-		//cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFin, null, null);
-
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date dateFinEstimee = null;
-		try {
-			dateFinEstimee = sdf.parse(dateFin);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee, liste.get(1), listeCdc.get(1));
-
-		//cdc = gestionCdc.ajouterCdcDto(cdc);
-
-		gestionCdc.ajouterAssociationFonctCdcComplet(cdc, listeFonct);
-	}
-
-	public void test()
-	{
-		List<DTOProjet> liste = gestionProjet.recupProjetParIdClient(17);
-	}
-
-	public void test2()
-	{
-		Set<DTOTypeFonctionnalite> liste = gestionCdc.recupTousLesTypesFonctionnalites();
-		System.out.println("Taille de la liste dans le MB" + liste.size());
-	}
-
-	public void ajoutF()
-	{
-		fonctionnalite = new DTOFonctionnalite(commentaire, typefonct);
-		listeFonct.add(fonctionnalite);
-		//fonctionnalite = gestionCdc.ajouterFonctionnalite(fonctionnalite);
-	}
-
-	public void ajoutA()
-	{
-		DTOAssociationCdcFonctionnalite dtoAssociation = new DTOAssociationCdcFonctionnalite(cdc, fonctionnalite);
-		
-		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
-	}
-	
-	public void modificationCdc()
-	{
-		DTOCdc cdc = gestionCdc.recupCdcParId(10);
-		if (besoin!="")
-		{
-			cdc.setBesoin(besoin);
-		}
-		if (contexte!="")
-		{
-			cdc.setContexte(contexte);
-		}
-		if (existant!="")
-		{
-			cdc.setExistant(existant);
-		}
-		if (dateFin!="")
-		{
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date dateFinEstimee = null;
-		try {
-			dateFinEstimee = sdf.parse(dateFin);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			cdc.setDateFinEstimee(dateFinEstimee);
-		}
-		if (tarif!= null)
-		{
-			cdc.setTarif(tarif);
-		}
-		
-		DTOCdc cdcDtp = new DTOCdc(cdc.getIdCdc(), true, cdc.getContexte(), cdc.getBesoin(), cdc.getExistant(), 
-				cdc.getTarif(), cdc.getDateFinEstimee(), cdc.getProjet(), cdc.getTypeCdc());
-		
-		gestionCdc.modifierCdcDto(cdcDtp);		
-	}
 	
 	public void remarque()
 	{
@@ -283,4 +187,6 @@ public class test {
 		
 		gestionCdc.ajouterRemarqueCdcComplet(cdc, listeDev.get(0).getIdUtilisateur(), liste.get(1).getIdProjet());
 	}
+
+
 }

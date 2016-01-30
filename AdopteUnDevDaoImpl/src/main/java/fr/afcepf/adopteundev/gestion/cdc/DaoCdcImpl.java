@@ -6,10 +6,12 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
 import entity.Fonctionnalite;
+import entity.Projet;
 import entity.TypeCdc;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
@@ -73,4 +75,14 @@ public class DaoCdcImpl implements IDaoCdc {
 		return cdc;
 	}
 
+	@Override
+	public List<Cdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet) {
+		
+		TypedQuery<Cdc> query = em.createQuery("Select c from Cdc c where c.developpeurCdc.idUtilisateur =:id and "
+				+ "c.projet.idProjet =:idProjet and c.typeCdc.idTypeCdc =1", Cdc.class);
+		query.setParameter("id", idDev);
+		query.setParameter("idProjet", idProjet);
+		
+		return query.getResultList();
+	}
 }

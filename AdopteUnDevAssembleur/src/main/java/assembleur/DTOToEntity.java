@@ -89,6 +89,15 @@ public class DTOToEntity {
         cdc.setTarif(dtoCdc.getTarif());
         cdc.setLu(dtoCdc.getLu());
         cdc.setTypeCdc(dtoTypeCdcToTypeCdc(dtoCdc.getTypeCdc()));
+        if (dtoCdc.getDeveloppeur() !=null)
+        {
+        	cdc.setDeveloppeurCdc(dtoDeveloppeurToDeveloppeur(dtoCdc.getDeveloppeur()));
+        }
+        if (dtoCdc.getRemarque() != null)
+        {
+        	System.out.println("je passe dans le dto");
+        	cdc.setRemarque(dtoCdcToCdc(dtoCdc.getRemarque()));
+        }
         return cdc;
     }
 

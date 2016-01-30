@@ -1,8 +1,16 @@
 package fr.afcepf.adopteundev.business.gestion.utilisateur;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import assembleur.EntityToDTO;
+import dto.DTODeveloppeur;
+import dto.DTOTypeFonctionnalite;
 import dto.DTOUtilisateur;
+import entity.Developpeur;
+import entity.TypeFonctionnalite;
 import entity.Utilisateur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
 
@@ -15,6 +23,9 @@ import javax.ejb.Stateless;
 public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	@EJB
     private IDaoUtilisateur daoUtilisateur;
+	
+	@EJB
+	private IDaoDeveloppeur daoDeveloppeur;
 
     @Override
     public DTOUtilisateur connecterDtoUtilisateur(String mail, String mdp) {
@@ -30,5 +41,18 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	public DTOUtilisateur obtenirUtilisateurById(int idUtilisateur) {
 		Utilisateur utilisateur = daoUtilisateur.obtenirUtilisateurParId(idUtilisateur); 
 		return EntityToDTO.utilisateurToDTOUtilisateur(utilisateur);
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupTousLesDev() {
+		
+		List<Developpeur> listeDev = daoDeveloppeur.recupererTousLesDeveloppeurs();
+		List<DTODeveloppeur> listeDto = new ArrayList<>();
+		
+		for (Developpeur dev : listeDev) {
+			DTODeveloppeur dtoDev = EntityToDTO.developpeurToDTODeveloppeur(dev);
+			listeDto.add(dtoDev);
+		}
+		return listeDto;
 	}
 }

@@ -25,7 +25,7 @@ import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 @Remote(IBusinessCdc.class)
 @Stateless
 public class BusinessCdcImpl implements IBusinessCdc{
-	
+
 	@EJB
 	private IDaoCdc daoCdc;
 
@@ -33,30 +33,28 @@ public class BusinessCdcImpl implements IBusinessCdc{
 	public void ajouterCdcDto(DTOCdc cdcDto) {
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		cdc = daoCdc.ajouterCdc(cdc);
-		
-		
 	}
 
 	@Override
 	public void modifierCdcDto(DTOCdc cdcDto) {
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
 		daoCdc.modifierCdc(cdc);
-		
+
 	}
 
 	@Override
 	public List<DTOTypeFonctionnalite> recupererTousLesTypesFonctionnalites() {
-		
+
 		List<TypeFonctionnalite> listeFonctionnalites = daoCdc.getAll();
-		
+
 		List<DTOTypeFonctionnalite> listeDto = new ArrayList<DTOTypeFonctionnalite>();
-		
+
 		for (TypeFonctionnalite  typeFonct : listeFonctionnalites) {
-			
+
 			DTOTypeFonctionnalite dtoTypeFonctionnalite = EntityToDTO.typeFonctionnaliteToDTOTypeFonctionnalite(typeFonct);
 			listeDto.add(dtoTypeFonctionnalite);
 		}
-		
+
 		return listeDto;
 	}
 
@@ -64,7 +62,7 @@ public class BusinessCdcImpl implements IBusinessCdc{
 	public void ajouterFonctionnalite(DTOFonctionnalite dtoFonct) {
 		Fonctionnalite fonct  = DTOToEntity.dtoFonctionnaliteToFonctionnalite(dtoFonct);
 		daoCdc.ajouterFonctionnalite(fonct);
-		
+
 	}
 
 	@Override
@@ -72,14 +70,14 @@ public class BusinessCdcImpl implements IBusinessCdc{
 			DTOAssociationCdcFonctionnalite dtoAssociation) {
 		AssociationCdcFonctionnalite association = DTOToEntity.dtoAssociationCdcFonctionnaliteToAssociationCdcFonctionnalite(dtoAssociation);
 		daoCdc.ajouterAssociationCdcFonctionnalite(association);
-		
+
 	}
 
 	@Override
 	public List<DTOTypeCdc> recupererTousLesTypesCdc() {
 		List<TypeCdc> listeTypeCdc = daoCdc.recupTouslesTypesCdc();
 		List<DTOTypeCdc> listeDto = new ArrayList<DTOTypeCdc>();
-		
+
 		for (TypeCdc typeCdc : listeTypeCdc) {
 			DTOTypeCdc dtotypecdc = EntityToDTO.typeCdcToDTOTypeCdc(typeCdc);
 			listeDto.add(dtotypecdc);
@@ -90,9 +88,9 @@ public class BusinessCdcImpl implements IBusinessCdc{
 	@Override
 	public void ajouterAssociationFonctCdcComplet(
 			DTOCdc cdc, List<DTOFonctionnalite> listeFonct) {
-			Cdc cdcEntity = DTOToEntity.dtoCdcToCdc(cdc);
-			cdcEntity = daoCdc.ajouterCdc(cdcEntity);
-		
+		Cdc cdcEntity = DTOToEntity.dtoCdcToCdc(cdc);
+		cdcEntity = daoCdc.ajouterCdc(cdcEntity);
+
 		for (DTOFonctionnalite dtoFonctionnalite : listeFonct) {
 			Fonctionnalite fonct = DTOToEntity.dtoFonctionnaliteToFonctionnalite(dtoFonctionnalite);
 			fonct = daoCdc.ajouterFonctionnalite(fonct);
@@ -104,5 +102,51 @@ public class BusinessCdcImpl implements IBusinessCdc{
 	@Override
 	public DTOCdc recupCdcParId(Integer id) {
 		return EntityToDTO.cdcToDTOCdc(daoCdc.recupCdcParId(id));
+	}
+
+	@Override
+	public List<DTOCdc> recupRemarqueParIdDevEtIdProjet(Integer idDev,
+			Integer idProjet) {
+		List<Cdc> listeCdc = daoCdc.recupRemarqueParIdDevEtIdProjet(idDev, idProjet);
+		List<DTOCdc> listeDto = new ArrayList<DTOCdc>();
+
+		for (Cdc cdc : listeCdc) {
+			DTOCdc dtoCdc = EntityToDTO.cdcToDTOCdc(cdc);
+			listeDto.add(dtoCdc);
+		}
+		return listeDto;
+	}
+
+	@Override
+	public void ajouterRemarqueCdcComplet(DTOCdc cdcRemarque, Integer idDev,
+			Integer idProjet) {
+		
+		List<Cdc> listeCdc = daoCdc.recupRemarqueParIdDevEtIdProjet(idDev, idProjet);
+		
+		Cdc cdcEntity = DTOToEntity.dtoCdcToCdc(cdcRemarque);
+		cdcEntity = daoCdc.ajouterCdc(cdcEntity);
+		
+		for (Cdc cdc : listeCdc)
+		{
+			if (cdc.getRemarque() == null)
+			{
+				cdc.setRemarque(cdcEntity);
+				daoCdc.modifierCdc(cdc);
+			}
+		}
+	}
+
+	@Override
+	public DTOCdc recupDerniereRemarque(Integer idDev, Integer idProjet) {
+		List<Cdc> listeCdc = daoCdc.recupRemarqueParIdDevEtIdProjet(idDev, idProjet);
+		DTOCdc dtoCdc = new DTOCdc();
+		for (Cdc cdc : listeCdc)
+		{
+			if (cdc.getRemarque() == null)
+			{
+				dtoCdc = EntityToDTO.cdcToDTOCdc(cdc);
+			}
+		}
+		return dtoCdc;
 	}
 }
