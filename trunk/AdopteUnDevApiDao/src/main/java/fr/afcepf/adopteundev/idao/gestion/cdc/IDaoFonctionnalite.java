@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.idao.projet;
+package fr.afcepf.adopteundev.idao.gestion.cdc;
 
 import java.util.Set;
 
