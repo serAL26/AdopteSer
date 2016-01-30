@@ -84,7 +84,7 @@ public class MBAjoutCdc {
 	
 	public String ajouterCdc()
 	{
-		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, null);
+		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFin);
 		
 		gestionCdc.ajouterCdcDto(cdc);
 		
