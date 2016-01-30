@@ -18,6 +18,7 @@ public class DaoMessage implements IDaoMessagerie{
 	private EntityManager em;
 	
 	private String recupTousLesMessMere = "SELECT m FROM Message m WHERE (m.utilisateur1.idUtilisateur = :id1 OR m.utilisateur2.idUtilisateur = :id2) AND m.messMere IS NULL";
+	private String obtenirMessParId = "SELECT m FROM Message m WHERE m.idMessage = :id";
 	
 	@Override
 	public Message creerNouveauFil(Message message) {
@@ -39,12 +40,13 @@ public class DaoMessage implements IDaoMessagerie{
 	public Message ecrireUnNouveauMesssage(Message messageNouveau) {
 		em.persist(messageNouveau);
 		em.flush();
+		em.merge(messageNouveau);
 		return messageNouveau;
 	}
 
 	@Override
 	public void majMessageMere(Message messageFille) {
-		Message messMere = em.find(Message.class, messageFille.getMessMere().getIdMessage());
+		Message messMere = obtenirMessageParId(messageFille.getMessMere());
 		messMere.setMessFille(messageFille);
 		em.merge(messMere);
 		em.flush();
@@ -52,7 +54,9 @@ public class DaoMessage implements IDaoMessagerie{
 
 	@Override
 	public Message obtenirMessageParId(Message message) {
-		return em.find(Message.class, message.getIdMessage());
+		Query query = em.createQuery(obtenirMessParId);
+		query.setParameter("id", message.getIdMessage());
+		return (Message) query.getSingleResult();
 	}
 
 	@Override

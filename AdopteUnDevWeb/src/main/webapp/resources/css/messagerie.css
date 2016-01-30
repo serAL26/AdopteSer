@@ -1,0 +1,64 @@
+.colorTitre {
+	color: #00008B;
+}
+
+p.speech {
+	position: relative;
+	max-width: 350px;
+	height: auto;
+	text-align: justify;
+	padding: 10px 20px;
+	line-height: 25px;
+	background-color: #fff;
+	border: 2px solid #666;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
+	line-height: 25px;
+}
+
+.btn-info {
+	margin-left: 15px;
+}
+
+#vide {
+	height: 360px;
+}
+
+#listeMessage {
+	max-height: 500px;
+	overflow: auto;
+}
+
+.monMessage {
+	float: right;
+	clear: both;
+	margin-right: 10px;
+	background-color: #2A9FFF !important;
+	color: white;
+}
+
+.messageRecu {
+	float: left;
+	clear: both;
+	background-color: #E4E5E9 !important;
+}
+
+#reponse {
+	clear: both;
+	display: block;
+	margin-top: 30px;
+}
+
+.listeMessage {
+	border: 1px solid grey;
+}
+
+.rep{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

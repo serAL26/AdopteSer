@@ -98,13 +98,13 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 	@Override
 	public List<DTOMessage> recupererFilConversation(DTOMessage messMere) {
 		List<DTOMessage> listeDTO = new ArrayList<>();
-		listeDTO.add(messMere);
 		Message messMereEntity = DTOToEntity.dtoMessageToMessage(messMere);
 		DTOMessage messMereDTO = EntityToDTO.messageToDTOMessage(daoMessagerie.obtenirMessageParId(messMereEntity));
 		while (messMereDTO.getMessFille() != null) {
-			messMereDTO  = messMereDTO.getMessFille();
 			listeDTO.add(messMereDTO);
+			messMereDTO  = messMereDTO.getMessFille();
 		}
+		listeDTO.add(messMereDTO);
 		return listeDTO;
 	}
 
