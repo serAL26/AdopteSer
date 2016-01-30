@@ -2,6 +2,7 @@ package fr.afcepf.adopteundev.idao.projet;
 
 import java.util.List;
 
+import entity.Client;
 import entity.Projet;
 
 public interface IDaoGestionProjet {
@@ -12,5 +13,8 @@ public interface IDaoGestionProjet {
 	public void modifierProjet(Projet projet);
 	
 	public List<Projet> recupProjerParEtat(String etat);
+	
+	public List<Projet> recupProjerParEtatParClient(String etat, Client client);
+	
 
 }
