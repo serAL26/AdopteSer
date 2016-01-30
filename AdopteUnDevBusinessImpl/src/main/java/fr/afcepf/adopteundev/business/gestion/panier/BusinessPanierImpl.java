@@ -28,13 +28,8 @@ public class BusinessPanierImpl implements IBusinessPanier {
     private IDaoGestionProjet daoGestionProjet;
 
     Logger log = Logger.getLogger(BusinessPanierImpl.class);
-    private Map<Integer,Set<DTODeveloppeur>> panierDeveloppeur = new HashMap<>();
+    private Map<Integer, Set<DTODeveloppeur>> panierDeveloppeur = new HashMap<>();
     private Set<DTODeveloppeur> dtoDeveloppeurList = new HashSet<>();
-
-    @Override
-    public List<DTODeveloppeur> recupererPanier() {
-        return null;
-    }
 
     @Override
     public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
@@ -61,12 +56,17 @@ public class BusinessPanierImpl implements IBusinessPanier {
     }
 
     @Override
+    public Map<Integer, Set<DTODeveloppeur>> recupererPanier() {
+        return panierDeveloppeur;
+    }
+
+    @Override
     public void ajouterDeveloppeur(int idProjet, int idDeveloppeur) {
         log.info("Business ajouter Developpeur au panier : In");
         Developpeur developpeur = (Developpeur) daoUtilisateur.obtenirUtilisateurParId(idDeveloppeur);
         DTODeveloppeur dtoDeveloppeur = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
         dtoDeveloppeurList.add(dtoDeveloppeur);
-        panierDeveloppeur.put(idProjet,dtoDeveloppeurList);
+        panierDeveloppeur.put(idProjet, dtoDeveloppeurList);
         log.info("developpeur ajouter : " + dtoDeveloppeur.getNom());
         log.info("taille du panier : " + panierDeveloppeur.size());
         log.info("taille de la liste : " + dtoDeveloppeurList.size());
@@ -74,7 +74,12 @@ public class BusinessPanierImpl implements IBusinessPanier {
 
     @Override
     public void retirerDeveloppeur(DTODeveloppeur developpeur) {
-
+        log.info("Business Retirer developpeur au panier : In");
+        log.info("taille de la liste avant: " + dtoDeveloppeurList.size());
+        dtoDeveloppeurList.remove(developpeur);
+        log.info("taille de la liste apres: " + dtoDeveloppeurList.size());
+        log.info("taille du panier : " + panierDeveloppeur.size());
+        log.info("Business Retirer developpeur au panier : OUT");
     }
 
     @Override
@@ -86,17 +91,16 @@ public class BusinessPanierImpl implements IBusinessPanier {
         //Fin de test
         List<Projet> projetList = daoGestionProjet.recupProjetParIdClient(idUtilisateur);
         List<DTOProjet> dtoProjetList = new ArrayList<>();
-       if (projetList != null && projetList.size()!=0){
-           for (Projet projet :
-                   projetList) {
-               dtoProjetList.add(EntityToDTO.projetToDTOProjet(projet));
-               log.info("projet : "+projet.getLibelle());
-           }
-       }
-        else
-           dtoProjetList.add(new DTOProjet(90,"ProjetTest",dtoPatrick));
+        if (projetList != null && projetList.size() != 0) {
+            for (Projet projet :
+                    projetList) {
+                dtoProjetList.add(EntityToDTO.projetToDTOProjet(projet));
+                log.info("projet : " + projet.getLibelle());
+            }
+        } else
+            dtoProjetList.add(new DTOProjet(90, "ProjetTest", dtoPatrick));
         log.info("Business recup projets par utilisateur : Out");
-        log.info("taille liste projet : "+dtoProjetList.size());
+        log.info("taille liste projet : " + dtoProjetList.size());
         return dtoProjetList;
     }
 

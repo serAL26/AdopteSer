@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+    <ui:define name="head">
+
+    </ui:define>
+    <ui:define name="title">
+        Votre panier :
+    </ui:define>
+    <ui:define name="body">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <ui:repeat value="#{mBPanier.listProjet}" var="projet">
+                        <div class="col-md-12">
+                            <!-- numero projet -->
+                            <p>#{projet.libelle}<br/></p>
+                            <!-- Shopping Cart Items -->
+                            <table class="shopping-cart">
+                                <!-- Shopping Cart Item -->
+                                <ui:repeat value="#{mBPanier.getListeDeveloppeurLieAuPanier(projet.idProjet)}" var="developpeur">
+                                    <tr>
+                                        <!-- Shopping Cart Item Image -->
+                                        <td class="image"><a href="page-developper-details.html">
+                                            <img src="#{projet.libelle}" alt="Item Name"/></a>
+                                        </td>
+                                        <!-- Shopping Cart Item Description & Features -->
+                                        <td>
+                                            <div class="cart-item-title"><a
+                                                    href="page-product-details.html">LOREM IPSUM DOLOR</a></div>
+                                            <div class="feature color">
+                                                Color: <span class="color-white"></span>
+                                            </div>
+                                            <div class="feature">Size: <b>XXL</b></div>
+                                        </td>
+                                        <!-- Shopping Cart Item Quantity -->
+                                        <td class="quantity">
+                                            <input class="form-control input-sm input-micro" type="text" value="1"/>
+                                        </td>
+                                        <!-- Shopping Cart Item Price -->
+                                        <td class="price">$999.99</td>
+                                        <!-- Shopping Cart Item Actions -->
+                                        <td class="actions">
+                                            <a href="#" class="btn btn-xs btn-grey"><i
+                                                    class="glyphicon glyphicon-pencil"></i></a>
+                                            <a href="#" class="btn btn-xs btn-grey"><i
+                                                    class="glyphicon glyphicon-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <!-- End Shopping Cart Item -->
+                            </table>
+                            <!-- End Shopping Cart Items -->
+                        </div>
+                    </ui:repeat>
+                </div>
+                <div class="row">
+                    <!-- Shopping Cart Totals -->
+                    <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+                        <table class="cart-totals">
+                            <tr>
+                                <td><b>Shipping</b></td>
+                                <td>Free</td>
+                            </tr>
+                            <tr>
+                                <td><b>Discount</b></td>
+                                <td>- $18.00</td>
+                            </tr>
+                            <tr class="cart-grand-total">
+                                <td><b>Total</b></td>
+                                <td><b>$163.55</b></td>
+                            </tr>
+                        </table>
+                        <!-- Action Buttons -->
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"/> UPDATE</a>
+                            <a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"/> CHECK OUT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>
