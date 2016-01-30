@@ -1,6 +1,5 @@
 package fr.afcepf.adopteundev.business.projet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,6 +8,7 @@ import javax.ejb.Stateless;
 
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
+import dto.DTOClient;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import entity.Projet;
@@ -51,8 +51,20 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 						.recupEtatProjetByLibelle(EtatProjetEnum.FINI.name()));
 		projet.setEtatProjet(etatProjet);
 		daoGestionProjet.modifierProjet(DTOToEntity.dtoProjetToProjet(projet));
-		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public List<DTOProjet> recupProjerParEtat(String etat) {
+		return EntityToDTO.listeProjetToDtoProjet(daoGestionProjet
+				.recupProjerParEtat(etat));
+	}
+
+	@Override
+	public List<DTOProjet> recupProjerParEtatParClient(String etat,
+			DTOClient client) {
+		return EntityToDTO.listeProjetToDtoProjet(daoGestionProjet
+				.recupProjerParEtatParClient(etat,
+						DTOToEntity.dtoClientToClient(client)));
 	}
 
 }
