@@ -14,11 +14,5 @@ public interface IBusinessPanier {
 
     List<NoDeveloppeur> recupererFicheResumeDeveloppeur();
 
-    Map<Integer,Set<DTODeveloppeur>> recupererPanier();
-
-    void ajouterDeveloppeur(int idProjet, int idDeveloppeur);
-
-    void retirerDeveloppeur(DTODeveloppeur developpeur);
-
     List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur);
 }

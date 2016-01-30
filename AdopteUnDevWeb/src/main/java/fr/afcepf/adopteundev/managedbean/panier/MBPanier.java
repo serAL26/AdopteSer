@@ -3,45 +3,53 @@ package fr.afcepf.adopteundev.managedbean.panier;
 import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
+import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.MBCatalogueDeveloppeur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
 import java.util.*;
 
 @ManagedBean
 @SessionScoped
 public class MBPanier {
     IUCPanier panierUc;
-    private Map<Integer, Set<DTODeveloppeur>> panier = new HashMap<>();
-    private List<DTOProjet> listProjet = new ArrayList<>();
+    
+    @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
+    private MBCatalogueDeveloppeur mBCatalogueDeveloppeur;
+    
+    private DTOProjet dtoProjet;
+    private List<Integer> listProjet = new ArrayList<>();
     //private List<DTODeveloppeur>listeDeveloppeurDuProjet
     @PostConstruct
     public void init(){
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
-        listProjet = initListProjet(16);
-        panier = initPanier();
-
+        listProjet = initListProjet();
     }
+    
     public String retirerDeveloppeurAuPanier(DTODeveloppeur developpeur) {
-        panierUc.retirerDeveloppeur(developpeur);
+    	
         return "";
     }
 
+    
 
-
-    public Set<DTODeveloppeur> getListeDeveloppeurLieAuPanier(int idProjet){
-        return panier.get(idProjet);
+    public List<DTODeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
+    	Set<DTODeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
+    	List<DTODeveloppeur> liste = new ArrayList<>();
+    	liste.addAll(set);
+        return liste;
     }
 
-    private List<DTOProjet> initListProjet(int idUtilisateur) {
-        return panierUc.recupererListProjetParUtilisateur(idUtilisateur);
-    }
-
-    private Map<Integer, Set<DTODeveloppeur>> initPanier() {
-        return panierUc.recupererPanier();
+    private List<Integer> initListProjet() {
+    	Set<Integer> set = mBCatalogueDeveloppeur.getPanier().keySet();
+    	List<Integer> liste =  new ArrayList<>();
+    	liste.addAll(set);
+        return liste;
     }
 
     public IUCPanier getPanierUc() {
@@ -52,19 +60,26 @@ public class MBPanier {
         this.panierUc = panierUc;
     }
 
-    public Map<Integer, Set<DTODeveloppeur>> getPanier() {
-        return panier;
-    }
+	public List<Integer> getListProjet() {
+		return listProjet;
+	}
 
-    public void setPanier(Map<Integer, Set<DTODeveloppeur>> panier) {
-        this.panier = panier;
-    }
+	public void setListProjet(List<Integer> listProjet) {
+		this.listProjet = listProjet;
+	}
 
-    public List<DTOProjet> getListProjet() {
-        return listProjet;
-    }
+	public DTOProjet getDtoProjet() {
+		return dtoProjet;
+	}
+	public void setDtoProjet(DTOProjet dtoProjet) {
+		this.dtoProjet = dtoProjet;
+	}
 
-    public void setListProjet(List<DTOProjet> listProjet) {
-        this.listProjet = listProjet;
-    }
+	public MBCatalogueDeveloppeur getmBCatalogueDeveloppeur() {
+		return mBCatalogueDeveloppeur;
+	}
+
+	public void setmBCatalogueDeveloppeur(MBCatalogueDeveloppeur mBCatalogueDeveloppeur) {
+		this.mBCatalogueDeveloppeur = mBCatalogueDeveloppeur;
+	}
 }

@@ -8,7 +8,9 @@ import javax.ejb.Stateless;
 
 import dto.DTODeveloppeur;
 import dto.DTOUtilisateur;
+import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
+import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
 
 @Remote(IUcUtilisateur.class)
@@ -17,6 +19,8 @@ public class UcUtilisateur implements IUcUtilisateur{
 
 	@EJB
 	private IBusinessUtilisateur businessUtilisateur;
+	@EJB
+	private IBusinessDeveloppeur businessDeveloppeur;
 	
 	@Override
 	public DTOUtilisateur obtenirUtilisateurById(int idUtilisateur) {
@@ -26,6 +30,11 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public List<DTODeveloppeur> recupTousLesDeveloppeurs() {
 		return businessUtilisateur.recupTousLesDev();
+	}
+
+	@Override
+	public NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur) {
+		return businessDeveloppeur.creerNoDeveloppeur(dtoDeveloppeur);
 	}
 
 }

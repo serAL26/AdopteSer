@@ -1,15 +1,17 @@
 package fr.afcepf.adopteundev.dto.nosobjets;
 
-import dto.DTODeveloppeur;
-import dto.DTONote;
-
 import java.io.Serializable;
+import java.util.List;
+
+import dto.DTODeveloppeur;
+import dto.DTOTechnologie;
 
 public class NoDeveloppeur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private DTODeveloppeur developpeur;
-    private Integer note;
+    private Double note;
+    private List<DTOTechnologie> technologie;
 
     public NoDeveloppeur(DTODeveloppeur developpeur) {
         this.developpeur = developpeur;
@@ -23,11 +25,19 @@ public class NoDeveloppeur implements Serializable {
         this.developpeur = developpeur;
     }
 
-    public Integer getNote() {
-        return note;
-    }
+	public Double getNote() {
+		return note;
+	}
 
-    public void setNote(Integer note) {
-        this.note = note;
-    }
+	public void setNote(Double note) {
+		this.note = note;
+	}
+
+	public List<DTOTechnologie> getTechnologie() {
+		return technologie;
+	}
+
+	public void setTechnologie(List<DTOTechnologie> technologie) {
+		this.technologie = technologie;
+	}
 }

@@ -23,6 +23,8 @@
 					value="creer nouveau fil" />
 
 				<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
+				<div class="row">
+				<div></div>
 					<details>
 						<summary>
 							<label>#{noMessage.mecEnFace.nom}</label>
@@ -37,6 +39,7 @@
 							</ui:repeat>
 						</div>
 					</details>
+					</div>
 				</ui:repeat>
 			</div>
 			<div class="col-md-offset-1 col-md-5">
@@ -67,16 +70,17 @@
 							</ui:repeat>
 						</h:panelGroup>
 					</div>
-					<div class="row rep" style="height:100px;">
-						<div class="col-md-9 espaceReponse">
-							<h:inputTextarea styleClass="form-control textReponse"
-								 value="#{mBMessagerie.leMessage}" />
-						</div>
-						<div class="col-md-3 btnRep" >
-							<h:commandButton immediate="true"
-								action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
-								value="répondre" styleClass="btn btn-info" />
-						</div>
+					<div class="row rep" style="height: 100px;">
+							<div class="col-md-8 espaceReponse">
+									<h:inputTextarea styleClass="form-control textReponse"
+										value="#{mBMessagerie.leMessage}" />
+										</div>
+								<div class="col-md-3 btnRep">
+									<h:commandButton immediate="true"
+										action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
+										value="répondre" styleClass="btn btn-info" />
+								</div>
+						
 					</div>
 				</div>
 			</div>

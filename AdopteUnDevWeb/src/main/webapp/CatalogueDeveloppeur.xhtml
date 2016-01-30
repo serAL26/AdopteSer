@@ -20,6 +20,8 @@
         </h:selectOneMenu>
     </ui:define>
     <ui:define name="body">
+    
+    <h:commandButton action="#{mBCatalogueDeveloppeur.renvoieVersPanier()}" value="renvoie vers panier" />
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -37,7 +39,7 @@
                                         <li><p:rating value="#{fiche.note}" readonly="true" styleClass="center-rating"/>
                                         </li>
                                         <li class="read-more"><h:commandButton styleClass="btn"
-                                                                               action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur.idUtilisateur)}"
+                                                                               action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur)}"
                                                                                value="Ajouter au panier"/></li>
 
                                     </ul>
