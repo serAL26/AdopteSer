@@ -2,6 +2,7 @@ package test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,7 @@ public class test {
 	private DTOFonctionnalite fonctionnalite;
 	private DTOTypeCdc typeCdc;
 	private String commentaire;
+	private List<DTOFonctionnalite> listeFonct = new ArrayList<>();
 
 	private DTOCdc cdc;
 	private Set<DTOTypeFonctionnalite> listetypefonct;
@@ -159,6 +161,15 @@ public class test {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
+	
+	public List<DTOFonctionnalite> getListeFonct() {
+		return listeFonct;
+	}
+
+
+	public void setListeFonct(List<DTOFonctionnalite> listeFonct) {
+		this.listeFonct = listeFonct;
+	}
 
 
 	public void ajouterCdc()
@@ -179,11 +190,9 @@ public class test {
 		}
 		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee, liste.get(1), listeCdc.get(1));
 
-		gestionCdc.ajouterCdcDto(cdc);
+		//cdc = gestionCdc.ajouterCdcDto(cdc);
 
-		DTOAssociationCdcFonctionnalite dtoAssociation = new DTOAssociationCdcFonctionnalite(cdc, fonctionnalite);
-
-		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
+		gestionCdc.ajouterAssociationFonctCdcComplet(cdc, listeFonct);
 	}
 
 	public void test()
@@ -200,13 +209,14 @@ public class test {
 	public void ajoutF()
 	{
 		fonctionnalite = new DTOFonctionnalite(commentaire, typefonct);
-		gestionCdc.ajouterFonctionnalite(fonctionnalite);
+		listeFonct.add(fonctionnalite);
+		//fonctionnalite = gestionCdc.ajouterFonctionnalite(fonctionnalite);
 	}
 
 	public void ajoutA()
 	{
 		DTOAssociationCdcFonctionnalite dtoAssociation = new DTOAssociationCdcFonctionnalite(cdc, fonctionnalite);
-
+		
 		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
 	}
 }

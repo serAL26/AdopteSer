@@ -10,11 +10,11 @@ import entity.TypeFonctionnalite;
 
 public interface IDaoCdc {
 	
-	void ajouterCdc (Cdc cdc);
-	void modifierCdc (Cdc cdc);
+	Cdc ajouterCdc (Cdc cdc);
+	Cdc modifierCdc (Cdc cdc);
 	List<TypeFonctionnalite> getAll();
-	void ajouterFonctionnalite (Fonctionnalite fonct);
-	void ajouterAssociationCdcFonctionnalite (AssociationCdcFonctionnalite association);
+	Fonctionnalite ajouterFonctionnalite (Fonctionnalite fonct);
+	AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite (AssociationCdcFonctionnalite association);
 	List<TypeCdc> recupTouslesTypesCdc();
 
 }
