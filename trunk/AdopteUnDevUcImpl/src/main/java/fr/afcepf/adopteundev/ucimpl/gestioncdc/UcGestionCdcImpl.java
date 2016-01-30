@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.ucimpl.gestioncdc;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -13,13 +14,17 @@ import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
+import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessFonctionnalite;
 
 @Remote(IUCGestionCdc.class)
 @Stateless
 public class UcGestionCdcImpl implements IUCGestionCdc {
-	
+
 	@EJB
 	private IBusinessCdc businessCdc;
+
+	@EJB
+	private IBusinessFonctionnalite businessFonctionnalite;
 
 	@Override
 	public void ajouterCdcDto(DTOCdc cdcDto) {
@@ -33,22 +38,22 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	}
 
 	@Override
-	public List<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites() {
-		
-		return businessCdc.recupererTousLesTypesFonctionnalites();
+	public Set<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites() {
+
+		return businessFonctionnalite.recupererTousLesTypesFonctionnalites();
 	}
 
 	@Override
 	public void ajouterFonctionnalite(DTOFonctionnalite dtofonct) {
 		businessCdc.ajouterFonctionnalite(dtofonct);
-		
+
 	}
 
 	@Override
 	public void ajouterAssociationCdcFonctionnalite(
 			DTOAssociationCdcFonctionnalite dtoAssociation) {
 		businessCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
-		
+
 	}
 
 	@Override
