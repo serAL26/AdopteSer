@@ -1,12 +1,66 @@
 package assembleur;
 
-import dto.*;
-import entity.*;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import dto.DTOAdresse;
+import dto.DTOAssociationCdcFonctionnalite;
+import dto.DTOAssociationDevTechno;
+import dto.DTOCdc;
+import dto.DTOClient;
+import dto.DTODepartement;
+import dto.DTODeveloppeur;
+import dto.DTODispo;
+import dto.DTOEtatProjet;
+import dto.DTOFonctionnalite;
+import dto.DTOLitige;
+import dto.DTOLivrable;
+import dto.DTOMessage;
+import dto.DTONote;
+import dto.DTOOperation;
+import dto.DTOProjet;
+import dto.DTOProposition;
+import dto.DTOTechnologie;
+import dto.DTOTypeAppli;
+import dto.DTOTypeCdc;
+import dto.DTOTypeDispo;
+import dto.DTOTypeEvaluation;
+import dto.DTOTypeFonctionnalite;
+import dto.DTOTypeOperation;
+import dto.DTOTypeProposition;
+import dto.DTOTypeService;
+import dto.DTOUtilisateur;
+import dto.DTOVille;
+import entity.Adresse;
+import entity.AssociationCdcFonctionnalite;
+import entity.AssociationDevTechno;
+import entity.Cdc;
+import entity.Client;
+import entity.Departement;
+import entity.Developpeur;
+import entity.Dispo;
+import entity.EtatProjet;
+import entity.Fonctionnalite;
+import entity.Litige;
+import entity.Livrable;
+import entity.Message;
+import entity.Note;
+import entity.Operation;
+import entity.Projet;
+import entity.Proposition;
+import entity.Technologie;
+import entity.TypeAppli;
+import entity.TypeCdc;
+import entity.TypeDispo;
+import entity.TypeEvaluation;
+import entity.TypeFonctionnalite;
+import entity.TypeOperation;
+import entity.TypeProposition;
+import entity.TypeService;
+import entity.Utilisateur;
+import entity.Ville;
 
 public class EntityToDTO {
 
@@ -230,6 +284,15 @@ public class EntityToDTO {
 		Set<DTOTypeService> listDto = new HashSet<DTOTypeService>();
 		for (TypeService entity : listEntity) {
 			listDto.add(typeServiceToDTOTypeService(entity));
+		}
+		return listDto;
+	}
+
+	public static Set<DTOTypeFonctionnalite> listTypeFonctionToDtoTypeFonction(
+			Set<TypeFonctionnalite> listEntity) {
+		Set<DTOTypeFonctionnalite> listDto = new HashSet<DTOTypeFonctionnalite>();
+		for (TypeFonctionnalite entity : listEntity) {
+			listDto.add(typeFonctionnaliteToDTOTypeFonctionnalite(entity));
 		}
 		return listDto;
 	}
