@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.gestion.cdc;
 
 import java.util.List;
+import java.util.Set;
 
 import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
@@ -12,7 +13,7 @@ public interface IUCGestionCdc {
 	
 	void ajouterCdcDto (DTOCdc cdcDto);
 	void modifierCdcDto (DTOCdc cdcDto);
-	List<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
+	Set<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
 	void ajouterFonctionnalite(DTOFonctionnalite dtofonct);
 	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	List<DTOTypeCdc> recupTousLesTypeCdc();
