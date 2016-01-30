@@ -76,4 +76,22 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	public DTOCdc recupCdcParId(Integer id) {
 		return businessCdc.recupCdcParId(id);
 	}
+
+	@Override
+	public List<DTOCdc> recupRemarqueParIdDevEtIdProjet(Integer idDev,
+			Integer idProjet) {
+		return businessCdc.recupRemarqueParIdDevEtIdProjet(idDev, idProjet);
+	}
+
+	@Override
+	public void ajouterRemarqueCdcComplet(DTOCdc cdcRemarque, Integer idDev,
+			Integer idProjet) {
+		businessCdc.ajouterRemarqueCdcComplet(cdcRemarque, idDev, idProjet);
+		
+	}
+
+	@Override
+	public DTOCdc recupDerniereRemarque(Integer idDev, Integer idProjet) {
+		return businessCdc.recupDerniereRemarque(idDev, idProjet);
+	}
 }

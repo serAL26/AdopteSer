@@ -1,9 +1,12 @@
 package fr.afcepf.adopteundev.ucimpl.utilisateur;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import dto.DTODeveloppeur;
 import dto.DTOUtilisateur;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
@@ -18,6 +21,11 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public DTOUtilisateur obtenirUtilisateurById(int idUtilisateur) {
 		return businessUtilisateur.obtenirUtilisateurById(idUtilisateur);
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupTousLesDeveloppeurs() {
+		return businessUtilisateur.recupTousLesDev();
 	}
 
 }

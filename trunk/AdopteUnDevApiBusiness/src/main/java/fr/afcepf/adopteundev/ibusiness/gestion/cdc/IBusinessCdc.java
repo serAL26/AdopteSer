@@ -18,5 +18,8 @@ public interface IBusinessCdc {
 	List<DTOTypeCdc> recupererTousLesTypesCdc();
 	void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
 	DTOCdc recupCdcParId(Integer id);
+	List<DTOCdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet);
+	void ajouterRemarqueCdcComplet (DTOCdc cdcRemarque, Integer idDev, Integer idProjet);
+	DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
 
 }
