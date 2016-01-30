@@ -4,152 +4,155 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * 
+ *
  */
-public class DTOProjet implements Serializable{
+public class DTOProjet implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
+    /**
      * Default constructor
      */
     public DTOProjet() {
     }
 
+    public DTOProjet(Integer idProjet, String libelle) {
+        this.idProjet = idProjet;
+        this.libelle = libelle;
+    }
+
     /**
-     * 
+     *
      */
     private Integer idProjet;
 
     /**
-     * 
+     *
      */
     private String libelle;
 
     /**
-     * 
+     *
      */
     public DTOClient client;
 
     /**
-     * 
+     *
      */
     public Set<DTONote> lesNotes;
 
     /**
-     * 
+     *
      */
     public DTOEtatProjet etatProjet;
 
     /**
-     * 
+     *
      */
     public Set<DTOCdc> lesCdc;
 
     /**
-     * 
+     *
      */
     private Set<DTOTypeService> lesServices;
     /**
-     * 
+     *
      */
     public Set<DTOLitige> lesLitige;
 
     /**
-     * 
+     *
      */
     public Set<DTOLivrable> lesLivrable;
 
     /**
-     * 
+     *
      */
     public Set<DTOProposition> lesProposition;
 
-	public Integer getIdProjet() {
-		return idProjet;
-	}
+    public Integer getIdProjet() {
+        return idProjet;
+    }
 
-	public void setIdProjet(Integer idProjet) {
-		this.idProjet = idProjet;
-	}
+    public void setIdProjet(Integer idProjet) {
+        this.idProjet = idProjet;
+    }
 
-	public String getLibelle() {
-		return libelle;
-	}
+    public String getLibelle() {
+        return libelle;
+    }
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
 
-	public DTOClient getClient() {
-		return client;
-	}
+    public DTOClient getClient() {
+        return client;
+    }
 
-	public void setClient(DTOClient client) {
-		this.client = client;
-	}
+    public void setClient(DTOClient client) {
+        this.client = client;
+    }
 
-	public Set<DTONote> getLesNotes() {
-		return lesNotes;
-	}
+    public Set<DTONote> getLesNotes() {
+        return lesNotes;
+    }
 
-	public void setLesNotes(Set<DTONote> lesNotes) {
-		this.lesNotes = lesNotes;
-	}
+    public void setLesNotes(Set<DTONote> lesNotes) {
+        this.lesNotes = lesNotes;
+    }
 
-	public DTOEtatProjet getEtatProjet() {
-		return etatProjet;
-	}
+    public DTOEtatProjet getEtatProjet() {
+        return etatProjet;
+    }
 
-	public void setEtatProjet(DTOEtatProjet etatProjet) {
-		this.etatProjet = etatProjet;
-	}
+    public void setEtatProjet(DTOEtatProjet etatProjet) {
+        this.etatProjet = etatProjet;
+    }
 
-	public Set<DTOCdc> getLesCdc() {
-		return lesCdc;
-	}
+    public Set<DTOCdc> getLesCdc() {
+        return lesCdc;
+    }
 
-	public void setLesCdc(Set<DTOCdc> lesCdc) {
-		this.lesCdc = lesCdc;
-	}
+    public void setLesCdc(Set<DTOCdc> lesCdc) {
+        this.lesCdc = lesCdc;
+    }
 
 
-	
-	public Set<DTOLitige> getLesLitige() {
-		return lesLitige;
-	}
+    public Set<DTOLitige> getLesLitige() {
+        return lesLitige;
+    }
 
-	public void setLesLitige(Set<DTOLitige> lesLitige) {
-		this.lesLitige = lesLitige;
-	}
+    public void setLesLitige(Set<DTOLitige> lesLitige) {
+        this.lesLitige = lesLitige;
+    }
 
-	public Set<DTOLivrable> getLesLivrable() {
-		return lesLivrable;
-	}
+    public Set<DTOLivrable> getLesLivrable() {
+        return lesLivrable;
+    }
 
-	public void setLesLivrable(Set<DTOLivrable> lesLivrable) {
-		this.lesLivrable = lesLivrable;
-	}
+    public void setLesLivrable(Set<DTOLivrable> lesLivrable) {
+        this.lesLivrable = lesLivrable;
+    }
 
-	public Set<DTOProposition> getLesProposition() {
-		return lesProposition;
-	}
+    public Set<DTOProposition> getLesProposition() {
+        return lesProposition;
+    }
 
-	public void setLesProposition(Set<DTOProposition> lesProposition) {
-		this.lesProposition = lesProposition;
-	}
+    public void setLesProposition(Set<DTOProposition> lesProposition) {
+        this.lesProposition = lesProposition;
+    }
 
-	public Set<DTOTypeService> getLesServices() {
-		return lesServices;
-	}
+    public Set<DTOTypeService> getLesServices() {
+        return lesServices;
+    }
 
-	public void setLesServices(Set<DTOTypeService> lesServices) {
-		this.lesServices = lesServices;
-	}
+    public void setLesServices(Set<DTOTypeService> lesServices) {
+        this.lesServices = lesServices;
+    }
 
-    
-	
+
 }
