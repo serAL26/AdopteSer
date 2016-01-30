@@ -16,5 +16,6 @@ public interface IBusinessCdc {
 	void ajouterFonctionnalite(DTOFonctionnalite dtoFonct);
 	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	List<DTOTypeCdc> recupererTousLesTypesCdc();
+	void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
 
 }

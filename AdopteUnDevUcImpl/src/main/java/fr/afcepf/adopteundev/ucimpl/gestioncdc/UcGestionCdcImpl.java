@@ -27,14 +27,17 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	private IBusinessFonctionnalite businessFonctionnalite;
 
 	@Override
-	public void ajouterCdcDto(DTOCdc cdcDto) {
+	public DTOCdc ajouterCdcDto(DTOCdc cdcDto) {
 		businessCdc.ajouterCdcDto(cdcDto);
-
+		
+		return cdcDto;
 	}
 
 	@Override
-	public void modifierCdcDto(DTOCdc cdcDto) {
+	public DTOCdc modifierCdcDto(DTOCdc cdcDto) {
 		businessCdc.modifierCdcDto(cdcDto);
+		
+		return cdcDto;
 	}
 
 	@Override
@@ -44,9 +47,10 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	}
 
 	@Override
-	public void ajouterFonctionnalite(DTOFonctionnalite dtofonct) {
+	public DTOFonctionnalite ajouterFonctionnalite(DTOFonctionnalite dtofonct) {
 		businessCdc.ajouterFonctionnalite(dtofonct);
 
+		return dtofonct;
 	}
 
 	@Override
@@ -59,5 +63,12 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	@Override
 	public List<DTOTypeCdc> recupTousLesTypeCdc() {
 		return businessCdc.recupererTousLesTypesCdc();
+	}
+
+	@Override
+	public void ajouterAssociationFonctCdcComplet(DTOCdc cdc,
+			List<DTOFonctionnalite> listeFonct) {
+		businessCdc.ajouterAssociationFonctCdcComplet(cdc, listeFonct);
+		
 	}
 }

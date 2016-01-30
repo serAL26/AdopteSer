@@ -22,15 +22,19 @@ public class DaoCdcImpl implements IDaoCdc {
 	    EntityManager em;
 	
 	@Override
-	public void ajouterCdc(Cdc cdc) {
+	public Cdc ajouterCdc(Cdc cdc) {
 		em.persist(cdc);
 		em.flush();	
+		em.merge(cdc);
+		
+		return cdc;
 	}
 
 	@Override
-	public void modifierCdc(Cdc cdc) {
+	public Cdc modifierCdc(Cdc cdc) {
 		em.merge(cdc);
 		
+		return cdc;
 	}
 
 	@Override
@@ -40,18 +44,21 @@ public class DaoCdcImpl implements IDaoCdc {
 	}
 
 	@Override
-	public void ajouterFonctionnalite(Fonctionnalite fonct) {
+	public Fonctionnalite ajouterFonctionnalite(Fonctionnalite fonct) {
 		em.persist(fonct);
 		em.flush();	
+		
+		return fonct;
 		
 	}
 
 	@Override
-	public void ajouterAssociationCdcFonctionnalite(
+	public AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite(
 			AssociationCdcFonctionnalite association) {
 		em.persist(association);
 		em.flush();	
 		
+		return association;
 	}
 
 	@Override

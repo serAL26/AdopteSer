@@ -11,11 +11,12 @@ import dto.DTOTypeFonctionnalite;
 
 public interface IUCGestionCdc {
 	
-	void ajouterCdcDto (DTOCdc cdcDto);
-	void modifierCdcDto (DTOCdc cdcDto);
+	DTOCdc ajouterCdcDto (DTOCdc cdcDto);
+	DTOCdc modifierCdcDto (DTOCdc cdcDto);
 	Set<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
-	void ajouterFonctionnalite(DTOFonctionnalite dtofonct);
+	DTOFonctionnalite ajouterFonctionnalite(DTOFonctionnalite dtofonct);
 	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	List<DTOTypeCdc> recupTousLesTypeCdc();
+	void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
 
 }

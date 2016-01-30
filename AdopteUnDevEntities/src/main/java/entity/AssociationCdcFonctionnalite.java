@@ -27,6 +27,14 @@ public class AssociationCdcFonctionnalite implements Serializable{
 	public AssociationCdcFonctionnalite() {
 	}
 
+
+	public AssociationCdcFonctionnalite(Cdc cdc, Fonctionnalite fonctionnalite) {
+		super();
+		this.cdc = cdc;
+		this.fonctionnalite = fonctionnalite;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_assoc_cdc_fonctionnalite", nullable=false)

@@ -32,9 +32,10 @@ public class BusinessCdcImpl implements IBusinessCdc{
 
 	@Override
 	public void ajouterCdcDto(DTOCdc cdcDto) {
-		System.out.println("je passe par le cdc");
 		Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
-		daoCdc.ajouterCdc(cdc);
+		cdc = daoCdc.ajouterCdc(cdc);
+		
+		
 	}
 
 	@Override
@@ -85,5 +86,19 @@ public class BusinessCdcImpl implements IBusinessCdc{
 			listeDto.add(dtotypecdc);
 		}
 		return listeDto;
+	}
+
+	@Override
+	public void ajouterAssociationFonctCdcComplet(
+			DTOCdc cdc, List<DTOFonctionnalite> listeFonct) {
+			Cdc cdcEntity = DTOToEntity.dtoCdcToCdc(cdc);
+			cdcEntity = daoCdc.ajouterCdc(cdcEntity);
+		
+		for (DTOFonctionnalite dtoFonctionnalite : listeFonct) {
+			Fonctionnalite fonct = DTOToEntity.dtoFonctionnaliteToFonctionnalite(dtoFonctionnalite);
+			fonct = daoCdc.ajouterFonctionnalite(fonct);
+			AssociationCdcFonctionnalite assoc = new AssociationCdcFonctionnalite(cdcEntity, fonct);
+			daoCdc.ajouterAssociationCdcFonctionnalite(assoc);
+		}
 	}
 }
