@@ -13,16 +13,18 @@ import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 @Remote(IDaoGestionProjet.class)
 @Stateless
 public class DaoGestionProjetImpl implements IDaoGestionProjet {
-	
-	 @PersistenceContext(unitName="AdopteUnDev")
-	 EntityManager em;
+
+	@PersistenceContext(unitName = "AdopteUnDev")
+	EntityManager em;
 
 	@Override
 	public List<Projet> recupProjetParIdClient(Integer id) {
-		
-		TypedQuery<Projet> query = em.createQuery("Select p from Projet p where p.client.idUtilisateur =:id", Projet.class);
+
+		TypedQuery<Projet> query = em.createQuery(
+				"Select p from Projet p where p.client.idUtilisateur =:id",
+				Projet.class);
 		query.setParameter("id", id);
-		
+
 		return query.getResultList();
 	}
 
@@ -37,4 +39,5 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		em.merge(projet);
 		em.flush();
 	}
+
 }
