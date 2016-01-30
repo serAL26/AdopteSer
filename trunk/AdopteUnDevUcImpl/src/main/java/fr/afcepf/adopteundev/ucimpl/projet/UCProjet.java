@@ -38,7 +38,6 @@ public class UCProjet implements IUCProjet {
 
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
-		log.info("UC tous les applis");
 		return businessTypeAppli.getAllApplis();
 	}
 
@@ -72,6 +71,10 @@ public class UCProjet implements IUCProjet {
 	}
 
 	@Override
+	public void finaliserProjet(DTOProjet projet) {
+		businessGestionProjet.finaliserProjet(projet);
+	}
+	@Override
 	public void modifierProposition(DTOProposition dtoProp) {
 		businessProposition.modifierProposition(dtoProp);
 	}
@@ -85,5 +88,4 @@ public class UCProjet implements IUCProjet {
 	public List<DTOTypeProposition> recupTousLesTypesProps() {
 		return businessProposition.recupToutsLesTyesPropos();
 	}
-
 }
