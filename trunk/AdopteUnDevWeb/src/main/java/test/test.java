@@ -219,4 +219,42 @@ public class test {
 		
 		gestionCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
 	}
+	
+	public void modificationCdc()
+	{
+		DTOCdc cdc = gestionCdc.recupCdcParId(10);
+		if (besoin!="")
+		{
+			cdc.setBesoin(besoin);
+		}
+		if (contexte!="")
+		{
+			cdc.setContexte(contexte);
+		}
+		if (existant!="")
+		{
+			cdc.setExistant(existant);
+		}
+		if (dateFin!="")
+		{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateFinEstimee = null;
+		try {
+			dateFinEstimee = sdf.parse(dateFin);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			cdc.setDateFinEstimee(dateFinEstimee);
+		}
+		if (tarif!= null)
+		{
+			cdc.setTarif(tarif);
+		}
+		
+		DTOCdc cdcDtp = new DTOCdc(cdc.getIdCdc(), true, cdc.getContexte(), cdc.getBesoin(), cdc.getExistant(), 
+				cdc.getTarif(), cdc.getDateFinEstimee(), cdc.getProjet(), cdc.getTypeCdc());
+		
+		gestionCdc.modifierCdcDto(cdcDtp);		
+	}
 }

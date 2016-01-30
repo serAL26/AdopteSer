@@ -71,4 +71,9 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 		businessCdc.ajouterAssociationFonctCdcComplet(cdc, listeFonct);
 		
 	}
+
+	@Override
+	public DTOCdc recupCdcParId(Integer id) {
+		return businessCdc.recupCdcParId(id);
+	}
 }

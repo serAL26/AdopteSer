@@ -67,4 +67,10 @@ public class DaoCdcImpl implements IDaoCdc {
 		return em.createQuery("Select t from TypeCdc t", TypeCdc.class).getResultList();
 	}
 
+	@Override
+	public Cdc recupCdcParId(Integer id) {
+		Cdc cdc = em.find(Cdc.class, id);
+		return cdc;
+	}
+
 }

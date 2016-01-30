@@ -17,7 +17,6 @@ import dto.DTOTypeFonctionnalite;
 import entity.AssociationCdcFonctionnalite;
 import entity.Cdc;
 import entity.Fonctionnalite;
-import entity.Projet;
 import entity.TypeCdc;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
@@ -100,5 +99,10 @@ public class BusinessCdcImpl implements IBusinessCdc{
 			AssociationCdcFonctionnalite assoc = new AssociationCdcFonctionnalite(cdcEntity, fonct);
 			daoCdc.ajouterAssociationCdcFonctionnalite(assoc);
 		}
+	}
+
+	@Override
+	public DTOCdc recupCdcParId(Integer id) {
+		return EntityToDTO.cdcToDTOCdc(daoCdc.recupCdcParId(id));
 	}
 }
