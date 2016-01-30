@@ -9,8 +9,10 @@ import javax.ejb.Stateless;
 
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
+import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import entity.Projet;
+import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
 @Remote(IBusinessGestionProjet.class)
@@ -19,6 +21,9 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@EJB
 	private IDaoGestionProjet daoGestionProjet;
+
+	@EJB
+	private IDaoEtatProjet daoEtatProjet;
 
 	@Override
 	public List<DTOProjet> recupProjetParIdClient(Integer id) {
@@ -37,6 +42,17 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	@Override
 	public void modifierProjet(DTOProjet projet) {
 		daoGestionProjet.modifierProjet(DTOToEntity.dtoProjetToProjet(projet));
+	}
+
+	@Override
+	public void finaliserProjet(DTOProjet projet) {
+		DTOEtatProjet etatProjet = EntityToDTO
+				.etatProjetToDTOEtatProjet(daoEtatProjet
+						.recupEtatProjetByLibelle(EtatProjetEnum.FINI.name()));
+		projet.setEtatProjet(etatProjet);
+		daoGestionProjet.modifierProjet(DTOToEntity.dtoProjetToProjet(projet));
+		// TODO Auto-generated method stub
+
 	}
 
 }
