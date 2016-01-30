@@ -16,8 +16,10 @@ import dto.DTOCdc;
 import dto.DTODeveloppeur;
 import dto.DTOFonctionnalite;
 import dto.DTOProjet;
+import dto.DTOProposition;
 import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
+import dto.DTOTypeProposition;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
@@ -282,5 +284,25 @@ public class test {
 		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFinEstimee, liste.get(1), listeDev.get(0), null, listeCdc.get(0));
 		
 		gestionCdc.ajouterRemarqueCdcComplet(cdc, listeDev.get(0).getIdUtilisateur(), liste.get(1).getIdProjet());
+	}
+	
+	public void validerProposition()
+	{
+		List<DTOProposition> liste = gestionProjet.recupToutesLesPropos();
+		List<DTOTypeProposition> listeType = gestionProjet.recupTousLesTypesProps();
+		
+		DTOProposition prop = liste.get(0);
+		prop.setTypeProposition(listeType.get(2));
+		gestionProjet.modifierProposition(prop);
+	}
+	
+	public void refuserProposition()
+	{
+		List<DTOProposition> liste = gestionProjet.recupToutesLesPropos();
+		List<DTOTypeProposition> listeType = gestionProjet.recupTousLesTypesProps();
+		
+		DTOProposition prop = liste.get(1);
+		prop.setTypeProposition(listeType.get(3));
+		gestionProjet.modifierProposition(prop);
 	}
 }

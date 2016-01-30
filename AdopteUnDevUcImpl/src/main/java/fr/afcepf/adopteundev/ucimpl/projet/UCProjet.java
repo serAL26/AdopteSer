@@ -10,9 +10,12 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 import dto.DTOProjet;
+import dto.DTOProposition;
 import dto.DTOTypeAppli;
+import dto.DTOTypeProposition;
 import dto.DTOTypeService;
 import fr.afcepf.adopteundev.business.projet.IBusinessGestionProjet;
+import fr.afcepf.adopteundev.business.projet.IBusinessProposition;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeAppli;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeService;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
@@ -29,6 +32,9 @@ public class UCProjet implements IUCProjet {
 
 	@EJB
 	private IBusinessGestionProjet businessGestionProjet;
+	
+	@EJB
+	private IBusinessProposition businessProposition;
 
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
@@ -63,6 +69,21 @@ public class UCProjet implements IUCProjet {
 	public DTOTypeAppli recupTypeAppliById(Integer id) {
 
 		return businessTypeAppli.getAppliById(id);
+	}
+
+	@Override
+	public void modifierProposition(DTOProposition dtoProp) {
+		businessProposition.modifierProposition(dtoProp);
+	}
+
+	@Override
+	public List<DTOProposition> recupToutesLesPropos() {
+		return businessProposition.recupToutesLesPropos();
+	}
+
+	@Override
+	public List<DTOTypeProposition> recupTousLesTypesProps() {
+		return businessProposition.recupToutsLesTyesPropos();
 	}
 
 }
