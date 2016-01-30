@@ -31,4 +31,10 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		em.persist(projet);
 		em.flush();
 	}
+
+	@Override
+	public void modifierProjet(Projet projet) {
+		em.merge(projet);
+		em.flush();
+	}
 }
