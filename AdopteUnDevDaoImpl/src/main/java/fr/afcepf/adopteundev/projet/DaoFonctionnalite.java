@@ -10,9 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entity.AssociationCdcFonctionnalite;
 import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
-import fr.afcepf.adopteundev.idao.projet.IDaoFonctionnalite;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoFonctionnalite;
 
 @Remote(IDaoFonctionnalite.class)
 @Stateless
@@ -46,5 +47,13 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 	public Fonctionnalite recupFonctionnaliteParID(Integer id) {
 		Fonctionnalite fonctionnalite = em.find(Fonctionnalite.class, id);
 		return fonctionnalite;
+	}
+	
+	@Override
+	public void ajouterAssociationCdcFonctionnalite(
+			AssociationCdcFonctionnalite association) {
+		em.persist(association);
+		em.flush();	
+		
 	}
 }
