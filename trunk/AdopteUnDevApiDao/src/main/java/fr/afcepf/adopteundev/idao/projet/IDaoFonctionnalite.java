@@ -1,6 +1,6 @@
 package fr.afcepf.adopteundev.idao.projet;
 
-import java.util.List;
+import java.util.Set;
 
 import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
@@ -8,8 +8,10 @@ import entity.TypeFonctionnalite;
 public interface IDaoFonctionnalite {
 	public void ajouterFonctionnalite(Fonctionnalite fonctionnalite);
 
-	public List<Fonctionnalite> recupererTousFonctionna();
+	public Set<Fonctionnalite> recupererTousFonctionna();
 
-	public List<Fonctionnalite> recupeFonctionnalitesParType(
+	public Set<Fonctionnalite> recupeFonctionnalitesParType(
 			TypeFonctionnalite typeFonctionnalite);
+	
+	public Fonctionnalite recupFonctionnaliteParID(Integer id);
 }
