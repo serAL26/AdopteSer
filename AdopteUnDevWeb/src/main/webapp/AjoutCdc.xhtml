@@ -91,28 +91,48 @@
 										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
 									</div>
 								</div>
-									<div class="form-group">
-										<label><i class="icon-lock"></i> <b>Quelles sont
-												les principales Fonctionnalités de votre application?</b></label> <LABEL>choisir
-											un Type : </LABEL>
-										<div style="max-width: 150px">
-											<h:selectOneMenu class="form-control"
-												value="#{mBAjoutCdc.selectedTypeFonction}">
-												<f:selectItems value="#{mBAjoutCdc.listTypeFonctionn}"
-													var="typeFonction" itemValue="#{typeFonction}"
-													itemLabel="#{typeFonction.libelle}" />
-											</h:selectOneMenu>
-										</div>
-										<LABEL>Desciption : </LABEL>
-										<h:inputTextarea class="icon-user"
-											value="#{mBAjoutCdc.fonctionnaliteCree.commentaire}" />
-										<div>
-											<h:commandButton value="+Fonctionnalité" ></h:commandButton>
-										</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Quelles sont
+											les principales Fonctionnalités de votre application?</b></label> <LABEL>choisir
+										un Type : </LABEL>
+									<div style="max-width: 150px">
+										<h:selectOneMenu class="form-control"
+											value="#{mBAjoutCdc.selectedTypeFonction}">
+											<f:selectItems value="#{mBAjoutCdc.listTypeFonctionn}"
+												var="typeFonction" itemValue="#{typeFonction}"
+												itemLabel="#{typeFonction.libelle}" />
+										</h:selectOneMenu>
 									</div>
+									<LABEL>Desciption : </LABEL>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.fonctionnaliteCree.commentaire}" />
+									<div>
+										<!--<h:commandButton value="+Fonctionnalité"></h:commandButton-->
+
+										<h:commandLink immediate="true"
+											action="#{mBAjoutCdc.ajouterFonctionnaliteSaisi}"
+											value="+Fonctionnalité">
+											<f:ajax render="filConversation" />
+										</h:commandLink>
+
+										<ui:repeat var="noMessage"
+											value="#{mBAjoutCdc.listeFonctionnaliteCree}">
+											<details>
+												<summary>
+													<label>#{noMessage.typeFonctionnalite.libelle}</label>
+												</summary>
+												<div class="col-md-offset-2">
+													<h:outputText value="#{noMessage.commentaire}"></h:outputText>
+												</div>
+											</details>
+										</ui:repeat>
+									</div>
+								</div>
 							</FIELDSET>
-							<h:commandButton class="btn pull-right"
-								action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
+							<h:panelGroup id="filConversation">
+								<h:commandButton class="btn pull-right"
+									action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
+							</h:panelGroup>
 							<div class="clearfix"></div>
 						</div>
 					</div>
