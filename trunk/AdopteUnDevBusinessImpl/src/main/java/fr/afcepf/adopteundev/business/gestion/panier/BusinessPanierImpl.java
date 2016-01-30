@@ -1,29 +1,38 @@
 package fr.afcepf.adopteundev.business.gestion.panier;
 
 import assembleur.EntityToDTO;
-import dto.DTODeveloppeur;
-import dto.DTONote;
-import dto.DTOProposition;
+import dto.*;
+import entity.Client;
 import entity.Developpeur;
+import entity.Projet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.panier.IBusinessPanier;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
+import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
+import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Remote(IBusinessPanier.class)
 @Stateless
 public class BusinessPanierImpl implements IBusinessPanier {
     @EJB
     private IDaoDeveloppeur daoDeveloppeur;
+    @EJB
+    private IDaoUtilisateur daoUtilisateur;
+    @EJB
+    private IDaoGestionProjet daoGestionProjet;
+
+    Logger log = Logger.getLogger(BusinessPanierImpl.class);
+    private Map<Integer,Set<DTODeveloppeur>> panierDeveloppeur = new HashMap<>();
+    private Set<DTODeveloppeur> dtoDeveloppeurList = new HashSet<>();
 
     @Override
-    public List<DTOProposition> recupererPanier() {
+    public List<DTODeveloppeur> recupererPanier() {
         return null;
     }
 
@@ -52,15 +61,44 @@ public class BusinessPanierImpl implements IBusinessPanier {
     }
 
     @Override
-    public void ajouterProposition(DTODeveloppeur developpeur) {
-        DTOProposition proposition = new DTOProposition();
+    public void ajouterDeveloppeur(int idProjet, int idDeveloppeur) {
+        log.info("Business ajouter Developpeur au panier : In");
+        Developpeur developpeur = (Developpeur) daoUtilisateur.obtenirUtilisateurParId(idDeveloppeur);
+        DTODeveloppeur dtoDeveloppeur = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
+        dtoDeveloppeurList.add(dtoDeveloppeur);
+        panierDeveloppeur.put(idProjet,dtoDeveloppeurList);
+        log.info("developpeur ajouter : " + dtoDeveloppeur.getNom());
+        log.info("taille du panier : " + panierDeveloppeur.size());
+        log.info("taille de la liste : " + dtoDeveloppeurList.size());
     }
 
     @Override
-    public void retirerProposition(DTOProposition proposition) {
+    public void retirerDeveloppeur(DTODeveloppeur developpeur) {
 
     }
 
+    @Override
+    public List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur) {
+        log.info("Business recup projets par utilisateur : In");
+        //Pour le test
+        Client patrick = (Client) daoUtilisateur.obtenirUtilisateurParId(16);
+        DTOClient dtoPatrick = EntityToDTO.clientToDTOClient(patrick);
+        //Fin de test
+        List<Projet> projetList = daoGestionProjet.recupProjetParIdClient(idUtilisateur);
+        List<DTOProjet> dtoProjetList = new ArrayList<>();
+       if (projetList != null && projetList.size()!=0){
+           for (Projet projet :
+                   projetList) {
+               dtoProjetList.add(EntityToDTO.projetToDTOProjet(projet));
+               log.info("projet : "+projet.getLibelle());
+           }
+       }
+        else
+           dtoProjetList.add(new DTOProjet(90,"ProjetTest",dtoPatrick));
+        log.info("Business recup projets par utilisateur : Out");
+        log.info("taille liste projet : "+dtoProjetList.size());
+        return dtoProjetList;
+    }
 
     public Integer calculNote(DTODeveloppeur dev) {
         return getNoteDeProjetFini(dev);
@@ -72,16 +110,22 @@ public class BusinessPanierImpl implements IBusinessPanier {
         if (listePropositionsTotales != null) {
             for (DTOProposition proposition :
                     listePropositionsTotales) {
-                Set<DTONote> listNote = proposition.getProjet().getLesNotes();
-                if (proposition.getProjet().getEtatProjet().getIdEtatProjet() == 2) {
-                    for (DTONote note :
-                            listNote) {
-                        if (note.getIdEstNote() == developpeur.getIdUtilisateur() && note.getNote() != null)
-                            valeur += note.getNote().intValue();
+                if (proposition.getTypeProposition().getIdTypeProposition() == 3) {
+                    Set<DTONote> listNote = proposition.getProjet().getLesNotes();
+                    if (proposition.getProjet().getEtatProjet().getIdEtatProjet() == 2) {
+                        int nbProjetTermine = 0;
+                        for (DTONote note :
+                                listNote) {
+                            if (note.getIdEstNote() == developpeur.getIdUtilisateur() && note.getNote() != null)
+                                valeur += note.getNote().intValue();
+                            nbProjetTermine++;
+                        }
+                        valeur = valeur / nbProjetTermine;
                     }
                 }
             }
         }
+
         return valeur;
     }
 }
