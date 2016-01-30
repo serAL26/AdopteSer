@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.projet;
+package fr.afcepf.adopteundev.gestion.cdc;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +39,9 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 	@Override
 	public Set<Fonctionnalite> recupeFonctionnalitesParType(
 			TypeFonctionnalite typeFonctionnalite) {
-		// TODO Auto-generated method stub
+		Query query = em
+				.createQuery("SELECT f FROM Fonctionnalite f WHERE f.typeFonctionnalite=:ptype");
+		query.setParameter("ptype", typeFonctionnalite);
 		return null;
 	}
 
@@ -48,12 +50,22 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 		Fonctionnalite fonctionnalite = em.find(Fonctionnalite.class, id);
 		return fonctionnalite;
 	}
-	
+
 	@Override
 	public void ajouterAssociationCdcFonctionnalite(
 			AssociationCdcFonctionnalite association) {
 		em.persist(association);
-		em.flush();	
-		
+		em.flush();
+
 	}
+
+	@Override
+	public Set<TypeFonctionnalite> recupTousTypeFonctionnalite() {
+		List<TypeFonctionnalite> liste = em.createQuery(
+				"Select t from TypeFonctionnalite t", TypeFonctionnalite.class)
+				.getResultList();
+
+		return new HashSet<>(liste);
+	}
+
 }
