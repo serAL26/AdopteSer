@@ -14,14 +14,14 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <ui:repeat value="#{mBPanier.listProjet}" var="idProjet">
+                    <ui:repeat value="#{mBPanier.listProjet}" var="projet">
                         <div class="col-md-12">
                             <!-- numero projet -->
                             <p>#{projet.libelle}<br/></p>
                             <!-- Shopping Cart Items -->
                             <table class="shopping-cart">
                                 <!-- Shopping Cart Item -->
-                                <ui:repeat value="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(idProjet)}" var="noDeveloppeur">
+                                <ui:repeat value="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet)}" var="noDeveloppeur">
                                     <tr>
                                         <!-- Shopping Cart Item Image -->
                                         <td class="image"><a href="page-developper-details.html">
@@ -55,7 +55,6 @@
                                 </ui:repeat>
                                 <!-- End Shopping Cart Item -->
                             </table>
-                            <!-- End Shopping Cart Items -->
                         </div>
                     </ui:repeat>
                 </div>
@@ -63,14 +62,13 @@
                     <!-- Shopping Cart Totals -->
                     <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
                         <table class="cart-totals">
+                        <ui:repeat var="projet" value="#{mBPanier.listProjet}">
                             <tr>
-                                <td><b>Shipping</b></td>
-                                <td>Free</td>
+                                <td>#{projet.libelle}</td>
+                                <td>#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet).size()}</td>
                             </tr>
-                            <tr>
-                                <td><b>Discount</b></td>
-                                <td>- $18.00</td>
-                            </tr>
+                            </ui:repeat>
+                            
                             <tr class="cart-grand-total">
                                 <td><b>Total</b></td>
                                 <td><b>$163.55</b></td>

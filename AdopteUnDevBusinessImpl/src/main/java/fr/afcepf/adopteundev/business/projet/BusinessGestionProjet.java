@@ -68,4 +68,10 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 						DTOToEntity.dtoClientToClient(client)));
 	}
 
+	@Override
+	public DTOProjet recupProjetParId(int idProjet) {
+		Projet projet = daoGestionProjet.recupProjetParId(idProjet);
+		return EntityToDTO.projetToDTOProjet(projet);
+	}
+
 }

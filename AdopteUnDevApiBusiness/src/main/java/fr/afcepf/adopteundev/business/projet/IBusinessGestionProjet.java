@@ -13,4 +13,5 @@ public interface IBusinessGestionProjet {
 	public void finaliserProjet(DTOProjet projet);
 	public List<DTOProjet> recupProjerParEtat(String etat);
 	public List<DTOProjet> recupProjerParEtatParClient(String etat, DTOClient client);
+	DTOProjet recupProjetParId(int idProjet);
 }

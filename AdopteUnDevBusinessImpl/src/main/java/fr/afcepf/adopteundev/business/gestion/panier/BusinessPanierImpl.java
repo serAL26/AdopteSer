@@ -57,30 +57,20 @@ public class BusinessPanierImpl implements IBusinessPanier {
 
     @Override
     public List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur) {
-        log.info("Business recup projets par utilisateur : In");
-        //Pour le test
-        Client patrick = (Client) daoUtilisateur.obtenirUtilisateurParId(16);
-        DTOClient dtoPatrick = EntityToDTO.clientToDTOClient(patrick);
-        //Fin de test
         List<Projet> projetList = daoGestionProjet.recupProjetParIdClient(idUtilisateur);
         List<DTOProjet> dtoProjetList = new ArrayList<>();
         if (projetList != null && projetList.size() != 0) {
-            for (Projet projet :
-                    projetList) {
+            for (Projet projet : projetList) {
                 dtoProjetList.add(EntityToDTO.projetToDTOProjet(projet));
-                log.info("projet : " + projet.getLibelle());
             }
-        } else
-            dtoProjetList.add(new DTOProjet(90, "ProjetTest", dtoPatrick));
-        log.info("Business recup projets par utilisateur : Out");
-        log.info("taille liste projet : " + dtoProjetList.size());
+        } 
         return dtoProjetList;
     }
 
     public Double calculNote(DTODeveloppeur dev) {
         return getNoteDeProjetFini(dev);
     }
-
+    
     private Double getNoteDeProjetFini(DTODeveloppeur developpeur) {
         Double valeur = new Double(0);
         Set<DTOProposition> listePropositionsTotales = developpeur.getListeProposition();
