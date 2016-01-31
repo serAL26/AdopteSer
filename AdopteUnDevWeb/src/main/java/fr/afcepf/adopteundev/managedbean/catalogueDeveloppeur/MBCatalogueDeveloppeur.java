@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.Access;
 
 import org.apache.log4j.Logger;
 
@@ -69,7 +70,7 @@ public class MBCatalogueDeveloppeur {
     private List<NoDeveloppeur> initFichesDeveloppeur() {
         return panierUc.recupererFicheResumeDeveloppeur();
     }
-
+    
     private List<DTOProjet> initListeProjet() {
         return panierUc.recupererListProjetParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
     }
