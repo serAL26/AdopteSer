@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.Access;
 
+import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import org.apache.log4j.Logger;
 
 import dto.DTODeveloppeur;
@@ -32,12 +33,14 @@ public class MBCatalogueDeveloppeur {
     private Map<Integer, Set<NoDeveloppeur>> panier = new HashMap<>();
     private DTOProjet projetSelectionne = new DTOProjet();
     private IUCPanier panierUc;
+    private IUcUtilisateur ucUtilisateur;
     
     @ManagedProperty(value="#{mBConnexion}")
     private MBConnexion mBConnexion;
 
-    public String ajouterDeveloppeurAuPanier(Integer idProjet, NoDeveloppeur developpeur) {
+    public String ajouterDeveloppeurAuPanier(Integer idProjet, DTODeveloppeur dev) {
     	Set<NoDeveloppeur> setDeveloppeur = panier.get(idProjet);
+        NoDeveloppeur developpeur = ucUtilisateur.creerNoDeveloppeur(dev);
     	if(setDeveloppeur == null) {
     		setDeveloppeur = new HashSet<>();
     	}
@@ -78,6 +81,7 @@ public class MBCatalogueDeveloppeur {
     @PostConstruct
     public void obtenirLesInterfaces() {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
+        ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         listFiche = initFichesDeveloppeur();
         log.info(listFiche);
         projetList = initListeProjet();

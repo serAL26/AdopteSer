@@ -37,7 +37,7 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 	@EJB
 	private IDaoTechnologie daoTechnologie;
 
-	@EJB 
+	@EJB
 	private IDaoDeveloppeur daoDeveloppeur;
 
 	@Override
