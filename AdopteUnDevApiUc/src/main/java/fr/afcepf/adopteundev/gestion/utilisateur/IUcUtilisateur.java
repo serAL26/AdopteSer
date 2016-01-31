@@ -12,4 +12,6 @@ public interface IUcUtilisateur {
 	List<DTODeveloppeur> recupTousLesDeveloppeurs();
 	NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur);
 	RoleUtilisateur typeUtilisateur(int idUtilisateur);
+    List<DTODeveloppeur> recupDevWeb();
+    List<DTODeveloppeur> recupDevParTechno(Integer id);
 }

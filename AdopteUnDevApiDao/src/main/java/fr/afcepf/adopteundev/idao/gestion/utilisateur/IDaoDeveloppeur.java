@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface IDaoDeveloppeur {
     List<Developpeur> recupererTousLesDeveloppeurs();
+    List<Developpeur> recupDeveloppeurWeb();
+    List<Developpeur> recupDeveloppeursParTechno(Integer id);
     Developpeur obtenirDeveloppeurParId(int idUtilisateur);
 }

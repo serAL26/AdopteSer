@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.business.gestion.utilisateur;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,10 +13,13 @@ import dto.DTODeveloppeur;
 import dto.DTONote;
 import dto.DTOProposition;
 import dto.DTOTechnologie;
+import dto.DTOTypeFonctionnalite;
 import entity.Developpeur;
 import entity.Technologie;
+import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.projet.IDaoProposition;
 import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
@@ -32,6 +36,9 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 
 	@EJB
 	private IDaoTechnologie daoTechnologie;
+
+	@EJB 
+	private IDaoDeveloppeur daoDeveloppeur;
 
 	@Override
 	public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
@@ -80,4 +87,29 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		return retour;
 	}
 
+	@Override
+	public List<DTODeveloppeur> recupDevWeb() {
+		List<Developpeur> listeDev = daoDeveloppeur.recupDeveloppeurWeb();
+		List<DTODeveloppeur> listeDto = new ArrayList<DTODeveloppeur>();
+
+		for (Developpeur  developpeur : listeDev) {
+
+			DTODeveloppeur dtoDev = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
+			listeDto.add(dtoDev);
+		}
+		return listeDto;
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupDevParTechno(Integer id) {
+		List<Developpeur> listeDev = daoDeveloppeur.recupDeveloppeurWeb();
+		List<DTODeveloppeur> listeDto = new ArrayList<DTODeveloppeur>();
+
+		for (Developpeur  developpeur : listeDev) {
+
+			DTODeveloppeur dtoDev = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
+			listeDto.add(dtoDev);
+		}
+		return listeDto;
+	}
 }

@@ -43,4 +43,13 @@ public class UcUtilisateur implements IUcUtilisateur{
 		return businessUtilisateur.typeUtilisateur(idUtilisateur);
 	}
 
+	@Override
+	public List<DTODeveloppeur> recupDevWeb() {
+		return businessDeveloppeur.recupDevWeb();
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupDevParTechno(Integer id) {
+		return businessDeveloppeur.recupDevParTechno(id);
+	}
 }
