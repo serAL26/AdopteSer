@@ -15,124 +15,45 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="basic-login">
-							<h:form>
-								<div class="form-group">
-									<label> <i class="icon-user"></i> <b>A quel service
-											de développement votre application fait partie ?</b>
-									</label>
-									<div>
-										<h:selectOneMenu
-											value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
-											id="applic">
-											<f:selectItem itemValue="-1" itemLabel="-------" />
-											<f:selectItems var="appli"
-												value="#{mbCreationProjet.listeAppli}"
-												itemLabel="#{appli.libelle}"
-												itemValue="#{appli.idTypeAppli}" />
-											<f:ajax listener="#{mbCreationProjet.remplirServices}"
-												render="service" execute="applic" />
-										</h:selectOneMenu>
-									</div>
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>A quel service
+										de développement votre application fait partie ?</b>
+								</label>
+								<div>
+									<h:selectOneMenu
+										value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
+										id="applic">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems var="appli"
+											value="#{mbCreationProjet.listeAppli}"
+											itemLabel="#{appli.libelle}" itemValue="#{appli.idTypeAppli}" />
+										<f:ajax listener="#{mbCreationProjet.remplirServices}"
+											render="service" execute="applic" />
+									</h:selectOneMenu>
 								</div>
-								<div class="form-group">
-									<label> <i class="icon-user"></i> <b>Quel Type
-											d'application vous voulez développer ?</b>
-									</label>
-									<div>
-										<h:selectOneMenu id="service"
-											value="#{mbCreationProjet.selectedService.idTypeService}">
-											<f:selectItem itemValue="-1" itemLabel="-------" />
-											<f:selectItems var="serv"
-												value="#{mbCreationProjet.listeServices}"
-												itemLabel="#{serv.libelle}"
-												itemValue="#{serv.idTypeService}" />
-										</h:selectOneMenu>
-									</div>
+							</div>
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>Quel Type
+										d'application vous voulez développer ?</b>
+								</label>
+								<div>
+									<h:selectOneMenu id="service"
+										value="#{mbCreationProjet.selectedService.idTypeService}">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems var="serv"
+											value="#{mbCreationProjet.listeServices}"
+											itemLabel="#{serv.libelle}" itemValue="#{serv.idTypeService}" />
+									</h:selectOneMenu>
 								</div>
-							</h:form>
+							</div>
 							<div class="form-group">
 								<label> <i class="icon-user"></i> <b>Sur quoi porte
 										votre projet?</b></label>
 								<h:inputText class="form-control"
 									value="#{mbCreationProjet.projetcree.libelle}" />
 							</div>
-							<FIELDSET>
-								<legend>Dites-nous en plus concernant votre projet!</legend>
-
-								<div class="form-group">
-									<label> <i class="icon-user"></i> <b>Votre besoin :
-									</b></label>
-									<div>
-										<h:inputTextarea class="icon-user"
-											value="#{mBAjoutCdc.besoin}" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Contexte de
-											votre projet : </b></label>
-									<h:inputTextarea class="icon-user"
-										value="#{mBAjoutCdc.contexte}" />
-								</div>
-								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Mode de
-											fonctionnement actuel : </b></label>
-									<h:inputTextarea class="icon-user"
-										value="#{mBAjoutCdc.existant}" />
-								</div>
-								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Date de fin
-											prevue : </b></label>
-									<p:calendar id="button" showOn="button" />
-								</div>
-								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Budget</b></label>
-									<div style="max-width: 150px">
-										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label><i class="icon-lock"></i> <b>Quelles sont
-											les principales Fonctionnalités de votre application?</b></label> <LABEL>choisir
-										un Type : </LABEL>
-									<div style="max-width: 150px">
-										<h:selectOneMenu class="form-control"
-											value="#{mBAjoutCdc.selectedTypeFonction}">
-											<f:selectItems value="#{mBAjoutCdc.listTypeFonctionn}"
-												var="typeFonction" itemValue="#{typeFonction}"
-												itemLabel="#{typeFonction.libelle}" />
-										</h:selectOneMenu>
-									</div>
-									<LABEL>Desciption : </LABEL>
-									<h:inputTextarea class="icon-user"
-										value="#{mBAjoutCdc.fonctionnaliteCree.commentaire}" />
-									<div>
-										<!--<h:commandButton value="+Fonctionnalité"></h:commandButton-->
-
-										<h:commandLink
-											action="#{mBAjoutCdc.ajouterFonctionnaliteSaisi}"
-											value="+Fonctionnalité">
-											<f:ajax execute="@form" render="filConversation" />
-										</h:commandLink>
-										<h:panelGroup id="filConversation">
-											<ui:repeat var="fonction"
-												value="#{mBAjoutCdc.listeFonctionnaliteCree}">
-												<details>
-													<summary>
-														<h:outputLabel
-															value="#{fonction.typeFonctionnalite.libelle}"></h:outputLabel>
-													</summary>
-													<div class="col-md-offset-2">
-														<h:outputText value="#{fonction.commentaire}"></h:outputText>
-													</div>
-												</details>
-											</ui:repeat>
-											<h:commandButton class="btn pull-right"
-												action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
-										</h:panelGroup>
-
-									</div>
-								</div>
-							</FIELDSET>
+							<h:commandButton class="btn pull-right"
+								action="#{mbCreationProjet.creeProjet}" value="Ajouter CDC" />
 							<div class="clearfix"></div>
 						</div>
 					</div>
