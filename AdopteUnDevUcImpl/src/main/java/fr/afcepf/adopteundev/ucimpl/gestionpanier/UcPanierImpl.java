@@ -11,8 +11,6 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Remote(IUCPanier.class)
 @Stateless
