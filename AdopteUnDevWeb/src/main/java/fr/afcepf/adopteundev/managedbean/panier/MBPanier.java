@@ -2,7 +2,9 @@ package fr.afcepf.adopteundev.managedbean.panier;
 
 import dto.DTODeveloppeur;
 import dto.DTOProjet;
+import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
+import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.MBCatalogueDeveloppeur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
@@ -18,6 +20,7 @@ import java.util.*;
 @SessionScoped
 public class MBPanier {
     IUCPanier panierUc;
+    IUcUtilisateur ucUtilisateur;
     
     @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
     private MBCatalogueDeveloppeur mBCatalogueDeveloppeur;
@@ -28,6 +31,7 @@ public class MBPanier {
     @PostConstruct
     public void init(){
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
+        ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         listProjet = initListProjet();
     }
     
@@ -36,12 +40,12 @@ public class MBPanier {
         return "";
     }
 
-    
-
-    public List<DTODeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
+    public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
     	Set<DTODeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
-    	List<DTODeveloppeur> liste = new ArrayList<>();
-    	liste.addAll(set);
+    	List<NoDeveloppeur> liste = new ArrayList<>();
+    	for (DTODeveloppeur dtoDeveloppeur : set) {
+			liste.add(ucUtilisateur.creerNoDeveloppeur(dtoDeveloppeur));
+		}
         return liste;
     }
 
@@ -82,4 +86,5 @@ public class MBPanier {
 	public void setmBCatalogueDeveloppeur(MBCatalogueDeveloppeur mBCatalogueDeveloppeur) {
 		this.mBCatalogueDeveloppeur = mBCatalogueDeveloppeur;
 	}
+	
 }
