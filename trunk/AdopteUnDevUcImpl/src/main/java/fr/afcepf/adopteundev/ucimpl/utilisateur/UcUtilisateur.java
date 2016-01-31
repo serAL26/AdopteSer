@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import dto.DTOClient;
 import dto.DTODeveloppeur;
 import dto.DTOUtilisateur;
 import enumeration.RoleUtilisateur;
@@ -51,5 +52,10 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public List<DTODeveloppeur> recupDevParTechno(Integer id) {
 		return businessDeveloppeur.recupDevParTechno(id);
+	}
+
+	@Override
+	public DTOClient recupClientById(int id) {
+		return businessUtilisateur.recupClientById(id);
 	}
 }
