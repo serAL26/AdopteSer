@@ -39,9 +39,13 @@
 										</li>
 										<li>#{fiche.developpeur.lesAssociationDevTechno}</li>
 										<li>Nb projets : #{fiche.developpeur.listeProposition.size}</li>
+										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur !=2}">
+										<li style="margin-bottom: 25px; margin-left: 132px"><p:rating value="#{fiche.noteEnInteger}"
+												readonly="true"/></li>
+										</h:panelGroup>
+										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==2}">
 										<li style="margin-bottom: 13px; margin-left: 132px"><p:rating value="#{fiche.noteEnInteger}"
 												readonly="true"/></li>
-										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==2}">
 										<li class="read-more"><h:commandButton styleClass="btn"
 												action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur)}"
 												value="Ajouter au panier" /></li>
