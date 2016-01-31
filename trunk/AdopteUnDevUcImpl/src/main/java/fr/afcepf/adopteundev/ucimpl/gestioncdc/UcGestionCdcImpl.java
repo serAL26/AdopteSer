@@ -99,4 +99,9 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	public DTOCdc recupCdcFinalParidProjet(Integer idProjet) {
 		return businessCdc.recupCdcFinalParidProjet(idProjet);
 	}
+
+	@Override
+	public DTOTypeCdc recupTypeCdcByLibelle(String libelle) {
+		return businessCdc.recupTypeCDCParLibelle(libelle);
+	}
 }
