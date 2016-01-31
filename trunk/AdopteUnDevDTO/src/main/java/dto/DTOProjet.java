@@ -30,6 +30,8 @@ public class DTOProjet implements Serializable {
         this.client = client;
     }
 
+    private String photo;
+    
     /**
      *
      */
@@ -160,5 +162,11 @@ public class DTOProjet implements Serializable {
         this.lesServices = lesServices;
     }
 
+	public String getPhoto() {
+		return photo;
+	}
 
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 }

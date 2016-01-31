@@ -264,6 +264,9 @@ public class EntityToDTO {
 	public static DTOProjet projetToDTOProjet(Projet projet) {
 		DTOProjet dTOProjet = new DTOProjet();
 		dTOProjet.setIdProjet(projet.getIdProjet());
+		if (projet.getPhoto() != null){
+			dTOProjet.setPhoto(projet.getPhoto());
+		}
 		dTOProjet.setClient(clientToDTOClient(projet.getClient()));
 		dTOProjet.setEtatProjet(etatProjetToDTOEtatProjet(projet
 				.getEtatProjet()));

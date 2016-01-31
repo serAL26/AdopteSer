@@ -29,7 +29,6 @@ public class MBPanier {
     
     private DTOProjet dtoProjet;
     private List<DTOProjet> listProjet = new ArrayList<>();
-    //private List<DTODeveloppeur>listeDeveloppeurDuProjet
     @PostConstruct
     public void init(){
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
@@ -39,11 +38,8 @@ public class MBPanier {
     }
     
     public String retirerDeveloppeurAuPanier(DTODeveloppeur developpeur) {
-    	
         return "";
     }
-
-    
     
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
     	Set<DTODeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);

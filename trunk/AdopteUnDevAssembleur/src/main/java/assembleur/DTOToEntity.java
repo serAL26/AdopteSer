@@ -248,6 +248,9 @@ public class DTOToEntity {
     public static Projet dtoProjetToProjet(DTOProjet dto) {
         Projet entity = new Projet();
         entity.setIdProjet(dto.getIdProjet());
+        if(dto.getPhoto() != null) {
+        entity.setPhoto(dto.getPhoto());
+        }
         entity.setClient(dtoClientToClient(dto.getClient()));
         entity.setEtatProjet(dtoEtatProjetToEtatProjet(dto.getEtatProjet()));
         //entity.setLesCdc(listDtoCdcToCdc(dto.getLesCdc()));
