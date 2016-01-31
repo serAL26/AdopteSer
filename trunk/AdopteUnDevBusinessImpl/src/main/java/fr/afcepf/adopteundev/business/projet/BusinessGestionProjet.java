@@ -27,7 +27,7 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@EJB
 	private IDaoEtatProjet daoEtatProjet;
-	
+
 	@EJB
 	private IDaoTypeCDC daoTypeCDC;
 
@@ -41,6 +41,10 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@Override
 	public void ajouter(DTOProjet projet) {
+		projet.setEtatProjet(EntityToDTO
+				.etatProjetToDTOEtatProjet(daoEtatProjet
+						.recupEtatProjetByLibelle(EtatProjetEnum.ENATTENTE
+								.name())));
 		daoGestionProjet.ajouter(DTOToEntity.dtoProjetToProjet(projet));
 
 	}
@@ -81,7 +85,8 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@Override
 	public DTOTypeCdc recupTypeCDCparLibelle(String libelle) {
-		return EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCDC.recupTypeCdcByLibelle(libelle));
+		return EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCDC
+				.recupTypeCdcByLibelle(libelle));
 	}
 
 }
