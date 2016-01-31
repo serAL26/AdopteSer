@@ -62,16 +62,16 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	}
 
 	@Override
-	public String typeUtilisateur(int idUtilisateur) {
-		String role;
+	public int typeUtilisateur(int idUtilisateur) {
+		int role =0;
 		if(daoDeveloppeur.obtenirDeveloppeurParId(idUtilisateur) != null) {
-			role = "Developpeur";
+			role = 1;
 		}
 		else if(daoClient.obtenirClientParId(idUtilisateur) != null) {
-			role = "Client";
+			role = 2;
 		}
 		else {
-			role = "Utilisateur";
+			role = 3;
 		}
 		return role;
 	}

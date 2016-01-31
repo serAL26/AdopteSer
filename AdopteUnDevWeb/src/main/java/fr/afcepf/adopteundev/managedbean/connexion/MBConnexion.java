@@ -21,7 +21,7 @@ public class MBConnexion {
     private  IUcConnexion connexion;
     private IUcUtilisateur ucUtilisateur;
     private DTOUtilisateur utilisateur;
-    private String typeUtilisateur = "Utilisateur";
+    private int typeUtilisateur = 3;
 
     public MBConnexion() {
 		super();
@@ -35,7 +35,9 @@ public class MBConnexion {
 
     private void initTypeUtilisateur() {
     	if(utilisateur != null) {
+
     	typeUtilisateur = ucUtilisateur.typeUtilisateur(utilisateur.getIdUtilisateur());
+
     	}
 	}
 
@@ -84,11 +86,12 @@ public class MBConnexion {
 		this.utilisateur = utilisateur;
 	}
 
-	public String getTypeUtilisateur() {
+	public int getTypeUtilisateur() {
 		return typeUtilisateur;
 	}
 
-	public void setTypeUtilisateur(String typeUtilisateur) {
+	public void setTypeUtilisateur(int typeUtilisateur) {
 		this.typeUtilisateur = typeUtilisateur;
 	}
+	
 }
