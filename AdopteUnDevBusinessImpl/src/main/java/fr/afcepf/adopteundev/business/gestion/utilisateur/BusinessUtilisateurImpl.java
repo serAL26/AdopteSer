@@ -10,6 +10,8 @@ import dto.DTOUtilisateur;
 import entity.Developpeur;
 import entity.TypeFonctionnalite;
 import entity.Utilisateur;
+import enumeration.RoleUtilisateur;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoClient;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
@@ -26,6 +28,9 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	
 	@EJB
 	private IDaoDeveloppeur daoDeveloppeur;
+	
+	@EJB
+	private IDaoClient daoClient;
 
     @Override
     public DTOUtilisateur connecterDtoUtilisateur(String mail, String mdp) {
@@ -54,5 +59,20 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 			listeDto.add(dtoDev);
 		}
 		return listeDto;
+	}
+
+	@Override
+	public RoleUtilisateur typeUtilisateur(int idUtilisateur) {
+		RoleUtilisateur role;
+		if(daoDeveloppeur.obtenirDeveloppeurParId(idUtilisateur) != null) {
+			role = RoleUtilisateur.Developpeur;
+		}
+		else if(daoClient.obtenirClientParId(idUtilisateur) != null) {
+			role = RoleUtilisateur.Client;
+		}
+		else {
+			role = RoleUtilisateur.Utilisateur;
+		}
+		return role;
 	}
 }

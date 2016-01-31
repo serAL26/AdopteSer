@@ -4,8 +4,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import dto.DTOClient;
 import dto.DTOUtilisateur;
+import enumeration.RoleUtilisateur;
 import fr.afcepf.adopteundev.gestion.connexion.IUcConnexion;
+import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
@@ -16,7 +19,9 @@ public class MBConnexion {
     private String mdp;
     private String message;
     private  IUcConnexion connexion;
+    private IUcUtilisateur ucUtilisateur;
     private DTOUtilisateur utilisateur;
+    private RoleUtilisateur typeUtilisateur = RoleUtilisateur.Utilisateur;
 
     public MBConnexion() {
 		super();
@@ -25,17 +30,26 @@ public class MBConnexion {
 	@PostConstruct
     public void obtenirLesInterfaces(){
         connexion = (IUcConnexion) ContextFactory.createProxy(UcName.UCCONNEXION);
+        ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
     }
 
-    public String seConnecter() {
+    private void initTypeUtilisateur() {
+    	if(utilisateur != null) {
+    	ucUtilisateur.typeUtilisateur(utilisateur.getIdUtilisateur());
+    	}
+	}
+
+	public String seConnecter() {
         utilisateur = connexion.seConnecter(mail, mdp);
         String retour = "";
         if (utilisateur == null){
             message = "Login/Mdp errone";
         }
         else {
+        	DTOClient client = (DTOClient) utilisateur;
         	retour = "/Messagerie.xhtml?faces-redirect=true";
         }
+        initTypeUtilisateur();
         	return retour;
     }
 
@@ -69,5 +83,13 @@ public class MBConnexion {
 
 	public void setUtilisateur(DTOUtilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public RoleUtilisateur getTypeUtilisateur() {
+		return typeUtilisateur;
+	}
+
+	public void setTypeUtilisateur(RoleUtilisateur typeUtilisateur) {
+		this.typeUtilisateur = typeUtilisateur;
 	}
 }
