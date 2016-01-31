@@ -11,10 +11,12 @@ import assembleur.EntityToDTO;
 import dto.DTOClient;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
+import dto.DTOTypeCdc;
 import entity.Projet;
 import enumeration.EtatProjetEnum;
 import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
+import fr.afcepf.adopteundev.idao.projet.IDaoTypeCDC;
 
 @Remote(IBusinessGestionProjet.class)
 @Stateless
@@ -25,6 +27,9 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@EJB
 	private IDaoEtatProjet daoEtatProjet;
+	
+	@EJB
+	private IDaoTypeCDC daoTypeCDC;
 
 	@Override
 	public List<DTOProjet> recupProjetParIdClient(Integer id) {
@@ -72,6 +77,11 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	public DTOProjet recupProjetParId(int idProjet) {
 		Projet projet = daoGestionProjet.recupProjetParId(idProjet);
 		return EntityToDTO.projetToDTOProjet(projet);
+	}
+
+	@Override
+	public DTOTypeCdc recupTypeCDCparLibelle(String libelle) {
+		return EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCDC.recupTypeCdcByLibelle(libelle));
 	}
 
 }
