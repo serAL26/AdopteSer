@@ -22,4 +22,5 @@ public interface IBusinessCdc {
 	void ajouterRemarqueCdcComplet (DTOCdc cdcRemarque, Integer idDev, Integer idProjet);
 	DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
 
+	DTOCdc recupCdcFinalParidProjet(Integer idProjet);
 }
