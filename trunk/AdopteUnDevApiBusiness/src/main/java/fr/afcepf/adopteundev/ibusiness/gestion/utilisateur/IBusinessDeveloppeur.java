@@ -8,4 +8,7 @@ import java.util.List;
 public interface IBusinessDeveloppeur {
     List<DTODeveloppeur> recupererTousLesDeveloppeurs();
     NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur);
+    List<DTODeveloppeur> recupDevWeb();
+    List<DTODeveloppeur> recupDevParTechno(Integer id);
+    
 }

@@ -67,142 +67,37 @@
 		<!-- End Call to Action Bar -->
 
 		<!-- Testimonials -->
-	    <div class="section">
+		<div class="section">
 			<div class="container">
 				<h2>Nouvel arrivage de dev web</h2>
 				<div class="row">
-				</div>
-				</div>
-				</div>
-		<!-- 			
-					<div class="section">
-	    	<div class="container">
-				<div class="row">
 					<div class="col-md-12">
 						<div class="products-slider">
-							Products Slider Item
+						<ui:repeat value="#{mBAccueil.listeDev}" var="dev">
 							<div class="shop-item">
-								Product Image
+							
 								<div class="image">
-									<a href="page-product-details.html"><img src="img/product1.jpg" alt="Item Name"></a>
+									<a href="page-product-details.html"><img src="#{dev.photo}" alt="Item Name"/></a>
 								</div>
-								Product Title
 								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+									<h3><a href="page-product-details.html">#{dev.prenom} #{dev.nom}</a></h3>
 								</div>
-								Product Price
 								<div class="price">
 									$999.99
 								</div>
-								Buy Button
 								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Voir</a>
 								</div>
+								
 							</div>
-							End Products Slider Item
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product2.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product3.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product4.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product5.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product6.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product7.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
-							</div>
-							<div class="shop-item">
-								<div class="image">
-									<a href="page-product-details.html"><img src="img/product8.jpg" alt="Item Name"></a>
-								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
-								</div>
-								<div class="price">
-									$999.99
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
-								</div>
+							</ui:repeat>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
-	    </div> -->
+	    
 
 	    <!-- End Testimonials -->
 
@@ -226,6 +121,8 @@
 				</div>
 			</div>
 	    </div>
+	    
+
 </ui:define>
 </ui:composition>
 </html>
