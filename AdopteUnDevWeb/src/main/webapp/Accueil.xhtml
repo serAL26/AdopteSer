@@ -10,6 +10,222 @@
 <ui:define name="title"></ui:define>
 <ui:define name="body">
 
+<div>
+        
+						<img src="resources/img/accueilBandeau6.png" style="min-width:1600px; margin-bottom: 30px;"/>
+					
+        </div>
+
+		<!-- Services --> 
+        <div class="section">
+	        <div class="container">
+	        	<div class="row">
+	        		<div class="col-md-4 col-sm-6">
+	        			<div class="service-wrapper">
+		        			<img src="resources/img/service-icon/paymentmethod3.png" alt="Service 1"/>
+		        			<h3>Garanties bancaires</h3>
+		        			<p>Nous garantissons au client satisfaction grâce à un système de livrable. De même, un accompte est versé au développeur en cours de travail.</p>
+		        		</div>
+	        		</div>
+	        		<div class="col-md-4 col-sm-6">
+	        			<div class="service-wrapper">
+		        			<img src="resources/img/service-icon/computer152.png" alt="Service 2"/>
+		        			<h3>Sélection de développeurs</h3>
+		        			<p>En fonction de votre besoin, Adopte Un Dev vous conseille un panel de développeurs et vous indique les compétences requises pour votre projet.</p>
+		        		</div>
+	        		</div>
+	        		<div class="col-md-4 col-sm-6">
+	        			<div class="service-wrapper">
+		        			<img src="resources/img/service-icon/information18.png" alt="Service 3"/>
+		        			<h3>Aide utilisateur</h3>
+		        			<p>Adopte Un Dev vous accompagne pendant la définition et la réalisation de votre projet. Un guide vous aide à définir vos besoins et vos attentes.</p>
+		        		</div>
+	        		</div>
+	        	</div>
+	        </div>
+	    </div>
+	    <!-- End Services -->
+
+		<!-- Call to Action Bar -->
+	    <div class="section section-white">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="calltoaction-wrapper">
+							<h3>Un développeur vous attend. Lancez-vous.</h3> 
+							<h:panelGroup rendered="#{mBConnexion.utilisateur == null}">
+							<a href="http://www.dragdropsite.com" class="btn btn-orange">S'inscrire</a>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mBConnexion.utilisateur != null}">
+							<a href="http://www.dragdropsite.com" class="btn btn-orange">Créer un Projet</a>
+							</h:panelGroup>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Call to Action Bar -->
+
+		<!-- Testimonials -->
+	    <div class="section">
+			<div class="container">
+				<h2>Nouvel arrivage de dev web</h2>
+				<div class="row">
+				</div>
+				</div>
+				</div>
+		<!-- 			
+					<div class="section">
+	    	<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="products-slider">
+							Products Slider Item
+							<div class="shop-item">
+								Product Image
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product1.jpg" alt="Item Name"></a>
+								</div>
+								Product Title
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								Product Price
+								<div class="price">
+									$999.99
+								</div>
+								Buy Button
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							End Products Slider Item
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product2.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product3.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product4.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product5.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product6.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product7.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product8.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div> -->
+
+	    <!-- End Testimonials -->
+
+		<!-- Our Clients -->
+	    <div class="section">
+	    	<div class="container">
+	    		<h2>Our Clients</h2>
+				<div class="clients-logo-wrapper text-center row">
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/canon.png" alt="Client Name"></img></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/cisco.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/dell.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/ea.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/ebay.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/facebook.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/google.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/hp.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/microsoft.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/mysql.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/sony.png" alt="Client Name"/></a></div>
+					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/yahoo.png" alt="Client Name"/></a></div>
+				</div>
+			</div>
+	    </div>
 </ui:define>
 </ui:composition>
 </html>
