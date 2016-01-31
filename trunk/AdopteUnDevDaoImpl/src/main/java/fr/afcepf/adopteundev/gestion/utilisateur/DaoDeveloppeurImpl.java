@@ -18,4 +18,8 @@ public class DaoDeveloppeurImpl implements IDaoDeveloppeur {
     public List<Developpeur> recupererTousLesDeveloppeurs() {
         return em.createQuery("FROM Developpeur d",Developpeur.class).getResultList();
     }
+	@Override
+	public Developpeur obtenirDeveloppeurParId(int idUtilisateur) {
+		return em.find(Developpeur.class, idUtilisateur);
+	}
 }

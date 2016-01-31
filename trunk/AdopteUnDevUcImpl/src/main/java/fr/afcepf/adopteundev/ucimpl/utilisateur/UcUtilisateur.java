@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 
 import dto.DTODeveloppeur;
 import dto.DTOUtilisateur;
+import enumeration.RoleUtilisateur;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
@@ -35,6 +36,11 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur) {
 		return businessDeveloppeur.creerNoDeveloppeur(dtoDeveloppeur);
+	}
+
+	@Override
+	public RoleUtilisateur typeUtilisateur(int idUtilisateur) {
+		return businessUtilisateur.typeUtilisateur(idUtilisateur);
 	}
 
 }
