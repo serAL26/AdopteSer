@@ -1,6 +1,20 @@
 package fr.afcepf.adopteundev.managedbean.panier;
 
-import dto.DTODeveloppeur;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.persistence.Access;
+import javax.persistence.PostLoad;
+import javax.persistence.PostUpdate;
+
+import org.apache.log4j.Logger;
+
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
@@ -9,23 +23,12 @@ import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.MBCatalogueDeveloppeur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
-import org.apache.log4j.Logger;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
-import java.util.*;
 
 @ManagedBean
 @SessionScoped
 public class MBPanier {
-    private Logger log = Logger.getLogger(MBPanier.class);
     IUCPanier panierUc;
     IUcUtilisateur ucUtilisateur;
-
-    @ManagedProperty(value = "#{mBCatalogueDeveloppeur}")
     IUCProjet ucProjet;
 
     @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
@@ -41,33 +44,36 @@ public class MBPanier {
         listProjet = initListProjet();
     }
 
+
+
     public String retirerDeveloppeurAuPanier(int idProjet,NoDeveloppeur developpeur) {
-        log.info("retirerDeveloppeur : In");
         Set<NoDeveloppeur> noDeveloppeurSet = mBCatalogueDeveloppeur.getPanier().get(idProjet);
         noDeveloppeurSet.remove(developpeur);
         Map<Integer,Set<NoDeveloppeur>> map = mBCatalogueDeveloppeur.getPanier();
         map.put(idProjet,noDeveloppeurSet);
-        log.info("retirerDeveloppeur : out");
-        log.info("retirerDeveloppeur : le developpeur = "+developpeur);
-        log.info("retirerDeveloppeur : map = "+map);
         mBCatalogueDeveloppeur.setPanier(map);
         return "";
     }
 
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
-        log.info("obtenirListeDevPanier : In");
-        log.info("obtenirListeDevPanier : idProjet = "+idProjet);
     	Set<NoDeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
         List<NoDeveloppeur> liste = new ArrayList<>();
         for (NoDeveloppeur noDeveloppeur : set) {
             liste.add(noDeveloppeur);
-            log.info("obtenirListeDevPanier : noDevelopper = "+noDeveloppeur.getDeveloppeur().getNom());
         }
-        log.info("obtenirListeDevPanier : liste = "+liste);
-        log.info("obtenirListeDevPanier : out ");
         return liste;
     }
 
+    public int obtenirTotalDesDev() {
+    	Map<Integer, Set<NoDeveloppeur>> map = mBCatalogueDeveloppeur.getPanier();
+    	Set<Integer> set = map.keySet();
+    	int nbTotal = 0;
+    	for (Integer integer : set) {
+			nbTotal += map.get(integer).size();
+		}
+    	return nbTotal;
+    }
+    
     private List<DTOProjet> initListProjet() {
     	Set<Integer> set = mBCatalogueDeveloppeur.getPanier().keySet();
     	List<DTOProjet> liste =  new ArrayList<>();
