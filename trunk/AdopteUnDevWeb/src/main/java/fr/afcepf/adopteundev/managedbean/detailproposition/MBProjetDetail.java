@@ -6,6 +6,7 @@ import dto.DTOProjet;
 import dto.DTOProposition;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
+import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ public class MBProjetDetail {
     private Logger log = Logger.getLogger(MBProjetDetail.class);
     private DTOProjet projet;
     private IUCProjet ucProjet;
+    private IUcProposition ucProposition;
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
     private DTOProposition proposition;
@@ -31,6 +33,7 @@ public class MBProjetDetail {
     private void init() {
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
+        ucProposition = (IUcProposition) ContextFactory.createProxy(UcName.UCGESTIONPROPOSITION);
         projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
         tarifCdc = transformTarif(cdc);
@@ -38,7 +41,7 @@ public class MBProjetDetail {
     }
 
     public DTOProposition recupPropositionValiderParClient(Integer idProjet) {
-        return ;
+        return ucProposition.recupPropositionValiderParClient(idProjet);
     }
 
     public DTOCdc getFinalCdc(){
@@ -88,5 +91,13 @@ public class MBProjetDetail {
 
     public void setTarifCdc(String tarifCdc) {
         this.tarifCdc = tarifCdc;
+    }
+
+    public DTOProposition getProposition() {
+        return proposition;
+    }
+
+    public void setProposition(DTOProposition proposition) {
+        this.proposition = proposition;
     }
 }
