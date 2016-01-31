@@ -29,15 +29,15 @@ public class MBCatalogueDeveloppeur {
 	private Logger log = Logger.getLogger(MBCatalogueDeveloppeur.class);
     private List<NoDeveloppeur> listFiche = new ArrayList<>();
     private List<DTOProjet> projetList = new ArrayList<>();
-    private Map<Integer, Set<DTODeveloppeur>> panier = new HashMap<>();
+    private Map<Integer, Set<NoDeveloppeur>> panier = new HashMap<>();
     private DTOProjet projetSelectionne = new DTOProjet();
     private IUCPanier panierUc;
     
     @ManagedProperty(value="#{mBConnexion}")
     private MBConnexion mBConnexion;
 
-    public String ajouterDeveloppeurAuPanier(Integer idProjet, DTODeveloppeur developpeur) {
-    	Set<DTODeveloppeur> setDeveloppeur = panier.get(idProjet);
+    public String ajouterDeveloppeurAuPanier(Integer idProjet, NoDeveloppeur developpeur) {
+    	Set<NoDeveloppeur> setDeveloppeur = panier.get(idProjet);
     	if(setDeveloppeur == null) {
     		setDeveloppeur = new HashSet<>();
     	}
@@ -55,7 +55,7 @@ public class MBCatalogueDeveloppeur {
 		return mBConnexion;
 	}
 
-    public Map<Integer, Set<DTODeveloppeur>> getPanier() {
+    public Map<Integer, Set<NoDeveloppeur>> getPanier() {
         return panier;
     }
 
@@ -95,7 +95,7 @@ public class MBCatalogueDeveloppeur {
 		this.mBConnexion = mBConnexion;
 	}
 
-    public void setPanier(Map<Integer, Set<DTODeveloppeur>> panier) {
+    public void setPanier(Map<Integer, Set<NoDeveloppeur>> panier) {
         this.panier = panier;
     }
 

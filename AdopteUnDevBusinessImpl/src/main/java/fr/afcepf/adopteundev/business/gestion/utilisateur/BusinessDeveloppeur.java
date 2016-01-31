@@ -42,7 +42,6 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 
 	@Override
 	public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

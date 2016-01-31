@@ -27,7 +27,6 @@ public class ContextFactory {
 			objet = ctx.lookup(ucJNDI);
 		} catch (NamingException e) {
 			System.out.println("ca ne marche pas au niveau de la transition entre tomcat et jboss (contextFactory)");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return objet;
