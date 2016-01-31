@@ -21,6 +21,6 @@ public interface IBusinessCdc {
 	List<DTOCdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet);
 	void ajouterRemarqueCdcComplet (DTOCdc cdcRemarque, Integer idDev, Integer idProjet);
 	DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
-
 	DTOCdc recupCdcFinalParidProjet(Integer idProjet);
+	DTOTypeCdc recupTypeCDCParLibelle(String libelle);
 }
