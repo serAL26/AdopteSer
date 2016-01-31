@@ -11,15 +11,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Access;
-
-import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
-import org.apache.log4j.Logger;
 
 import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
+import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.connexion.MBConnexion;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
@@ -27,7 +24,6 @@ import fr.afcepf.adopteundev.managedbean.util.UcName;
 @ManagedBean(name="mBCatalogueDeveloppeur")
 @SessionScoped
 public class MBCatalogueDeveloppeur {
-	private Logger log = Logger.getLogger(MBCatalogueDeveloppeur.class);
     private List<NoDeveloppeur> listFiche = new ArrayList<>();
     private List<DTOProjet> projetList = new ArrayList<>();
     private Map<Integer, Set<NoDeveloppeur>> panier = new HashMap<>();
@@ -83,7 +79,6 @@ public class MBCatalogueDeveloppeur {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         listFiche = initFichesDeveloppeur();
-        log.info(listFiche);
         projetList = initListeProjet();
     }
 
@@ -110,4 +105,5 @@ public class MBCatalogueDeveloppeur {
 	public void setProjetSelectionne(DTOProjet projetSelectionne) {
         this.projetSelectionne = projetSelectionne;
     }
+	
 }
