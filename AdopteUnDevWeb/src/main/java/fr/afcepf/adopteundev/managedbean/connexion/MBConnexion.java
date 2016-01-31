@@ -46,7 +46,6 @@ public class MBConnexion {
             message = "Login/Mdp errone";
         }
         else {
-        	DTOClient client = (DTOClient) utilisateur;
         	retour = "/Messagerie.xhtml?faces-redirect=true";
         }
         initTypeUtilisateur();
