@@ -94,4 +94,9 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	public DTOCdc recupDerniereRemarque(Integer idDev, Integer idProjet) {
 		return businessCdc.recupDerniereRemarque(idDev, idProjet);
 	}
+
+	@Override
+	public DTOCdc recupCdcFinalParidProjet(Integer idProjet) {
+		return businessCdc.recupCdcFinalParidProjet(idProjet);
+	}
 }

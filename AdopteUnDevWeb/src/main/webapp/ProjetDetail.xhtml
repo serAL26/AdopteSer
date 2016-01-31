@@ -6,7 +6,7 @@
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
-        <ui:define name="title">Detail de la proposition</ui:define>
+        <ui:define name="title">Detail du Projet : </ui:define>
     </ui:define>
     <ui:define name="body">
         <div class="section">
@@ -15,20 +15,20 @@
                     <!-- Product Image & Available Colors -->
                     <div class="col-sm-6">
                         <div class="product-image-large">
-                            <img src="img/product3.jpg" alt="Item Name">
+                            <img src="#{mBProjetDetail.projet.photo}" alt="image projet"/>
                         </div>
                         <div class="colors">
-                            <span class="color-white"></span>
-                            <span class="color-black"></span>
-                            <span class="color-blue"></span>
-                            <span class="color-orange"></span>
-                            <span class="color-green"></span>
+                            <span class="color-white"/>
+                            <span class="color-black"/>
+                            <span class="color-blue"/>
+                            <span class="color-orange"/>
+                            <span class="color-green"/>
                         </div>
                     </div>
                     <!-- End Product Image & Available Colors -->
                     <!-- Product Summary & Options -->
                     <div class="col-sm-6 product-details">
-                        <h4>LOREM IPSUM DOLOR</h4>
+                        <h4>#{mBProjetDetail.projet.libelle}</h4>
                         <div class="price">
                             <span class="price-was">$959.99</span> $999.99
                         </div>
@@ -42,13 +42,13 @@
                                 <td><b>Color:</b></td>
                                 <td>
                                     <div class="dropdown choose-item-color">
-                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#"><span class="color-orange"></span> Orange <b class="caret"></b></a>
+                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#"><span class="color-orange"/> Orange <b class="caret"/></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li role="menuitem"><a href="#"><span class="color-white"></span> White</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-black"></span> Black</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-blue"></span> Blue</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-orange"></span> Orange</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-green"></span> Green</a></li>
+                                            <li role="menuitem"><a href="#"><span class="color-white"/> White</a></li>
+                                            <li role="menuitem"><a href="#"><span class="color-black"/> Black</a></li>
+                                            <li role="menuitem"><a href="#"><span class="color-blue"/> Blue</a></li>
+                                            <li role="menuitem"><a href="#"><span class="color-orange"/> Orange</a></li>
+                                            <li role="menuitem"><a href="#"><span class="color-green"/> Green</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -58,7 +58,7 @@
                                 <td><b>Size:</b></td>
                                 <td>
                                     <div class="dropdown">
-                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#">XXL <b class="caret"></b></a>
+                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#">XXL <b class="caret"/></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li role="menuitem"><a href="#">XS</a></li>
                                             <li role="menuitem"><a href="#">S</a></li>
@@ -73,14 +73,14 @@
                             <tr>
                                 <td><b>Quantity:</b></td>
                                 <td>
-                                    <input type="text" class="form-control input-sm input-micro" value="1">
+                                    <input type="text" class="form-control input-sm input-micro" value="1"/>
                                 </td>
                             </tr>
                             <!-- Add to Cart Button -->
                             <tr>
-                                <td>&nbsp;</td>
+                                <td> </td>
                                 <td>
-                                    <a href="#" class="btn btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+                                    <a href="#" class="btn btn"><i class="icon-shopping-cart icon-white"/> Add to Cart</a>
                                 </td>
                             </tr>
                         </table>

@@ -20,69 +20,77 @@ import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
 @Stateless
 public class DaoCdcImpl implements IDaoCdc {
 
-	 @PersistenceContext(unitName="AdopteUnDev")
-	    EntityManager em;
-	
-	@Override
-	public Cdc ajouterCdc(Cdc cdc) {
-		em.persist(cdc);
-		em.flush();	
-		em.merge(cdc);
-		
-		return cdc;
-	}
+    @PersistenceContext(unitName = "AdopteUnDev")
+    EntityManager em;
 
-	@Override
-	public Cdc modifierCdc(Cdc cdc) {
-		em.merge(cdc);
-		
-		return cdc;
-	}
+    @Override
+    public Cdc ajouterCdc(Cdc cdc) {
+        em.persist(cdc);
+        em.flush();
+        em.merge(cdc);
 
-	@Override
-	public List<TypeFonctionnalite> getAll() {
-		
-		return em.createQuery("Select t from TypeFonctionnalite t", TypeFonctionnalite.class).getResultList();
-	}
+        return cdc;
+    }
 
-	@Override
-	public Fonctionnalite ajouterFonctionnalite(Fonctionnalite fonct) {
-		em.persist(fonct);
-		em.flush();	
-		
-		return fonct;
-		
-	}
+    @Override
+    public Cdc modifierCdc(Cdc cdc) {
+        em.merge(cdc);
 
-	@Override
-	public AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite(
-			AssociationCdcFonctionnalite association) {
-		em.persist(association);
-		em.flush();	
-		
-		return association;
-	}
+        return cdc;
+    }
 
-	@Override
-	public List<TypeCdc> recupTouslesTypesCdc() {
-		
-		return em.createQuery("Select t from TypeCdc t", TypeCdc.class).getResultList();
-	}
+    @Override
+    public List<TypeFonctionnalite> getAll() {
 
-	@Override
-	public Cdc recupCdcParId(Integer id) {
-		Cdc cdc = em.find(Cdc.class, id);
-		return cdc;
-	}
+        return em.createQuery("Select t from TypeFonctionnalite t", TypeFonctionnalite.class).getResultList();
+    }
 
-	@Override
-	public List<Cdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet) {
-		
-		TypedQuery<Cdc> query = em.createQuery("Select c from Cdc c where c.developpeurCdc.idUtilisateur =:id and "
-				+ "c.projet.idProjet =:idProjet and c.typeCdc.idTypeCdc =1", Cdc.class);
-		query.setParameter("id", idDev);
-		query.setParameter("idProjet", idProjet);
-		
-		return query.getResultList();
-	}
+    @Override
+    public Fonctionnalite ajouterFonctionnalite(Fonctionnalite fonct) {
+        em.persist(fonct);
+        em.flush();
+
+        return fonct;
+
+    }
+
+    @Override
+    public AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite(
+            AssociationCdcFonctionnalite association) {
+        em.persist(association);
+        em.flush();
+
+        return association;
+    }
+
+    @Override
+    public List<TypeCdc> recupTouslesTypesCdc() {
+
+        return em.createQuery("Select t from TypeCdc t", TypeCdc.class).getResultList();
+    }
+
+    @Override
+    public Cdc recupCdcParId(Integer id) {
+        Cdc cdc = em.find(Cdc.class, id);
+        return cdc;
+    }
+
+    @Override
+    public List<Cdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet) {
+
+        TypedQuery<Cdc> query = em.createQuery("Select c from Cdc c where c.developpeurCdc.idUtilisateur =:id and "
+                + "c.projet.idProjet =:idProjet and c.typeCdc.idTypeCdc =1", Cdc.class);
+        query.setParameter("id", idDev);
+        query.setParameter("idProjet", idProjet);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public Cdc recupCdcFinalParidProjet(Integer idProjet) {
+        TypedQuery<Cdc> query =
+                em.createQuery("SELECT c FROM Cdc c WHERE c.projet.idProjet=:idProjet AND c.typeCdc.idTypeCdc = 2", Cdc.class)
+                .setParameter("idProjet",idProjet);
+        return query.getSingleResult();
+    }
 }

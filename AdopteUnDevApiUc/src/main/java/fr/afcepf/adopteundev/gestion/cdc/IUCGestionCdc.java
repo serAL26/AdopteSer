@@ -10,7 +10,7 @@ import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
 
 public interface IUCGestionCdc {
-	
+
 	DTOCdc ajouterCdcDto (DTOCdc cdcDto);
 	DTOCdc modifierCdcDto (DTOCdc cdcDto);
 	Set<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
@@ -22,5 +22,5 @@ public interface IUCGestionCdc {
 	List<DTOCdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet);
 	void ajouterRemarqueCdcComplet (DTOCdc cdcRemarque, Integer idDev, Integer idProjet);
 	DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
-
+	DTOCdc recupCdcFinalParidProjet(Integer idProjet);
 }
