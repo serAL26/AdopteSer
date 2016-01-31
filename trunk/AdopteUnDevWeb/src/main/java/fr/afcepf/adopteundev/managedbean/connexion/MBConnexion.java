@@ -35,9 +35,7 @@ public class MBConnexion {
 
     private void initTypeUtilisateur() {
     	if(utilisateur != null) {
-
     	typeUtilisateur = ucUtilisateur.typeUtilisateur(utilisateur.getIdUtilisateur());
-
     	}
 	}
 

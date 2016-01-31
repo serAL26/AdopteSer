@@ -9,11 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Access;
-import javax.persistence.PostLoad;
-import javax.persistence.PostUpdate;
-
-import org.apache.log4j.Logger;
 
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
@@ -36,32 +31,37 @@ public class MBPanier {
 
     private DTOProjet dtoProjet;
     private List<DTOProjet> listProjet = new ArrayList<>();
+    private List<NoDeveloppeur> listNoDeveloppeur = new ArrayList<>();
+		
     @PostConstruct
     public void init() {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
-        listProjet = initListProjet();
+        initListProjet();
     }
-
-
 
     public String retirerDeveloppeurAuPanier(int idProjet,NoDeveloppeur developpeur) {
         Set<NoDeveloppeur> noDeveloppeurSet = mBCatalogueDeveloppeur.getPanier().get(idProjet);
         noDeveloppeurSet.remove(developpeur);
         Map<Integer,Set<NoDeveloppeur>> map = mBCatalogueDeveloppeur.getPanier();
+        if (noDeveloppeurSet.size() ==0 ){
+        	map.remove(idProjet);
+        }
+        else {
         map.put(idProjet,noDeveloppeurSet);
+        }
         mBCatalogueDeveloppeur.setPanier(map);
-        return "/Panier.xhtml?faces-redirect=true";
+        return "";
     }
 
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
     	Set<NoDeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
-        List<NoDeveloppeur> liste = new ArrayList<>();
+        listNoDeveloppeur = new ArrayList<>();
         for (NoDeveloppeur noDeveloppeur : set) {
-            liste.add(noDeveloppeur);
+            listNoDeveloppeur.add(noDeveloppeur);
         }
-        return liste;
+        return listNoDeveloppeur;
     }
 
     public int obtenirTotalDesDev() {
@@ -73,14 +73,13 @@ public class MBPanier {
 		}
     	return nbTotal;
     }
-    
-    private List<DTOProjet> initListProjet() {
+
+    public void initListProjet() {
     	Set<Integer> set = mBCatalogueDeveloppeur.getPanier().keySet();
-    	List<DTOProjet> liste =  new ArrayList<>();
+    	listProjet =  new ArrayList<>();
     	for (Integer integer : set) {
-			liste.add(ucProjet.recupProjetById(integer));
+			listProjet.add(ucProjet.recupProjetById(integer));
 		}
-        return liste;
     }
 
     public IUCPanier getPanierUc() {
@@ -115,4 +114,12 @@ public class MBPanier {
         this.mBCatalogueDeveloppeur = mBCatalogueDeveloppeur;
     }
 
+	public List<NoDeveloppeur> getListNoDeveloppeur() {
+		return listNoDeveloppeur;
+	}
+
+	public void setListNoDeveloppeur(List<NoDeveloppeur> listNoDeveloppeur) {
+		this.listNoDeveloppeur = listNoDeveloppeur;
+	}
+    
 }

@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="WEB-INF/lesimports.xhtml">
-    <ui:define name="head">
+	<ui:define name="head">
 
-    </ui:define>
-    <ui:define name="title">
+	</ui:define>
+	<ui:define name="title">
         Votre panier :
     </ui:define>
-    <ui:define name="body">
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <ui:repeat value="#{mBPanier.listProjet}" var="projet">
-                        <div class="col-md-12">
-                            <!-- numero projet -->
-                            <p>#{projet.libelle}<br/></p>
-                            <!-- Shopping Cart Items -->
-                            <table class="shopping-cart">
-                                <!-- Shopping Cart Item -->
-                                <ui:repeat value="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet)}" var="noDeveloppeur">
-                                    <tr>
-                                        <!-- Shopping Cart Item Image -->
-                                        <td class="image"><a href="page-developper-details.html">
-                                            <img src="#{noDeveloppeur.developpeur.photo}" alt="Tronche du dev"/></a>
-                                        </td>
-                                        <!-- Shopping Cart Item Description & Features -->
-                                        <td>
-                                            <div class="cart-item-title"><a
-                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}  #{noDeveloppeur.developpeur.prenom}</a>
-                                            </div>
-                                            <div class="feature color">
-                                                <ui:repeat var="technologie" value="#{noDeveloppeur.technologie}">
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row" onload="#{mBPanier.init()}">
+					<ui:repeat value="#{mBPanier.listProjet}" var="projet">
+						<div class="col-md-12">
+							<!-- numero projet -->
+							<p>
+								#{projet.libelle}<br />
+							</p>
+							<!-- Shopping Cart Items -->
+							<div onload="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet)}">
+							<table class="shopping-cart">
+								<!-- Shopping Cart Item -->
+								
+								<ui:repeat value="#{mBPanier.listNoDeveloppeur}" var="noDeveloppeur" >
+									<tr>
+										<!-- Shopping Cart Item Image -->
+										<td class="image"><a href="page-developper-details.html">
+												<img src="#{noDeveloppeur.developpeur.photo}"
+												alt="Tronche du dev" />
+										</a></td>
+										<!-- Shopping Cart Item Description & Features -->
+										<td>
+											<div class="cart-item-title">
+												<a href="page-product-details.html">#{noDeveloppeur.developpeur.nom}
+													#{noDeveloppeur.developpeur.prenom}</a>
+											</div>
+											<div class="feature color">
+												<ui:repeat var="technologie"
+													value="#{noDeveloppeur.technologie}">
                                                     #{technologie.technologieLibelle}
                                                 </ui:repeat>
-                                            </div>
-                                            <div class="feature">#{noDeveloppeur.note}</div>
-                                        </td>
-                                        <!-- Shopping Cart Item Actions -->
-                                        <td class="actions">
-                                            <h:commandLink id="deleteButton"
-                                                           action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet,noDeveloppeur.developpeur)}"
-                                                           styleClass="btn btn-xs btn-grey"><i
-                                                    class="glyphicon glyphicon-trash"/></h:commandLink>
-                                        </td>
-                                    </tr>
-                                </ui:repeat>
-                                <!-- End Shopping Cart Item -->
-                            </table>
-                        </div>
-                    </ui:repeat>
-                </div>
-                <div class="row">
-                    <!-- Shopping Cart Totals -->
-                    <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
-                        <table class="cart-totals">
-                        <ui:repeat var="projet" value="#{mBPanier.listProjet}">
-                            <tr>
-                                <td>#{projet.libelle}</td>
-                                <td>#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet).size()}</td>
-                            </tr>
-                            </ui:repeat>
+											</div>
+											<div class="feature">#{noDeveloppeur.note}</div>
+										</td>
+										<!-- Shopping Cart Item Actions -->
+										<td class="actions"> <h:commandLink id="deleteButton"
+												action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet,noDeveloppeur)}"
+												styleClass="btn btn-xs btn-grey">
+												<i class="glyphicon glyphicon-trash" />
+											</h:commandLink></td>
+									</tr>
+								</ui:repeat>
+								<!-- End Shopping Cart Item -->
+							</table>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+				<div class="row">
+					<!-- Shopping Cart Totals -->
+					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+						<table class="cart-totals">
+							<ui:repeat var="projet" value="#{mBPanier.listProjet}">
+								<tr>
+									<td>#{projet.libelle}</td>
+									<td>#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet).size()}</td>
+								</tr>
+							</ui:repeat>
 
-                            <tr class="cart-grand-total">
-                                <td><b>Total</b></td>
-                                <td><b>#{mBPanier.obtenirTotalDesDev()}</b></td>
-                            </tr>
-                        </table>
-                        <!-- Action Buttons -->
-                        <div class="pull-right">
-                            <a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"/> UPDATE</a>
-                            <a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"/> CHECK OUT</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </ui:define>
+							<tr class="cart-grand-total">
+								<td><b>Total</b></td>
+								<td><b>#{mBPanier.obtenirTotalDesDev()}</b></td>
+							</tr>
+						</table>
+						<!-- Action Buttons -->
+						<div class="pull-right">
+							<a href="#" class="btn btn-grey"><i
+								class="glyphicon glyphicon-refresh" /> UPDATE</a> <a href="#" class="btn">
+								<i class="glyphicon glyphicon-shopping-cart icon-white" /> CHECK OUT</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
 </ui:composition>
 </html>
