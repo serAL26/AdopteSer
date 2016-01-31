@@ -30,7 +30,7 @@
                                         <!-- Shopping Cart Item Description & Features -->
                                         <td>
                                             <div class="cart-item-title"><a
-                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}   #{noDeveloppeur.developpeur.prenom}</a>
+                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}  #{noDeveloppeur.developpeur.prenom}</a>
                                             </div>
                                             <div class="feature color">
                                                 <ui:repeat var="technologie" value="#{noDeveloppeur.technologie}">
@@ -41,8 +41,6 @@
                                         </td>
                                         <!-- Shopping Cart Item Actions -->
                                         <td class="actions">
-                                            <a href="#" class="btn btn-xs btn-grey"><i
-                                                    class="glyphicon glyphicon-pencil"/></a>
                                             <h:commandLink id="deleteButton"
                                                            action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet,noDeveloppeur.developpeur)}"
                                                            styleClass="btn btn-xs btn-grey"><i

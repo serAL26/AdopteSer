@@ -52,7 +52,7 @@ public class MBPanier {
         Map<Integer,Set<NoDeveloppeur>> map = mBCatalogueDeveloppeur.getPanier();
         map.put(idProjet,noDeveloppeurSet);
         mBCatalogueDeveloppeur.setPanier(map);
-        return "";
+        return "/Panier.xhtml?faces-redirect=true";
     }
 
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
