@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -49,6 +50,89 @@
 									</div>
 								</div>
 							</h:form>
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>Sur quoi porte
+										votre projet?</b></label>
+								<h:inputText class="form-control"
+									value="#{mbCreationProjet.projetcree.libelle}" />
+							</div>
+							<FIELDSET>
+								<legend>Dites-nous en plus concernant votre projet!</legend>
+
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Votre besoin :
+									</b></label>
+									<div>
+										<h:inputTextarea class="icon-user"
+											value="#{mBAjoutCdc.besoin}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Contexte de
+											votre projet : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.contexte}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Mode de
+											fonctionnement actuel : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.existant}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Date de fin
+											prevue : </b></label>
+									<p:calendar id="button" showOn="button" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Budget</b></label>
+									<div style="max-width: 150px">
+										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Quelles sont
+											les principales Fonctionnalités de votre application?</b></label> <LABEL>choisir
+										un Type : </LABEL>
+									<div style="max-width: 150px">
+										<h:selectOneMenu class="form-control"
+											value="#{mBAjoutCdc.selectedTypeFonction}">
+											<f:selectItems value="#{mBAjoutCdc.listTypeFonctionn}"
+												var="typeFonction" itemValue="#{typeFonction}"
+												itemLabel="#{typeFonction.libelle}" />
+										</h:selectOneMenu>
+									</div>
+									<LABEL>Desciption : </LABEL>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.fonctionnaliteCree.commentaire}" />
+									<div>
+										<!--<h:commandButton value="+Fonctionnalité"></h:commandButton-->
+
+										<h:commandLink
+											action="#{mBAjoutCdc.ajouterFonctionnaliteSaisi}"
+											value="+Fonctionnalité">
+											<f:ajax execute="@form" render="filConversation" />
+										</h:commandLink>
+										<h:panelGroup id="filConversation">
+											<ui:repeat var="fonction"
+												value="#{mBAjoutCdc.listeFonctionnaliteCree}">
+												<details>
+													<summary>
+														<h:outputLabel
+															value="#{fonction.typeFonctionnalite.libelle}"></h:outputLabel>
+													</summary>
+													<div class="col-md-offset-2">
+														<h:outputText value="#{fonction.commentaire}"></h:outputText>
+													</div>
+												</details>
+											</ui:repeat>
+											<h:commandButton class="btn pull-right"
+												action="#{mBAjoutCdc.ajouterCdc()}" value="Valider" />
+										</h:panelGroup>
+
+									</div>
+								</div>
+							</FIELDSET>
 							<div class="clearfix"></div>
 						</div>
 					</div>
