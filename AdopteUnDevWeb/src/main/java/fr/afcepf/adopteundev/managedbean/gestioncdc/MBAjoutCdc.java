@@ -43,7 +43,9 @@ public class MBAjoutCdc {
 		gestionProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
 		listTypeFonctionn = gestionCdc.recupTousLesTypesFonctionnalites();
+		selectedTypeFonction = new DTOTypeFonctionnalite();
 		setFonctionnaliteCree(new DTOFonctionnalite());
+		fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
 	}
 
 	public Set<DTOFonctionnalite> getListeFonctionnaliteCree() {
