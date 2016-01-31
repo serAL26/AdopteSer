@@ -79,7 +79,10 @@ public class MBCatalogueDeveloppeur {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         listFiche = initFichesDeveloppeur();
+        if (mBConnexion.getTypeUtilisateur() == 2)
+        {
         projetList = initListeProjet();
+        }
     }
 
     public String renvoieVersPanier() {
