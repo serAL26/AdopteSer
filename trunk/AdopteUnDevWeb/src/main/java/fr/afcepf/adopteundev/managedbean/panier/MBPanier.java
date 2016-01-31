@@ -55,11 +55,16 @@ public class MBPanier {
     }
 
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
+        log.info("obtenirListeDevPanier : In");
+        log.info("obtenirListeDevPanier : idProjet = "+idProjet);
     	Set<NoDeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
-    	List<NoDeveloppeur> liste = new ArrayList<>();
-    	for (NoDeveloppeur noDeveloppeur : set) {
-			liste.add(noDeveloppeur);
-		}
+        List<NoDeveloppeur> liste = new ArrayList<>();
+        for (NoDeveloppeur noDeveloppeur : set) {
+            liste.add(noDeveloppeur);
+            log.info("obtenirListeDevPanier : noDevelopper = "+noDeveloppeur.getDeveloppeur().getNom());
+        }
+        log.info("obtenirListeDevPanier : liste = "+liste);
+        log.info("obtenirListeDevPanier : out ");
         return liste;
     }
 
