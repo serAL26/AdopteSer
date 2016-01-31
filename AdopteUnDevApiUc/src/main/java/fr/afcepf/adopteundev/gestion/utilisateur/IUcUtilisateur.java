@@ -2,6 +2,7 @@ package fr.afcepf.adopteundev.gestion.utilisateur;
 
 import java.util.List;
 
+import dto.DTOClient;
 import dto.DTODeveloppeur;
 import dto.DTOUtilisateur;
 import enumeration.RoleUtilisateur;
@@ -14,4 +15,5 @@ public interface IUcUtilisateur {
 	int typeUtilisateur(int idUtilisateur);
     List<DTODeveloppeur> recupDevWeb();
     List<DTODeveloppeur> recupDevParTechno(Integer id);
+    public DTOClient recupClientById(int id);
 }
