@@ -23,4 +23,5 @@ public interface IUCProjet {
 	public void modifierProposition(DTOProposition dtoProp);
 	public List<DTOProposition> recupToutesLesPropos();
 	public List<DTOTypeProposition> recupTousLesTypesProps();
+	DTOProjet recupProjetById(int idProjet);
 }

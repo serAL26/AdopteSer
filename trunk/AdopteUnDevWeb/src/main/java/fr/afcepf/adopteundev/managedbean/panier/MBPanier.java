@@ -4,6 +4,7 @@ import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
+import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.MBCatalogueDeveloppeur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
@@ -21,17 +22,19 @@ import java.util.*;
 public class MBPanier {
     IUCPanier panierUc;
     IUcUtilisateur ucUtilisateur;
+    IUCProjet ucProjet;
     
     @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
     private MBCatalogueDeveloppeur mBCatalogueDeveloppeur;
     
     private DTOProjet dtoProjet;
-    private List<Integer> listProjet = new ArrayList<>();
+    private List<DTOProjet> listProjet = new ArrayList<>();
     //private List<DTODeveloppeur>listeDeveloppeurDuProjet
     @PostConstruct
     public void init(){
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
+        ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         listProjet = initListProjet();
     }
     
@@ -40,6 +43,8 @@ public class MBPanier {
         return "";
     }
 
+    
+    
     public List<NoDeveloppeur> obtenirListeDeveloppeurLieAuPanier(int idProjet){
     	Set<DTODeveloppeur> set = mBCatalogueDeveloppeur.getPanier().get(idProjet);
     	List<NoDeveloppeur> liste = new ArrayList<>();
@@ -49,10 +54,12 @@ public class MBPanier {
         return liste;
     }
 
-    private List<Integer> initListProjet() {
+    private List<DTOProjet> initListProjet() {
     	Set<Integer> set = mBCatalogueDeveloppeur.getPanier().keySet();
-    	List<Integer> liste =  new ArrayList<>();
-    	liste.addAll(set);
+    	List<DTOProjet> liste =  new ArrayList<>();
+    	for (Integer integer : set) {
+			liste.add(ucProjet.recupProjetById(integer));
+		}
         return liste;
     }
 
@@ -64,11 +71,11 @@ public class MBPanier {
         this.panierUc = panierUc;
     }
 
-	public List<Integer> getListProjet() {
+	public List<DTOProjet> getListProjet() {
 		return listProjet;
 	}
 
-	public void setListProjet(List<Integer> listProjet) {
+	public void setListProjet(List<DTOProjet> listProjet) {
 		this.listProjet = listProjet;
 	}
 

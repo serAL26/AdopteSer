@@ -33,7 +33,6 @@ public class MBCatalogueDeveloppeur {
     @PostConstruct
     public void obtenirLesInterfaces() {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
-        List<DTODeveloppeur> listeDeveloppeur = initListeDeveloppeur();
         listFiche = initFichesDeveloppeur();
         log.info(listFiche);
         projetList = initListeProjet(16);
@@ -60,10 +59,6 @@ public class MBCatalogueDeveloppeur {
 
     public void setListFiche(List<NoDeveloppeur> listFiche) {
         this.listFiche = listFiche;
-    }
-
-    private List<DTODeveloppeur> initListeDeveloppeur() {
-        return panierUc.recupererTousLesDeveloppeurs();
     }
 
     private List<NoDeveloppeur> initFichesDeveloppeur() {

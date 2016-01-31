@@ -59,4 +59,10 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		return listProjet;
 	}
 
+	@Override
+	public Projet recupProjetParId(int idProjet) {
+		Projet projet = em.find(Projet.class, idProjet);
+		return projet;
+	}
+
 }

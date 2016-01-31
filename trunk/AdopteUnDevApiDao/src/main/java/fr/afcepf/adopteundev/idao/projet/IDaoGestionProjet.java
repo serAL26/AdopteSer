@@ -15,6 +15,7 @@ public interface IDaoGestionProjet {
 	public List<Projet> recupProjerParEtat(String etat);
 	
 	public List<Projet> recupProjerParEtatParClient(String etat, Client client);
+	Projet recupProjetParId(int idProjet);
 	
 
 }

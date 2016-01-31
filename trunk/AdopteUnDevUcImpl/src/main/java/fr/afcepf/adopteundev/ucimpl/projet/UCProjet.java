@@ -100,4 +100,9 @@ public class UCProjet implements IUCProjet {
 			DTOClient client) {
 		return businessGestionProjet.recupProjerParEtatParClient(etat, client);
 	}
+
+	@Override
+	public DTOProjet recupProjetById(int idProjet) {
+		return businessGestionProjet.recupProjetParId(idProjet);
+	}
 }
