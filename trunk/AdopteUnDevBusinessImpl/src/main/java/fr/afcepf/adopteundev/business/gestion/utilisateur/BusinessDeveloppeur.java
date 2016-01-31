@@ -13,10 +13,12 @@ import dto.DTONote;
 import dto.DTOProposition;
 import dto.DTOTechnologie;
 import entity.Developpeur;
+import entity.Technologie;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.projet.IDaoProposition;
+import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
 
 @Remote(IBusinessDeveloppeur.class)
 @Stateless
@@ -24,10 +26,13 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 
 	@EJB
 	private IDaoUtilisateur daoUtilisateur;
-	
+
 	@EJB
 	private IDaoProposition daoProposition;
-	
+
+	@EJB
+	private IDaoTechnologie daoTechnologie;
+
 	@Override
 	public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
 		// TODO Auto-generated method stub
@@ -39,28 +44,40 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		NoDeveloppeur noDev = new NoDeveloppeur(dtoDeveloppeur);
 		noDev.setNote(obtenirNote(dtoDeveloppeur));
 		noDev.setTechnologie(obtenirTechnologie(dtoDeveloppeur));
-		return null;
+		return noDev;
 	}
 
 	private List<DTOTechnologie> obtenirTechnologie(DTODeveloppeur dtoDeveloppeur) {
-		
-		return null;
+		List<Technologie> listeTechnologie = daoTechnologie.recupTechnoParDev(dtoDeveloppeur.getIdUtilisateur());
+		return EntityToDTO.listeTechnologieToDTOTechnologie(listeTechnologie);
 	}
 
 	private Double obtenirNote(DTODeveloppeur dtoDeveloppeur) {
 		List<DTOProposition> listeDTOProposition = EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionValideeParDev(dtoDeveloppeur.getIdUtilisateur()));
-		double nbProjet = 0;
-		Double sommeNote = new Double(0);
+		Double retour = new Double(0);
 		for (DTOProposition dtoProposition : listeDTOProposition) {
 			Set<DTONote> listeNote = dtoProposition.getProjet().getLesNotes();
-			for (DTONote dtoNote : listeNote) {
-				if(dtoNote.getIdEstNote()==dtoDeveloppeur.getIdUtilisateur()){
-					sommeNote += dtoNote.getNote();
-					nbProjet++;
-				}
+			if(listeNote != null) {
+				retour = calculLaNote(listeNote, dtoDeveloppeur.getIdUtilisateur());
 			}
 		}
-		return sommeNote/nbProjet;
+		return retour;
+	}
+
+	private Double calculLaNote(Set<DTONote> listeNote, int idDev) {
+		Double sommeNote = new Double(0);
+		double nbProjet = 0;
+		Double retour = new Double(0);
+		for (DTONote dtoNote : listeNote) {
+			if(dtoNote.getIdEstNote()== idDev){
+				sommeNote += dtoNote.getNote();
+				nbProjet++;
+			}
+		}
+		if (nbProjet > 0) {
+			retour = sommeNote/nbProjet;
+		}
+		return retour;
 	}
 
 }

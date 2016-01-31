@@ -557,4 +557,12 @@ public class EntityToDTO {
 		}
 		return listeDTOProposition;
 	}
+	
+	public static List<DTOTechnologie> listeTechnologieToDTOTechnologie(List<Technologie> listeTechnologie) {
+		List<DTOTechnologie> listeDTOTechnologie = new ArrayList<>();
+		for (Technologie technologie : listeTechnologie) {
+			listeDTOTechnologie.add(technologieToDTOTechnologie(technologie));
+		}
+		return listeDTOTechnologie;
+	}
 }

@@ -21,7 +21,7 @@
                             <!-- Shopping Cart Items -->
                             <table class="shopping-cart">
                                 <!-- Shopping Cart Item -->
-                                <ui:repeat value="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(idProjet)}" var="developpeur">
+                                <ui:repeat value="#{mBPanier.obtenirListeDeveloppeurLieAuPanier(idProjet)}" var="noDeveloppeur">
                                     <tr>
                                         <!-- Shopping Cart Item Image -->
                                         <td class="image"><a href="page-developper-details.html">
@@ -30,11 +30,13 @@
                                         <!-- Shopping Cart Item Description & Features -->
                                         <td>
                                             <div class="cart-item-title"><a
-                                                    href="page-product-details.html">#{developpeur.nom}   #{developpeur.prenom}</a></div>
+                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}   #{noDeveloppeur.developpeur.prenom}</a></div>
                                             <div class="feature color">
-                                                <ui:repeat var="#{}" value=""></ui:repeat>
+                                                <ui:repeat var="technologie" value="#{noDeveloppeur.technologie}">
+                                                	#{technologie.technologieLibelle}
+                                                </ui:repeat>
                                             </div>
-                                            <div class="feature">Size: <b>XXL</b></div>
+                                            <div class="feature">#{noDeveloppeur.note}</div>
                                         </td>
                                         <!-- Shopping Cart Item Quantity -->
                                         <td class="quantity">

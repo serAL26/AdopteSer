@@ -36,7 +36,7 @@
                                     <ul>
                                         <li class="portfolio-project-name">#{fiche.developpeur.nom} #{fiche.developpeur.prenom}</li>
                                         <li class="center">#{fiche.developpeur.listeProposition.size}</li>
-                                        <li><p:rating value="#{fiche.note}" readonly="true" styleClass="center-rating"/>
+                                        <li><p:rating value="#{fiche.noteEnInteger}" readonly="true" styleClass="center-rating"/>
                                         </li>
                                         <li class="read-more"><h:commandButton styleClass="btn"
                                                                                action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur)}"
