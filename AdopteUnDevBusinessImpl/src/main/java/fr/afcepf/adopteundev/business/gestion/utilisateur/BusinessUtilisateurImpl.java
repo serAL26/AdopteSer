@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import assembleur.EntityToDTO;
+import dto.DTOClient;
 import dto.DTODeveloppeur;
 import dto.DTOTypeFonctionnalite;
 import dto.DTOUtilisateur;
@@ -74,5 +75,10 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 			role = 3;
 		}
 		return role;
+	}
+
+	@Override
+	public DTOClient recupClientById(int id) {
+		return EntityToDTO.clientToDTOClient(daoClient.obtenirClientParId(id));
 	}
 }
