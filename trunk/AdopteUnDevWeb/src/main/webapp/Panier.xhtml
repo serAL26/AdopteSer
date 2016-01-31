@@ -25,31 +25,28 @@
                                     <tr>
                                         <!-- Shopping Cart Item Image -->
                                         <td class="image"><a href="page-developper-details.html">
-                                            <img src="#{projet.libelle}" alt="Tronche du dev"/></a>
+                                            <img src="#{noDeveloppeur.developpeur.photo}" alt="Tronche du dev"/></a>
                                         </td>
                                         <!-- Shopping Cart Item Description & Features -->
                                         <td>
                                             <div class="cart-item-title"><a
-                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}   #{noDeveloppeur.developpeur.prenom}</a></div>
+                                                    href="page-product-details.html">#{noDeveloppeur.developpeur.nom}   #{noDeveloppeur.developpeur.prenom}</a>
+                                            </div>
                                             <div class="feature color">
                                                 <ui:repeat var="technologie" value="#{noDeveloppeur.technologie}">
-                                                	#{technologie.technologieLibelle}
+                                                    #{technologie.technologieLibelle}
                                                 </ui:repeat>
                                             </div>
                                             <div class="feature">#{noDeveloppeur.note}</div>
                                         </td>
-                                        <!-- Shopping Cart Item Quantity -->
-                                        <td class="quantity">
-                                            <input class="form-control input-sm input-micro" type="text" value="1"/>
-                                        </td>
-                                        <!-- Shopping Cart Item Price -->
-                                        <td class="price">$999.99</td>
                                         <!-- Shopping Cart Item Actions -->
                                         <td class="actions">
                                             <a href="#" class="btn btn-xs btn-grey"><i
-                                                    class="glyphicon glyphicon-pencil"></i></a>
-                                            <a href="#" class="btn btn-xs btn-grey"><i
-                                                    class="glyphicon glyphicon-trash"></i></a>
+                                                    class="glyphicon glyphicon-pencil"/></a>
+                                            <h:commandLink id="deleteButton"
+                                                           action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet,noDeveloppeur.developpeur)}"
+                                                           styleClass="btn btn-xs btn-grey"><i
+                                                    class="glyphicon glyphicon-trash"/></h:commandLink>
                                         </td>
                                     </tr>
                                 </ui:repeat>
@@ -68,7 +65,7 @@
                                 <td>#{mBPanier.obtenirListeDeveloppeurLieAuPanier(projet.idProjet).size()}</td>
                             </tr>
                             </ui:repeat>
-                            
+
                             <tr class="cart-grand-total">
                                 <td><b>Total</b></td>
                                 <td><b>$163.55</b></td>
