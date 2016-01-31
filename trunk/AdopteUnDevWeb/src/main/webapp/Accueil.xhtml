@@ -52,12 +52,16 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="calltoaction-wrapper">
+							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 3}">
 							<h3>Un développeur vous attend. Lancez-vous.</h3> 
-							<h:panelGroup rendered="#{mBConnexion.utilisateur == null}">
-							<a href="http://www.dragdropsite.com" class="btn btn-orange">S'inscrire</a>
+							<a href="Login.jsf" class="btn btn-orange">S'inscrire</a>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{mBConnexion.utilisateur != null}">
-							<a href="http://www.dragdropsite.com" class="btn btn-orange">Créer un Projet</a>
+							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+							<h3>Un développeur vous attend. Lancez-vous.</h3> 
+							<a href="CreationProjet.jsf" class="btn btn-orange">Créer un Projet</a>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+							<h3>Soignez votre profil, un client vous recherche.</h3> 
 							</h:panelGroup>
 						</div>
 					</div>
@@ -82,9 +86,6 @@
 								<div class="title">
 									<h3><a href="page-product-details.html">#{dev.prenom} #{dev.nom}</a></h3>
 								</div>
-								<div class="price">
-									$999.99
-								</div>
 								<div class="actions">
 									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Voir</a>
 								</div>
@@ -100,29 +101,6 @@
 	    
 
 	    <!-- End Testimonials -->
-
-		<!-- Our Clients -->
-	    <div class="section">
-	    	<div class="container">
-	    		<h2>Our Clients</h2>
-				<div class="clients-logo-wrapper text-center row">
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/canon.png" alt="Client Name"></img></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/cisco.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/dell.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/ea.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/ebay.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/facebook.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/google.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/hp.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/microsoft.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/mysql.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/sony.png" alt="Client Name"/></a></div>
-					<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6"><a href="#"><img src="resources/img/logos/yahoo.png" alt="Client Name"/></a></div>
-				</div>
-			</div>
-	    </div>
-	    
-
 </ui:define>
 </ui:composition>
 </html>

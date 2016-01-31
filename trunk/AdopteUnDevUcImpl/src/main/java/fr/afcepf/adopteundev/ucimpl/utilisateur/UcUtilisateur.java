@@ -39,7 +39,7 @@ public class UcUtilisateur implements IUcUtilisateur{
 	}
 
 	@Override
-	public String typeUtilisateur(int idUtilisateur) {
+	public int typeUtilisateur(int idUtilisateur) {
 		return businessUtilisateur.typeUtilisateur(idUtilisateur);
 	}
 
