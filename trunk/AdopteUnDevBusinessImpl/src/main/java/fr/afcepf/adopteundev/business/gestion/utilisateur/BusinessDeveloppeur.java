@@ -58,7 +58,21 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		noDev.setNote(moyenneNote(noDev.getListeCommentaire()));
 		}
 		noDev.setTechnologie(obtenirTechnologie(dtoDeveloppeur));
+		noDev.setPetiteListeDeTechnoPasPiqueeDesVers(obtenirStringTechno(noDev.getTechnologie()));
 		return noDev;
+	}
+
+	private String obtenirStringTechno(List<DTOTechnologie> technologie) {
+		String listeTechno ="";
+		for(int i=0; i<technologie.size() && i<3;i++) {
+			if (i==0) {
+				listeTechno += technologie.get(i+1).getTechnologieLibelle(); 
+			}
+			else {
+				listeTechno += " | "+technologie.get(i+1).getTechnologieLibelle();
+			}
+		}
+		return listeTechno;
 	}
 
 	private Double moyenneNote(List<DTONote> listeCommentaire) {
