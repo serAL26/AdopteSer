@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTODeveloppeur;
 import dto.DTONote;
@@ -110,5 +111,20 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 			listeDto.add(dtoDev);
 		}
 		return listeDto;
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupDeveloppeurParNoteEtTechno(double note,
+			DTOTechnologie techno) {
+		List<Developpeur> liste = daoDeveloppeur.recupDeveloppeurParNoteEtTechno(note, DTOToEntity.dtoTechnologieToTechnologie(techno));
+		//TODO A faire le retour chez moi car je dois partir 
+		return null;
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
+			List<DTOTechnologie> technologies) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
