@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.gestion.utilisateur;
 
 import entity.Developpeur;
+import entity.Projet;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 
 import javax.ejb.Remote;
@@ -20,6 +21,7 @@ public class DaoDeveloppeurImpl implements IDaoDeveloppeur {
     
     private String recupDerWeb = "Select a.developpeur from AssociationDevTechno a where a.technologie.idTechnologie=8";
     private String recupDevParTechno = "Select a.developpeur from AssociationDevTechno a where a.technologie.idTechnologie=:id";
+    private String obtenirProjetParDev = "SELECT p.projet FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev AND p.typeProposition.idTypeProposition = 3";
     
     @Override
     public List<Developpeur> recupererTousLesDeveloppeurs() {
@@ -41,6 +43,13 @@ public class DaoDeveloppeurImpl implements IDaoDeveloppeur {
 	public List<Developpeur> recupDeveloppeursParTechno(Integer id) {
 		Query query = em.createQuery(recupDevParTechno);
 		query.setParameter("id", id);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Projet> obtenirProjetParDev(int idDev) {
+		Query query = em.createQuery(obtenirProjetParDev);
+		query.setParameter("idDev", idDev);
 		return query.getResultList();
 	}
 
