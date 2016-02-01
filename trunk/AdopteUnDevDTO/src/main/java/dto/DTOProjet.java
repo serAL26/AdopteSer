@@ -65,7 +65,7 @@ public class DTOProjet implements Serializable {
     /**
      *
      */
-    private Set<DTOTypeService> lesServices;
+    private DTOTypeService service;
     /**
      *
      */
@@ -154,13 +154,14 @@ public class DTOProjet implements Serializable {
         this.lesProposition = lesProposition;
     }
 
-    public Set<DTOTypeService> getLesServices() {
-        return lesServices;
-    }
 
-    public void setLesServices(Set<DTOTypeService> lesServices) {
-        this.lesServices = lesServices;
-    }
+	public DTOTypeService getService() {
+		return service;
+	}
+
+	public void setService(DTOTypeService service) {
+		this.service = service;
+	}
 
 	public String getPhoto() {
 		return photo;

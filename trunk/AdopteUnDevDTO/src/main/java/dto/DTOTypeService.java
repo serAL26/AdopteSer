@@ -35,7 +35,6 @@ public class DTOTypeService implements Serializable{
     
     private Set<DTOAssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
     
-    private DTOProjet projet;
     
     
     
@@ -55,13 +54,6 @@ public class DTOTypeService implements Serializable{
 		this.libelle = libelle;
 	}
 
-	public DTOProjet getProjet() {
-		return projet;
-	}
-
-	public void setProjet(DTOProjet projet) {
-		this.projet = projet;
-	}
 
 	public Set<DTOAssociationTypeServiceTechno> getLesAssociationTypeServiceTechno() {
 		return lesAssociationTypeServiceTechno;
@@ -85,8 +77,9 @@ public class DTOTypeService implements Serializable{
 		return "DTOTypeService [idTypeService=" + idTypeService
 				+ ", typeAppli=" + typeAppli + ", libelle=" + libelle
 				+ ", lesAssociationTypeServiceTechno="
-				+ lesAssociationTypeServiceTechno + ", projet=" + projet + "]";
+				+ lesAssociationTypeServiceTechno + "]";
 	}
+
 
 
     
