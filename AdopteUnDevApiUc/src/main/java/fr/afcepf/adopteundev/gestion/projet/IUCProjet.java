@@ -26,5 +26,5 @@ public interface IUCProjet {
 	public List<DTOTypeProposition> recupTousLesTypesProps();
 	DTOProjet recupProjetById(int idProjet);
 	
-	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, DTOUtilisateur dtoUtilisateur);
+	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 }

@@ -109,8 +109,8 @@ public class UCProjet implements IUCProjet {
 
 	@Override
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat,
-			DTOUtilisateur dtoUtilisateur) {
+			Integer id) {
 		
-		return businessGestionProjet.recupProjerParEtatParUtilisateur(etat, dtoUtilisateur);
+		return businessGestionProjet.recupProjerParEtatParUtilisateur(etat, id);
 	}
 }

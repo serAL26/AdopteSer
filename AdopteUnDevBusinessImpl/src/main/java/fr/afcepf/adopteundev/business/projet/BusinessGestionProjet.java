@@ -17,6 +17,8 @@ import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import dto.DTOTypeCdc;
 import dto.DTOUtilisateur;
+import entity.Client;
+import entity.Developpeur;
 import entity.EtatProjet;
 import entity.Projet;
 import enumeration.EtatProjetEnum;
@@ -106,25 +108,23 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 
 	@Override
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat,
-			DTOUtilisateur dtoUtilisateur) {
+			Integer id) {
 
 		List<DTOProjet> liste = new ArrayList<DTOProjet>();
+		
+		Developpeur dev = daoDev.obtenirDeveloppeurParId(id);
+		Client client = daoClient.obtenirClientParId(id);
 
-		if(daoDev.obtenirDeveloppeurParId(dtoUtilisateur.getIdUtilisateur()) != null)
+		if(dev != null)
 		{
-			DTODeveloppeur dev = (DTODeveloppeur) dtoUtilisateur;
 			liste =  EntityToDTO.listeProjetToDtoProjet(daoGestionProjet.
-					recupProjetParEtatParDev(etat, 
-							DTOToEntity.dtoDeveloppeurToDeveloppeur(dev)));
+					recupProjetParEtatParIdDev(etat, id));
 		}
 		
-		else if (daoClient.obtenirClientParId(dtoUtilisateur.getIdUtilisateur()) != null)
+		else if (client != null)
 		{
-			DTOClient client = (DTOClient) dtoUtilisateur;
-
 			liste = EntityToDTO.listeProjetToDtoProjet(daoGestionProjet
-					.recupProjerParEtatParClient(etat,
-							DTOToEntity.dtoClientToClient(client)));
+					.recupProjerParEtatParIdClient(etat, id));
 		}
 
 		return liste;
