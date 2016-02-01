@@ -2,18 +2,23 @@ package fr.afcepf.adopteundev.managedbean.gestioncdc;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
+import dto.DTOProjet;
+import dto.DTOTypeCdc;
 import dto.DTOTypeFonctionnalite;
+import enumeration.TypeCDC;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
+import fr.afcepf.adopteundev.managedbean.projet.MBCreationProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
@@ -27,10 +32,13 @@ public class MBAjoutCdc {
 	private Date dateFin;
 	private Double tarif;
 	private Set<DTOTypeFonctionnalite> listTypeFonctionn;
-	private DTOTypeFonctionnalite selectedTypeFonction;
-	private Set<DTOFonctionnalite> listeFonctionnaliteCree;
-	private DTOFonctionnalite fonctionnaliteCree;
+	private DTOTypeFonctionnalite selectedTypeFonction = new DTOTypeFonctionnalite();
+	private Set<DTOFonctionnalite> listeFonctionnaliteCree = new HashSet<>();
+	private DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
 	private DTOCdc cdc;
+	private DTOProjet projet;
+	@ManagedProperty(value = "#{mbCreationProjet}")
+	MBCreationProjet beanProjet;
 
 	private IUCGestionCdc gestionCdc;
 
@@ -38,14 +46,13 @@ public class MBAjoutCdc {
 
 	@PostConstruct
 	private void obtenirLesInterfaces() {
+
 		gestionCdc = (IUCGestionCdc) ContextFactory
 				.createProxy(UcName.UCGESTIONCDC);
 		gestionProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
+		setProjet(beanProjet.getProjetcree());
 		listTypeFonctionn = gestionCdc.recupTousLesTypesFonctionnalites();
-		selectedTypeFonction = new DTOTypeFonctionnalite();
-		setFonctionnaliteCree(new DTOFonctionnalite());
-		fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
 	}
 
 	public Set<DTOFonctionnalite> getListeFonctionnaliteCree() {
@@ -123,26 +130,44 @@ public class MBAjoutCdc {
 		this.cdc = cdc;
 	}
 
-	public String ajouterCdc() {
-		cdc = new DTOCdc(true, contexte, besoin, existant, tarif, dateFin);
-
-		gestionCdc.ajouterCdcDto(cdc);
-
-		return "";
-	}
-
-	public String ajouterFonctionnaliteSaisi() {
+	public void ajouterFonctionnaliteSaisi(ActionEvent e) {
+		System.out.println(selectedTypeFonction.getIdTypeFonctionnalite());
 		if (listeFonctionnaliteCree == null)
 			listeFonctionnaliteCree = new HashSet<>();
-		if (fonctionnaliteCree != null){
+		if (fonctionnaliteCree != null) {
 			fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
 			System.out.println(fonctionnaliteCree.getCommentaire());
 			listeFonctionnaliteCree.add(fonctionnaliteCree);
 		}
-		
-		
+
+	}
+
+	public String redirectAjouterFonctionnalite() {
+		cdc = ajouterCDC();
+		if (cdc.getIdCdc() != null)
+			return "AjoutFonctionnalite.xhtml" + "?faces-redirect=true";
 		return "";
-		
+	}
+
+	private DTOCdc ajouterCDC() {
+		cdc = new DTOCdc();
+		cdc.setBesoin(besoin);
+		cdc.setContexte(contexte);
+		cdc.setDateFinEstimee(dateFin);
+		cdc.setExistant(existant);
+		cdc.setLu(true);
+		cdc.setProjet(projet);
+		cdc.setTarif(tarif);
+		return gestionCdc.ajouterCdcDto(cdc);
+	}
+
+	public String creerCdc() {
+
+		cdc = ajouterCDC();
+		System.out.println(cdc.getIdCdc());
+		if (cdc.getIdCdc() != null)
+			return "Accueil.xhtml" + "?faces-redirect=true";
+		return "";
 	}
 
 	public DTOFonctionnalite getFonctionnaliteCree() {
@@ -152,4 +177,21 @@ public class MBAjoutCdc {
 	public void setFonctionnaliteCree(DTOFonctionnalite fonctionnaliteCree) {
 		this.fonctionnaliteCree = fonctionnaliteCree;
 	}
+
+	public DTOProjet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(DTOProjet projet) {
+		this.projet = projet;
+	}
+
+	public MBCreationProjet getBeanProjet() {
+		return beanProjet;
+	}
+
+	public void setBeanProjet(MBCreationProjet beanProjet) {
+		this.beanProjet = beanProjet;
+	}
+
 }
