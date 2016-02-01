@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import entity.Client;
+import entity.Developpeur;
 import entity.Projet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
@@ -64,6 +65,16 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 	public Projet recupProjetParId(int idProjet) {
 		Projet projet = em.find(Projet.class, idProjet);
 		return projet;
+	}
+
+	@Override
+	public List<Projet> recupProjetParEtatParDev(String etat, Developpeur dev) {
+		Query query = em.createQuery("SELECT p.projet FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev "
+				+ "AND p.typeProposition.idTypeProposition = 3 and p.projet.etatProjet.libelle like :petat");
+		query.setParameter("idDev", dev.getIdUtilisateur());
+		query.setParameter("petat", etat);
+		List<Projet> listProjet = query.getResultList();
+		return listProjet;
 	}
 
 }

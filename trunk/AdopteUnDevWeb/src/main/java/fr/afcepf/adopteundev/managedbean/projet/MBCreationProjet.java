@@ -1,6 +1,5 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import java.io.IOException;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
