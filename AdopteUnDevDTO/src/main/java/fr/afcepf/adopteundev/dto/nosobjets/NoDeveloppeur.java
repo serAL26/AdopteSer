@@ -14,6 +14,7 @@ public class NoDeveloppeur implements Serializable {
     private DTODeveloppeur developpeur;
     private Double note;
     private Integer noteEnInteger;
+    private String petiteListeDeTechnoPasPiqueeDesVers;
     private List<DTONote> listeCommentaire;
     private List<DTOTechnologie> technologie = new ArrayList<>();
 
@@ -60,5 +61,13 @@ public class NoDeveloppeur implements Serializable {
 
 	public void setListeCommentaire(List<DTONote> listeCommentaire) {
 		this.listeCommentaire = listeCommentaire;
+	}
+
+	public String getPetiteListeDeTechnoPasPiqueeDesVers() {
+		return petiteListeDeTechnoPasPiqueeDesVers;
+	}
+
+	public void setPetiteListeDeTechnoPasPiqueeDesVers(String petiteListeDeTechnoPasPiqueeDesVers) {
+		this.petiteListeDeTechnoPasPiqueeDesVers = petiteListeDeTechnoPasPiqueeDesVers;
 	}
 }
