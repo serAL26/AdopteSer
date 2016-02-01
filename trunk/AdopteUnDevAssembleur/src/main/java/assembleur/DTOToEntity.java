@@ -259,6 +259,7 @@ public class DTOToEntity {
         //entity.setLesNotes(listDtoNotesToNotes(dto.getLesNotes()));
         //entity.setLesProposition(listDtoPropositionToProposition(dto.getLesProposition()));
         entity.setLibelle(dto.getLibelle());
+        entity.setService(dtoTypeServiceToTypeService(dto.getService()));
         //entity.setLesServices(listDtoTypeServToTypeServ(dto.getLesServices()));
         return entity;
     }
