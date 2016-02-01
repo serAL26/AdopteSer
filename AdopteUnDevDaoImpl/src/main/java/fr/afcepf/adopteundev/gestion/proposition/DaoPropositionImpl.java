@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.gestion.proposition;
 
+import entity.Developpeur;
 import entity.Proposition;
 import fr.afcepf.adopteundev.idao.gestion.proposition.IDaoProposition;
 import org.apache.log4j.Logger;
@@ -25,4 +26,11 @@ public class DaoPropositionImpl implements IDaoProposition{
         log.warn(query.getSingleResult());
         return query.getSingleResult();
     }
+
+	@Override
+	public Proposition ajouterPropositionAuDev(Proposition proposition) {
+		em.persist(proposition);
+		em.flush();
+		return proposition;
+	}
 }

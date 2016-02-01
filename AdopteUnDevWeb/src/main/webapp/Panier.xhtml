@@ -48,9 +48,10 @@
 										</td>
 										<!-- Shopping Cart Item Actions -->
 										<td class="actions"> <h:commandLink id="deleteButton"
-												action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet,noDeveloppeur)}"
+												action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet, noDeveloppeur)}"
 												styleClass="btn btn-xs btn-grey">
 												<i class="glyphicon glyphicon-trash" />
+												#{noDeveloppeur.developpeur.nom}
 											</h:commandLink></td>
 									</tr>
 								</ui:repeat>
@@ -79,8 +80,8 @@
 						<!-- Action Buttons -->
 						<div class="pull-right">
 							<a href="#" class="btn btn-grey"><i
-								class="glyphicon glyphicon-refresh" /> UPDATE</a> <a href="#" class="btn">
-								<i class="glyphicon glyphicon-shopping-cart icon-white" /> CHECK OUT</a>
+								class="glyphicon glyphicon-refresh" /> UPDATE</a> <h:commandLink value="Valider Panier" action="#{mBPanier.validerPanier()}" >
+								<i class="glyphicon glyphicon-shopping-cart icon-white" /> </h:commandLink>
 						</div>
 					</div>
 				</div>

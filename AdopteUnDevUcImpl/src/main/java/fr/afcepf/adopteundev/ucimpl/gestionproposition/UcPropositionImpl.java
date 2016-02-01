@@ -1,8 +1,13 @@
 package fr.afcepf.adopteundev.ucimpl.gestionproposition;
 
+import java.util.Map;
+import java.util.Set;
+
 import dto.DTOProposition;
+import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
 import fr.afcepf.adopteundev.ibusiness.gestion.proposition.IBusinessProposition;
+
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -22,4 +27,8 @@ public class UcPropositionImpl implements IUcProposition{
         log.info("UCPropositionImpl : idProjet = "+idProjet);
         return businessProposition.recupPropositionValiderParProjet(idProjet);
     }
+	@Override
+	public void validerPanier(Map<Integer, Set<NoDeveloppeur>> map) {
+		businessProposition.validerPanier(map);
+	}
 }
