@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.business.projet;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.EJB;
@@ -9,6 +10,7 @@ import javax.ejb.Stateless;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOAssociationCdcFonctionnalite;
+import dto.DTOCdc;
 import dto.DTOFonctionnalite;
 import dto.DTOTypeFonctionnalite;
 import entity.AssociationCdcFonctionnalite;
@@ -71,5 +73,12 @@ public class BusinessFonctionnalite implements IBusinessFonctionnalite {
 		return EntityToDTO
 				.typeFonctionnaliteToDTOTypeFonctionnalite(daoFonctionnalite
 						.recupTypeFonctionnaliteParID(id));
+	}
+
+	@Override
+	public List<DTOFonctionnalite> recupFonctionnaliteParCDC(DTOCdc cdc) {
+		return EntityToDTO
+				.listFonctionnalitetoDTOfonctionnalite(daoFonctionnalite
+						.recupFonctionnaliteParCDC(DTOToEntity.dtoCdcToCdc(cdc)));
 	}
 }
