@@ -27,7 +27,6 @@ public class DaoCdcImpl implements IDaoCdc {
     public Cdc ajouterCdc(Cdc cdc) {
         em.persist(cdc);
         em.flush();
-        em.merge(cdc);
 
         return cdc;
     }

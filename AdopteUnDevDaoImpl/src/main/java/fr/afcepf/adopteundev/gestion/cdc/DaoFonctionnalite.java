@@ -68,4 +68,10 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 		return new HashSet<>(liste);
 	}
 
+	@Override
+	public TypeFonctionnalite recupTypeFonctionnaliteParID(Integer id) {
+		TypeFonctionnalite fonctionnalite = em.find(TypeFonctionnalite.class, id);
+		return fonctionnalite;
+	}
+
 }
