@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -24,11 +25,12 @@ import fr.afcepf.adopteundev.managedbean.util.UcName;
 @SessionScoped
 public class MBProjetParUtilisateur {
 	
-	private List<DTOProjet> listeProjetsValide;
-	private List<DTOProjet> listeProjetsEnCours;
-	private List<DTOProjet> listeProjetsArrete;
-	private List<DTOProjet> listeProjetsEnAttente;
-	private DTOCdc cdc;
+	private List<DTOProjet> listeProjetsValide = new ArrayList<>();
+	private List<DTOProjet> listeProjetsEnCours =  new ArrayList<>();
+	private List<DTOProjet> listeProjetsArrete =  new ArrayList<>();
+	private List<DTOProjet> listeProjetsEnAttente =  new ArrayList<>();
+	private DTOCdc cdc = new DTOCdc();
+	private DTOProjet projet = new DTOProjet();
 	
 	private IUCProjet gestionProjet;
 	private IUCGestionCdc gestionCdc;
@@ -111,6 +113,19 @@ public class MBProjetParUtilisateur {
 	public void setCdc(DTOCdc cdc) {
 		this.cdc = cdc;
 	}
+	
+
+
+
+	public DTOProjet getProjet() {
+		return projet;
+	}
+
+
+
+	public void setProjet(DTOProjet projet) {
+		this.projet = projet;
+	}
 
 
 
@@ -129,6 +144,13 @@ public class MBProjetParUtilisateur {
 	{
 		cdc = gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());
 		return cdc;
+	}
+	
+	public String recupProjet(DTOProjet proj)
+	{
+		projet = proj;
+		
+		return "/ProjetDetail.xhtml?faces-redirect=true";
 	}
 
 }
