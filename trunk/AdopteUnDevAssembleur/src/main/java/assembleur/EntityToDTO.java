@@ -213,8 +213,13 @@ public class EntityToDTO {
 	public static DTOLivrable livrableToDTOLivrable(Livrable livrable) {
 		DTOLivrable dTOLivrable = new DTOLivrable();
 		dTOLivrable.setIdLivrable(livrable.getIdLivrable());
+		dTOLivrable.setDescription(livrable.getDescription());
+		if(livrable.getDateLivraison()!= null) {
 		dTOLivrable.setDateLivraison(livrable.getDateLivraison());
+		}
+		if(livrable.getEcheance()!= null) {
 		dTOLivrable.setEcheance(livrable.getEcheance());
+		}
 		dTOLivrable.setFichier(livrable.getFichier());
 		dTOLivrable.setProjet(projetToDTOProjet(livrable.getProjet()));
 		dTOLivrable

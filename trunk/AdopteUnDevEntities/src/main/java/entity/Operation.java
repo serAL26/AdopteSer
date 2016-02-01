@@ -36,7 +36,6 @@ public class Operation implements Serializable{
     private Double montant;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable=false)
     private Date date;
 
     @Id

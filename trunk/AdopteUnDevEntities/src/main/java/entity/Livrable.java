@@ -45,6 +45,8 @@ public class Livrable implements Serializable{
      */
     private String fichier;
 
+    
+    private String description;
     /**
      * 
      */
@@ -119,5 +121,12 @@ public class Livrable implements Serializable{
 		this.typeEvaluation = typeEvaluation;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
     
 }

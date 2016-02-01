@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import dto.DTOClient;
+import dto.DTOLivrable;
+import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeAppli;
@@ -25,6 +27,8 @@ public interface IUCProjet {
 	public List<DTOProposition> recupToutesLesPropos();
 	public List<DTOTypeProposition> recupTousLesTypesProps();
 	DTOProjet recupProjetById(int idProjet);
+	DTOLivrable creerLivrable(DTOLivrable dtoLivrable);
+	List<DTOOperation> payerLivrable(DTOOperation dtoOperation);
 	
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 }
