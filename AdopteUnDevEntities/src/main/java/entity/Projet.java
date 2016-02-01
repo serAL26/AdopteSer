@@ -32,9 +32,9 @@ public class Projet implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_projet",nullable=false)
 	private Integer idProjet;
-
+	@Column(name="photo")
 	private String photo;
-	
+
 	/**
 	 * 
 	 */
@@ -55,11 +55,11 @@ public class Projet implements Serializable{
 	@OneToMany(mappedBy="projet")
 	private Set<Cdc> lesCdc;
 
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_type_service")
+	@JoinColumn(name="idTypeService")
 	private TypeService Service;
-	
+
 	@OneToMany(mappedBy="projet")
 	private Set<Litige> lesLitige;
 
@@ -156,5 +156,5 @@ public class Projet implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 }
