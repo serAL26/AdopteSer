@@ -14,94 +14,43 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="product-image-large">
-                            <img src="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.}" alt="image projet"/>
+                            <img src="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.photo}" alt="image projet"/>
                         </div>
                     </div>
                     <div class="col-sm-6 product-details">
-                        <h4>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}</h4>
-                        <div class="price">
-                            <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
-                        </div>
+                        <h4>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.prenom}
+                         #{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.nom}</h4>
                         <!--developpeur = 1-->
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-                            <div>
-                                <h5>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</h5>
-                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}</p>
+                             <div>
+                                <h5>Note</h5>
+                               <p:rating value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
+												readonly="true"/>
                             </div>
-                            <div>
-                                <h5> date de livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
                             </div>
-                            <div>
-                                <h5>Type du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
-                            </div>
-                            <div>
-                                <table class="shop-item-selections">
-                                    <tr>
-                                        <td><b>Vos Livrables :</b></td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <p:growl id="messages" showDetail="true"/>
-
-                            <p:fileUpload value="#{mBProjetDetail.file}" mode="simple" skinSimple="true"/>
-
-                            <p:commandButton value="Submit" ajax="false" actionListener="#{mBProjetDetail.upload}"
-                                             disabled="true"/>
-                        </h:panelGroup>
-                        <!--client = 2-->
-                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
-                        <h:panelGroup rendered="true">
-                            <div>
-                                <h5>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</h5>
-                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}</p>
-                            </div>
-                            <div>
-                                <h5> date de livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
-                            </div>
-                            <div>
-                                <h5>Type du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
-                            </div>
-                            <div>
-                                <h5>Vos livrables :</h5>
-                                <table class="shop-item-selections">
-                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
-                                        <tr>
-                                            <td>#{livrable.idLivrable}</td>
-                                            <td>#{livrable.dateLivraison}</td>
-                                            <td>#{livrable.echeance}</td>
-                                            <td>#{livrable.description}</td>
-                                        </tr>
-                                    </ui:repeat>
-                                </table>
-                            </div>
-                        </h:panelGroup>
-                    </div>
-                    <div class="col-sm-12">
+                            
+                         <div class="col-sm-12">
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
+                                <li class="active">Avis</li>
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                    <h4>Le contexte</h4>
-                                    <p>#{mBProjetDetail.cdc.contexte}</p>
-                                    <h4>Les besoins</h4>
-                                    <p>#{mBProjetDetail.cdc.besoin}</p>
+                                <ui:repeat var="com" value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.listeCommentaire}">
+                                <div style="border-bottom: 10px; background-color: grey; border-radius:10px">
+                                    <h4>#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).prenom} #{mBDetailDeveloppeur.recupClientParId(com.idNoteur).nom}</h4>
+                                    <p:rating value="#{com.note.intValue()}"
+												readonly="true"/>
+                                    <p>#{com.commentaire}</p>
+                                </div>
+                                    </ui:repeat>
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
-                    <!-- End Full Description & Specification -->
                 </div>
             </div>
-        </div>
     </ui:define>
 </ui:composition>
 </html>
