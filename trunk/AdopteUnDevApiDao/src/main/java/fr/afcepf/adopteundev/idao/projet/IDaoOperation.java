@@ -2,7 +2,6 @@ package fr.afcepf.adopteundev.idao.projet;
 
 import java.util.List;
 
-import entity.Livrable;
 import entity.Operation;
 
 public interface IDaoOperation {

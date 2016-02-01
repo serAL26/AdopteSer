@@ -1,67 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="WEB-INF/lesimportsAccueil.xhtml">
-<ui:define name="head">
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="title"></ui:define>
+	<ui:define name="body">
+		<div>
 
-</ui:define>
-<ui:define name="title"></ui:define>
-<ui:define name="body">
+			<img src="resources/img/accueilBandeau6.png"
+				style="min-width: 1600px; margin-bottom: 30px;" />
 
-<div>
-        
-						<img src="resources/img/accueilBandeau6.png" style="min-width:1600px; margin-bottom: 30px;"/>
-					
-        </div>
-
-		<!-- Services --> 
-        <div class="section">
-	        <div class="container">
-	        	<div class="row">
-	        		<div class="col-md-4 col-sm-6">
-	        			<div class="service-wrapper">
-		        			<img src="resources/img/service-icon/paymentmethod3.png" alt="Service 1"/>
-		        			<h3>Garanties bancaires</h3>
-		        			<p>Nous garantissons au client satisfaction grâce à un système de livrable. De même, un accompte est versé au développeur en cours de travail.</p>
-		        		</div>
-	        		</div>
-	        		<div class="col-md-4 col-sm-6">
-	        			<div class="service-wrapper">
-		        			<img src="resources/img/service-icon/computer152.png" alt="Service 2"/>
-		        			<h3>Sélection de développeurs</h3>
-		        			<p>En fonction de votre besoin, Adopte Un Dev vous conseille un panel de développeurs et vous indique les compétences requises pour votre projet.</p>
-		        		</div>
-	        		</div>
-	        		<div class="col-md-4 col-sm-6">
-	        			<div class="service-wrapper">
-		        			<img src="resources/img/service-icon/information18.png" alt="Service 3"/>
-		        			<h3>Aide utilisateur</h3>
-		        			<p>Adopte Un Dev vous accompagne pendant la définition et la réalisation de votre projet. Un guide vous aide à définir vos besoins et vos attentes.</p>
-		        		</div>
-	        		</div>
-	        	</div>
-	        </div>
-	    </div>
-	    <!-- End Services -->
+		</div>
+		<!-- Services -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="service-wrapper">
+							<img src="resources/img/service-icon/paymentmethod3.png"
+								alt="Service 1" />
+							<h3>Garanties bancaires</h3>
+							<p>Nous garantissons au client satisfaction grâce à un
+								système de livrable. De même, un accompte est versé au
+								développeur en cours de travail.</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="service-wrapper">
+							<img src="resources/img/service-icon/computer152.png"
+								alt="Service 2" />
+							<h3>Sélection de développeurs</h3>
+							<p>En fonction de votre besoin, Adopte Un Dev vous conseille
+								un panel de développeurs et vous indique les compétences
+								requises pour votre projet.</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="service-wrapper">
+							<img src="resources/img/service-icon/information18.png"
+								alt="Service 3" />
+							<h3>Aide utilisateur</h3>
+							<p>Adopte Un Dev vous accompagne pendant la définition et la
+								réalisation de votre projet. Un guide vous aide à définir vos
+								besoins et vos attentes.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Services -->
 
 		<!-- Call to Action Bar -->
-	    <div class="section section-white">
+		<div class="section section-white">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="calltoaction-wrapper">
 							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 3}">
-							<h3>Un développeur vous attend. Lancez-vous.</h3> 
-							<a href="Login.jsf" class="btn btn-orange">S'inscrire</a>
+								<h3>Un développeur vous attend. Lancez-vous.</h3>
+								<a href="Login.jsf" class="btn btn-orange">S'inscrire</a>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-							<h3>Un développeur vous attend. Lancez-vous.</h3> 
-							<a href="CreationProjet.jsf" class="btn btn-orange">Créer un Projet</a>
+								<h3>Un développeur vous attend. Lancez-vous.</h3>
+								<a href="CreationProjet.jsf" class="btn btn-orange">Créer un
+									Projet</a>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-							<h3>Soignez votre profil, un client vous recherche.</h3> 
+								<h3>Soignez votre profil, un client vous recherche.</h3>
 							</h:panelGroup>
 						</div>
 					</div>
@@ -77,30 +85,35 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="products-slider">
-						<ui:repeat value="#{mBAccueil.listeDev}" var="dev">
-							<div class="shop-item">
-							
-								<div class="image">
-									<a href="page-product-details.html"><img src="#{dev.photo}" alt="Item Name"/></a>
+							<ui:repeat value="#{mBAccueil.listeDev}" var="dev">
+								<div class="shop-item">
+
+									<div class="image">
+										<a href="page-product-details.html"><img
+											src="#{dev.photo}" alt="Item Name" /></a>
+									</div>
+									<div class="title">
+										<h3>
+											<a href="page-product-details.html">#{dev.prenom}
+												#{dev.nom}</a>
+										</h3>
+									</div>
+									<div class="actions">
+										<a href="page-product-details.html" class="btn btn-small"><i
+											class="icon-shopping-cart icon-white"></i> Voir</a>
+									</div>
+
 								</div>
-								<div class="title">
-									<h3><a href="page-product-details.html">#{dev.prenom} #{dev.nom}</a></h3>
-								</div>
-								<div class="actions">
-									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Voir</a>
-								</div>
-								
-							</div>
 							</ui:repeat>
-							</div>
 						</div>
 					</div>
-					
 				</div>
-			</div>
-	    
 
-	    <!-- End Testimonials -->
-</ui:define>
+			</div>
+		</div>
+
+
+		<!-- End Testimonials -->
+	</ui:define>
 </ui:composition>
 </html>
