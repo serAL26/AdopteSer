@@ -545,6 +545,14 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+	public static List<DTOFonctionnalite> listFonctionnalitetoDTOfonctionnalite(
+			List<Fonctionnalite> set) {
+		List<DTOFonctionnalite> listDto = new ArrayList<>();
+		for (Fonctionnalite entity : set) {
+			listDto.add(fonctionnaliteToDTOFonctionnalite(entity));
+		}
+		return listDto;
+	}
 
 	private static Set<DTOProjet> listProjetToDtoProjet(Set<Projet> listEntity) {
 		Set<DTOProjet> listDto = new HashSet<>();
@@ -577,20 +585,5 @@ public class EntityToDTO {
 			listeDTOTechnologie.add(technologieToDTOTechnologie(technologie));
 		}
 		return listeDTOTechnologie;
-	}
-	
-	public static List<DTOLivrable> listeLivrableToDTOLivrable(List<Livrable> listeLivrable) {
-		List<DTOLivrable> listeDTOLivrable = new ArrayList<>();
-		for (Livrable livrable : listeLivrable) {
-			listeDTOLivrable.add(livrableToDTOLivrable(livrable));
-		}
-		return listeDTOLivrable;
-	}
-	public static List<DTOOperation> listeOperationToDTOOperation(List<Operation> listeOperation) {
-		List<DTOOperation> listeDTOOperation = new ArrayList<>();
-		for (Operation operation : listeOperation) {
-			listeDTOOperation.add(operationToDTOOperation(operation));
-		}
-		return listeDTOOperation;
 	}
 }
