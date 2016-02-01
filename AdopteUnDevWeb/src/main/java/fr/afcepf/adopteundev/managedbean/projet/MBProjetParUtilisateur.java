@@ -7,25 +7,31 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import dto.DTOCdc;
 import dto.DTOClient;
 import dto.DTOProjet;
-import dto.DTOTypeAppli;
-import dto.DTOTypeService;
+import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
-import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.connexion.MBConnexion;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
+/**
+ * @author Stagiaire
+ *
+ */
 @ManagedBean
 @SessionScoped
-public class MBProjetParClient {
+public class MBProjetParUtilisateur {
 	
 	private List<DTOProjet> listeProjetsValide;
 	private List<DTOProjet> listeProjetsEnCours;
 	private List<DTOProjet> listeProjetsArrete;
+	private List<DTOProjet> listeProjetsEnAttente;
+	private DTOCdc cdc;
 	
 	private IUCProjet gestionProjet;
+	private IUCGestionCdc gestionCdc;
 	
 	@ManagedProperty(value="#{mBConnexion}")
 	private MBConnexion mBConnexion;
@@ -77,6 +83,34 @@ public class MBProjetParClient {
 	public void setmBConnexion(MBConnexion mBConnexion) {
 		this.mBConnexion = mBConnexion;
 	}
+	
+	
+
+
+
+	public List<DTOProjet> getListeProjetsEnAttente() {
+		return listeProjetsEnAttente;
+	}
+
+
+
+	public void setListeProjetsEnAttente(List<DTOProjet> listeProjetsEnAttente) {
+		this.listeProjetsEnAttente = listeProjetsEnAttente;
+	}
+	
+	
+
+
+
+	public DTOCdc getCdc() {
+		return cdc;
+	}
+
+
+
+	public void setCdc(DTOCdc cdc) {
+		this.cdc = cdc;
+	}
 
 
 
@@ -84,10 +118,17 @@ public class MBProjetParClient {
 	public void init() {
 		gestionProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
-		listeProjetsValide = gestionProjet.recupProjerParEtatParClient("Valide", (DTOClient)mBConnexion.getUtilisateur());
-		selectedAppli = new DTOTypeAppli();
-		selectedService = new DTOTypeService();
-		projetcree = new DTOProjet();
+		gestionCdc = (IUCGestionCdc)ContextFactory.createProxy(UcName.UCGESTIONCDC);
+		listeProjetsValide = gestionProjet.recupProjerParEtatParClient("Termine", (DTOClient)mBConnexion.getUtilisateur());
+		listeProjetsArrete = gestionProjet.recupProjerParEtatParClient("Arrete", (DTOClient)mBConnexion.getUtilisateur());
+		listeProjetsEnCours = gestionProjet.recupProjerParEtatParUtilisateur("Demarre", (DTOClient)mBConnexion.getUtilisateur());
+		listeProjetsEnAttente = gestionProjet.recupProjerParEtatParUtilisateur("En attente", (DTOClient)mBConnexion.getUtilisateur());
+	}
+	
+	public DTOCdc recupInfoCdc(DTOProjet projet)
+	{
+		cdc = gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());
+		return cdc;
 	}
 
 }

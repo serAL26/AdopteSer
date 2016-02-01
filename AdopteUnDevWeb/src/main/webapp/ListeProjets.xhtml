@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+    <ui:define name="head">
+
+    <ui:define name="title">Mes Projets : </ui:define>
+    </ui:define>
+    <ui:define name="body">
+    
+		<!-- Projet en attente  -->
+		
+    	    <div class="section">
+	        <div class="container">
+	        	<h2>Projets en attente</h2>
+	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnAttente}" var="projet">
+	        	<div class="row service-wrapper-row">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+        					<img src="#{projet.photo}" alt="Color Schemes">
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3>En attente de développeur</h3>
+    					<p>
+    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    					<p>
+    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+    					</p>
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	        
+	        <!-- Projet en cours -->
+	        
+	         <div class="section">
+	        <div class="container">
+	        	<h2>Projets en cours</h2>
+	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnCours}" var="projet">
+	        	<div class="row service-wrapper-row">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+        					<img src="#{projet.photo}" alt="Color Schemes">
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3>Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom} 
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}</h3>
+    					<p>
+    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    					<p>
+    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+    					</p>
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	        
+	        <!-- Projet valide -->
+	        
+	         <div class="section">
+	        <div class="container">
+	        	<h2>Projets terminé :</h2>
+	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsValide}" var="projet">
+	        	<div class="row service-wrapper-row">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+        					<img src="#{projet.photo}" alt="Color Schemes">
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3>Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}</h3>
+    					<p>
+    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    					<p>
+    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+    					</p>
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	        
+	        <!-- Projet Arrete -->
+	        
+	         <div class="section">
+	        <div class="container">
+	        	<h2>Projets suspendu :</h2>
+	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsArrete}" var="projet">
+	        	<div class="row service-wrapper-row">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+        					<img src="#{projet.photo}" alt="Color Schemes">
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3></h3>
+    					<p>
+    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    					<p>
+    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+    					</p>
+    					<p>
+    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
+    					</p>
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+    </ui:define>
+</ui:composition>
+</html>

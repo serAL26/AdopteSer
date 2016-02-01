@@ -9,6 +9,7 @@ import dto.DTOProposition;
 import dto.DTOTypeAppli;
 import dto.DTOTypeProposition;
 import dto.DTOTypeService;
+import dto.DTOUtilisateur;
 
 public interface IUCProjet {
 	public Set<DTOTypeAppli> rechercherTousApplication();
@@ -24,4 +25,6 @@ public interface IUCProjet {
 	public List<DTOProposition> recupToutesLesPropos();
 	public List<DTOTypeProposition> recupTousLesTypesProps();
 	DTOProjet recupProjetById(int idProjet);
+	
+	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, DTOUtilisateur dtoUtilisateur);
 }
