@@ -41,6 +41,8 @@ public class MBProjetDetail {
     }
 
     public DTOProposition recupPropositionValiderParClient(Integer idProjet) {
+        log.info("recupPropositionValiderParClient : In");
+        log.info("recupPropositionValiderParClient : idProjet = "+idProjet);
         return ucProposition.recupPropositionValiderParClient(idProjet);
     }
 
