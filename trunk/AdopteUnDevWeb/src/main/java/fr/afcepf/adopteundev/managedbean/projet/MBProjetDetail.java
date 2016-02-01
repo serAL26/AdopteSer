@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.managedbean.detailproposition;
+package fr.afcepf.adopteundev.managedbean.projet;
 
 import dto.DTOCdc;
 import dto.DTODeveloppeur;
