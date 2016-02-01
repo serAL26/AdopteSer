@@ -20,7 +20,7 @@
                     <div class="col-sm-6 product-details">
                         <h4>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}</h4>
                         <div class="price">
-                            <span class="price-was">$#{mBProjetDetail.cdc.tarif}</span> $#{mBProjetDetail.tarifRestant}
+                            <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
                         </div>
                         <!--developpeur = 1-->
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
