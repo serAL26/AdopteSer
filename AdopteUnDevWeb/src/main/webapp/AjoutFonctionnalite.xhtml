@@ -29,7 +29,8 @@
 									<h:selectOneMenu class="form-control"
 										value="#{mBAjoutFonctionnalite.selectedTypeFonction.idTypeFonctionnalite}">
 										<f:selectItem itemValue="-1" itemLabel="----------" />
-										<f:selectItems value="#{mBAjoutFonctionnalite.listTypeFonctionn}"
+										<f:selectItems
+											value="#{mBAjoutFonctionnalite.listTypeFonctionn}"
 											var="typeFonction"
 											itemValue="#{typeFonction.idTypeFonctionnalite}"
 											itemLabel="#{typeFonction.libelle}" />
@@ -40,26 +41,31 @@
 									</b></label>
 									<div>
 										<h:inputTextarea class="icon-user"
-											value="#{mBAjoutFonctionnalite.fonctionnaliteCree.commentaire}" />
+											value="#{mBAjoutFonctionnalite.commentaire}" />
 									</div>
 								</div>
-								<h:commandButton class="btn pull-right"
-									action="#{mBAjoutFonctionnalite.ajouterFonctionnaliteSaisi}" value="Ajouter" />
+								<h:commandLink
+									action="#{mBAjoutFonctionnalite.ajouterFonctionnaliteSaisi}"
+									value="+Fonctionnalité" />
 							</div>
 							<div class="clearfix"></div>
-							<h:panelGroup rendered="#{mBAjoutFonctionnalite.actionAjout==false}">
-							<div class="portfolio-info">
+							<h:panelGroup
+								rendered="#{mBAjoutFonctionnalite.actionAjout==false}">
+								<div class="portfolio-info">
 									<ol>
 										<ui:repeat var="fonctionnalite"
 											value="#{mBAjoutFonctionnalite.listeFonctionnaliteCree}">
 
-											<li class="portfolio-project-name">
-											<h:outputLabel value="#{fonctionnalite.typeFonctionnalite.libelle}"></h:outputLabel>
+											<li class="portfolio-project-name"><h:outputLabel
+													value="#{fonctionnalite.typeFonctionnalite.libelle}"></h:outputLabel>
 											</li>
+											<h:outputLabel value="#{fonctionnalite.commentaire}" />
 										</ui:repeat>
 									</ol>
 								</div>
 							</h:panelGroup>
+							<h:commandButton class="btn pull-center"
+								action="#{mBAjoutFonctionnalite.validerCDC}" value="Valider" />
 						</div>
 					</div>
 				</div>
