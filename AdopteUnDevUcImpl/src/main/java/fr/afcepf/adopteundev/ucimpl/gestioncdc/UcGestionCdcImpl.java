@@ -104,4 +104,9 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 	public DTOTypeCdc recupTypeCdcByLibelle(String libelle) {
 		return businessCdc.recupTypeCDCParLibelle(libelle);
 	}
+
+	@Override
+	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id) {
+		return businessFonctionnalite.recupTypeFonctionnaliteParID(id);
+	}
 }
