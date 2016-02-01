@@ -15,6 +15,7 @@ import dto.DTOProposition;
 import dto.DTOTypeAppli;
 import dto.DTOTypeProposition;
 import dto.DTOTypeService;
+import dto.DTOUtilisateur;
 import fr.afcepf.adopteundev.business.projet.IBusinessGestionProjet;
 import fr.afcepf.adopteundev.business.projet.IBusinessProposition;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeAppli;
@@ -104,5 +105,12 @@ public class UCProjet implements IUCProjet {
 	@Override
 	public DTOProjet recupProjetById(int idProjet) {
 		return businessGestionProjet.recupProjetParId(idProjet);
+	}
+
+	@Override
+	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat,
+			DTOUtilisateur dtoUtilisateur) {
+		
+		return businessGestionProjet.recupProjerParEtatParUtilisateur(etat, dtoUtilisateur);
 	}
 }
