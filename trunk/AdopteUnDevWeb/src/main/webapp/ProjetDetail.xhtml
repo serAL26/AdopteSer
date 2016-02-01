@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
@@ -20,41 +20,37 @@
                     <div class="col-sm-6 product-details">
                         <h4>#{mBProjetDetail.projet.etatProjet.libelle}</h4>
                         <div class="price">
-                            <span class="price-was">#{mBProjetDetail.cdc.tarif}</span> $999.99
+                            <span class="price-was">$#{mBProjetDetail.cdc.tarif}</span> $#{mBProjetDetail.tarifRestant}
                         </div>
                         <!--developpeur = 1-->
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-                            <h5>#{mBProjetDetail.projet.client.nom} #{mBProjetDetail.projet.client.prenom}</h5>
-                            <p>
-                                #{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}
-                            </p>
-                            <table class="shop-item-selections">
-                                <tr>
-                                    <td><b>date de livrable</b></td>
-                                    <td>
-                                        #{mBProjetDetail.cdc.dateFinEstimee.toLocaleString}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Type du projet</b></td>
-                                    <td>
-                                        #{mBProjetDetail.projet.service.libelle}
-                                    </td>
-                                </tr>
-                                <!-- Livrable -->
-                                <tr>
-                                    <td><b>Vos Livrables :</b></td>
-                                    <td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn btn"><i
-                                                class="icon-shopping-cart icon-white"/> Add to Cart</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div>
+                                <h5>#{mBProjetDetail.projet.client.nom} #{mBProjetDetail.projet.client.prenom}</h5>
+                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}</p>
+                            </div>
+                            <div>
+                                <h5> date de livrable</h5>
+                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
+                            </div>
+                            <div>
+                                <h5>Type du projet</h5>
+                                <p>#{mBProjetDetail.projet.service.libelle}</p>
+                            </div>
+                            <div>
+                                <table class="shop-item-selections">
+                                    <tr>
+                                        <td><b>Vos Livrables :</b></td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p:growl id="messages" showDetail="true"/>
+
+                            <p:fileUpload value="#{mBProjetDetail.file}" mode="simple" skinSimple="true"/>
+
+                            <p:commandButton value="Submit" ajax="false" actionListener="#{mBProjetDetail.upload}"
+                                             disabled="true"/>
                         </h:panelGroup>
                         <!--client = 2-->
                         <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
@@ -90,15 +86,10 @@
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">Le cahier des charges</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                    <h4>#{mBProjetDetail.cdc.typeCdc.libelle}</h4>
-                                    <h:panelGroup rendered="#{mBProjetDetail.cdc.lu==true}">
-                                        <p>votre cahier des charges a été lu</p></h:panelGroup>
-                                    <h:panelGroup rendered="#{mBProjetDetail.cdc.lu==false}">
-                                        <p>votre cahier des charges n'a pas été lu</p></h:panelGroup>
                                     <h4>Le contexte</h4>
                                     <p>#{mBProjetDetail.cdc.contexte}</p>
                                     <h4>Les besoins</h4>

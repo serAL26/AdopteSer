@@ -120,6 +120,11 @@ public class UCProjet implements IUCProjet {
 	}
 
 	@Override
+	public List<DTOOperation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation) {
+		return businessOperation.recupListOperationParProjetEtType(idProjet, idTypeOperation);
+	}
+
+	@Override
 	public DTOLivrable creerLivrable(DTOLivrable dtoLivrable) {
 		return businessLivrable.creerLivrable(dtoLivrable);
 	}

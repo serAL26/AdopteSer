@@ -1,19 +1,19 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import dto.DTOCdc;
-import dto.DTOLivrable;
-import dto.DTONote;
-import dto.DTOProjet;
+import dto.*;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
-import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 import org.apache.log4j.Logger;
+import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -22,19 +22,30 @@ import java.util.Set;
 @SessionScoped
 public class MBProjetDetail {
     private Logger log = Logger.getLogger(MBProjetDetail.class);
-    private DTOProjet projet;
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
+    private IUCProjet ucProjet;
+    private UploadedFile file;
     private List<DTOLivrable> livrableList;
+
+    @ManagedProperty("mbProjetParUtilisateur")
+    private DTOProjet projet;
 
 
     @PostConstruct
     private void init() {
-        IUCProjet ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
+        ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
-        projet = ucProjet.recupProjetById(2);
+        //projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
         livrableList = ucProjet.recupListLivrableParProjet(projet);
+    }
+
+    public void upload() {
+        if (file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
 
     public String commentaireDeProjetParUtilisateur(int idUtilisateur) {
@@ -69,6 +80,18 @@ public class MBProjetDetail {
         return projet;
     }
 
+    public Double getTarifRestant() {
+        Double tarif = cdc.getTarif();
+        List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(projet.getIdProjet(), 3);
+        log.info("taille de la liste des operations : "+operationList.size());
+        if (operationList != null) {
+            for (DTOOperation anOperationList : operationList) {
+                tarif -= anOperationList.getMontant();
+            }
+        }
+        return tarif;
+    }
+
     public void setProjet(DTOProjet projet) {
         this.projet = projet;
     }
@@ -87,5 +110,13 @@ public class MBProjetDetail {
 
     public void setLivrableList(List<DTOLivrable> livrableList) {
         this.livrableList = livrableList;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 }
