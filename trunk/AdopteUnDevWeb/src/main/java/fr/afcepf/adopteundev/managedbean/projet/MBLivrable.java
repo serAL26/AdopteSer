@@ -35,7 +35,7 @@ public class MBLivrable {
 	}
 	
 	public void initIsPaye() {
-		ucProjet.
+		isPaye = ucProjet.initIsPaye(dtoLivrable);
 	}
 	
 	public String creerLivrable() {
