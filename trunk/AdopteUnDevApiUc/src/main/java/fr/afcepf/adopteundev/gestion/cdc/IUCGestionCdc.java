@@ -16,7 +16,7 @@ public interface IUCGestionCdc {
 	public DTOCdc modifierCdcDto (DTOCdc cdcDto);
 	public Set<DTOTypeFonctionnalite> recupTousLesTypesFonctionnalites();
 	public DTOFonctionnalite ajouterFonctionnalite(DTOFonctionnalite dtofonct);
-	public void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
+	public DTOAssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	public List<DTOTypeCdc> recupTousLesTypeCdc();
 	public void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
 	public DTOCdc recupCdcParId(Integer id);
@@ -26,4 +26,5 @@ public interface IUCGestionCdc {
 	public DTOCdc recupCdcFinalParidProjet(Integer idProjet);
 	public DTOTypeCdc recupTypeCdcByLibelle(String libelle);
 	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
+	public List<DTOFonctionnalite> recupFonctionnaliteParCDC(DTOCdc cdc);
 }
