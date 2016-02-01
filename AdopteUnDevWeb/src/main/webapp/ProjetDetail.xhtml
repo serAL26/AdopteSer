@@ -6,88 +6,94 @@
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
-        <ui:define name="title">Detail du Projet : </ui:define>
     </ui:define>
+    <ui:define name="title">#{mBProjetDetail.projet.libelle}</ui:define>
     <ui:define name="body">
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <!-- Product Image & Available Colors -->
                     <div class="col-sm-6">
                         <div class="product-image-large">
                             <img src="#{mBProjetDetail.projet.photo}" alt="image projet"/>
                         </div>
-                        <div class="colors">
-                            <span class="color-white"/>
-                            <span class="color-black"/>
-                            <span class="color-blue"/>
-                            <span class="color-orange"/>
-                            <span class="color-green"/>
-                        </div>
                     </div>
-                    <!-- End Product Image & Available Colors -->
-                    <!-- Product Summary & Options -->
                     <div class="col-sm-6 product-details">
-                        <h4>#{mBProjetDetail.projet.libelle}</h4>
+                        <h4>#{mBProjetDetail.projet.etatProjet.libelle}</h4>
                         <div class="price">
                             <span class="price-was">#{mBProjetDetail.cdc.tarif}</span> $999.99
                         </div>
-                        <h5>#{mBProjetDetail.developpeur}Quick Overview</h5>
-                        <p>
-                            Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros.
-                        </p>
-                        <table class="shop-item-selections">
-                            <!-- Color Selector -->
-                            <tr>
-                                <td><b>Color:</b></td>
-                                <td>
-                                    <div class="dropdown choose-item-color">
-                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#"><span class="color-orange"/> Orange <b class="caret"/></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li role="menuitem"><a href="#"><span class="color-white"/> White</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-black"/> Black</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-blue"/> Blue</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-orange"/> Orange</a></li>
-                                            <li role="menuitem"><a href="#"><span class="color-green"/> Green</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Size Selector -->
-                            <tr>
-                                <td><b>Size:</b></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#">XXL <b class="caret"/></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li role="menuitem"><a href="#">XS</a></li>
-                                            <li role="menuitem"><a href="#">S</a></li>
-                                            <li role="menuitem"><a href="#">M</a></li>
-                                            <li role="menuitem"><a href="#">L</a></li>
-                                            <li role="menuitem"><a href="#">XXL</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Quantity -->
-                            <tr>
-                                <td><b>Quantity:</b></td>
-                                <td>
-                                    <input type="text" class="form-control input-sm input-micro" value="1"/>
-                                </td>
-                            </tr>
-                            <!-- Add to Cart Button -->
-                            <tr>
-                                <td> </td>
-                                <td>
-                                    <a href="#" class="btn btn"><i class="icon-shopping-cart icon-white"/> Add to Cart</a>
-                                </td>
-                            </tr>
-                        </table>
+                        <!--developpeur = 1-->
+                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+                            <h5>#{mBProjetDetail.projet.client.nom} #{mBProjetDetail.projet.client.prenom}</h5>
+                            <p>
+                                #{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}
+                            </p>
+                            <table class="shop-item-selections">
+                                <tr>
+                                    <td><b>date de livrable</b></td>
+                                    <td>
+                                        #{mBProjetDetail.cdc.dateFinEstimee.toGMTString.subSequence(0,10)}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Type du projet</b></td>
+                                    <td>
+                                        #{mBProjetDetail.projet.service.libelle}
+                                    </td>
+                                </tr>
+                                <!-- Livrable -->
+                                <tr>
+                                    <td><b>Vos Livrables :</b></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <a href="#" class="btn btn"><i
+                                                class="icon-shopping-cart icon-white"/> Add to Cart</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:panelGroup>
+                        <!--client = 2-->
+                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
+                        <h:panelGroup rendered="true">
+                            <h5>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</h5>
+                            <p>
+                                #{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}
+                            </p>
+                            <table class="shop-item-selections">
+                                <tr>
+                                    <td><b>date de livrable</b></td>
+                                    <td>
+                                        #{mBProjetDetail.cdc.dateFinEstimee}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Type du projet</b></td>
+                                    <td>
+                                        #{mBProjetDetail.projet.service.libelle}
+                                    </td>
+                                </tr>
+                                <!-- Quantity -->
+                                <tr>
+                                    <td><b>Quantity:</b></td>
+                                    <td>
+                                        <input type="text" class="form-control input-sm input-micro" value="1"/>
+                                    </td>
+                                </tr>
+                                <!-- Add to Cart Button -->
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <a href="#" class="btn btn"><i
+                                                class="icon-shopping-cart icon-white"/> Add to Cart</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:panelGroup>
                     </div>
-                    <!-- End Product Summary & Options -->
-
-                    <!-- Full Description & Specification -->
                     <div class="col-sm-12">
                         <div class="tabbable">
                             <!-- Tabs -->

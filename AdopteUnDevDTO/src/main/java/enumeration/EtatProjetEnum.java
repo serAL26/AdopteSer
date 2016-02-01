@@ -2,7 +2,7 @@ package enumeration;
 
 public enum EtatProjetEnum {
 
-	ENCOURS("Demarré"), ARRETE("Arreté"), FINI("Terminé"), ENATTENTE("En attente");
+	ENCOURS("Demarre"), ARRETE("Arrete"), FINI("Termine"), ENATTENTE("En attente");
 	
 	private String libelle = "";
 
