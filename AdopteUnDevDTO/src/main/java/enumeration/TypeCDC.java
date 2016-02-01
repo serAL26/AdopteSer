@@ -1,7 +1,7 @@
 package enumeration;
 
 public enum TypeCDC {
-REMARQUE("REMARQUE"), CDC("CAHIER DE CHARGE");
+REMARQUE("Remarque"), CDC("Cahier de charge");
 	
 	private String libelle = "";
 
