@@ -11,4 +11,7 @@ public interface IBusinessProposition {
     DTOProposition recupPropositionValiderParProjet(Integer idProjet);
     void validerPanier(Map<Integer, Set<NoDeveloppeur>>  map);
     List<DTOProposition> recupPropositionParEtatParUtilisateur(String etat, Integer id);
+    List<DTOProposition> recupPropositionNonLue(int idDeveloppeur);
+    void passerPropositionEnLue(int idProposition);
+    List<DTOProposition> recupPropositionNonLueParClient(int idClient);
 }

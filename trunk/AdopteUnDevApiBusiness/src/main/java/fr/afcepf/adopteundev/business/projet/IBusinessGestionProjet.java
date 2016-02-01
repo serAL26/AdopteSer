@@ -4,6 +4,7 @@ import java.util.List;
 
 import dto.DTOClient;
 import dto.DTOProjet;
+import dto.DTOProposition;
 import dto.DTOTypeCdc;
 import dto.DTOUtilisateur;
 
@@ -19,4 +20,5 @@ public interface IBusinessGestionProjet {
 	public DTOTypeCdc recupTypeCDCparLibelle(String libelle);
 	
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
+	public DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet);
 }

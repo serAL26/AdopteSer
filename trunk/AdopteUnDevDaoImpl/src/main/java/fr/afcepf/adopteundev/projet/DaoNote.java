@@ -19,6 +19,7 @@ public class DaoNote implements IDaoNote{
 	@PersistenceContext(unitName="AdopteUnDev")
 	private EntityManager em;
 	
+	private String recupNoteParProjet = "SELECT n FROM Note n WHERE n.projet.idProjet = :idProjet";
 	private String recupNoteParPropositionValidee = "SELECT n FROM Note n WHERE n.idEstNote = :idUtilisateur";
 	
 	@Override
@@ -26,6 +27,20 @@ public class DaoNote implements IDaoNote{
 	Query query = em.createQuery(recupNoteParPropositionValidee);
 	query.setParameter("idUtilisateur", idUtilisateur);
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Note> recupNoteParProjet(int idProjet) {
+		Query query = em.createQuery(recupNoteParProjet);
+		query.setParameter("idProjet", idProjet);
+		return query.getResultList();
+	}
+
+	@Override
+	public Note ajouterUnCommentaire(Note note) {
+		em.persist(note);
+		em.flush();
+		return note;
 	}
 
 }

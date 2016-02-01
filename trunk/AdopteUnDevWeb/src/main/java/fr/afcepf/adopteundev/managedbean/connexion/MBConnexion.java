@@ -1,8 +1,10 @@
 package fr.afcepf.adopteundev.managedbean.connexion;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.SessionBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import dto.DTOClient;
 import dto.DTOUtilisateur;
@@ -39,6 +41,12 @@ public class MBConnexion {
     	}
 	}
 
+    public String deconnexion() {
+    	FacesContext context = FacesContext.getCurrentInstance();
+    	context.getExternalContext().invalidateSession();
+    	return "/Accueil.xhtml?faces-redirect=true";
+    }
+    
 	public String seConnecter() {
         utilisateur = connexion.seConnecter(mail, mdp);
         String retour = "";

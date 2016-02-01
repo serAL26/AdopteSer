@@ -7,19 +7,18 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
-
 import dto.DTOClient;
 import dto.DTOLivrable;
+import dto.DTONote;
 import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeAppli;
 import dto.DTOTypeProposition;
 import dto.DTOTypeService;
-import dto.DTOUtilisateur;
 import fr.afcepf.adopteundev.business.projet.IBusinessGestionProjet;
 import fr.afcepf.adopteundev.business.projet.IBusinessLivrable;
+import fr.afcepf.adopteundev.business.projet.IBusinessNote;
 import fr.afcepf.adopteundev.business.projet.IBusinessOperation;
 import fr.afcepf.adopteundev.business.projet.IBusinessProposition;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeAppli;
@@ -29,7 +28,6 @@ import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 @Remote(IUCProjet.class)
 @Stateless
 public class UCProjet implements IUCProjet {
-	private static Logger log = Logger.getLogger(UCProjet.class);
 	@EJB
 	private IBusinessTypeAppli businessTypeAppli;
 	@EJB
@@ -42,6 +40,8 @@ public class UCProjet implements IUCProjet {
 	private IBusinessLivrable businessLivrable;
 	@EJB
 	private IBusinessOperation businessOperation;
+	@EJB
+	private IBusinessNote businessNote;
 	
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
@@ -143,4 +143,20 @@ public class UCProjet implements IUCProjet {
 	public boolean initIsPaye(DTOLivrable livrable) {
 		return businessLivrable.initIsPaye(livrable);
 	}
+
+	@Override
+	public DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet) {
+		return businessGestionProjet.validerProjet(dtoProposition, idProjet);
+	}
+
+	@Override
+	public List<DTONote> recupNoteParProjet(int idProjet) {
+		return businessNote.recupNoteParProjet(idProjet);
+	}
+
+	@Override
+	public DTONote ajouterUnCommentaire(DTONote dtoNote) {
+		return businessNote.ajouterUnCommentaire(dtoNote);
+	}
+	
 }
