@@ -1,8 +1,10 @@
 package fr.afcepf.adopteundev.idao.gestion.cdc;
 
+import java.util.List;
 import java.util.Set;
 
 import entity.AssociationCdcFonctionnalite;
+import entity.Cdc;
 import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
 
@@ -21,5 +23,7 @@ public interface IDaoFonctionnalite {
 	
 	public Set<TypeFonctionnalite> recupTousTypeFonctionnalite();
 	public TypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
+	
+	public List<Fonctionnalite> recupFonctionnaliteParCDC(Cdc cdc);
 		
 }
