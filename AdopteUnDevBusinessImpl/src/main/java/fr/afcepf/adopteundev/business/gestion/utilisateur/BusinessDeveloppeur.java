@@ -66,10 +66,10 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		String listeTechno ="";
 		for(int i=0; i<technologie.size() && i<3;i++) {
 			if (i==0) {
-				listeTechno += technologie.get(i+1).getTechnologieLibelle(); 
+				listeTechno += technologie.get(i).getTechnologieLibelle(); 
 			}
 			else {
-				listeTechno += " | "+technologie.get(i+1).getTechnologieLibelle();
+				listeTechno += " | "+technologie.get(i).getTechnologieLibelle();
 			}
 		}
 		return listeTechno;

@@ -23,26 +23,32 @@
                         <!--developpeur = 1-->
                              <div>
                                 <h5>Note</h5>
-                               <p:rating value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
+                               <p:rating style="30px" value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
 												readonly="true"/>
+                            </div>
+                              <div>
+                                <h5>Compétences</h5>
+                               <p:>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.petiteListeDeTechnoPasPiqueeDesVers}</p:>
                             </div>
                             </div>
                             
-                         <div class="col-sm-12">
+                       <div class="col-sm-12">
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active">Avis</li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Avis</a></li>
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
                                 <ui:repeat var="com" value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.listeCommentaire}">
-                                <div style="border-bottom: 10px; background-color: grey; border-radius:10px">
-                                    <h4>#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).prenom} #{mBDetailDeveloppeur.recupClientParId(com.idNoteur).nom}</h4>
-                                    <p:rating value="#{com.note.intValue()}"
-												readonly="true"/>
-                                    <p>#{com.commentaire}</p>
-                                </div>
+                                <div style="border-bottom: 10px; border: 2px #4f8db3 solid; border-radius:8px; padding: 5px; margin-bottom: 10px">
+                                <ul style="list-style: none">
+                                  <li class="portfolio-project-name"><h4>#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).prenom} #{mBDetailDeveloppeur.recupClientParId(com.idNoteur).nom}</h4></li>
+                                  <li style="margin-bottom: 30px"><p:rating value="#{com.note.intValue()}"
+												readonly="true" style=""/></li>
+                                  <li><p>#{com.commentaire}</p></li>
+                                  </ul>
+                                  </div>
                                     </ui:repeat>
                                 </div>
                             </div>
