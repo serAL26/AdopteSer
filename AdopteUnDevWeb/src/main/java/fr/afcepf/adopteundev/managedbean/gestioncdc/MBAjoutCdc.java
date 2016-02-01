@@ -144,6 +144,7 @@ public class MBAjoutCdc {
 
 	public String redirectAjouterFonctionnalite() {
 		cdc = ajouterCDC();
+		System.out.println("id cdc "  +cdc.getIdCdc());
 		if (cdc.getIdCdc() != null)
 			return "AjoutFonctionnalite.xhtml" + "?faces-redirect=true";
 		return "";
@@ -157,6 +158,7 @@ public class MBAjoutCdc {
 		cdc.setExistant(existant);
 		cdc.setLu(true);
 		cdc.setProjet(projet);
+		System.out.println("id projet " + projet.getIdProjet());
 		cdc.setTarif(tarif);
 		return gestionCdc.ajouterCdcDto(cdc);
 	}
