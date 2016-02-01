@@ -276,6 +276,7 @@ public class EntityToDTO {
 		// dTOProjet.setLesNotes(listNotesToDtoNotes(projet.getLesNotes()));
 		// dTOProjet.setLesProposition(listPropositionsToDtoPropositions(projet.getLesProposition()));
 		dTOProjet.setLibelle(projet.getLibelle());
+		dTOProjet.setService(typeServiceToDTOTypeService(projet.getService()));
 		// dTOProjet.setLesServices(listTypeServToDtoTypeServ(projet.getLesServices()));
 		return dTOProjet;
 	}
