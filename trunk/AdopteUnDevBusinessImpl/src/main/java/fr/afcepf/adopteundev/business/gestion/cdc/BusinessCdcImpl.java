@@ -2,6 +2,7 @@ package fr.afcepf.adopteundev.business.gestion.cdc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.InflaterOutputStream;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;

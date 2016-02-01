@@ -1,9 +1,6 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import dto.DTOCdc;
-import dto.DTODeveloppeur;
-import dto.DTOProjet;
-import dto.DTOProposition;
+import dto.*;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
@@ -14,6 +11,9 @@ import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @ManagedBean
@@ -25,7 +25,6 @@ public class MBProjetDetail {
     private IUcProposition ucProposition;
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
-    private DTOProposition proposition;
     private String tarifCdc;
 
 
@@ -37,15 +36,35 @@ public class MBProjetDetail {
         projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
         tarifCdc = transformTarif(cdc);
-        proposition = recupPropositionValiderParProjet(projet.getIdProjet());
     }
 
-    public DTOProposition recupPropositionValiderParProjet(Integer idProjet) {
-        log.info("recupPropositionValiderParClient : In");
-        log.info("recupPropositionValiderParClient : idProjet = "+idProjet);
-        DTOProposition proposition1 = new DTOProposition();
-        //proposition1 = ucProposition.recupPropositionValiderParProjet(idProjet);
-        return proposition1;
+    public String commentaireDeProjetParUtilisateur(int idUtilisateur){
+        return getNoteParUtilisateur(idUtilisateur).getCommentaire();
+    }
+
+    private DTONote getNoteParUtilisateur(int idUtilisateur) {
+        DTONote note = new DTONote();
+        Set<DTONote> noteSet = projet.getLesNotes();
+        if (noteSet!= null){
+            for (DTONote note2 :
+                    noteSet) {
+                if (note2.getIdEstNote() != idUtilisateur)
+                    note = note2;
+            }
+        }else{
+            //pour le test
+            note.setNote(5.0);
+            note.setCommentaire("test test test");
+            note.setDate(new Date());
+            note.setIdEstNote(1);
+            note.setIdNoteur(17);
+        }
+        return note;
+    }
+    public List<DTOLivrable> getLesLivrableDuProjet(int idProjet){
+        List<DTOLivrable>liste = new ArrayList<>();
+
+        return liste;
     }
 
     public DTOCdc getFinalCdc(){
@@ -58,23 +77,6 @@ public class MBProjetDetail {
 
     public DTOProjet getProjet() {
         return projet;
-    }
-
-    public DTODeveloppeur getDeveloppeur(){
-        log.info("mbProjetDetail : In");
-        Set<DTOProposition> propositionSet = projet.getLesProposition();
-        log.info("mbProjetDetail : les propositions = "+ propositionSet);
-        DTODeveloppeur dev = new DTODeveloppeur();
-        if (propositionSet != null){
-            for (DTOProposition proposition :
-                    propositionSet) {
-                if (proposition.getTypeProposition().getIdTypeProposition()==3){
-                    dev = proposition.getDeveloppeur();
-                }
-            }
-        }
-        log.info("mbProjetDetail : getDeveloppeur = "+dev);
-        return dev;
     }
 
     public void setProjet(DTOProjet projet) {
@@ -95,13 +97,5 @@ public class MBProjetDetail {
 
     public void setTarifCdc(String tarifCdc) {
         this.tarifCdc = tarifCdc;
-    }
-
-    public DTOProposition getProposition() {
-        return proposition;
-    }
-
-    public void setProposition(DTOProposition proposition) {
-        this.proposition = proposition;
     }
 }
