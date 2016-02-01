@@ -53,9 +53,7 @@ public class TypeService implements Serializable {
 	@OneToMany(mappedBy = "typeService")
 	private Set<AssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
 	
-	@ManyToOne
-	@JoinColumn(name = "idProjet")
-	private Projet projet;
+	
 
 	public TypeAppli getTypeAppli() {
 		return typeAppli;
@@ -90,12 +88,6 @@ public class TypeService implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public Projet getProjet() {
-		return projet;
-	}
-
-	public void setProjet(Projet projet) {
-		this.projet = projet;
-	}
+	
 
 }

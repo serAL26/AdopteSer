@@ -56,8 +56,9 @@ public class Projet implements Serializable{
 	private Set<Cdc> lesCdc;
 
 	
-	@OneToMany(mappedBy="projet")
-	private Set<TypeService> lesServices;
+	@ManyToOne
+	@JoinColumn(name="id_type_service")
+	private TypeService Service;
 	
 	@OneToMany(mappedBy="projet")
 	private Set<Litige> lesLitige;
@@ -140,12 +141,12 @@ public class Projet implements Serializable{
 		this.lesProposition = lesProposition;
 	}
 
-	public Set<TypeService> getLesServices() {
-		return lesServices;
+	public TypeService getService() {
+		return Service;
 	}
 
-	public void setLesServices(Set<TypeService> lesServices) {
-		this.lesServices = lesServices;
+	public void setService(TypeService service) {
+		Service = service;
 	}
 
 	public String getPhoto() {
@@ -155,4 +156,5 @@ public class Projet implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	
 }
