@@ -5,6 +5,7 @@ import java.util.List;
 import dto.DTOClient;
 import dto.DTOProjet;
 import dto.DTOTypeCdc;
+import dto.DTOUtilisateur;
 
 public interface IBusinessGestionProjet {
 
@@ -16,4 +17,6 @@ public interface IBusinessGestionProjet {
 	public List<DTOProjet> recupProjerParEtatParClient(String etat, DTOClient client);
 	public DTOProjet recupProjetParId(int idProjet);
 	public DTOTypeCdc recupTypeCDCparLibelle(String libelle);
+	
+	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, DTOUtilisateur dtoUtilisateur);
 }

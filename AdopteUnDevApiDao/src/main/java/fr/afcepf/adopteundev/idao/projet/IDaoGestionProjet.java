@@ -3,6 +3,7 @@ package fr.afcepf.adopteundev.idao.projet;
 import java.util.List;
 
 import entity.Client;
+import entity.Developpeur;
 import entity.Projet;
 
 public interface IDaoGestionProjet {
@@ -15,6 +16,8 @@ public interface IDaoGestionProjet {
 	public List<Projet> recupProjerParEtat(String etat);
 	
 	public List<Projet> recupProjerParEtatParClient(String etat, Client client);
+	public List<Projet> recupProjetParEtatParDev(String etat, Developpeur dev);
+	
 	Projet recupProjetParId(int idProjet);
 	
 
