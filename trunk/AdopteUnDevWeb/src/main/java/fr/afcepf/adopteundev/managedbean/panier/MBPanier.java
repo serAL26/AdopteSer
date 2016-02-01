@@ -14,6 +14,7 @@ import dto.DTOProjet;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
+import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.MBCatalogueDeveloppeur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
@@ -25,6 +26,7 @@ public class MBPanier {
     IUCPanier panierUc;
     IUcUtilisateur ucUtilisateur;
     IUCProjet ucProjet;
+    IUcProposition ucProposition;
 
     @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
     private MBCatalogueDeveloppeur mBCatalogueDeveloppeur;
@@ -38,9 +40,14 @@ public class MBPanier {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
+        ucProposition = (IUcProposition) ContextFactory.createProxy(UcName.UCGESTIONPROPOSITION);
         initListProjet();
     }
 
+    public void validerPanier() {
+    	ucProposition.validerPanier(mBCatalogueDeveloppeur.getPanier());
+    }
+    
     public String retirerDeveloppeurAuPanier(int idProjet,NoDeveloppeur developpeur) {
         Set<NoDeveloppeur> noDeveloppeurSet = mBCatalogueDeveloppeur.getPanier().get(idProjet);
         noDeveloppeurSet.remove(developpeur);
