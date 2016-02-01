@@ -25,6 +25,7 @@ import fr.afcepf.adopteundev.managedbean.util.UcName;
 @SessionScoped
 public class MBCatalogueDeveloppeur {
     private List<NoDeveloppeur> listFiche = new ArrayList<>();
+	private List<NoDeveloppeur> listeDevWeb = new ArrayList<>();
     private List<DTOProjet> projetList = new ArrayList<>();
     private Map<Integer, Set<NoDeveloppeur>> panier = new HashMap<>();
     private DTOProjet projetSelectionne = new DTOProjet();
@@ -45,8 +46,16 @@ public class MBCatalogueDeveloppeur {
     	panier.put(idProjet, setDeveloppeur);
         return "";
     }
+    
+ 
+	public List<NoDeveloppeur> getListeDevWeb() {
+		return listeDevWeb;
+	}
+	public void setListeDevWeb(List<NoDeveloppeur> listeDevWeb) {
+		this.listeDevWeb = listeDevWeb;
+	}
 
-    //getter,setter et init methodes
+	//getter,setter et init methodes
     public List<NoDeveloppeur> getListFiche() {
         return listFiche;
     }
@@ -69,6 +78,11 @@ public class MBCatalogueDeveloppeur {
 
     private List<NoDeveloppeur> initFichesDeveloppeur() {
     	List<DTODeveloppeur> listeTousLesDevs = ucUtilisateur.recupTousLesDeveloppeurs();
+    	List<DTODeveloppeur> listeDtoDevWeb= ucUtilisateur.recupDevWeb();
+    	for (DTODeveloppeur dtoDeveloppeur : listeDtoDevWeb) {
+    		NoDeveloppeur developpeur = ucUtilisateur.creerNoDeveloppeur(dtoDeveloppeur);
+    		listeDevWeb.add(developpeur);
+		}
     	List<NoDeveloppeur> listeNoDeveloppeur = new ArrayList<>();
     	for (DTODeveloppeur dtoDeveloppeur : listeTousLesDevs) {
     		listeNoDeveloppeur.add(panierUc.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
@@ -124,7 +138,7 @@ public class MBCatalogueDeveloppeur {
 	public String recupDeveloppeur(NoDeveloppeur developpeur)
 	{
 		dev = developpeur;
-		return "/DeveloppeurDetail.xhtml?faces-redirect=true";
+		return "/DetailDeveloppeur.xhtml?faces-redirect=true";
 	}
 	
 }

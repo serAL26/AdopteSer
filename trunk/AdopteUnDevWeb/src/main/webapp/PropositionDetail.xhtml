@@ -7,41 +7,34 @@
     <ui:define name="head">
 
     </ui:define>
-    <ui:define name="title">#{mBProjetDetail.mBProjetParUtilisateur.projet.libelle}</ui:define>
+    <ui:define name="title">Détail Proposition</ui:define>
     <ui:define name="body">
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="product-image-large">
-                            <img src="#{mBProjetDetail.mBProjetParUtilisateur.projet.photo}" alt="image projet"/>
+                            <img src="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.projet.photo}" alt="image projet"/>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-sm-5 product-details">
-                        <div>
-                         <h5>Tarif</h5>
-                        </div>
+                        <h4>#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.projet.libelle}</h4>
                         <div class="price">
                             <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
                         </div>
-                        <div>
-                        <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.cdc.projet.etatProjet.libelle} <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
-                                
-                            </div>
                         <!--developpeur = 1-->
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
                             <div>
-                                <h5>Porteur du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</p>
+                                <h5>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</h5>
+                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}</p>
                             </div>
                             <br/>
                             <div>
-                                <h5>Date de Livrable</h5>
+                                <h5> date de livrable</h5>
                                 <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
                             </div>
                             <div>
-                                <h5>Type de projet</h5>
+                                <h5>Type du projet</h5>
                                 <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
                             </div>
                         </h:panelGroup>

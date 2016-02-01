@@ -24,12 +24,12 @@
 	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-									<a href="Accueil.jsf">
-        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+									<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></h:commandLink>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    					<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}"><h3>#{prop.projet.libelle}</h3></h:commandLink>
     					<p>
     						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
     					</p>
@@ -74,12 +74,12 @@
 	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-									<a href="Accueil.jsf">
-        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+									<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></h:commandLink>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    				<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}">	<h3>#{prop.projet.libelle}</h3></h:commandLink>
     					<p>
     						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
     					</p>
@@ -124,12 +124,12 @@
 	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-									<a href="Accueil.jsf">
-        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+									<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></h:commandLink>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    					<h:commandLink action="#{mBPropositionParUtilisateur.recupProposition(prop)}"><h3>#{prop.projet.libelle}</h3></h:commandLink>
     					<p>
     						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
     					</p>

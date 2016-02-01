@@ -18,18 +18,31 @@
                         </div>
                     </div>
                     <div class="col-sm-6 product-details">
+                    <ul style="list-style: none">
+                    <li>
                         <h4>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.prenom}
                          #{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.nom}</h4>
                         <!--developpeur = 1-->
-                             <div>
+                        </li>
+                       	 	<li style="margin-bottom: 50px">
                                 <h5>Note</h5>
-                               <p:rating style="30px" value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
+                               <p:rating value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
 												readonly="true"/>
-                            </div>
-                              <div>
+                            </li>
+                              <li>
                                 <h5>Compétences</h5>
-                               <p:>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.petiteListeDeTechnoPasPiqueeDesVers}</p:>
-                            </div>
+                               <p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.petiteListeDeTechnoPasPiqueeDesVers}</p>
+                            </li>
+                               <li>
+                                <h5>Contacts</h5>
+                             <p><img src= "resources/img/mail59.png" style="margin-right: 10px"/>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.mail}</p>
+                               <p><img src= "resources/img/phone399.png" style="margin-right: 10px"/>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.portable}</p>
+                            </li>
+                            <li>
+                             <h5>Date d'inscription</h5>
+                               <p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.dateInscription.toString().subSequence(0,10)}</p>
+                            </li>
+                          </ul>
                             </div>
                             
                        <div class="col-sm-12">

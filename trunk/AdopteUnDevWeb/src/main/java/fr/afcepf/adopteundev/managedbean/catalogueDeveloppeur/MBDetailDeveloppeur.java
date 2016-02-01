@@ -9,7 +9,6 @@ import dto.DTOClient;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
-import fr.afcepf.adopteundev.managedbean.projet.MBProjetParUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
