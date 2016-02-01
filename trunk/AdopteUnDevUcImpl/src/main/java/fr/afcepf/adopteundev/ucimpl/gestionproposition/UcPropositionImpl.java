@@ -17,7 +17,9 @@ public class UcPropositionImpl implements IUcProposition{
     @EJB
     private IBusinessProposition businessProposition;
     @Override
-    public DTOProposition recupPropositionValiderParClient(Integer idProjet) {
-        return businessProposition.recupPropositionValiderParClient(idProjet);
+    public DTOProposition recupPropositionValiderParProjet(Integer idProjet) {
+        log.info("UCPropositionImpl : In");
+        log.info("UCPropositionImpl : idProjet = "+idProjet);
+        return businessProposition.recupPropositionValiderParProjet(idProjet);
     }
 }

@@ -37,13 +37,15 @@ public class MBProjetDetail {
         projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
         tarifCdc = transformTarif(cdc);
-        proposition = recupPropositionValiderParClient(projet.getIdProjet());
+        proposition = recupPropositionValiderParProjet(projet.getIdProjet());
     }
 
-    public DTOProposition recupPropositionValiderParClient(Integer idProjet) {
+    public DTOProposition recupPropositionValiderParProjet(Integer idProjet) {
         log.info("recupPropositionValiderParClient : In");
         log.info("recupPropositionValiderParClient : idProjet = "+idProjet);
-        return ucProposition.recupPropositionValiderParClient(idProjet);
+        DTOProposition proposition1 = new DTOProposition();
+        //proposition1 = ucProposition.recupPropositionValiderParProjet(idProjet);
+        return proposition1;
     }
 
     public DTOCdc getFinalCdc(){
