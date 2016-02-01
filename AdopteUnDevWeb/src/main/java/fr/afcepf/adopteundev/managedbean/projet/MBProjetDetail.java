@@ -28,8 +28,8 @@ public class MBProjetDetail {
     private UploadedFile file;
     private List<DTOLivrable> livrableList;
 
-    @ManagedProperty("mbProjetParUtilisateur")
-    private DTOProjet projet;
+    @ManagedProperty(value="#{mBProjetParUtilisateur}")
+    private MBProjetParUtilisateur mBProjetParUtilisateur;
 
 
     @PostConstruct
@@ -38,7 +38,7 @@ public class MBProjetDetail {
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
         //projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
-        livrableList = ucProjet.recupListLivrableParProjet(projet);
+        livrableList = ucProjet.recupListLivrableParProjet(mBProjetParUtilisateur.getProjet());
     }
 
     public void upload() {
@@ -54,7 +54,7 @@ public class MBProjetDetail {
 
     private DTONote getNoteParUtilisateur(int idUtilisateur) {
         DTONote note = new DTONote();
-        Set<DTONote> noteSet = projet.getLesNotes();
+        Set<DTONote> noteSet = mBProjetParUtilisateur.getProjet().getLesNotes();
         if (noteSet != null) {
             for (DTONote note2 :
                     noteSet) {
@@ -73,16 +73,23 @@ public class MBProjetDetail {
     }
 
     public DTOCdc getFinalCdc() {
-        return gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());
+        return gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
     }
 
-    public DTOProjet getProjet() {
-        return projet;
-    }
+    
 
-    public Double getTarifRestant() {
+    public MBProjetParUtilisateur getmBProjetParUtilisateur() {
+		return mBProjetParUtilisateur;
+	}
+
+	public void setmBProjetParUtilisateur(
+			MBProjetParUtilisateur mBProjetParUtilisateur) {
+		this.mBProjetParUtilisateur = mBProjetParUtilisateur;
+	}
+
+	public Double getTarifRestant() {
         Double tarif = cdc.getTarif();
-        List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(projet.getIdProjet(), 3);
+        List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
         log.info("taille de la liste des operations : "+operationList.size());
         if (operationList != null) {
             for (DTOOperation anOperationList : operationList) {
@@ -92,9 +99,6 @@ public class MBProjetDetail {
         return tarif;
     }
 
-    public void setProjet(DTOProjet projet) {
-        this.projet = projet;
-    }
 
     public DTOCdc getCdc() {
         return cdc;

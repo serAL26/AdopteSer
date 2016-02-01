@@ -20,12 +20,12 @@
 	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-									<a href="Accueil.jsf">
-        					<img src="#{projet.photo}" alt="Color Schemes"/></a>
+        				<h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">
+        					<img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3><a href="Accueil.jsf">#{projet.libelle}</a></h3>
+    					<h3><a href="ProjetDetail.jsf" onclick="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</a></h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
     					</p>

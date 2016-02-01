@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------
-	General Style
+  General Style
 --------------------------------------------------------------------------*/
 body {
   background: url(../img/page-background.png);
@@ -64,17 +64,13 @@ div[class*="span"] {
   -ms-transition: all .4s linear;
   transition: all .4s linear;
 }
-textarea {
-    width: 100%;
-    height: 80px;
-}
 /*--------------------------------------------------------------------------
-	Typography Style
+  Typography Style
 --------------------------------------------------------------------------*/
 body {
+  line-height: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 20px;
   color: #535b60;
 }
 h1 {
@@ -108,7 +104,7 @@ a:hover {
   color: #2f556d;
 }
 /*--------------------------------------------------------------------------
-+	Services Style
++ Services Style
 --------------------------------------------------------------------------*/
 /* Multicolumn */
 .service-wrapper {
@@ -145,28 +141,6 @@ a:hover {
   padding-top: 15px;
   text-align: center;
 }
-fieldset {
-    border: 2px solid #933939;
-    margin: 0px 2px;
-    padding: 0.35em 0.625em 0.75em;
-}
-legend {
-    display: block;
-    width: 100%;
-    padding: 0px;
-    margin-bottom: 21px;
-    font-size: 21px;
-    line-height: inherit;
-    color: #324F93;
-    border-width: 0px 0px 2px;
-    border-style: none none solid;
-    border-color: -moz-use-text-color -moz-use-text-color #C04343;
-    -moz-border-top-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    border-image: none;
-}
 .service-wrapper-row .service-image img {
   max-width: 80%;
   vertical-align: bottom;
@@ -184,7 +158,7 @@ legend {
   color: 0 0 8px #999;
 }
 /*--------------------------------------------------------------------------
-+	Pricing Table Style
++ Pricing Table Style
 --------------------------------------------------------------------------*/
 .pricing-plan {
   float: left;
@@ -383,7 +357,7 @@ legend {
   }
 }
 /*--------------------------------------------------------------------------
-+	Contact Us Style
++ Contact Us Style
 --------------------------------------------------------------------------*/
 #contact-us-map {
   height: 300px;
@@ -397,7 +371,7 @@ legend {
   font-size: 0.9em;
 }
 /*--------------------------------------------------------------------------
-+	Video Wrapper Style
++ Video Wrapper Style
 --------------------------------------------------------------------------*/
 .video-wrapper {
   -webkit-box-shadow: 0 0 5px #000;
@@ -407,7 +381,7 @@ legend {
   margin: 20px 0;
 }
 /*--------------------------------------------------------------------------
-+	Call to Action Bar Style
++ Call to Action Bar Style
 --------------------------------------------------------------------------*/
 .calltoaction-wrapper {
   text-align: center;
@@ -422,7 +396,7 @@ legend {
   vertical-align: top;
 }
 /*--------------------------------------------------------------------------
-+	Testimonials Style
++ Testimonials Style
 --------------------------------------------------------------------------*/
 .testimonial blockquote {
   margin: 0;
@@ -491,13 +465,13 @@ legend {
   font-size: 0.8em;
 }
 /*--------------------------------------------------------------------------
-+	Clients Logos Style
++ Clients Logos Style
 --------------------------------------------------------------------------*/
 .clients-logo-wrapper img {
   max-width: 100%;
 }
 /*--------------------------------------------------------------------------
-+	News Style
++ News Style
 --------------------------------------------------------------------------*/
 .featured-news .caption,
 .latest-news .caption {
@@ -539,7 +513,7 @@ legend {
   color: inset 0 1px #fff,0 0 8px #c8cfe6;
 }
 /*--------------------------------------------------------------------------
-+	Frequently Asked Questions Style
++ Frequently Asked Questions Style
 --------------------------------------------------------------------------*/
 .faq-wrapper h3 {
   margin-top: 20px !important;
@@ -553,7 +527,7 @@ legend {
   font-weight: 600;
 }
 /*--------------------------------------------------------------------------
-+	Blog Style
++ Blog Style
 --------------------------------------------------------------------------*/
 /* Posts List */
 .blog-post {
@@ -752,7 +726,7 @@ legend {
   color: #535b60;
 }
 /*--------------------------------------------------------------------------
-+	E-commerce Style
++ E-commerce Style
 --------------------------------------------------------------------------*/
 .shop-item {
   position: relative;
@@ -880,7 +854,7 @@ span.color-red {
   border-color: #ab0d0d;
 }
 /*--------------------------------------------------------------------------
-+	Product Details Page Style
++ Product Details Page Style
 --------------------------------------------------------------------------*/
 .product-image-large {
   border: 8px solid #FFF;
@@ -982,7 +956,7 @@ span.color-red {
   border-bottom: 0;
 }
 /*--------------------------------------------------------------------------
-+	Shopping Cart Style
++ Shopping Cart Style
 --------------------------------------------------------------------------*/
 .shopping-cart {
   margin: 10px 0 0 0;
@@ -1074,7 +1048,7 @@ span.color-red {
   }
 }
 /*--------------------------------------------------------------------------
-+	Products Slider Style
++ Products Slider Style
 --------------------------------------------------------------------------*/
 .products-slider .shop-item {
   border: 0;
@@ -1126,7 +1100,7 @@ span.color-red {
   }
 }
 /*--------------------------------------------------------------------------
-+	Events List Style
++ Events List Style
 --------------------------------------------------------------------------*/
 .events-list {
   width: 100%;
@@ -1169,7 +1143,7 @@ span.color-red {
   white-space: nowrap;
 }
 /*--------------------------------------------------------------------------
-+	Jobs list Style
++ Jobs list Style
 --------------------------------------------------------------------------*/
 .jobs-list {
   width: 100%;
@@ -1269,7 +1243,7 @@ span.color-red {
   text-align: justify;
 }
 /*--------------------------------------------------------------------------
-+	Login/Register/Reset Password Forms Style
++ Login/Register/Reset Password Forms Style
 --------------------------------------------------------------------------*/
 .basic-login {
   background: rgba(255, 255, 255, 0.8);
@@ -1374,8 +1348,33 @@ span.color-red {
   margin-top: 30px;
   border-top: 1px solid #CCC;
 }
+
+.basic-ajout {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 20px 10px 20px;
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+  -webkit-box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
+  -moz-box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
+  box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
+  color: inset 0 1px #fff,0 0 4px #c8cfe6;
+}
+.basic-login form {
+  margin: 0;
+}
+.basic-login label {
+  line-height: 30px;
+  font-size: 1.2em;
+}
+.basic-login input[type="checkbox"] {
+  margin-top: 4px;
+}
 /*--------------------------------------------------------------------------
-+	'In Press' Style
++ 'In Press' Style
 --------------------------------------------------------------------------*/
 .in-press a {
   color: #a0a7ac;
@@ -1437,7 +1436,7 @@ span.color-red {
   background-position: -240px -32px;
 }
 /*--------------------------------------------------------------------------
-+	Portfolio Style
++ Portfolio Style
 --------------------------------------------------------------------------*/
 .portfolio-item {
   position: relative;
@@ -1556,7 +1555,7 @@ span.color-red {
   padding: 0;
 }
 /*--------------------------------------------------------------------------
-+	Our Team Style
++ Our Team Style
 --------------------------------------------------------------------------*/
 .team-member {
   position: relative;
@@ -1621,7 +1620,7 @@ span.color-red {
   opacity: 1;
 }
 /*--------------------------------------------------------------------------
-+	Sitemap Style
++ Sitemap Style
 --------------------------------------------------------------------------*/
 .sitemap {
   margin-left: 0;
@@ -1647,7 +1646,7 @@ span.color-red {
   font-weight: 400;
 }
 /*--------------------------------------------------------------------------
-+	Coming Soon Page Style
++ Coming Soon Page Style
 --------------------------------------------------------------------------*/
 .coming-soon-top {
   background: #FFF;
@@ -1712,7 +1711,7 @@ span.color-red {
   left: 0;
 }
 /*--------------------------------------------------------------------------
-+	Breadcrumbs Section Style
++ Breadcrumbs Section Style
 --------------------------------------------------------------------------*/
 .section-breadcrumbs {
   background: #222;
@@ -1726,7 +1725,7 @@ span.color-red {
   text-transform: none;
 }
 /*--------------------------------------------------------------------------
-	Footer Style
+  Footer Style
 --------------------------------------------------------------------------*/
 .footer {
   background: #222;
@@ -1791,7 +1790,7 @@ span.color-red {
   font-size: 0.9em;
 }
 /*--------------------------------------------------------------------------
-+	Pagination Style (overrides Bootstrap style)
++ Pagination Style (overrides Bootstrap style)
 --------------------------------------------------------------------------*/
 .pagination-wrapper {
   margin-top: 15px;
@@ -1837,7 +1836,7 @@ span.color-red {
   cursor: default;
 }
 /*--------------------------------------------------------------------------
-+	Custom Style for Maps
++ Custom Style for Maps
 --------------------------------------------------------------------------*/
 .leaflet-popup-content-wrapper {
   -webkit-border-radius: 5px;
@@ -1848,7 +1847,7 @@ span.color-red {
   background-clip: padding-box;
 }
 /*--------------------------------------------------------------------------
-+	Custom Style for Tabs (overrides Bootstrap)
++ Custom Style for Tabs (overrides Bootstrap)
 --------------------------------------------------------------------------*/
 .nav-tabs > li > a {
   font-size: 1.1em;
@@ -1866,7 +1865,7 @@ span.color-red {
   cursor: default;
 }
 /*--------------------------------------------------------------------------
-+	404 Page Style
++ 404 Page Style
 --------------------------------------------------------------------------*/
 .error-page-wrapper {
   font-size: 1.5em;
@@ -1875,7 +1874,7 @@ span.color-red {
   text-align: center;
 }
 /*--------------------------------------------------------------------------
-+	Homepage Slider Style (modified sequencejs CSS). Sorry, no LESS here
++ Homepage Slider Style (modified sequencejs CSS). Sorry, no LESS here
 --------------------------------------------------------------------------*/
 #sequence {
   overflow: hidden;
@@ -2241,7 +2240,7 @@ span.color-red {
   }
 }
 /*--------------------------------------------------------------------------
-+	Content Slider Style (bxSlider CSS), Sorry, no LESS here
++ Content Slider Style (bxSlider CSS), Sorry, no LESS here
 --------------------------------------------------------------------------*/
 .bx-wrapper {
   position: relative;
@@ -2388,7 +2387,7 @@ span.color-red {
   padding: 10px;
 }
 /*--------------------------------------------------------------------------
-+	Main Menu Style
++ Main Menu Style
 --------------------------------------------------------------------------*/
 .mainmenu li.logo-wrapper a {
   border-right: 1px solid #E8E8E8;
@@ -2408,9 +2407,10 @@ span.color-red {
   /* sub-menu */
 }
 .mainmenu ul {
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style-type: none;
+  text-align: center;;
 }
 .mainmenu > ul,
 .mainmenu .mainmenu-submenu-inner {
@@ -2418,16 +2418,16 @@ span.color-red {
 }
 .mainmenu > ul > li,
 .mainmenu .mainmenu-submenu-inner > li {
+  *: ;
   display: inline-block;
-  *display: inline;
 }
 .mainmenu > ul > li > a,
 .mainmenu .mainmenu-submenu-inner > li > a {
-  font-size: 1.2em;
-  padding: 1.2em 1.5em;
-  color: #999;
   display: inline-block;
   text-decoration: none;
+  color: #999;
+  font-size: 1.2em;
+  padding: 1.2em 1.5em;
 }
 .mainmenu > ul > li > a:hover,
 .mainmenu .mainmenu-submenu-inner > li > a:hover {
@@ -2450,8 +2450,8 @@ span.color-red {
   display: none;
   position: absolute;
   background: #4f8db3;
-  width: 100%;
-  left: 0;
+  width: 190px;
+  left: 5;
   z-index: 999;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -2480,7 +2480,9 @@ span.color-red {
 }
 .mainmenu-open .mainmenu-submenu {
   display: block;
-  padding-bottom: 3em;
+  font-size: 108%;
+  padding-top: 10px;
+  padding-bottom: 10px
 }
 .mainmenu-submenu h4 {
   color: #bad2e1;
@@ -2490,7 +2492,8 @@ span.color-red {
   font-weight: 300;
 }
 .mainmenu-submenu ul {
-  margin-left: 20px;
+  margin-left: 0px;
+  line-height: 30px;
 }
 @media screen and (max-width: 979px) {
   .mainmenu {
@@ -2542,7 +2545,7 @@ span.color-red {
   }
 }
 /*--------------------------------------------------------------------------
-+	Extras Menu (Cart, Language, Login) Style
++ Extras Menu (Cart, Language, Login) Style
 --------------------------------------------------------------------------*/
 .menuextras {
   font-size: 0.85em;
@@ -2589,7 +2592,7 @@ span.color-red {
   background-color: #333 !important;
 }
 /*--------------------------------------------------------------------------
-+	Buttons Style
++ Buttons Style
 --------------------------------------------------------------------------*/
 .btn {
   border: 1px solid #4f8db3;
