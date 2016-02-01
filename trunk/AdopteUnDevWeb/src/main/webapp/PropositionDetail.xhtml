@@ -7,46 +7,67 @@
     <ui:define name="head">
 
     </ui:define>
-    <ui:define name="title">Détail Proposition</ui:define>
+    <ui:define name="title">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.libelle}</ui:define>
     <ui:define name="body">
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="product-image-large">
-                            <img src="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.projet.photo}" alt="image projet"/>
+                            <img src="#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.photo}" alt="image projet"/>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-sm-5 product-details">
-                        <h4>#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.projet.libelle}</h4>
-                        <div class="price">
-                            <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
+                        <div>
+                         <h5>Tarif</h5>
                         </div>
-                        <!--developpeur = 1-->
+                        <div class="price">
+                            #{mBPropositionDetail.mBPropositionParUtilisateur.cdc.tarif}€
+                        </div>
+                        
+                        
+                        
+                        <div>
+                         <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
+                        <h5>Etat de la proposition</h5>
+                                <p>Non traitée <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>    
+                            <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
+                        <h5>Etat de la proposition</h5>
+                                <p>En attente de validation <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>     
+                            <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==4}">
+                        <h5>Etat de la proposition</h5>
+                                <p>Refusée <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>  
+                          </div>
+                       
+                       
+                       
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
                             <div>
-                                <h5>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</h5>
-                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}</p>
+                                <h5>Porteur du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</p>
                             </div>
                             <br/>
                             <div>
-                                <h5> date de livrable</h5>
+                                <h5>Date de Livrable</h5>
                                 <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
                             </div>
                             <div>
-                                <h5>Type du projet</h5>
+                                <h5>Type de projet</h5>
                                 <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
                             </div>
                         </h:panelGroup>
                         <!--client = 2-->
+                        
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
                             <div>
-                                <h5>Votre developpeur</h5>
-                                <p>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</p>
-                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}</p>
+                                <h5>Développeur en charge</h5>
+                                <p>En cours de sélection.</p>
                             </div>
                             <div>
-                                <h5> date de livrable</h5>
+                                <h5>Date de Livrable</h5>
                                 <p>#{mBProjetDetail.cdc.dateFinEstimee.toString().subSequence(0, 10)}</p>
                             </div>
                             <div>
@@ -55,39 +76,36 @@
                             </div>
                         </h:panelGroup>
                     </div>
-                    <div class="col-sm-12 product-details">
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
-                            <h5>Vos livrables :</h5>
-                            <div class="col-sm-8 table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <td>Date de livraison</td>
-                                        <td>Echeance</td>
-                                        <td>description</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
-                                        <tr>
-                                            <td>#{livrable.dateLivraison.toString().subSequence(0, 10)}</td>
-                                            <td>#{livrable.echeance.toString().subSequence(0, 10)}</td>
-                                            <td>#{livrable.description}</td>
-                                        </tr>
-                                    </ui:repeat>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </h:panelGroup>
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-                            <h5>Vos livrables :</h5>
-                            <p:growl id="messages" showDetail="true"/>
-
-                            <p:fileUpload value="#{mBProjetDetail.file}" mode="simple" skinSimple="true"/>
-
-                            <p:commandButton value="Submit" ajax="false" actionListener="#{mBProjetDetail.upload}"
-                                             disabled="true"/>
-                        </h:panelGroup>
+                    
+                    
+                   <!--  Pour developpeur -->
+                     <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+                    <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
+                    <div style="clear: both; margin-left: 200px;">
+                    <h:commandLink style="margin:10px" svalue="" class="btn btn-small"><i
+											class="icon-shopping-cart icon-white"></i>Accepter</h:commandLink>
+					
+					 <h:commandLink value="" class="btn btn-small"><i
+											class="icon-shopping-cart icon-white"></i>Refuser</h:commandLink>
+                    </div>
+                    </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    
+                  <!--   Pour client -->
+                    <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+                                        <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
+                    <div style="clear: both; margin-left: 200px;">
+                    <h:commandLink style="margin:10px" svalue="" class="btn btn-small"><i
+											class="icon-shopping-cart icon-white"></i>Valider</h:commandLink>
+					
+					 <h:commandLink value="" class="btn btn-small"><i
+											class="icon-shopping-cart icon-white"></i>Refuser</h:commandLink>
+                    </div>
+                    </h:panelGroup>
+                    </h:panelGroup>
+                        
+                        
                     </div>
                     <div class="col-sm-12">
                         <div class="tabbable">
@@ -97,12 +115,12 @@
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                    <h4>L'existant</h4>
-                                    <p>#{mBProjetDetail.cdc.existant}</p>
+                                  <h4>Le besoin</h4>
+                                    <p>#{mBProjetDetail.cdc.besoin}</p>
                                     <h4>Les contexte</h4>
                                     <p>#{mBProjetDetail.cdc.contexte}</p>
-                                    <h4>Les besoins</h4>
-                                    <p>#{mBProjetDetail.cdc.besoin}</p>
+                                     <h4>L'existant</h4>
+                                    <p>#{mBProjetDetail.cdc.existant}</p>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +128,6 @@
                     <!-- End Full Description & Specification -->
                 </div>
             </div>
-        </div>
     </ui:define>
 </ui:composition>
 </html>
