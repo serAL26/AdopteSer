@@ -10,7 +10,7 @@ import dto.DTOTypeFonctionnalite;
 
 public interface IBusinessCdc {
 	
-	void ajouterCdcDto (DTOCdc cdcDto);
+	DTOCdc ajouterCdcDto (DTOCdc cdcDto);
 	void modifierCdcDto (DTOCdc cdcDto);
 	List<DTOTypeFonctionnalite> recupererTousLesTypesFonctionnalites();
 	void ajouterFonctionnalite(DTOFonctionnalite dtoFonct);
