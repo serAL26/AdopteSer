@@ -1,4 +1,4 @@
-package fr.afcepf.adopteundev.projet;
+package fr.afcepf.adopteundev.gestion.cdc;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entity.TypeCdc;
-import fr.afcepf.adopteundev.idao.projet.IDaoTypeCDC;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoTypeCDC;
 
 @Remote(IDaoTypeCDC.class)
 @Stateless
@@ -21,7 +21,7 @@ public class DaoTypeCDC implements IDaoTypeCDC {
 	@Override
 	public TypeCdc recupTypeCdcByLibelle(String libelle) {
 		Query query = em.createQuery(
-				"SELECT t FROM DaoTypeCDC t WHERE t.libelle like :plibelle")
+				"SELECT t FROM TypeCdc t WHERE t.libelle like :plibelle")
 				.setParameter("plibelle", libelle);
 		List<TypeCdc> liste = query.getResultList();
 		if (liste.size() == 1)

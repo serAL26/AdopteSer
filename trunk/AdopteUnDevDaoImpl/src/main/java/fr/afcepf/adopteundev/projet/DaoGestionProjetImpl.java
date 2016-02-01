@@ -32,9 +32,10 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 	}
 
 	@Override
-	public void ajouter(Projet projet) {
+	public Projet ajouter(Projet projet) {
 		em.persist(projet);
 		em.flush();
+		return projet;
 	}
 
 	@Override
