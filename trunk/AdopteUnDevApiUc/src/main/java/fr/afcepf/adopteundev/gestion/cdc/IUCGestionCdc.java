@@ -25,4 +25,5 @@ public interface IUCGestionCdc {
 	public DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
 	public DTOCdc recupCdcFinalParidProjet(Integer idProjet);
 	public DTOTypeCdc recupTypeCdcByLibelle(String libelle);
+	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
 }

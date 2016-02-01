@@ -15,9 +15,11 @@ public interface IDaoFonctionnalite {
 			TypeFonctionnalite typeFonctionnalite);
 	
 	public Fonctionnalite recupFonctionnaliteParID(Integer id);
+	
 	public void ajouterAssociationCdcFonctionnalite(
 			AssociationCdcFonctionnalite association);	
 	
 	public Set<TypeFonctionnalite> recupTousTypeFonctionnalite();
+	public TypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
 		
 }

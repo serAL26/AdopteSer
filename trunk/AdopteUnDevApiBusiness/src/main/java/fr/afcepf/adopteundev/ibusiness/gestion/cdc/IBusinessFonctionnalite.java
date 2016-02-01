@@ -20,5 +20,6 @@ public interface IBusinessFonctionnalite {
 
 	public void ajouterAssociationCdcFonctionnalite(
 			DTOAssociationCdcFonctionnalite dtoAssociation);
+	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
 
 }
