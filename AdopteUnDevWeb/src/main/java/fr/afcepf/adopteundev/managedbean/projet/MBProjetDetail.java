@@ -47,6 +47,11 @@ public class MBProjetDetail {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
+    public int noteDeProjetParUtilisateur(int idUtilisateur){
+        int note = getNoteParUtilisateur(idUtilisateur).getNote().intValue();
+        log.info("valeur de la  note : "+note);
+        return note;
+    }
 
     public String commentaireDeProjetParUtilisateur(int idUtilisateur) {
         return getNoteParUtilisateur(idUtilisateur).getCommentaire();
@@ -76,8 +81,6 @@ public class MBProjetDetail {
         return gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
     }
 
-    
-
     public MBProjetParUtilisateur getmBProjetParUtilisateur() {
 		return mBProjetParUtilisateur;
 	}
@@ -90,8 +93,8 @@ public class MBProjetDetail {
 	public Double getTarifRestant() {
         Double tarif = cdc.getTarif();
         List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
-        log.info("taille de la liste des operations : "+operationList.size());
         if (operationList != null) {
+            log.info("taille de la liste des operations : "+operationList.size());
             for (DTOOperation anOperationList : operationList) {
                 tarif -= anOperationList.getMontant();
             }

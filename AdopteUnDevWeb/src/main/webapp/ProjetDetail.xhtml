@@ -17,17 +17,19 @@
                             <img src="#{mBProjetDetail.mBProjetParUtilisateur.projet.photo}" alt="image projet"/>
                         </div>
                     </div>
-                    <div class="col-sm-6 product-details">
+                    <div class="col-lg-offset-1 col-sm-5 product-details">
                         <h4>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}</h4>
                         <div class="price">
                             <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
                         </div>
                         <!--developpeur = 1-->
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
+                        <h:panelGroup rendered="false">
                             <div>
                                 <h5>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</h5>
                                 <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(1)}</p>
                             </div>
+                            <br/>
                             <div>
                                 <h5> date de livrable</h5>
                                 <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
@@ -36,50 +38,57 @@
                                 <h5>Type du projet</h5>
                                 <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
                             </div>
+                        </h:panelGroup>
+                        <!--client = 2-->
+                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
+                        <h:panelGroup rendered="true">
                             <div>
-                                <table class="shop-item-selections">
+                                <h5>Votre developpeur</h5>
+                                <p>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</p>
+                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}</p>
+                            </div>
+                            <div>
+                                <h5> date de livrable</h5>
+                                <p>#{mBProjetDetail.cdc.dateFinEstimee.toString().subSequence(0, 10)}</p>
+                            </div>
+                            <div>
+                                <h5>Type du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <div class="col-sm-12 product-details">
+                        <h:panelGroup rendered="true">
+                            <h5>Vos livrables :</h5>
+                            <div class="col-sm-8 table-responsive">
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <td><b>Vos Livrables :</b></td>
-                                        <td>
-                                        </td>
+                                        <td>Date de livraison</td>
+                                        <td>Echeance</td>
+                                        <td>description</td>
                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
+                                        <tr>
+                                            <td>#{livrable.dateLivraison.toString().subSequence(0, 10)}</td>
+                                            <td>#{livrable.echeance.toString().subSequence(0, 10)}</td>
+                                            <td>#{livrable.description}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                    </tbody>
                                 </table>
                             </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="true">
+                            <h5>Vos livrables :</h5>
                             <p:growl id="messages" showDetail="true"/>
 
                             <p:fileUpload value="#{mBProjetDetail.file}" mode="simple" skinSimple="true"/>
 
                             <p:commandButton value="Submit" ajax="false" actionListener="#{mBProjetDetail.upload}"
                                              disabled="true"/>
-                        </h:panelGroup>
-                        <!--client = 2-->
-                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
-                        <h:panelGroup rendered="true">
-                            <div>
-                                <h5>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</h5>
-                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}</p>
-                            </div>
-                            <div>
-                                <h5> date de livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
-                            </div>
-                            <div>
-                                <h5>Type du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
-                            </div>
-                            <div>
-                                <h5>Vos livrables :</h5>
-                                <table class="shop-item-selections">
-                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
-                                        <tr>
-                                            <td>#{livrable.idLivrable}</td>
-                                            <td>#{livrable.dateLivraison}</td>
-                                            <td>#{livrable.echeance}</td>
-                                            <td>#{livrable.description}</td>
-                                        </tr>
-                                    </ui:repeat>
-                                </table>
-                            </div>
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12">
@@ -90,7 +99,9 @@
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                    <h4>Le contexte</h4>
+                                    <h4>L'existant</h4>
+                                    <p>#{mBProjetDetail.cdc.existant}</p>
+                                    <h4>Les contexte</h4>
                                     <p>#{mBProjetDetail.cdc.contexte}</p>
                                     <h4>Les besoins</h4>
                                     <p>#{mBProjetDetail.cdc.besoin}</p>
