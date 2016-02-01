@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import entity.Livrable;
 import entity.Operation;
 import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 
@@ -22,9 +21,6 @@ public class DaoOperation implements IDaoOperation{
 	 
 	 private String recupListOperationParProjetEtTypeOperation = "SELECT o FROM Operation o  WHERE o.livrable.projet.idProjet = :idProjet AND o.typeOperation.idTypeOperation = :idTypeOperation";
 	 private String recupListOperationParClientEtType = "SELECT o FROM Operation o  WHERE o.livrable.projet.client.idUtilisateur = :idClient AND o.typeOperation.idTypeOperation = :idTypeOperation";
-	 
-	 private String recupListOperationParDevEtType = "SELECT o FROM Operation o WHERE  o.typeOperation.idTypeOperation = :idTypeOperation AND o.livrable.projet.idProjet = :idProjet";
-	 
 	 private String operationPayeeParLivrable = "SELECT o FROM Operation o WHERE o.typeOperation.idTypeOperation = 1 AND o.livrable.idLivrable = :idLivrable";
 	
 	@Override
@@ -34,6 +30,7 @@ public class DaoOperation implements IDaoOperation{
 		return operation;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Operation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation) {
 		Query query = em.createQuery(recupListOperationParProjetEtTypeOperation);
@@ -42,6 +39,7 @@ public class DaoOperation implements IDaoOperation{
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Operation> recupListOperationParClientEtType(int idTypeOperation, int idClient) {
 		Query query = em.createQuery(recupListOperationParClientEtType);

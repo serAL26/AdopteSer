@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOOperation;
-import dto.DTOProjet;
 import entity.Operation;
 import entity.Projet;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;

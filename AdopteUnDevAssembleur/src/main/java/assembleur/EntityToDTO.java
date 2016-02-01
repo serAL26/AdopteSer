@@ -586,4 +586,20 @@ public class EntityToDTO {
 		}
 		return listeDTOTechnologie;
 	}
+
+	public static List<DTOLivrable> listeLivrableToDTOLivrable(List<Livrable> listeLivrable) {
+		List<DTOLivrable> listeDTOLivrable = new ArrayList<>();
+		for (Livrable livrable : listeLivrable) {
+			listeDTOLivrable.add(livrableToDTOLivrable(livrable));
+		}
+		return listeDTOLivrable;
+	}
+	
+	public static List<DTOOperation> listeOperationToDTOOperation (List<Operation> listeOperation) {
+		List<DTOOperation> listeDTOOperation = new ArrayList<>();
+		for (Operation operation : listeOperation) {
+			listeDTOOperation.add(operationToDTOOperation(operation));
+		}
+		return listeDTOOperation;
+	}
 }
