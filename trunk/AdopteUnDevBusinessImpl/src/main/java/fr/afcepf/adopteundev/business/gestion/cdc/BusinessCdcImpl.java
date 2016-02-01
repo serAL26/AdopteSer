@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOAssociationCdcFonctionnalite;
@@ -27,7 +29,7 @@ import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoTypeCDC;
 @Remote(IBusinessCdc.class)
 @Stateless
 public class BusinessCdcImpl implements IBusinessCdc {
-
+static Logger log = Logger.getLogger(BusinessCdcImpl.class);
     @EJB
     private IDaoCdc daoCdc;
     
@@ -36,11 +38,13 @@ public class BusinessCdcImpl implements IBusinessCdc {
 
 
     @Override
-    public void ajouterCdcDto(DTOCdc cdcDto) {
+    public DTOCdc ajouterCdcDto(DTOCdc cdcDto) {
     	DTOTypeCdc typeCDC = EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCdc.recupTypeCdcByLibelle(TypeCDC.CDC.toString()));
     	cdcDto.setTypeCdc(typeCDC);
         Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
         cdc = daoCdc.ajouterCdc(cdc);
+        log.info("business cdc id : "+ EntityToDTO.cdcToDTOCdc(cdc).getIdCdc());
+        return EntityToDTO.cdcToDTOCdc(cdc);
     }
 
     @Override
