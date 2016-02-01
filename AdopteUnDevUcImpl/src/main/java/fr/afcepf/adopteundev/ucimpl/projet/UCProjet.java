@@ -128,4 +128,9 @@ public class UCProjet implements IUCProjet {
 	public List<DTOOperation> payerLivrable(DTOOperation dtoOperation) {
 		return businessOperation.payerLivrable(dtoOperation);
 	}
+
+	@Override
+	public List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet) {
+		return businessLivrable.recupListeLivrableParProjet(dtoProjet);
+	}
 }

@@ -18,6 +18,7 @@ public class MBLivrable {
 	private DTOLivrable dtoLivrable = new DTOLivrable();
 	private DTOOperation dtoOperation = new DTOOperation();
 	private NoLivrable noLivrable = new NoLivrable();
+	private boolean isPaye = false;
 	@ManagedProperty(value="#{mBCreationProjet}")
 	private MBCreationProjet mBCreationProjet;
 	
@@ -31,6 +32,10 @@ public class MBLivrable {
 	public String payerLivrable() {
 		ucProjet.payerLivrable(dtoOperation);
 		return "";
+	}
+	
+	public void initIsPaye() {
+		ucProjet.
 	}
 	
 	public String creerLivrable() {
@@ -62,4 +67,21 @@ public class MBLivrable {
 	public void setmBCreationProjet(MBCreationProjet mBCreationProjet) {
 		this.mBCreationProjet = mBCreationProjet;
 	}
+
+	public DTOOperation getDtoOperation() {
+		return dtoOperation;
+	}
+
+	public void setDtoOperation(DTOOperation dtoOperation) {
+		this.dtoOperation = dtoOperation;
+	}
+
+	public boolean isPaye() {
+		return isPaye;
+	}
+
+	public void setPaye(boolean isPaye) {
+		this.isPaye = isPaye;
+	}
+	
 }
