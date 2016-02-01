@@ -30,9 +30,9 @@ public class UcPanierImpl implements IUCPanier {
     }
 
     @Override
-    public List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur) {
+    public List<DTOProjet> recupererListProjetEnAttenteParUtilisateur(int idUtilisateur) {
         log.info("UcRecupListProjetParUtilisateur");
-        return businessPanier.recupererListProjetParUtilisateur(idUtilisateur);
+        return businessPanier.recupererListProjetEnAttenteParUtilisateur(idUtilisateur);
 
     }
 }

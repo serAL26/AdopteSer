@@ -58,7 +58,7 @@ public class Projet implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name="idTypeService")
-	private TypeService Service;
+	private TypeService service;
 
 	@OneToMany(mappedBy="projet")
 	private Set<Litige> lesLitige;
@@ -140,13 +140,13 @@ public class Projet implements Serializable{
 	public void setLesProposition(Set<Proposition> lesProposition) {
 		this.lesProposition = lesProposition;
 	}
-
+	
 	public TypeService getService() {
-		return Service;
+		return service;
 	}
 
 	public void setService(TypeService service) {
-		Service = service;
+		this.service = service;
 	}
 
 	public String getPhoto() {

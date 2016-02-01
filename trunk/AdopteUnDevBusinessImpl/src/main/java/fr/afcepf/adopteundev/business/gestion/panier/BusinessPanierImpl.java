@@ -56,8 +56,8 @@ public class BusinessPanierImpl implements IBusinessPanier {
     }
 
     @Override
-    public List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur) {
-        List<Projet> projetList = daoGestionProjet.recupProjetParIdClient(idUtilisateur);
+    public List<DTOProjet> recupererListProjetEnAttenteParUtilisateur(int idUtilisateur) {
+        List<Projet> projetList = daoGestionProjet.recupProjetEnAttenteParIdClient(idUtilisateur);
         List<DTOProjet> dtoProjetList = new ArrayList<>();
         if (projetList != null && projetList.size() != 0) {
             for (Projet projet : projetList) {

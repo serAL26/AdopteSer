@@ -20,7 +20,9 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 
 	@PersistenceContext(unitName = "AdopteUnDev")
 	EntityManager em;
-
+	
+	private String recupProjetEnAttenteParIdClient = "SELECT p FROM Projet p WHERE p.client.idUtilisateur = :id AND p.etatProjet.idEtatProjet = 4";
+	
 	@Override
 	public List<Projet> recupProjetParIdClient(Integer id) {
 
@@ -75,6 +77,13 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		query.setParameter("petat", etat);
 		List<Projet> listProjet = query.getResultList();
 		return listProjet;
+	}
+
+	@Override
+	public List<Projet> recupProjetEnAttenteParIdClient(int id) {
+		Query query = em.createQuery(recupProjetEnAttenteParIdClient);
+		query.setParameter("id", id);
+		return query.getResultList();
 	}
 
 }

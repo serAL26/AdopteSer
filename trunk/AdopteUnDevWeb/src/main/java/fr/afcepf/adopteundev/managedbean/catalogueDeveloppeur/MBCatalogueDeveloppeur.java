@@ -70,8 +70,8 @@ public class MBCatalogueDeveloppeur {
         return panierUc.recupererFicheResumeDeveloppeur();
     }
     
-    private List<DTOProjet> initListeProjet() {
-        return panierUc.recupererListProjetParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
+    public List<DTOProjet> initListeProjet() {
+        return panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
     }
 
     @PostConstruct

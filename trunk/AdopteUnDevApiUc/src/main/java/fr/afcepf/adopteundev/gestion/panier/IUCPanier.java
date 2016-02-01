@@ -13,5 +13,5 @@ public interface IUCPanier {
 
     List<NoDeveloppeur> recupererFicheResumeDeveloppeur();
 
-    List<DTOProjet> recupererListProjetParUtilisateur(int idUtilisateur);
+    List<DTOProjet> recupererListProjetEnAttenteParUtilisateur(int idUtilisateur);
 }
