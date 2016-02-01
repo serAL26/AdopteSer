@@ -39,8 +39,7 @@
 									<ul>
 										<li class="portfolio-project-name">#{fiche.developpeur.prenom} #{fiche.developpeur.nom}
 										</li>
-										<li>#{fiche.developpeur.lesAssociationDevTechno}</li>
-										<li>Nb projets : #{fiche.developpeur.listeProposition.size}</li>
+										<li>#{fiche.petiteListeDeTechnoPasPiqueeDesVers}</li>
 										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur !=2}">
 										<li style="margin-bottom: 25px; margin-left: 132px"><p:rating value="#{fiche.noteEnInteger}"
 												readonly="true"/></li>

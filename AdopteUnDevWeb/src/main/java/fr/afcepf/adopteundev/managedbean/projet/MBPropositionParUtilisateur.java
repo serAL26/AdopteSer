@@ -25,6 +25,7 @@ public class MBPropositionParUtilisateur {
 	private List<DTOProposition> listeRefuse;
 	private List<DTOProposition> listeEnAttente;
 	DTOCdc cdc;
+	private DTOProposition proposition;
 	
 	private IUCProjet gestionProjet;
 	private IUcProposition gestionProposition;
@@ -32,6 +33,15 @@ public class MBPropositionParUtilisateur {
 	
 	@ManagedProperty(value="#{mBConnexion}")
 	private MBConnexion mBConnexion;
+
+	
+	public DTOProposition getProposition() {
+		return proposition;
+	}
+
+	public void setProposition(DTOProposition proposition) {
+		this.proposition = proposition;
+	}
 
 	public List<DTOProposition> getListeAccepteParDev() {
 		return listeAccepteParDev;
@@ -89,6 +99,12 @@ public class MBPropositionParUtilisateur {
 	{
 		cdc = gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());
 		return cdc;
+	}
+	
+	public String recupProposition(DTOProposition prop) {
+		proposition = prop;
+
+		return "/PropositionDetail.xhtml?faces-redirect=true";
 	}
 
 }
