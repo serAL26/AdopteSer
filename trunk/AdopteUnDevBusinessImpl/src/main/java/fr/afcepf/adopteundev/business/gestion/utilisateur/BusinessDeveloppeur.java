@@ -29,7 +29,7 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
 
 @Remote(IBusinessDeveloppeur.class)
 @Stateless
-public class BusinessDeveloppeur implements IBusinessDeveloppeur{
+public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 
 	@EJB
 	private IDaoUtilisateur daoUtilisateur;
@@ -54,22 +54,23 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 	public NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur) {
 		NoDeveloppeur noDev = new NoDeveloppeur(dtoDeveloppeur);
 		noDev.setListeCommentaire(obtenirNote(dtoDeveloppeur));
-		if(noDev.getListeCommentaire().size() > 0) {
-		noDev.setNote(moyenneNote(noDev.getListeCommentaire()));
+		if (noDev.getListeCommentaire().size() > 0) {
+			noDev.setNote(moyenneNote(noDev.getListeCommentaire()));
 		}
 		noDev.setTechnologie(obtenirTechnologie(dtoDeveloppeur));
-		noDev.setPetiteListeDeTechnoPasPiqueeDesVers(obtenirStringTechno(noDev.getTechnologie()));
+		noDev.setPetiteListeDeTechnoPasPiqueeDesVers(obtenirStringTechno(noDev
+				.getTechnologie()));
 		return noDev;
 	}
 
 	private String obtenirStringTechno(List<DTOTechnologie> technologie) {
-		String listeTechno ="";
-		for(int i=0; i<technologie.size() && i<3;i++) {
-			if (i==0) {
-				listeTechno += technologie.get(i).getTechnologieLibelle(); 
-			}
-			else {
-				listeTechno += " | "+technologie.get(i).getTechnologieLibelle();
+		String listeTechno = "";
+		for (int i = 0; i < technologie.size() && i < 3; i++) {
+			if (i == 0) {
+				listeTechno += technologie.get(i).getTechnologieLibelle();
+			} else {
+				listeTechno += " | "
+						+ technologie.get(i).getTechnologieLibelle();
 			}
 		}
 		return listeTechno;
@@ -82,19 +83,23 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 			somme += dtoNote.getNote();
 			nbProjet++;
 		}
-		if(nbProjet > 0){
+		if (nbProjet > 0) {
 			somme = somme / nbProjet;
 		}
 		return somme;
 	}
 
-	private List<DTOTechnologie> obtenirTechnologie(DTODeveloppeur dtoDeveloppeur) {
-		List<Technologie> listeTechnologie = daoTechnologie.recupTechnoParDev(dtoDeveloppeur.getIdUtilisateur());
+	private List<DTOTechnologie> obtenirTechnologie(
+			DTODeveloppeur dtoDeveloppeur) {
+		List<Technologie> listeTechnologie = daoTechnologie
+				.recupTechnoParDev(dtoDeveloppeur.getIdUtilisateur());
 		return EntityToDTO.listeTechnologieToDTOTechnologie(listeTechnologie);
 	}
 
 	private List<DTONote> obtenirNote(DTODeveloppeur dtoDeveloppeur) {
-		List<Note> listeNote = daoNote.recupNoteParPropositionValidee(dtoDeveloppeur.getIdUtilisateur());
+		List<Note> listeNote = daoNote
+				.recupNoteParPropositionValidee(dtoDeveloppeur
+						.getIdUtilisateur());
 		return EntityToDTO.listeNoteToDTONote(listeNote);
 	}
 
@@ -103,13 +108,13 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		double nbProjet = 0;
 		Double retour = new Double(0);
 		for (Note note : listeNote) {
-			if(note.getIdEstNote()== idDev){
+			if (note.getIdEstNote() == idDev) {
 				sommeNote += note.getNote();
 				nbProjet++;
 			}
 		}
 		if (nbProjet > 0) {
-			retour = sommeNote/nbProjet;
+			retour = sommeNote / nbProjet;
 		}
 		return retour;
 	}
@@ -119,9 +124,10 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		List<Developpeur> listeDev = daoDeveloppeur.recupDeveloppeurWeb();
 		List<DTODeveloppeur> listeDto = new ArrayList<DTODeveloppeur>();
 
-		for (Developpeur  developpeur : listeDev) {
+		for (Developpeur developpeur : listeDev) {
 
-			DTODeveloppeur dtoDev = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
+			DTODeveloppeur dtoDev = EntityToDTO
+					.developpeurToDTODeveloppeur(developpeur);
 			listeDto.add(dtoDev);
 		}
 		return listeDto;
@@ -132,9 +138,10 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		List<Developpeur> listeDev = daoDeveloppeur.recupDeveloppeurWeb();
 		List<DTODeveloppeur> listeDto = new ArrayList<DTODeveloppeur>();
 
-		for (Developpeur  developpeur : listeDev) {
+		for (Developpeur developpeur : listeDev) {
 
-			DTODeveloppeur dtoDev = EntityToDTO.developpeurToDTODeveloppeur(developpeur);
+			DTODeveloppeur dtoDev = EntityToDTO
+					.developpeurToDTODeveloppeur(developpeur);
 			listeDto.add(dtoDev);
 		}
 		return listeDto;
@@ -143,15 +150,20 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 	@Override
 	public List<DTODeveloppeur> recupDeveloppeurParNoteEtTechno(double note,
 			DTOTechnologie techno) {
-		List<Developpeur> liste = daoDeveloppeur.recupDeveloppeurParNoteEtTechno(note, DTOToEntity.dtoTechnologieToTechnologie(techno));
-		//TODO A faire le retour chez moi car je dois partir 
-		return null;
+		List<Developpeur> liste = daoDeveloppeur
+				.recupDeveloppeurParNoteEtTechno(note,
+						DTOToEntity.dtoTechnologieToTechnologie(techno));
+		return EntityToDTO.listDevtoDTODeveloppeur(liste);
+
 	}
 
 	@Override
 	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies) {
-		// TODO Auto-generated method stub
-		return null;
+		List<DTODeveloppeur> listeDev = new ArrayList<>();
+		for (DTOTechnologie techno : technologies) {
+			listeDev.addAll(recupDeveloppeurParNoteEtTechno(note, techno));
+		}
+		return listeDev;
 	}
 }
