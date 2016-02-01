@@ -1,5 +1,6 @@
 package fr.afcepf.adopteundev.ucimpl.gestionproposition;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,4 +32,10 @@ public class UcPropositionImpl implements IUcProposition{
 	public void validerPanier(Map<Integer, Set<NoDeveloppeur>> map) {
 		businessProposition.validerPanier(map);
 	}
+	@Override
+	public List<DTOProposition> recupPropositionParEtatParUtilisateur(
+			String etat, Integer id) {
+		return businessProposition.recupPropositionParEtatParUtilisateur(etat, id);
+	}
+
 }

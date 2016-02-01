@@ -17,14 +17,15 @@
 	        <div class="container">
 	        	<h2>Projets en attente</h2>
 	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnAttente}" var="projet">
-	        	<div class="row service-wrapper-row">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-        					<img src="#{projet.photo}" alt="Color Schemes"/>
+									<a href="Accueil.jsf">
+        					<img src="#{projet.photo}" alt="Color Schemes"/></a>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>#{projet.libelle}</h3>
+    					<h3><a href="Accueil.jsf">#{projet.libelle}</a></h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
     					</p>
@@ -53,14 +54,14 @@
 	        <div class="container">
 	        	<h2>Projets en cours</h2>
 	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnCours}" var="projet">
-	        	<div class="row service-wrapper-row">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-        					<img src="#{projet.photo}" alt="Color Schemes"/>
+        					<a href="Accueil.jsf"><img src="#{projet.photo}" alt="Color Schemes"/></a>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>#{projet.libelle}</h3>
+    					<h3><a href="Accueil.jsf" onclick="#">#{projet.libelle}</a></h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
     					</p>
@@ -95,14 +96,15 @@
 	        <div class="container">
 	        	<h2>Projets terminé</h2>
 	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsValide}" var="projet">
-	        	<div class="row service-wrapper-row">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-        					<img src="#{projet.photo}" alt="Color Schemes"/>
+        				<a href="Accueil.jsf">
+        					<img src="#{projet.photo}" alt="Color Schemes"/></a>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>#{projet.libelle}</h3>
+    					<h3><a href="Accueil.jsf">#{projet.libelle}</a></h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
     					</p>
@@ -134,19 +136,19 @@
 	        
 	        <!-- Projet(s) Arretes(s) -->
 	        
-	        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsArrete.size()} != 0">
+	        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsArrete.size() != 0}">
 	         <div class="section">
 	        <div class="container">
-	        	<h2>Projets suspendu :</h2>
+	        	<h2>Projet(s) suspendu(s) :</h2>
 	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsArrete}" var="projet">
-	        	<div class="row service-wrapper-row">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
         			<div class="col-sm-4">
         				<div class="service-image">
-        					<img src="#{projet.photo}" alt="Color Schemes"/>
+        					<a href="Accueil.jsf"><img src="#{projet.photo}" alt="Color Schemes"/></a>
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>#{projet.libelle}</h3>
+    					<h3><a href="Accueil.jsf">#{projet.libelle}</a></h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
     					</p>
