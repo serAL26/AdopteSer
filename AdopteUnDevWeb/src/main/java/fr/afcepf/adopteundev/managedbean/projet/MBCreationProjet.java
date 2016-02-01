@@ -70,6 +70,7 @@ public class MBCreationProjet {
 		
 		System.out.println(gestionUtilisateur.recupClientById(16).getNom());
 		projetcree.setClient(gestionUtilisateur.recupClientById(16));
+		projetcree.setService(selectedService);
 		if (file != null)
 			projetcree.setPhoto(file.getFileName());
 		projetcree=ucProjet.creerProjet(projetcree);
