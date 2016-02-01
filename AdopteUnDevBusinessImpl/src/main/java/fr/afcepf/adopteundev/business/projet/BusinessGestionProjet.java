@@ -6,22 +6,25 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOClient;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import dto.DTOTypeCdc;
+import entity.EtatProjet;
 import entity.Projet;
 import enumeration.EtatProjetEnum;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoTypeCDC;
 import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
-import fr.afcepf.adopteundev.idao.projet.IDaoTypeCDC;
 
 @Remote(IBusinessGestionProjet.class)
 @Stateless
 public class BusinessGestionProjet implements IBusinessGestionProjet {
-
+private static Logger log = Logger.getLogger(BusinessGestionProjet.class);
 	@EJB
 	private IDaoGestionProjet daoGestionProjet;
 
@@ -40,12 +43,12 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	}
 
 	@Override
-	public void ajouter(DTOProjet projet) {
+	public DTOProjet ajouter(DTOProjet projet) {
 		projet.setEtatProjet(EntityToDTO
 				.etatProjetToDTOEtatProjet(daoEtatProjet
 						.recupEtatProjetByLibelle(EtatProjetEnum.ENATTENTE
-								.name())));
-		daoGestionProjet.ajouter(DTOToEntity.dtoProjetToProjet(projet));
+								.toString())));
+		return EntityToDTO.projetToDTOProjet(daoGestionProjet.ajouter(DTOToEntity.dtoProjetToProjet(projet)));
 
 	}
 
@@ -58,7 +61,7 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	public void finaliserProjet(DTOProjet projet) {
 		DTOEtatProjet etatProjet = EntityToDTO
 				.etatProjetToDTOEtatProjet(daoEtatProjet
-						.recupEtatProjetByLibelle(EtatProjetEnum.FINI.name()));
+						.recupEtatProjetByLibelle(EtatProjetEnum.FINI.toString()));
 		projet.setEtatProjet(etatProjet);
 		daoGestionProjet.modifierProjet(DTOToEntity.dtoProjetToProjet(projet));
 	}

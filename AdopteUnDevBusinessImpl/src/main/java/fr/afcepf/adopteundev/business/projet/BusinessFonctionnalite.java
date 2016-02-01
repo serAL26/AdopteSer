@@ -30,7 +30,7 @@ public class BusinessFonctionnalite implements IBusinessFonctionnalite {
 
 	@Override
 	public Set<DTOFonctionnalite> recupererTousFonctionna() {
-		
+
 		return EntityToDTO
 				.listFonctionnalitetoDTOfonctionnalite(daoFonctionnalite
 						.recupererTousFonctionna());
@@ -42,7 +42,7 @@ public class BusinessFonctionnalite implements IBusinessFonctionnalite {
 		return EntityToDTO
 				.listFonctionnalitetoDTOfonctionnalite(daoFonctionnalite.recupeFonctionnalitesParType(DTOToEntity
 						.dtoTypeFonctionnaliteToTypeFonctionnalite(typeFonctionnalite)));
-	
+
 	}
 
 	@Override
@@ -51,18 +51,25 @@ public class BusinessFonctionnalite implements IBusinessFonctionnalite {
 				.recupFonctionnaliteParID(id));
 	}
 
-	
-
 	@Override
 	public void ajouterAssociationCdcFonctionnalite(
 			DTOAssociationCdcFonctionnalite dtoAssociation) {
-		AssociationCdcFonctionnalite association = DTOToEntity.dtoAssociationCdcFonctionnaliteToAssociationCdcFonctionnalite(dtoAssociation);
+		AssociationCdcFonctionnalite association = DTOToEntity
+				.dtoAssociationCdcFonctionnaliteToAssociationCdcFonctionnalite(dtoAssociation);
 		daoFonctionnalite.ajouterAssociationCdcFonctionnalite(association);
-		
+
 	}
 
 	@Override
 	public Set<DTOTypeFonctionnalite> recupererTousLesTypesFonctionnalites() {
-		return EntityToDTO.listTypeFonctionToDtoTypeFonction(daoFonctionnalite.recupTousTypeFonctionnalite());
+		return EntityToDTO.listTypeFonctionToDtoTypeFonction(daoFonctionnalite
+				.recupTousTypeFonctionnalite());
+	}
+
+	@Override
+	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id) {
+		return EntityToDTO
+				.typeFonctionnaliteToDTOTypeFonctionnalite(daoFonctionnalite
+						.recupTypeFonctionnaliteParID(id));
 	}
 }
