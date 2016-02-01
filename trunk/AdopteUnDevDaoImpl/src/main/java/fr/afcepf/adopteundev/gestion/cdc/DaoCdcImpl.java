@@ -59,9 +59,11 @@ public class DaoCdcImpl implements IDaoCdc {
 	@Override
 	public AssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite(
 			AssociationCdcFonctionnalite association) {
+		log.info("association cdc (cdc) : " +association.getCdc().getIdCdc()); 
+		log.info("association cdc (fonctionnalite) : " +association.getFonctionnalite().getIdFonctionnalite()); 
 		em.persist(association);
+		log.info("association cdc" + association.getIdAssocCdcFonctionnalite());
 		em.flush();
-
 		return association;
 	}
 
@@ -86,7 +88,7 @@ public class DaoCdcImpl implements IDaoCdc {
 				.createQuery(
 						"Select c from Cdc c where c.developpeurCdc.idUtilisateur =:id and "
 								+ "c.projet.idProjet =:idProjet and c.typeCdc.idTypeCdc =1",
-						Cdc.class);
+								Cdc.class);
 		query.setParameter("id", idDev);
 		query.setParameter("idProjet", idProjet);
 

@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entity.AssociationCdcFonctionnalite;
+import entity.Cdc;
 import entity.Fonctionnalite;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoFonctionnalite;
@@ -42,7 +43,7 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 		Query query = em
 				.createQuery("SELECT f FROM Fonctionnalite f WHERE f.typeFonctionnalite=:ptype");
 		query.setParameter("ptype", typeFonctionnalite);
-		return null;
+		return new HashSet<>(query.getResultList());
 	}
 
 	@Override
@@ -70,8 +71,17 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 
 	@Override
 	public TypeFonctionnalite recupTypeFonctionnaliteParID(Integer id) {
-		TypeFonctionnalite fonctionnalite = em.find(TypeFonctionnalite.class, id);
+		TypeFonctionnalite fonctionnalite = em.find(TypeFonctionnalite.class,
+				id);
 		return fonctionnalite;
+	}
+
+	@Override
+	public List<Fonctionnalite> recupFonctionnaliteParCDC(Cdc cdc) {
+		Query query = em
+				.createQuery("SELECT f FROM Fonctionnalite f,AssociationCdcFonctionnalite afc WHERE afc.fonctionnalite.idFonctionnalite = f.idFonctionnalite AND afc.cdc.idCdc=:pcdc");
+		query.setParameter("pcdc", cdc.getIdCdc());
+		return query.getResultList();
 	}
 
 }
