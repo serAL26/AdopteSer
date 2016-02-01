@@ -30,6 +30,7 @@ public class MBCatalogueDeveloppeur {
     private DTOProjet projetSelectionne = new DTOProjet();
     private IUCPanier panierUc;
     private IUcUtilisateur ucUtilisateur;
+    private NoDeveloppeur dev;
     
     @ManagedProperty(value="#{mBConnexion}")
     private MBConnexion mBConnexion;
@@ -73,8 +74,15 @@ public class MBCatalogueDeveloppeur {
     public List<DTOProjet> initListeProjet() {
         return panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
     }
+	public NoDeveloppeur getDev() {
+		return dev;
+	}
 
-    @PostConstruct
+	public void setDev(NoDeveloppeur dev) {
+		this.dev = dev;
+	}
+
+	@PostConstruct
     public void obtenirLesInterfaces() {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
@@ -108,5 +116,12 @@ public class MBCatalogueDeveloppeur {
 	public void setProjetSelectionne(DTOProjet projetSelectionne) {
         this.projetSelectionne = projetSelectionne;
     }
+	
+	public String recupDeveloppeur(NoDeveloppeur developpeur)
+	{
+		dev = developpeur;
+		
+		return "/DeveloppeurDetail.xhtml?faces-redirect=true";
+	}
 	
 }
