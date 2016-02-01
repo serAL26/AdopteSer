@@ -19,8 +19,11 @@ public class BusinessPropositionImpl implements IBusinessProposition {
     private IDaoProposition daoProposition;
 
     @Override
-    public DTOProposition recupPropositionValiderParClient(Integer idProjet) {
-        Proposition proposition = daoProposition.recupPropositionValiderParClient(idProjet);
+    public DTOProposition recupPropositionValiderParProjet(Integer idProjet) {
+        log.info("BusinessPropositionImpl : In");
+        log.info("BusinessPropositionImpl : idProjet = "+idProjet);
+        Proposition proposition = daoProposition.recupPropositionValiderParProjet(idProjet);
+        log.info("BusinessPropositionImpl : proposition = "+proposition.toString());
         return EntityToDTO.propositionToDTOProposition(proposition);
     }
 }
