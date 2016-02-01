@@ -13,8 +13,8 @@ public interface IBusinessCdc {
 	DTOCdc ajouterCdcDto (DTOCdc cdcDto);
 	void modifierCdcDto (DTOCdc cdcDto);
 	List<DTOTypeFonctionnalite> recupererTousLesTypesFonctionnalites();
-	void ajouterFonctionnalite(DTOFonctionnalite dtoFonct);
-	void ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
+	DTOFonctionnalite ajouterFonctionnalite(DTOFonctionnalite dtoFonct);
+	DTOAssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite (DTOAssociationCdcFonctionnalite dtoAssociation);
 	List<DTOTypeCdc> recupererTousLesTypesCdc();
 	void ajouterAssociationFonctCdcComplet (DTOCdc cdc, List<DTOFonctionnalite> listeFonct);
 	DTOCdc recupCdcParId(Integer id);
