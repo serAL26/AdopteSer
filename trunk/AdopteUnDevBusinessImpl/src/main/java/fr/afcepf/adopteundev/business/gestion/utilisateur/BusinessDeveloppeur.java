@@ -152,7 +152,7 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 			DTOTechnologie techno) {
 		List<Developpeur> liste = daoDeveloppeur
 				.recupDeveloppeurParNoteEtTechno(note,
-						DTOToEntity.dtoTechnologieToTechnologie(techno));
+						techno.getIdTechnologie());
 		return EntityToDTO.listDevtoDTODeveloppeur(liste);
 
 	}
