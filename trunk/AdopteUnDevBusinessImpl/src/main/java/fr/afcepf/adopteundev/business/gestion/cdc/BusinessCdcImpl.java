@@ -19,9 +19,10 @@ import entity.Cdc;
 import entity.Fonctionnalite;
 import entity.TypeCdc;
 import entity.TypeFonctionnalite;
+import enumeration.TypeCDC;
 import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessCdc;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoCdc;
-import fr.afcepf.adopteundev.idao.projet.IDaoTypeCDC;
+import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoTypeCDC;
 
 @Remote(IBusinessCdc.class)
 @Stateless
@@ -36,6 +37,8 @@ public class BusinessCdcImpl implements IBusinessCdc {
 
     @Override
     public void ajouterCdcDto(DTOCdc cdcDto) {
+    	DTOTypeCdc typeCDC = EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCdc.recupTypeCdcByLibelle(TypeCDC.CDC.toString()));
+    	cdcDto.setTypeCdc(typeCDC);
         Cdc cdc = DTOToEntity.dtoCdcToCdc(cdcDto);
         cdc = daoCdc.ajouterCdc(cdc);
     }
@@ -158,7 +161,6 @@ public class BusinessCdcImpl implements IBusinessCdc {
         return dtoCdc;
     }
 
-	@Override
 	public DTOTypeCdc recupTypeCDCParLibelle(String libelle) {
 		return EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCdc.recupTypeCdcByLibelle(libelle));
 	}
