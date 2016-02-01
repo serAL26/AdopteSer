@@ -62,6 +62,15 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		List<Projet> listProjet = query.getResultList();
 		return listProjet;
 	}
+	
+	@Override
+	public List<Projet> recupProjerParEtatParIdClient(String etat, Integer id) {
+		Query query = em.createQuery("SELECT p FROM Projet p WHERE p.etatProjet.libelle like :petat AND p.client.idUtilisateur=:pId");
+		query.setParameter("petat", etat);
+		query.setParameter("pId", id);
+		List<Projet> listProjet = query.getResultList();
+		return listProjet;
+	}
 
 	@Override
 	public Projet recupProjetParId(int idProjet) {
@@ -70,10 +79,10 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 	}
 
 	@Override
-	public List<Projet> recupProjetParEtatParDev(String etat, Developpeur dev) {
+	public List<Projet> recupProjetParEtatParIdDev(String etat, Integer id) {
 		Query query = em.createQuery("SELECT p.projet FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev "
 				+ "AND p.typeProposition.idTypeProposition = 3 and p.projet.etatProjet.libelle like :petat");
-		query.setParameter("idDev", dev.getIdUtilisateur());
+		query.setParameter("idDev", id);
 		query.setParameter("petat", etat);
 		List<Projet> listProjet = query.getResultList();
 		return listProjet;

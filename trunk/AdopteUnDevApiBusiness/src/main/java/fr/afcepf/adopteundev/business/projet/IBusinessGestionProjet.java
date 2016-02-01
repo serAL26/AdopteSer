@@ -18,5 +18,5 @@ public interface IBusinessGestionProjet {
 	public DTOProjet recupProjetParId(int idProjet);
 	public DTOTypeCdc recupTypeCDCparLibelle(String libelle);
 	
-	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, DTOUtilisateur dtoUtilisateur);
+	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 }

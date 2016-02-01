@@ -113,6 +113,10 @@ public class EntityToDTO {
 		dtoCdc.setTarif(cdc.getTarif());
 		dtoCdc.setLu(cdc.getLu());
 		dtoCdc.setTypeCdc(typeCdcToDTOTypeCdc(cdc.getTypeCdc()));
+		if (cdc.getDeveloppeurCdc() !=null)
+        {
+			dtoCdc.setDeveloppeur(developpeurToDTODeveloppeur(cdc.getDeveloppeurCdc()));
+        }
 		return dtoCdc;
 	}
 

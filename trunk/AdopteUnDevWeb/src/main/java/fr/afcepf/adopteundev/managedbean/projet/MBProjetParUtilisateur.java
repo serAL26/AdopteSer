@@ -119,10 +119,10 @@ public class MBProjetParUtilisateur {
 		gestionProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
 		gestionCdc = (IUCGestionCdc)ContextFactory.createProxy(UcName.UCGESTIONCDC);
-		listeProjetsValide = gestionProjet.recupProjerParEtatParClient("Termine", (DTOClient)mBConnexion.getUtilisateur());
-		listeProjetsArrete = gestionProjet.recupProjerParEtatParClient("Arrete", (DTOClient)mBConnexion.getUtilisateur());
-		listeProjetsEnCours = gestionProjet.recupProjerParEtatParUtilisateur("Demarre", (DTOClient)mBConnexion.getUtilisateur());
-		listeProjetsEnAttente = gestionProjet.recupProjerParEtatParUtilisateur("En attente", (DTOClient)mBConnexion.getUtilisateur());
+		listeProjetsValide = gestionProjet.recupProjerParEtatParUtilisateur("Termine", mBConnexion.getUtilisateur().getIdUtilisateur());
+		listeProjetsArrete = gestionProjet.recupProjerParEtatParUtilisateur("Arrete", mBConnexion.getUtilisateur().getIdUtilisateur());
+		listeProjetsEnCours = gestionProjet.recupProjerParEtatParUtilisateur("Demarre", mBConnexion.getUtilisateur().getIdUtilisateur());
+		listeProjetsEnAttente = gestionProjet.recupProjerParEtatParUtilisateur("En attente", mBConnexion.getUtilisateur().getIdUtilisateur());
 	}
 	
 	public DTOCdc recupInfoCdc(DTOProjet projet)
