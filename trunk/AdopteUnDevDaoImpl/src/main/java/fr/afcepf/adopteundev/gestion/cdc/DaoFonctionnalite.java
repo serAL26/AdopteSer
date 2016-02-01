@@ -78,10 +78,8 @@ public class DaoFonctionnalite implements IDaoFonctionnalite {
 
 	@Override
 	public List<Fonctionnalite> recupFonctionnaliteParCDC(Cdc cdc) {
-		Query query = em
-				.createQuery("SELECT f FROM Fonctionnalite f,AssociationCdcFonctionnalite afc WHERE afc.fonctionnalite.idFonctionnalite = f.idFonctionnalite AND afc.cdc.idCdc=:pcdc");
-		query.setParameter("pcdc", cdc.getIdCdc());
-		return query.getResultList();
+		return null;
 	}
+
 
 }
