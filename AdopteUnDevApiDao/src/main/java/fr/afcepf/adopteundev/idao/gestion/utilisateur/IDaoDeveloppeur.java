@@ -15,5 +15,5 @@ public interface IDaoDeveloppeur {
     List<Developpeur> recupDeveloppeursParTechno(Integer id);
     Developpeur obtenirDeveloppeurParId(int idUtilisateur);
     List<Projet> obtenirProjetParDev(int idDev);
-    List<Developpeur> recupDeveloppeurParNoteEtTechno(double note, Technologie techno );
+    List<Developpeur> recupDeveloppeurParNoteEtTechno(double note, int idTechno );
 }
