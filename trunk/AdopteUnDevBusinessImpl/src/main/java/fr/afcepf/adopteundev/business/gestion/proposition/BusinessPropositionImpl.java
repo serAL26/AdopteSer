@@ -1,6 +1,8 @@
 package fr.afcepf.adopteundev.business.gestion.proposition;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,11 +13,15 @@ import javax.ejb.Stateless;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOProposition;
+import entity.Client;
+import entity.Developpeur;
 import entity.Proposition;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.proposition.IBusinessProposition;
 import fr.afcepf.adopteundev.idao.gestion.proposition.IDaoProposition;
 import fr.afcepf.adopteundev.idao.gestion.proposition.IDaoTypeProposition;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoClient;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
 @Remote(IBusinessProposition.class)
@@ -27,6 +33,10 @@ public class BusinessPropositionImpl implements IBusinessProposition {
     private IDaoTypeProposition daoTypeProposition;
     @EJB
     private IDaoGestionProjet daoProjet;
+	@EJB
+	private IDaoDeveloppeur daoDev;
+	@EJB 
+	private IDaoClient daoClient;
     
     @Override
     public DTOProposition recupPropositionValiderParProjet(Integer idProjet) {
@@ -53,5 +63,27 @@ public class BusinessPropositionImpl implements IBusinessProposition {
 			proposition.setTypeProposition(daoTypeProposition.recupTypePropositionParId(1));
 			daoProposition.ajouterPropositionAuDev(proposition);
 		}
+	}
+
+	@Override
+	public List<DTOProposition> recupPropositionParEtatParUtilisateur(
+			String etat, Integer id) {
+
+		List<DTOProposition> liste = new ArrayList<DTOProposition>();
+		
+		Developpeur dev = daoDev.obtenirDeveloppeurParId(id);
+		Client client = daoClient.obtenirClientParId(id);
+
+		if(dev != null)
+		{
+			liste =  EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionParEtatParIdDev(etat, id));
+		}
+		
+		else if (client != null)
+		{
+			liste = EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionParEtatParIdClient(etat, id));
+		}
+
+		return liste;
 	}
 }

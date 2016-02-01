@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+    <ui:define name="head">
+    </ui:define>
+    <ui:define name="title">Mes Propositions : </ui:define>
+    <ui:define name="body">
+    
+		<!-- Proposition en attente  -->
+		
+		<h:panelGroup rendered="#{mBPropositionParUtilisateur.listeEnAttente.size() != 0}">
+    	    <div class="section">
+	        <div class="container">
+	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+	        	<h2>Proposition(s) non traitée(s)</h2>
+	        </h:panelGroup>
+	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+	        	<h2>Proposition(s) en attente de réponse</h2>
+	        </h:panelGroup>
+	        	<ui:repeat value="#{mBPropositionParUtilisateur.listeEnAttente}" var="prop">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+									<a href="Accueil.jsf">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    					<p>
+    						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
+    					</p>
+    				 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+    				<p>
+    					Développeur : #{prop.developpeur.prenom}
+    					#{prop.developpeur.nom}
+    					</p>
+    					</h:panelGroup>
+    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+    				<p>
+    					Porteur du projet : #{prop.projet.client.prenom}
+    					#{prop.projet.client.nom}
+    					</p>
+    				</h:panelGroup>
+    					<p>
+    						Date de livraison : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).dateFinEstimee.toString().subSequence(0, 10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).tarif}€
+    					</p>
+    					
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	       </h:panelGroup>
+	        
+	        <!-- Projet(s) en attente de validation -->
+	        
+	        <h:panelGroup rendered="#{mBPropositionParUtilisateur.listeAccepteParDev.size() != 0}">
+	       <div class="section">
+	        <div class="container">
+	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+	        	<h2>Proposition(s) non traitée(s)</h2>
+	        </h:panelGroup>
+	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+	        	<h2>Proposition(s) en attente de réponse</h2>
+	        </h:panelGroup>
+	        	<ui:repeat value="#{mBPropositionParUtilisateur.listeAccepteParDev}" var="prop">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+									<a href="Accueil.jsf">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    					<p>
+    						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
+    					</p>
+    				 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+    				<p>
+    					Développeur : #{prop.developpeur.prenom}
+    					#{prop.developpeur.nom}
+    					</p>
+    					</h:panelGroup>
+    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+    				<p>
+    					Porteur du projet : #{prop.projet.client.prenom}
+    					#{prop.projet.client.nom}
+    					</p>
+    				</h:panelGroup>
+    					<p>
+    						Date de livraison : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).dateFinEstimee.toString().subSequence(0, 10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).tarif}€
+    					</p>
+    					
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	        </h:panelGroup>
+	        
+	        <!-- Projet(s) refuse(s) -->
+	        
+	       	        <h:panelGroup rendered="#{mBPropositionParUtilisateur.listeRefuse.size() != 0}">
+	       <div class="section">
+	        <div class="container">
+	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+	        	<h2>Proposition(s) refusée(s)</h2>
+	        </h:panelGroup>
+	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+	        	<h2>Proposition(s) refusée(s)</h2>
+	        </h:panelGroup>
+	        	<ui:repeat value="#{mBPropositionParUtilisateur.listeRefuse}" var="prop">
+	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
+        			<div class="col-sm-4">
+        				<div class="service-image">
+									<a href="Accueil.jsf">
+        					<img src="#{prop.projet.photo}" alt="Color Schemes"/></a>
+        				</div>
+        			</div>
+        			<div class="col-sm-8">
+    					<h3><a href="Accueil.jsf">#{prop.projet.libelle}</a></h3>
+    					<p>
+    						Besoin client : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).besoin}
+    					</p>
+    				 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+    				<p>
+    					Développeur : #{prop.developpeur.prenom}
+    					#{prop.developpeur.nom}
+    					</p>
+    					</h:panelGroup>
+    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+    				<p>
+    					Porteur du projet : #{prop.projet.client.prenom}
+    					#{prop.projet.client.nom}
+    					</p>
+    				</h:panelGroup>
+    					<p>
+    						Date de livraison : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).dateFinEstimee.toString().subSequence(0, 10)}
+    					</p>
+    					<p>
+    						Tarif : #{mBPropositionParUtilisateur.recupInfoCdc(prop.projet).tarif}€
+    					</p>
+    					
+    				</div>
+				</div>
+	        	</ui:repeat>
+	        	</div>
+	        </div>
+	        </h:panelGroup>
+	        
+    </ui:define>
+</ui:composition>
+</html>
