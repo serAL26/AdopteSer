@@ -23,9 +23,13 @@
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>En attente de développeur</h3>
+    					<h3>#{projet.libelle}</h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    				<p>
+    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
     					</p>
     					<p>
     						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
@@ -52,10 +56,13 @@
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom} 
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}</h3>
+    					<h3>#{projet.libelle}</h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    				<p>
+    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
     					</p>
     					<p>
     						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
@@ -82,10 +89,13 @@
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3>Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}</h3>
+    					<h3>#{projet.libelle}</h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    				<p>
+    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
     					</p>
     					<p>
     						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
@@ -112,19 +122,19 @@
         				</div>
         			</div>
         			<div class="col-sm-8">
-    					<h3></h3>
+    					<h3>#{projet.libelle}</h3>
     					<p>
     						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+    					</p>
+    				<p>
+    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
     					</p>
     					<p>
     						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().substring(10)}
     					</p>
     					<p>
     						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
-    					</p>
-    					<p>
-    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
     					</p>
     				</div>
 				</div>
