@@ -16,7 +16,7 @@ public interface IUCProjet {
 	public Set<DTOTypeService> rechercherTousServices();
 	public Set<DTOTypeService> rechercherServicesParAppli(DTOTypeAppli application);
 	public List<DTOProjet> recupProjetParIdClient(Integer id);
-	public void creerProjet(DTOProjet projet);
+	public DTOProjet creerProjet(DTOProjet projet);
 	public void finaliserProjet(DTOProjet projet);
 	public List<DTOProjet> recupProjerParEtat(String etat);
 	public List<DTOProjet> recupProjerParEtatParClient(String etat, DTOClient client);

@@ -9,7 +9,7 @@ import dto.DTOTypeCdc;
 public interface IBusinessGestionProjet {
 
 	public List<DTOProjet> recupProjetParIdClient(Integer id);
-	public void ajouter(DTOProjet projet);
+	public DTOProjet ajouter(DTOProjet projet);
 	public void modifierProjet(DTOProjet projet);
 	public void finaliserProjet(DTOProjet projet);
 	public List<DTOProjet> recupProjerParEtat(String etat);
