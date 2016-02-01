@@ -23,22 +23,22 @@
 					value="creer nouveau fil" />
 
 				<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
-				<div class="row">
-				<div></div>
-					<details>
-						<summary>
-							<label>#{noMessage.mecEnFace.nom}</label>
-						</summary>
-						<div class="col-md-offset-2">
-							<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
-								<div>
-									<h:commandLink
-										action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}"
-										value="#{messDuMec.titre}" />
-								</div>
-							</ui:repeat>
-						</div>
-					</details>
+					<div class="row">
+						<div></div>
+						<details>
+							<summary>
+								<label>#{noMessage.mecEnFace.nom}</label>
+							</summary>
+							<div class="col-md-offset-2">
+								<ui:repeat var="messDuMec" value="#{noMessage.listeMessageMere}">
+									<div>
+										<h:commandLink
+											action="#{mBMessagerie.obtenirFilConversation(messDuMec, noMessage)}"
+											value="#{messDuMec.titre}" />
+									</div>
+								</ui:repeat>
+							</div>
+						</details>
 					</div>
 				</ui:repeat>
 			</div>
@@ -71,16 +71,15 @@
 						</h:panelGroup>
 					</div>
 					<div class="row rep" style="height: 100px;">
-							<div class="col-md-8 espaceReponse">
-									<h:inputTextarea styleClass="form-control textReponse"
-										value="#{mBMessagerie.leMessage}" />
-										</div>
-								<div class="col-md-3 btnRep">
-									<h:commandButton immediate="true"
-										action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
-										value="répondre" styleClass="btn btn-info" />
-								</div>
-						
+						<div class="col-md-8 espaceReponse">
+							<h:inputTextarea styleClass="form-control textReponse"
+								value="#{mBMessagerie.leMessage}" />
+						</div>
+						<div class="col-md-3 btnRep">
+							<h:commandButton immediate="true"
+								action="#{mBMessagerie.ajoutCompletMessAUnFil()}"
+								value="répondre" styleClass="btn btn-info" />
+						</div>
 					</div>
 				</div>
 			</div>

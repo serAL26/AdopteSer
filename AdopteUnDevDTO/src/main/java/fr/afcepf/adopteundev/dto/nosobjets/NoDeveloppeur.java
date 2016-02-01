@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.DTODeveloppeur;
+import dto.DTONote;
 import dto.DTOTechnologie;
 
 public class NoDeveloppeur implements Serializable {
@@ -13,6 +14,7 @@ public class NoDeveloppeur implements Serializable {
     private DTODeveloppeur developpeur;
     private Double note;
     private Integer noteEnInteger;
+    private List<DTONote> listeCommentaire;
     private List<DTOTechnologie> technologie = new ArrayList<>();
 
 	public NoDeveloppeur(DTODeveloppeur developpeur) {
@@ -51,5 +53,12 @@ public class NoDeveloppeur implements Serializable {
 	public void setNoteEnInteger(Integer noteEnInteger) {
 		this.noteEnInteger = noteEnInteger;
 	}
-	
+
+	public List<DTONote> getListeCommentaire() {
+		return listeCommentaire;
+	}
+
+	public void setListeCommentaire(List<DTONote> listeCommentaire) {
+		this.listeCommentaire = listeCommentaire;
+	}
 }

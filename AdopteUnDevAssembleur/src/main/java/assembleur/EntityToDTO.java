@@ -602,4 +602,11 @@ public class EntityToDTO {
 		}
 		return listeDTOOperation;
 	}
+	public static List<DTONote> listeNoteToDTONote(List<Note> listeNote) {
+		List<DTONote> listeDTONote = new ArrayList<>();
+		for (Note note : listeNote) {
+			listeDTONote.add(noteToDTONote(note));
+		}
+		return listeDTONote;
+	}
 }

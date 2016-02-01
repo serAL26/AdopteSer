@@ -68,7 +68,12 @@ public class MBCatalogueDeveloppeur {
     }
 
     private List<NoDeveloppeur> initFichesDeveloppeur() {
-        return panierUc.recupererFicheResumeDeveloppeur();
+    	List<DTODeveloppeur> listeTousLesDevs = ucUtilisateur.recupTousLesDeveloppeurs();
+    	List<NoDeveloppeur> listeNoDeveloppeur = new ArrayList<>();
+    	for (DTODeveloppeur dtoDeveloppeur : listeTousLesDevs) {
+    		listeNoDeveloppeur.add(panierUc.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
+		}
+        return listeNoDeveloppeur;
     }
     
     public List<DTOProjet> initListeProjet() {
@@ -116,6 +121,12 @@ public class MBCatalogueDeveloppeur {
 	public void setProjetSelectionne(DTOProjet projetSelectionne) {
         this.projetSelectionne = projetSelectionne;
     }
+	public String recupDeveloppeur(NoDeveloppeur developpeur)
+	{
+		dev = developpeur;
+		
+		return "/DeveloppeurDetail.xhtml?faces-redirect=true";
+	}
 	
 	public String recupDeveloppeur(NoDeveloppeur developpeur)
 	{

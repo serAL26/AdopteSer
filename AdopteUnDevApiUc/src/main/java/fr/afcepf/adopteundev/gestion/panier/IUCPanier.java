@@ -11,7 +11,7 @@ import java.util.Set;
 public interface IUCPanier {
     List<DTODeveloppeur> recupererTousLesDeveloppeurs();
 
-    List<NoDeveloppeur> recupererFicheResumeDeveloppeur();
+    NoDeveloppeur recupererFicheResumeDeveloppeur(DTODeveloppeur dtoDeveloppeur);
 
     List<DTOProjet> recupererListProjetEnAttenteParUtilisateur(int idUtilisateur);
 }
