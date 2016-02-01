@@ -1,6 +1,9 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import dto.*;
+import dto.DTOCdc;
+import dto.DTOLivrable;
+import dto.DTONote;
+import dto.DTOProjet;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
@@ -11,7 +14,6 @@ import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -21,37 +23,34 @@ import java.util.Set;
 public class MBProjetDetail {
     private Logger log = Logger.getLogger(MBProjetDetail.class);
     private DTOProjet projet;
-    private IUCProjet ucProjet;
-    private IUcProposition ucProposition;
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
-    private String tarifCdc;
+    private List<DTOLivrable> livrableList;
 
 
     @PostConstruct
     private void init() {
-        ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
+        IUCProjet ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
-        ucProposition = (IUcProposition) ContextFactory.createProxy(UcName.UCGESTIONPROPOSITION);
         projet = ucProjet.recupProjetById(2);
         cdc = getFinalCdc();
-        tarifCdc = transformTarif(cdc);
+        livrableList = ucProjet.recupListLivrableParProjet(projet);
     }
 
-    public String commentaireDeProjetParUtilisateur(int idUtilisateur){
+    public String commentaireDeProjetParUtilisateur(int idUtilisateur) {
         return getNoteParUtilisateur(idUtilisateur).getCommentaire();
     }
 
     private DTONote getNoteParUtilisateur(int idUtilisateur) {
         DTONote note = new DTONote();
         Set<DTONote> noteSet = projet.getLesNotes();
-        if (noteSet!= null){
+        if (noteSet != null) {
             for (DTONote note2 :
                     noteSet) {
                 if (note2.getIdEstNote() != idUtilisateur)
                     note = note2;
             }
-        }else{
+        } else {
             //pour le test
             note.setNote(5.0);
             note.setCommentaire("test test test");
@@ -61,18 +60,9 @@ public class MBProjetDetail {
         }
         return note;
     }
-    public List<DTOLivrable> getLesLivrableDuProjet(int idProjet){
-        List<DTOLivrable>liste = new ArrayList<>();
 
-        return liste;
-    }
-
-    public DTOCdc getFinalCdc(){
+    public DTOCdc getFinalCdc() {
         return gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());
-    }
-
-    public String transformTarif(DTOCdc cdc){
-       return String.valueOf(cdc);
     }
 
     public DTOProjet getProjet() {
@@ -91,11 +81,11 @@ public class MBProjetDetail {
         this.cdc = cdc;
     }
 
-    public String getTarifCdc() {
-        return tarifCdc;
+    public List<DTOLivrable> getLivrableList() {
+        return livrableList;
     }
 
-    public void setTarifCdc(String tarifCdc) {
-        this.tarifCdc = tarifCdc;
+    public void setLivrableList(List<DTOLivrable> livrableList) {
+        this.livrableList = livrableList;
     }
 }

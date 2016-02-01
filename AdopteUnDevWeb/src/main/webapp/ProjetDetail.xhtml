@@ -32,7 +32,7 @@
                                 <tr>
                                     <td><b>date de livrable</b></td>
                                     <td>
-                                        #{mBProjetDetail.cdc.dateFinEstimee.toGMTString.subSequence(0,10)}
+                                        #{mBProjetDetail.cdc.dateFinEstimee.toLocaleString}
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,105 +59,50 @@
                         <!--client = 2-->
                         <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
                         <h:panelGroup rendered="true">
-                            <h5>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</h5>
-                            <p>
-                                #{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}
-                            </p>
-                            <table class="shop-item-selections">
-                                <tr>
-                                    <td><b>date de livrable</b></td>
-                                    <td>
-                                        #{mBProjetDetail.cdc.dateFinEstimee}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Type du projet</b></td>
-                                    <td>
-                                        #{mBProjetDetail.projet.service.libelle}
-                                    </td>
-                                </tr>
-                                <!-- Quantity -->
-                                <tr>
-                                    <td><b>Quantity:</b></td>
-                                    <td>
-                                        <input type="text" class="form-control input-sm input-micro" value="1"/>
-                                    </td>
-                                </tr>
-                                <!-- Add to Cart Button -->
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <a href="#" class="btn btn"><i
-                                                class="icon-shopping-cart icon-white"/> Add to Cart</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div>
+                                <h5>#{mBProjetDetail.cdc.developpeur.nom} #{mBProjetDetail.cdc.developpeur.prenom}</h5>
+                                <p>#{mBProjetDetail.commentaireDeProjetParUtilisateur(17)}</p>
+                            </div>
+                            <div>
+                                <h5> date de livrable</h5>
+                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
+                            </div>
+                            <div>
+                                <h5>Type du projet</h5>
+                                <p>#{mBProjetDetail.projet.service.libelle}</p>
+                            </div>
+                            <div>
+                                <h5>Vos livrables :</h5>
+                                <table class="shop-item-selections">
+                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
+                                        <tr>
+                                            <td>#{livrable.idLivrable}</td>
+                                            <td>#{livrable.dateLivraison}</td>
+                                            <td>#{livrable.echeance}</td>
+                                            <td>#{livrable.description}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </table>
+                            </div>
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12">
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Specification</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Le cahier des charges</a></li>
                             </ul>
-                            <!-- Tab Content (Full Description) -->
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                    <h4>Product Description</h4>
-                                    <p>
-                                        Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus. Phasellus et est quis diam iaculis fringilla id nec sapien. Sed tempor ornare felis, non vulputate dolor. Etiam ornare diam vitae ligula malesuada tempor. Vestibulum nec odio vel libero ullamcorper euismod et in sapien. Suspendisse potenti.
-                                    </p>
-                                    <h4>Product Highlights</h4>
-                                    <ul>
-                                        <li>Nullam dictum augue nec iaculis rhoncus. Aenean lobortis fringilla orci, vitae varius purus eleifend vitae.</li>
-                                        <li>Nunc ornare, dolor a ultrices ultricies, magna dolor convallis enim, sed volutpat quam sem sed tellus.</li>
-                                        <li>Aliquam malesuada cursus urna a rutrum. Ut ultricies facilisis suscipit.</li>
-                                        <li>Duis a magna iaculis, aliquam metus in, luctus eros.</li>
-                                        <li>Aenean nisi nibh, imperdiet sit amet eleifend et, gravida vitae sem.</li>
-                                        <li>Donec quis nisi congue, ultricies massa ut, bibendum velit.</li>
-                                    </ul>
-                                    <h4>Usage Information</h4>
-                                    <p>
-                                        Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus. Phasellus et est quis diam iaculis fringilla id nec sapien. Sed tempor ornare felis, non vulputate dolor. Etiam ornare diam vitae ligula malesuada tempor. Vestibulum nec odio vel libero ullamcorper euismod et in sapien. Suspendisse potenti.
-                                    </p>
-                                </div>
-                                <!-- Tab Content (Specification) -->
-                                <div class="tab-pane" id="tab2">
-                                    <table>
-                                        <tr>
-                                            <td>Total sensor Pixels (megapixels)</td>
-                                            <td>Approx. 16.7</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Effective Pixels (megapixels)</td>
-                                            <td>Approx. 16.1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Automatic White Balance</td>
-                                            <td>YES</td>
-                                        </tr>
-                                        <tr>
-                                            <td>White balance: preset selection</td>
-                                            <td>Daylight, Shade, Cloudy, Incandescent, Fluorescent, Flash</td>
-                                        </tr>
-                                        <tr>
-                                            <td>White balance: custom setting</td>
-                                            <td>YES</td>
-                                        </tr>
-                                        <tr>
-                                            <td>White balance: types of color temperature</td>
-                                            <td>YES (G7 to M7,15-step) (A7 to B7,15-step)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>White balance bracketing</td>
-                                            <td>NO</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ISO Sensitivity Setting</td>
-                                            <td>ISO100 - 25600 equivalent</td>
-                                        </tr>
-                                    </table>
+                                    <h4>#{mBProjetDetail.cdc.typeCdc.libelle}</h4>
+                                    <h:panelGroup rendered="#{mBProjetDetail.cdc.lu==true}">
+                                        <p>votre cahier des charges a été lu</p></h:panelGroup>
+                                    <h:panelGroup rendered="#{mBProjetDetail.cdc.lu==false}">
+                                        <p>votre cahier des charges n'a pas été lu</p></h:panelGroup>
+                                    <h4>Le contexte</h4>
+                                    <p>#{mBProjetDetail.cdc.contexte}</p>
+                                    <h4>Les besoins</h4>
+                                    <p>#{mBProjetDetail.cdc.besoin}</p>
                                 </div>
                             </div>
                         </div>
