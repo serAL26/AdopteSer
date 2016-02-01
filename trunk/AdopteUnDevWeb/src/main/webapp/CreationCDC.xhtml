@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Ajouter Cahier de Charge </ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="basic-login">
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>Projet : </b>
+								</label>
+								<h:outputLabel value="#{mBAjoutCdc.projet.libelle}"></h:outputLabel>
+							</div>
+
+							<FIELDSET>
+								<legend>Dites-nous en plus concernant votre projet!</legend>
+
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Votre besoin :
+									</b></label>
+									<div>
+										<h:inputTextarea class="icon-user"
+											value="#{mBAjoutCdc.besoin}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Contexte de
+											votre projet : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.contexte}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Mode de
+											fonctionnement actuel : </b></label>
+									<h:inputTextarea class="icon-user"
+										value="#{mBAjoutCdc.existant}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Date de fin
+											prevue : </b></label>
+									<p:calendar id="button" showOn="button"
+										value="#{mBAjoutCdc.dateFin}" />
+								</div>
+								<div class="form-group">
+									<label><i class="icon-lock"></i> <b>Budget</b></label>
+									<div style="max-width: 150px">
+										<h:inputText class="form-control" value="#{mBAjoutCdc.tarif}" />
+									</div>
+								</div>
+							</FIELDSET>
+							<div>
+								<h:commandButton class="btn pull-right"
+									action="#{mBAjoutCdc.creerCdc}" value="Enregistrer" />
+									<h:commandButton class="btn pull-leftt"
+									action="#{mBAjoutCdc.redirectAjouterFonctionnalite}" value="Ajouter des Fonctionnalités" />
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>
