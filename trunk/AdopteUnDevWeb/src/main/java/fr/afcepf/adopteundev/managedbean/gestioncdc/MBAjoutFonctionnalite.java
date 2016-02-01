@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
 import dto.DTOTypeFonctionnalite;
@@ -24,7 +25,7 @@ public class MBAjoutFonctionnalite {
 	private Set<DTOTypeFonctionnalite> listTypeFonctionn;
 	private DTOTypeFonctionnalite selectedTypeFonction = new DTOTypeFonctionnalite();
 	private List<DTOFonctionnalite> listeFonctionnaliteCree = new ArrayList<>();
-	private DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
+	private String commentaire;
 	private DTOCdc cdc;
 	private boolean actionAjout = true;
 	@ManagedProperty(value = "#{MBAjoutCdc}")
@@ -80,40 +81,54 @@ public class MBAjoutFonctionnalite {
 		this.cdc = cdc;
 	}
 
-	public String ajouterFonctionnaliteSaisi() {
-		System.out.println(selectedTypeFonction.getIdTypeFonctionnalite());
-		selectedTypeFonction = gestionCdc.recupTypeFonctionnaliteParID(selectedTypeFonction.getIdTypeFonctionnalite());
-		if (fonctionnaliteCree != null) {
+	public void ajouterFonctionnaliteSaisi() {
+		DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
+		fonctionnaliteCree.setCommentaire(commentaire);
+		System.out.println("type fonctionnalite "
+				+ selectedTypeFonction.getIdTypeFonctionnalite());
+		selectedTypeFonction = gestionCdc
+				.recupTypeFonctionnaliteParID(selectedTypeFonction
+						.getIdTypeFonctionnalite());
 			fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
-			System.out.println(fonctionnaliteCree.getCommentaire());
+			System.out.println("fonctionnalite id : "
+					+ fonctionnaliteCree.getIdFonctionnalite());
 			listeFonctionnaliteCree.add(fonctionnaliteCree);
+			for (DTOFonctionnalite fonctionna : listeFonctionnaliteCree) {
+				System.out.println("fonctionnalite : "
+						+ fonctionna.getCommentaire());
+			}
+
+			actionAjout = false;
 		}
-		actionAjout = false;
-		return "";
-	}
 
-	public DTOFonctionnalite getFonctionnaliteCree() {
-		return fonctionnaliteCree;
-	}
+		public String validerCDC() {
+			gestionCdc.ajouterAssociationFonctCdcComplet(cdc,
+					listeFonctionnaliteCree);
+			return "";
+		}
 
-	public void setFonctionnaliteCree(DTOFonctionnalite fonctionnaliteCree) {
-		this.fonctionnaliteCree = fonctionnaliteCree;
-	}
+		public MBAjoutCdc getBeanCDC() {
+			return beanCDC;
+		}
 
-	public MBAjoutCdc getBeanCDC() {
-		return beanCDC;
-	}
+		public void setBeanCDC(MBAjoutCdc beanCDC) {
+			this.beanCDC = beanCDC;
+		}
 
-	public void setBeanCDC(MBAjoutCdc beanCDC) {
-		this.beanCDC = beanCDC;
-	}
+		public boolean isActionAjout() {
+			return actionAjout;
+		}
 
-	public boolean isActionAjout() {
-		return actionAjout;
-	}
+		public void setActionAjout(boolean actionAjout) {
+			this.actionAjout = actionAjout;
+		}
 
-	public void setActionAjout(boolean actionAjout) {
-		this.actionAjout = actionAjout;
-	}
+		public String getCommentaire() {
+			return commentaire;
+		}
 
-}
+		public void setCommentaire(String commentaire) {
+			this.commentaire = commentaire;
+		}
+
+	}
