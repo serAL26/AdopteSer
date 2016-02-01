@@ -22,8 +22,9 @@ public class DaoOperation implements IDaoOperation{
 	 
 	 private String recupListOperationParProjetEtTypeOperation = "SELECT o FROM Operation o  WHERE o.livrable.projet.idProjet = :idProjet AND o.typeOperation.idTypeOperation = :idTypeOperation";
 	 private String recupListOperationParClientEtType = "SELECT o FROM Operation o  WHERE o.livrable.projet.client.idUtilisateur = :idClient AND o.typeOperation.idTypeOperation = :idTypeOperation";
-	 private String recupListOperationParDevEtType = "SELECT o FROM Operation o WHERE  o.typeOperation.idTypeOperation = :idTypeOperation AND"
-	 		+ " (o.livrable.projet.idProjet = (SELECT p.projet.idProjet FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev AND p.typeProposition.idTypeProposition = 3))";
+	 
+	 private String recupListOperationParDevEtType = "SELECT o FROM Operation o WHERE  o.typeOperation.idTypeOperation = :idTypeOperation AND o.livrable.projet.idProjet = :idProjet";
+	 
 	 private String operationPayeeParLivrable = "SELECT o FROM Operation o WHERE o.typeOperation.idTypeOperation = 1 AND o.livrable.idLivrable = :idLivrable";
 	
 	@Override
@@ -38,14 +39,6 @@ public class DaoOperation implements IDaoOperation{
 		Query query = em.createQuery(recupListOperationParProjetEtTypeOperation);
 		query.setParameter("idProjet", idProjet);
 		query.setParameter("idTypeOperation", idTypeOperation);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Operation> recupListOperationParDevEtType(int idTypeOperation, int idDev) {
-		Query query = em.createQuery(recupListOperationParDevEtType);
-		query.setParameter("idTypeOperation", idTypeOperation);
-		query.setParameter("idDev", idDev);
 		return query.getResultList();
 	}
 

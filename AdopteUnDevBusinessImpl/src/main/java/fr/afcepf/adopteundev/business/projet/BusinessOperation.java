@@ -10,7 +10,10 @@ import javax.ejb.Stateless;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOOperation;
+import dto.DTOProjet;
 import entity.Operation;
+import entity.Projet;
+import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 import fr.afcepf.adopteundev.idao.projet.IDaoTypeOperation;
 
@@ -20,6 +23,8 @@ public class BusinessOperation implements IBusinessOperation{
 
 	@EJB
 	private IDaoOperation daoOperation;
+	@EJB
+	private IDaoDeveloppeur daoDeveloppeur;
 	@EJB
 	private IDaoTypeOperation daoTypeOperation;
 	@Override
@@ -42,7 +47,12 @@ public class BusinessOperation implements IBusinessOperation{
 
 	@Override
 	public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation) {
-		return null;
+		List<Projet> listeProjet = daoDeveloppeur.obtenirProjetParDev(idUtilisateur);
+		List<DTOOperation> listeDTOProjet = new ArrayList<>();
+		for (Projet projet : listeProjet) {
+			listeDTOProjet.addAll(EntityToDTO.listeOperationToDTOOperation(daoOperation.recupListOperationParProjetEtType(projet.getIdProjet(), idTypeOperation)));
+		}
+		return listeDTOProjet;
 	}
 
 	@Override
