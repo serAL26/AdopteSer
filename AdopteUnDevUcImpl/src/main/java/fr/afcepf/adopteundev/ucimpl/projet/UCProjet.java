@@ -10,6 +10,8 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 import dto.DTOClient;
+import dto.DTOLivrable;
+import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeAppli;
@@ -17,6 +19,8 @@ import dto.DTOTypeProposition;
 import dto.DTOTypeService;
 import dto.DTOUtilisateur;
 import fr.afcepf.adopteundev.business.projet.IBusinessGestionProjet;
+import fr.afcepf.adopteundev.business.projet.IBusinessLivrable;
+import fr.afcepf.adopteundev.business.projet.IBusinessOperation;
 import fr.afcepf.adopteundev.business.projet.IBusinessProposition;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeAppli;
 import fr.afcepf.adopteundev.business.projet.IBusinessTypeService;
@@ -28,16 +32,17 @@ public class UCProjet implements IUCProjet {
 	private static Logger log = Logger.getLogger(UCProjet.class);
 	@EJB
 	private IBusinessTypeAppli businessTypeAppli;
-
 	@EJB
 	private IBusinessTypeService businessTypeService;
-
 	@EJB
 	private IBusinessGestionProjet businessGestionProjet;
-	
 	@EJB
 	private IBusinessProposition businessProposition;
-
+	@EJB
+	private IBusinessLivrable businessLivrable;
+	@EJB
+	private IBusinessOperation businessOperation;
+	
 	@Override
 	public Set<DTOTypeAppli> rechercherTousApplication() {
 		return businessTypeAppli.getAllApplis();
@@ -112,5 +117,15 @@ public class UCProjet implements IUCProjet {
 			Integer id) {
 		
 		return businessGestionProjet.recupProjerParEtatParUtilisateur(etat, id);
+	}
+
+	@Override
+	public DTOLivrable creerLivrable(DTOLivrable dtoLivrable) {
+		return businessLivrable.creerLivrable(dtoLivrable);
+	}
+
+	@Override
+	public List<DTOOperation> payerLivrable(DTOOperation dtoOperation) {
+		return businessOperation.payerLivrable(dtoOperation);
 	}
 }

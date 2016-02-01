@@ -25,6 +25,8 @@ public class DTOLivrable implements Serializable{
      */
     private Date echeance;
 
+    private String description;
+    
     /**
      * 
      */
@@ -108,5 +110,11 @@ public class DTOLivrable implements Serializable{
 		this.lesOperation = lesOperation;
 	}
 
-    
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
