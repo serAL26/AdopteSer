@@ -16,12 +16,14 @@ import dto.DTOProposition;
 import dto.DTOTechnologie;
 import dto.DTOTypeFonctionnalite;
 import entity.Developpeur;
+import entity.Note;
 import entity.Technologie;
 import entity.TypeFonctionnalite;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
+import fr.afcepf.adopteundev.idao.projet.IDaoNote;
 import fr.afcepf.adopteundev.idao.projet.IDaoProposition;
 import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
 
@@ -40,6 +42,8 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 
 	@EJB
 	private IDaoDeveloppeur daoDeveloppeur;
+	@EJB
+	private IDaoNote daoNote;
 
 	@Override
 	public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
@@ -49,9 +53,25 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 	@Override
 	public NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur) {
 		NoDeveloppeur noDev = new NoDeveloppeur(dtoDeveloppeur);
-		noDev.setNote(obtenirNote(dtoDeveloppeur));
+		noDev.setListeCommentaire(obtenirNote(dtoDeveloppeur));
+		if(noDev.getListeCommentaire().size() > 0) {
+		noDev.setNote(moyenneNote(noDev.getListeCommentaire()));
+		}
 		noDev.setTechnologie(obtenirTechnologie(dtoDeveloppeur));
 		return noDev;
+	}
+
+	private Double moyenneNote(List<DTONote> listeCommentaire) {
+		Double nbProjet = new Double(0);
+		Double somme = new Double(0);
+		for (DTONote dtoNote : listeCommentaire) {
+			somme += dtoNote.getNote();
+			nbProjet++;
+		}
+		if(nbProjet > 0){
+			somme = somme / nbProjet;
+		}
+		return somme;
 	}
 
 	private List<DTOTechnologie> obtenirTechnologie(DTODeveloppeur dtoDeveloppeur) {
@@ -59,25 +79,18 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur{
 		return EntityToDTO.listeTechnologieToDTOTechnologie(listeTechnologie);
 	}
 
-	private Double obtenirNote(DTODeveloppeur dtoDeveloppeur) {
-		List<DTOProposition> listeDTOProposition = EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionValideeParDev(dtoDeveloppeur.getIdUtilisateur()));
-		Double retour = new Double(0);
-		for (DTOProposition dtoProposition : listeDTOProposition) {
-			Set<DTONote> listeNote = dtoProposition.getProjet().getLesNotes();
-			if(listeNote != null) {
-				retour = calculLaNote(listeNote, dtoDeveloppeur.getIdUtilisateur());
-			}
-		}
-		return retour;
+	private List<DTONote> obtenirNote(DTODeveloppeur dtoDeveloppeur) {
+		List<Note> listeNote = daoNote.recupNoteParPropositionValidee(dtoDeveloppeur.getIdUtilisateur());
+		return EntityToDTO.listeNoteToDTONote(listeNote);
 	}
 
-	private Double calculLaNote(Set<DTONote> listeNote, int idDev) {
+	private Double calculLaNote(Set<Note> listeNote, int idDev) {
 		Double sommeNote = new Double(0);
 		double nbProjet = 0;
 		Double retour = new Double(0);
-		for (DTONote dtoNote : listeNote) {
-			if(dtoNote.getIdEstNote()== idDev){
-				sommeNote += dtoNote.getNote();
+		for (Note note : listeNote) {
+			if(note.getIdEstNote()== idDev){
+				sommeNote += note.getNote();
 				nbProjet++;
 			}
 		}

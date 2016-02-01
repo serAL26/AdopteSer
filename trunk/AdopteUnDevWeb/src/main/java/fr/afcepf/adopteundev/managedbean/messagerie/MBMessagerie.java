@@ -35,7 +35,6 @@ public class MBMessagerie {
 	private IUcUtilisateur ucUtilisateur;
 	@ManagedProperty(value="#{mBConnexion}")
 	private MBConnexion mBConnexion;
-
 	
 	private void initListeNoMessage() {
 		listeNoMessage = ucMessage.recupereNoMessage(mBConnexion.getUtilisateur().getIdUtilisateur());
