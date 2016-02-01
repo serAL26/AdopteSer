@@ -50,15 +50,13 @@ static Logger log = Logger.getLogger(UcGestionCdcImpl.class);
 
 	@Override
 	public DTOFonctionnalite ajouterFonctionnalite(DTOFonctionnalite dtofonct) {
-		businessCdc.ajouterFonctionnalite(dtofonct);
-
-		return dtofonct;
+		return businessCdc.ajouterFonctionnalite(dtofonct);
 	}
 
 	@Override
-	public void ajouterAssociationCdcFonctionnalite(
+	public DTOAssociationCdcFonctionnalite ajouterAssociationCdcFonctionnalite(
 			DTOAssociationCdcFonctionnalite dtoAssociation) {
-		businessCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
+		return businessCdc.ajouterAssociationCdcFonctionnalite(dtoAssociation);
 
 	}
 
@@ -111,5 +109,11 @@ static Logger log = Logger.getLogger(UcGestionCdcImpl.class);
 	@Override
 	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id) {
 		return businessFonctionnalite.recupTypeFonctionnaliteParID(id);
+	}
+
+	@Override
+	public List<DTOFonctionnalite> recupFonctionnaliteParCDC(DTOCdc cdc) {
+		// TODO Auto-generated method stub
+		return businessFonctionnalite.recupFonctionnaliteParCDC(cdc);
 	}
 }
