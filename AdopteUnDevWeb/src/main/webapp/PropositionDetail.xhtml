@@ -28,18 +28,37 @@
                         
                         
                         <div>
+                       <!--  Vue développeur -->
+                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
                          <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
                         <h5>Etat de la proposition</h5>
-                                <p>Non traitée <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
+                                <p>Non traitée <img src= "resources/img/question58.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>    
                             <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
                         <h5>Etat de la proposition</h5>
-                                <p>En attente de validation <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                                <p>En attente de validation <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>     
                             <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==4}">
                         <h5>Etat de la proposition</h5>
                                 <p>Refusée <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>  
+                          </h:panelGroup>
+                          
+                          <!-- Vue client  -->
+                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+                         <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
+                        <h5>Etat de la proposition</h5>
+                                <p>Non traitée <img src= "resources/img/question58.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>    
+                            <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
+                        <h5>Etat de la proposition</h5>
+                                <p>En attente de validation <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>     
+                            <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==4}">
+                        <h5>Etat de la proposition</h5>
+                                <p>Refusée <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                          </h:panelGroup>  
+                          </h:panelGroup>
                           </div>
                        
                        
