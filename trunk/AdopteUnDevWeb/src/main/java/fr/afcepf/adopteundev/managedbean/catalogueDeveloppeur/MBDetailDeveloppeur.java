@@ -5,8 +5,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import dto.DTOClient;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
+import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.projet.MBProjetParUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
@@ -17,6 +19,8 @@ public class MBDetailDeveloppeur {
 	
 	 private IUCGestionCdc gestionCdc;
 	 private IUCProjet ucProjet;
+	 private IUcUtilisateur ucUtilisateur;
+	 private DTOClient client;
 	
 	  @ManagedProperty(value="#{mBCatalogueDeveloppeur}")
 	    private MBCatalogueDeveloppeur mBCatalogueDeveloppeur;
@@ -25,6 +29,7 @@ public class MBDetailDeveloppeur {
 	    private void init() {
 	        ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
 	        gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);  
+	        ucUtilisateur = (IUcUtilisateur)ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
 	    }
 
 		public MBCatalogueDeveloppeur getmBCatalogueDeveloppeur() {
@@ -34,6 +39,14 @@ public class MBDetailDeveloppeur {
 		public void setmBCatalogueDeveloppeur(
 				MBCatalogueDeveloppeur mBCatalogueDeveloppeur) {
 			this.mBCatalogueDeveloppeur = mBCatalogueDeveloppeur;
+		}
+		
+		public DTOClient recupClientParId(Integer id)
+		{
+			client = ucUtilisateur.recupClientById(id);
+			
+			return client;
+			
 		}
 	    
 	    

@@ -121,18 +121,13 @@ public class MBCatalogueDeveloppeur {
 	public void setProjetSelectionne(DTOProjet projetSelectionne) {
         this.projetSelectionne = projetSelectionne;
     }
-	public String recupDeveloppeur(NoDeveloppeur developpeur)
-	{
-		dev = developpeur;
-		
-		return "/DeveloppeurDetail.xhtml?faces-redirect=true";
-	}
 	
 	public String recupDeveloppeur(NoDeveloppeur developpeur)
 	{
 		dev = developpeur;
 		
-		return "/DeveloppeurDetail.xhtml?faces-redirect=true";
+		return "/DetailDeveloppeur.xhtml?faces-redirect=true";
 	}
+	
 	
 }
