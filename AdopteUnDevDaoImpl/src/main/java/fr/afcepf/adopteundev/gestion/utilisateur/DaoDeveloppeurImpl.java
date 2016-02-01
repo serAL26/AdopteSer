@@ -56,9 +56,9 @@ public class DaoDeveloppeurImpl implements IDaoDeveloppeur {
 
 	@Override
 	public List<Developpeur> recupDeveloppeurParNoteEtTechno(double note,
-			Technologie techno) {
+			int idTechno) {
 		Query query = em.createQuery(obtenirDevParTechnoEtNote);
-		query.setParameter("idTech", techno.getIdTechnologie());
+		query.setParameter("idTech", idTechno);
 		query.setParameter("pnote", note);
 		return query.getResultList();
 	}
