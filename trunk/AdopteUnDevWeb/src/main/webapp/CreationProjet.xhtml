@@ -15,45 +15,150 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="basic-login">
-							<div class="form-group">
-								<label> <i class="icon-user"></i> <b>A quel service
-										de développement votre application fait partie ?</b>
-								</label>
-								<div>
-									<h:selectOneMenu
-										value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
-										id="applic">
-										<f:selectItem itemValue="-1" itemLabel="-------" />
-										<f:selectItems var="appli"
-											value="#{mbCreationProjet.listeAppli}"
-											itemLabel="#{appli.libelle}" itemValue="#{appli.idTypeAppli}" />
-										<f:ajax listener="#{mbCreationProjet.remplirServices}"
-											render="service" execute="applic" />
-									</h:selectOneMenu>
-								</div>
+							<p:accordionPanel>
+								<p:tab title="Présentez vous votre projet !">
+									<div class="form-group">
+										<label> <i class="icon-user"></i> <b>A quel
+												service de développement votre application fait partie ?</b>
+										</label>
+										<div>
+											<h:selectOneMenu
+												value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
+												id="applic">
+												<f:selectItem itemValue="-1" itemLabel="-------" />
+												<f:selectItems var="appli"
+													value="#{mbCreationProjet.listeAppli}"
+													itemLabel="#{appli.libelle}"
+													itemValue="#{appli.idTypeAppli}" />
+												<f:ajax listener="#{mbCreationProjet.remplirServices}"
+													render="service" execute="applic" />
+											</h:selectOneMenu>
+										</div>
+									</div>
+									<div class="form-group">
+										<label> <i class="icon-user"></i> <b>Quel Type
+												d'application vous voulez développer ?</b>
+										</label>
+										<div>
+											<h:selectOneMenu id="service"
+												value="#{mbCreationProjet.selectedService.idTypeService}">
+												<f:selectItem itemValue="-1" itemLabel="-------" />
+												<f:selectItems var="serv"
+													value="#{mbCreationProjet.listeServices}"
+													itemLabel="#{serv.libelle}"
+													itemValue="#{serv.idTypeService}" />
+											</h:selectOneMenu>
+										</div>
+									</div>
+									<div class="form-group">
+										<label> <i class="icon-user"></i> <b>Sur quoi
+												porte votre projet?</b></label>
+										<h:inputText class="form-control"
+											value="#{mbCreationProjet.projetcree.libelle}" />
+									</div>
+								</p:tab>
+							</p:accordionPanel>
+							<p:accordionPanel>
+								<p:tab title="Dites-nous en plus concernant votre projet!">
+
+									<div class="form-group">
+										<label> <i class="icon-user"></i> <b>Votre besoin
+												: </b></label>
+										<div>
+											<h:inputTextarea class="icon-user"
+												value="#{mbCreationProjet.besoin}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label><i class="icon-lock"></i> <b>Contexte de
+												votre projet : </b></label>
+										<h:inputTextarea class="icon-user"
+											value="#{mbCreationProjet.contexte}" />
+									</div>
+									<div class="form-group">
+										<label><i class="icon-lock"></i> <b>Mode de
+												fonctionnement actuel : </b></label>
+										<h:inputTextarea class="icon-user"
+											value="#{mbCreationProjet.existant}" />
+									</div>
+									<div class="form-group">
+										<label><i class="icon-lock"></i> <b>Date de fin
+												prevue : </b></label>
+										<p:calendar id="button" showOn="button"
+											value="#{mbCreationProjet.dateFin}" />
+									</div>
+									<div class="form-group">
+										<label><i class="icon-lock"></i> <b>Budget</b></label>
+										<div style="max-width: 150px">
+											<h:inputText class="form-control"
+												value="#{mbCreationProjet.tarif}" />
+										</div>
+									</div>
+								</p:tab>
+							</p:accordionPanel>
+							<p:accordionPanel>
+								<p:tab
+									title="Quelles sont les principales Fonctionnalités
+											de votre application ?">
+									<div class="form-group">
+										<label><i class="icon-lock"></i> <b>choisir un
+												Type : </b></label>
+										<div style="max-width: 150px">
+											<h:selectOneMenu class="form-control"
+												value="#{mbCreationProjet.selectedTypeFonction.idTypeFonctionnalite}">
+												<f:selectItem itemValue="-1" itemLabel="----------" />
+												<f:selectItems value="#{mbCreationProjet.listTypeFonctionn}"
+													var="typeFonction"
+													itemValue="#{typeFonction.idTypeFonctionnalite}"
+													itemLabel="#{typeFonction.libelle}" />
+											</h:selectOneMenu>
+										</div>
+										<div class="form-group">
+											<label> <i class="icon-user"></i> <b>Description
+													: </b></label>
+											<div>
+												<h:inputTextarea class="icon-user"
+													value="#{mbCreationProjet.commentaire}" />
+											</div>
+										</div>
+										<h:commandLink
+											action="#{mbCreationProjet.ajouterFonctionnaliteSaisi}"
+											value="+Fonctionnalité" />
+									</div>
+									<h:panelGroup rendered="#{mbCreationProjet.actionAjout==false}">
+										<div class="section">
+											<div class="container">
+												<div class="row">
+													<!-- Open Vacancies List -->
+													<div class="col-md-8">
+														<table class="jobs-list">
+															<tr>
+																<th>Fonctionnalité</th>
+																<th>Type</th>
+															</tr>
+															<ui:repeat var="fonctionnalite"
+																value="#{mbCreationProjet.listeFonctionnaliteCree}">
+																<tr>
+																	<!-- Position -->
+																	<td class="job-position">#{fonctionnalite.commentaire}</td>
+																	<!-- Location -->
+																	<td class="job-location">
+																		<div class="job-country">#{fonctionnalite.typeFonctionnalite.libelle}</div>
+																	</td>
+																</tr>
+															</ui:repeat>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</h:panelGroup>
+								</p:tab>
+							</p:accordionPanel>
+							<div>
+								<h:commandButton class="btn pull-right"
+									action="#{mbCreationProjet.creeProjet}" value="Enregistrer" />
 							</div>
-							<div class="form-group">
-								<label> <i class="icon-user"></i> <b>Quel Type
-										d'application vous voulez développer ?</b>
-								</label>
-								<div>
-									<h:selectOneMenu id="service"
-										value="#{mbCreationProjet.selectedService.idTypeService}">
-										<f:selectItem itemValue="-1" itemLabel="-------" />
-										<f:selectItems var="serv"
-											value="#{mbCreationProjet.listeServices}"
-											itemLabel="#{serv.libelle}" itemValue="#{serv.idTypeService}" />
-									</h:selectOneMenu>
-								</div>
-							</div>
-							<div class="form-group">
-								<label> <i class="icon-user"></i> <b>Sur quoi porte
-										votre projet?</b></label>
-								<h:inputText class="form-control"
-									value="#{mbCreationProjet.projetcree.libelle}" />
-							</div>
-							<h:commandButton class="btn pull-right"
-								action="#{mbCreationProjet.creeProjet}" value="Ajouter CDC" />
 							<div class="clearfix"></div>
 						</div>
 					</div>
