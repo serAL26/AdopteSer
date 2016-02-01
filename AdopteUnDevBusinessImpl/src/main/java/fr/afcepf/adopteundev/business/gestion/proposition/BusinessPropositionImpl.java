@@ -23,7 +23,6 @@ import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 public class BusinessPropositionImpl implements IBusinessProposition {
     @EJB
     private IDaoProposition daoProposition;
-
     @EJB
     private IDaoTypeProposition daoTypeProposition;
     @EJB

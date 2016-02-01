@@ -53,8 +53,6 @@ public class TypeService implements Serializable {
 	@OneToMany(mappedBy = "typeService")
 	private Set<AssociationTypeServiceTechno> lesAssociationTypeServiceTechno;
 	
-	
-
 	public TypeAppli getTypeAppli() {
 		return typeAppli;
 	}

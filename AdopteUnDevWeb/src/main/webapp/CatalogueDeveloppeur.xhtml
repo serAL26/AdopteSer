@@ -10,7 +10,8 @@
 			type="text/css" />
 	</ui:define>
 	<ui:define name="title">
-	<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+	<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}" >
+			<div onload="#{mBCatalogueDeveloppeur.initListeProjet()}">
 		<p>Choisissez le projet qui vous appartient :
 			#{mBCatalogueDeveloppeur.projetSelectionne.libelle}</p>
 		<h:selectOneMenu id="listprojet"
@@ -20,6 +21,7 @@
 				value="#{mBCatalogueDeveloppeur.projetList}"
 				itemLabel="#{projet.libelle}" itemValue="#{projet.idProjet}" />
 		</h:selectOneMenu>
+		</div>
 	</h:panelGroup>
 	</ui:define>
 	<ui:define name="body">

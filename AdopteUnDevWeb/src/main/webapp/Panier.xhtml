@@ -51,7 +51,6 @@
 												action="#{mBPanier.retirerDeveloppeurAuPanier(projet.idProjet, noDeveloppeur)}"
 												styleClass="btn btn-xs btn-grey">
 												<i class="glyphicon glyphicon-trash" />
-												#{noDeveloppeur.developpeur.nom}
 											</h:commandLink></td>
 									</tr>
 								</ui:repeat>
@@ -80,7 +79,7 @@
 						<!-- Action Buttons -->
 						<div class="pull-right">
 							<a href="#" class="btn btn-grey"><i
-								class="glyphicon glyphicon-refresh" /> UPDATE</a> <h:commandLink value="Valider Panier" action="#{mBPanier.validerPanier()}" >
+								class="glyphicon glyphicon-refresh" /> UPDATE</a> <h:commandLink value="Valider Panier" action="#{mBPanier.validerPanier()}" styleClass="btn">
 								<i class="glyphicon glyphicon-shopping-cart icon-white" /> </h:commandLink>
 						</div>
 					</div>
