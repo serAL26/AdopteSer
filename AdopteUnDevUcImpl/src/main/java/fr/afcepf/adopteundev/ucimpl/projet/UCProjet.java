@@ -60,8 +60,8 @@ public class UCProjet implements IUCProjet {
 	}
 
 	@Override
-	public void creerProjet(DTOProjet projet) {
-		businessGestionProjet.ajouter(projet);
+	public DTOProjet creerProjet(DTOProjet projet) {
+		return businessGestionProjet.ajouter(projet);
 
 	}
 
