@@ -34,21 +34,19 @@ public class BusinessOperation implements IBusinessOperation{
 		listeDTOOperation.add(EntityToDTO.operationToDTOOperation(operation));
 		return listeDTOOperation;
 	}
+
 	@Override
 	public List<DTOOperation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation) {
-		List<Operation> listOperation = daoOperation.recupListOperationParProjetEtType(idProjet, idTypeOperation);
-		return EntityToDTO.listeOperationToDTOOperation(listOperation);
-	}
-	@Override
-	public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation) {
-		List<Operation> listOperation = daoOperation.recupListOperationParDevEtType(idUtilisateur, idTypeOperation);
-		return EntityToDTO.listeOperationToDTOOperation(listOperation);
-	}
-	@Override
-	public List<DTOOperation> recupListOperationParClientEtType(int idUtilisateur, int idTypeOperation) {
-		List<Operation> listOperation = daoOperation.recupListOperationParClientEtType(idUtilisateur, idTypeOperation);
-		return EntityToDTO.listeOperationToDTOOperation(listOperation);
+		return null;
 	}
 
-	
+	@Override
+	public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation) {
+		return null;
+	}
+
+	@Override
+	public List<DTOOperation> recupListOperationParClientEtType(int idUtilisateur, int idTypeOperation) {
+		return null;
+	}
 }
