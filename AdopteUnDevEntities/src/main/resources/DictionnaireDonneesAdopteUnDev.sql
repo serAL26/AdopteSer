@@ -107,7 +107,10 @@ INSERT INTO `association_dev_techno` (`id_association_dev_techno`, `idDeveloppeu
 
 /*!40000 ALTER TABLE `association_typeservice_techno` DISABLE KEYS */;
 INSERT INTO association_typeservice_techno (id_association_typeservice_techno, idTechnologie, idTypeService) VALUES
-  (1,1,1);
+  (1,1,1),
+  (2,1,5),
+  (4,11,6),
+  (5,2,4);
 /*!40000 ALTER TABLE `association_typeservice_techno` ENABLE KEYS */;
 
 --
@@ -245,7 +248,17 @@ INSERT INTO operation (id_operation, DATE, MONTANT, idLivrable, idTypeOperation)
 --
 -- Definition of table `projet`
 --
-
+/*!40000 ALTER TABLE `projet` DISABLE KEYS */;
+INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeService) VALUES
+  (1,'projet test en attente',17,4,'/resources/img/portfolio1.jpg',1),
+  (2,'projet test en attente 2',17,4,'/resources/img/portfolio2.jpg',1),
+  (3,'projet test en attente 3',17,4,'/resources/img/portfolio3.jpg',1),
+  (4,'projet test termine',17,2,'/resources/img/portfolio4.jpg',1),
+  (5,'projet test termine 2',17,2,'/resources/img/portfolio5.jpg',1),
+  (6,'projet test arrete',17,3,'/resources/img/portfolio6.jpg',1),
+  (7,'projet test demarre',17,1,'/resources/img/portfolio7.jpg',1),
+  (1,'projet test en attente',17,4,'/resources/img/portfolio1.jpg',1);
+/*!40000 ALTER TABLE `projet` ENABLE KEYS */;
 --
 -- Definition of table `propostion`
 --
@@ -293,7 +306,6 @@ INSERT INTO `typeappli` (`id_type_appli`, `LIBELLE`) VALUES
 --
 -- Definition of table `typecdc`
 --
-
 --
 -- Dumping data for table `typecdc`
 --
