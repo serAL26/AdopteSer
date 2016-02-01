@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 import dto.DTOAssociationCdcFonctionnalite;
 import dto.DTOCdc;
 import dto.DTOFonctionnalite;
@@ -19,7 +21,7 @@ import fr.afcepf.adopteundev.ibusiness.gestion.cdc.IBusinessFonctionnalite;
 @Remote(IUCGestionCdc.class)
 @Stateless
 public class UcGestionCdcImpl implements IUCGestionCdc {
-
+static Logger log = Logger.getLogger(UcGestionCdcImpl.class);
 	@EJB
 	private IBusinessCdc businessCdc;
 
@@ -28,8 +30,8 @@ public class UcGestionCdcImpl implements IUCGestionCdc {
 
 	@Override
 	public DTOCdc ajouterCdcDto(DTOCdc cdcDto) {
-		businessCdc.ajouterCdcDto(cdcDto);
-		
+		cdcDto = businessCdc.ajouterCdcDto(cdcDto);
+		log.info("uc id cdc" + cdcDto.getIdCdc());
 		return cdcDto;
 	}
 
