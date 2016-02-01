@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Quelles sont les principales Fonctionnalités de votre application?</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="basic-login">
+							<div class="form-group">
+								<label> <i class="icon-user"></i> <b>Projet : </b>
+								</label>
+								<h:outputLabel
+									value="#{mBAjoutFonctionnalite.cdc.projet.libelle}"></h:outputLabel>
+							</div>
+
+							<div class="form-group">
+								<label><i class="icon-lock"></i> <b>choisir un Type
+										: </b></label>
+								<div style="max-width: 150px">
+									<h:selectOneMenu class="form-control"
+										value="#{mBAjoutFonctionnalite.selectedTypeFonction.idTypeFonctionnalite}">
+										<f:selectItem itemValue="-1" itemLabel="----------" />
+										<f:selectItems value="#{mBAjoutFonctionnalite.listTypeFonctionn}"
+											var="typeFonction"
+											itemValue="#{typeFonction.idTypeFonctionnalite}"
+											itemLabel="#{typeFonction.libelle}" />
+									</h:selectOneMenu>
+								</div>
+								<div class="form-group">
+									<label> <i class="icon-user"></i> <b>Description :
+									</b></label>
+									<div>
+										<h:inputTextarea class="icon-user"
+											value="#{mBAjoutFonctionnalite.fonctionnaliteCree.commentaire}" />
+									</div>
+								</div>
+								<h:commandButton class="btn pull-right"
+									action="#{mBAjoutFonctionnalite.ajouterFonctionnaliteSaisi}" value="Ajouter" />
+							</div>
+							<div class="clearfix"></div>
+							<h:panelGroup rendered="#{mBAjoutFonctionnalite.actionAjout==false}">
+							<div class="portfolio-info">
+									<ol>
+										<ui:repeat var="fonctionnalite"
+											value="#{mBAjoutFonctionnalite.listeFonctionnaliteCree}">
+
+											<li class="portfolio-project-name">
+											<h:outputLabel value="#{fonctionnalite.typeFonctionnalite.libelle}"></h:outputLabel>
+											</li>
+										</ui:repeat>
+									</ol>
+								</div>
+							</h:panelGroup>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
