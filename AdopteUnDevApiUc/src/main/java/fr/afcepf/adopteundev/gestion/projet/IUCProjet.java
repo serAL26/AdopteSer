@@ -30,5 +30,6 @@ public interface IUCProjet {
 	DTOLivrable creerLivrable(DTOLivrable dtoLivrable);
 	List<DTOOperation> payerLivrable(DTOOperation dtoOperation);
 	List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet);
+	boolean initIsPaye(DTOLivrable livrable);
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 }

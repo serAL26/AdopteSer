@@ -12,6 +12,7 @@ import dto.DTOLivrable;
 import dto.DTOProjet;
 import entity.Livrable;
 import fr.afcepf.adopteundev.idao.projet.IDaoLivrable;
+import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 
 @Remote(IBusinessLivrable.class)
 @Stateless
@@ -19,6 +20,8 @@ public class BusinessLivrable implements IBusinessLivrable{
 
 	@EJB
 	private IDaoLivrable daoLivrable;
+	@EJB
+	private IDaoOperation daoOperation;
 	
 	@Override
 	public DTOLivrable creerLivrable(DTOLivrable dtoLivrable) {
@@ -30,6 +33,15 @@ public class BusinessLivrable implements IBusinessLivrable{
 	public List<DTOLivrable> recupListeLivrableParProjet(DTOProjet dtoProjet) {
 		List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjet(dtoProjet.getIdProjet());
 		return EntityToDTO.listeLivrableToDTOLivrable(listeLivrable);
+	}
+
+	@Override
+	public boolean initIsPaye(DTOLivrable livrable) {
+		boolean  retour = false;
+		if (daoOperation.operationPayeeParLivrable(livrable.getIdLivrable())!= null) {
+			retour = true;
+		}
+		return retour;
 	}
 
 }

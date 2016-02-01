@@ -586,4 +586,11 @@ public class EntityToDTO {
 		}
 		return listeDTOLivrable;
 	}
+	public static List<DTOOperation> listeOperationToDTOOperation(List<Operation> listeOperation) {
+		List<DTOOperation> listeDTOOperation = new ArrayList<>();
+		for (Operation operation : listeOperation) {
+			listeDTOOperation.add(operationToDTOOperation(operation));
+		}
+		return listeDTOOperation;
+	}
 }

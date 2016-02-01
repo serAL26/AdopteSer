@@ -133,4 +133,9 @@ public class UCProjet implements IUCProjet {
 	public List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet) {
 		return businessLivrable.recupListeLivrableParProjet(dtoProjet);
 	}
+
+	@Override
+	public boolean initIsPaye(DTOLivrable livrable) {
+		return businessLivrable.initIsPaye(livrable);
+	}
 }
