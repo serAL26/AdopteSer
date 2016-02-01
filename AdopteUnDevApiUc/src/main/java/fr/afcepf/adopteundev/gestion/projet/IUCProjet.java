@@ -5,13 +5,13 @@ import java.util.Set;
 
 import dto.DTOClient;
 import dto.DTOLivrable;
+import dto.DTONote;
 import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeAppli;
 import dto.DTOTypeProposition;
 import dto.DTOTypeService;
-import dto.DTOUtilisateur;
 
 public interface IUCProjet {
     public Set<DTOTypeAppli> rechercherTousApplication();
@@ -51,4 +51,9 @@ public interface IUCProjet {
     public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 
     List<DTOOperation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation);
+    
+    DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet);
+    
+    List<DTONote> recupNoteParProjet(int idProjet);
+    DTONote ajouterUnCommentaire(DTONote dtoNote);
 }

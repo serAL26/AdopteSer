@@ -15,7 +15,7 @@
 							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==1 || mBConnexion.typeUtilisateur ==2}">
 							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="Panier.jsf"><b>#{mBPanier.obtenirTotalDesDev()} item(s)</b></a></li>
 							<li>Bonjour #{mBConnexion.utilisateur.prenom}</li>
-							<li><b><a href="#" style="color: red">Déconnexion</a></b></li>
+							<li><b><h:commandLink value="Déconnexion" action="#{mBConnexion.deconnexion()}" /></b></li>
 			        		</h:panelGroup>
 			        		<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==3}">
 			        		<li><b><a href="Login.jsf">Connexion</a></b></li>

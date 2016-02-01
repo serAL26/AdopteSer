@@ -11,4 +11,6 @@ public interface IUcProposition {
     DTOProposition recupPropositionValiderParProjet(Integer idProjet);
     void validerPanier(Map<Integer, Set<NoDeveloppeur>> map);
     public List<DTOProposition> recupPropositionParEtatParUtilisateur(String etat, Integer id); 
+    List<DTOProposition> recupPropositionNonLue(int idDeveloppeur);
+    void passerPropositionEnLue(int idProposition);
 }

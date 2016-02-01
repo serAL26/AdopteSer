@@ -66,7 +66,6 @@ public class NoDeveloppeur implements Serializable {
 	public String getPetiteListeDeTechnoPasPiqueeDesVers() {
 		return petiteListeDeTechnoPasPiqueeDesVers;
 	}
-
 	public void setPetiteListeDeTechnoPasPiqueeDesVers(String petiteListeDeTechnoPasPiqueeDesVers) {
 		this.petiteListeDeTechnoPasPiqueeDesVers = petiteListeDeTechnoPasPiqueeDesVers;
 	}

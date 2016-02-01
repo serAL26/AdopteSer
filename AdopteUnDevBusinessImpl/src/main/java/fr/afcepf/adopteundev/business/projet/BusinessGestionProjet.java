@@ -7,44 +7,40 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
-
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOClient;
-import dto.DTODeveloppeur;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
+import dto.DTOProposition;
 import dto.DTOTypeCdc;
-import dto.DTOUtilisateur;
 import entity.Client;
 import entity.Developpeur;
-import entity.EtatProjet;
 import entity.Projet;
+import entity.Proposition;
 import enumeration.EtatProjetEnum;
 import fr.afcepf.adopteundev.idao.gestion.cdc.IDaoTypeCDC;
+import fr.afcepf.adopteundev.idao.gestion.proposition.IDaoTypeProposition;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoClient;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
-import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
 import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
 @Remote(IBusinessGestionProjet.class)
 @Stateless
 public class BusinessGestionProjet implements IBusinessGestionProjet {
-	private static Logger log = Logger.getLogger(BusinessGestionProjet.class);
 	@EJB
 	private IDaoGestionProjet daoGestionProjet;
-
 	@EJB
 	private IDaoEtatProjet daoEtatProjet;
-
+	@EJB
+	private fr.afcepf.adopteundev.idao.projet.IDaoProposition daoProposition;
+	@EJB
+	private IDaoTypeProposition daoTypeProposition;
 	@EJB
 	private IDaoTypeCDC daoTypeCDC;
-
 	@EJB
 	private IDaoDeveloppeur daoDev;
-
 	@EJB 
 	private IDaoClient daoClient;
 
@@ -109,25 +105,32 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	@Override
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat,
 			Integer id) {
-
 		List<DTOProjet> liste = new ArrayList<DTOProjet>();
-		
 		Developpeur dev = daoDev.obtenirDeveloppeurParId(id);
 		Client client = daoClient.obtenirClientParId(id);
-
 		if(dev != null)
 		{
 			liste =  EntityToDTO.listeProjetToDtoProjet(daoGestionProjet.
 					recupProjetParEtatParIdDev(etat, id));
 		}
-		
 		else if (client != null)
 		{
 			liste = EntityToDTO.listeProjetToDtoProjet(daoGestionProjet
 					.recupProjerParEtatParIdClient(etat, id));
 		}
-
 		return liste;
 	}
 
+	@Override
+	public DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet) {
+		Proposition proposition = DTOToEntity.dtoPropositionToProposition(dtoProposition);
+		proposition.setTypeProposition(daoTypeProposition.recupTypePropositionParId(3));
+		proposition.setLu(false);
+		daoProposition.modifierEtatProposition(proposition);
+		for (Proposition proposition2 : daoProposition.recupListPropParProjetSaufPropValidee(idProjet)) {
+			proposition2.setTypeProposition(daoTypeProposition.recupTypePropositionParId(4));
+			daoProposition.modifierEtatProposition(proposition2);
+		}
+		return EntityToDTO.propositionToDTOProposition(proposition);
+	}
 }

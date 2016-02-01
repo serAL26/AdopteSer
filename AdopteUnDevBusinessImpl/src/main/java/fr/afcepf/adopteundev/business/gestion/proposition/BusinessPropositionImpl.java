@@ -68,22 +68,34 @@ public class BusinessPropositionImpl implements IBusinessProposition {
 	@Override
 	public List<DTOProposition> recupPropositionParEtatParUtilisateur(
 			String etat, Integer id) {
-
 		List<DTOProposition> liste = new ArrayList<DTOProposition>();
-		
 		Developpeur dev = daoDev.obtenirDeveloppeurParId(id);
 		Client client = daoClient.obtenirClientParId(id);
-
 		if(dev != null)
 		{
 			liste =  EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionParEtatParIdDev(etat, id));
 		}
-		
 		else if (client != null)
 		{
 			liste = EntityToDTO.listePropositionToDtoProposition(daoProposition.recupPropositionParEtatParIdClient(etat, id));
 		}
-
 		return liste;
+	}
+
+	@Override
+	public List<DTOProposition> recupPropositionNonLue(int idDeveloppeur) {
+		List<Proposition> listeProposition = daoProposition.recupPropositionNonLue(idDeveloppeur);
+		return EntityToDTO.listePropositionToDtoProposition(listeProposition);
+	}
+
+	@Override
+	public void passerPropositionEnLue(int idProposition) {
+		daoProposition.passerPropositionEnLue(idProposition);
+	}
+
+	@Override
+	public List<DTOProposition> recupPropositionNonLueParClient(int idClient) {
+		List<Proposition> listeProposition = daoProposition.recupPropostionNonLueClient(idClient);
+		return EntityToDTO.listePropositionToDtoProposition(listeProposition);
 	}
 }

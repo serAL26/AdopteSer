@@ -7,4 +7,6 @@ import entity.Proposition;
 
 public interface IDaoNote {
 	 List<Note> recupNoteParPropositionValidee(int idUtilisateur);
+	 List<Note> recupNoteParProjet(int idProjet);
+	 Note ajouterUnCommentaire(Note note);
 }
