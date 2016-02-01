@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 
 import dto.DTOClient;
 import dto.DTODeveloppeur;
+import dto.DTOTechnologie;
 import dto.DTOUtilisateur;
 import enumeration.RoleUtilisateur;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
@@ -57,5 +58,11 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public DTOClient recupClientById(int id) {
 		return businessUtilisateur.recupClientById(id);
+	}
+
+	@Override
+	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
+			List<DTOTechnologie> technologies) {
+		return businessDeveloppeur.recupDevParListeTechnoEtNote(note, technologies);
 	}
 }
