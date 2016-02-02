@@ -15,6 +15,7 @@ import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeCdc;
+import dto.DTOTypeProposition;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
@@ -33,6 +34,12 @@ public class MBPropositionDetail {
 	private Double tarifRemarque;
 	private boolean affichageModif = false;
 	
+	private String besoinModif;
+	private String contexteModif;
+	private String existantModif;
+	private String dateModif;
+	private double tarifModif;
+	
 	@ManagedProperty(value="#{mBPropositionParUtilisateur}")
 	private MBPropositionParUtilisateur mBPropositionParUtilisateur;
 
@@ -44,6 +51,65 @@ public class MBPropositionDetail {
 	}
 
 	
+	
+	public String getBesoinModif() {
+		return besoinModif;
+	}
+
+
+
+	public void setBesoinModif(String besoinModif) {
+		this.besoinModif = besoinModif;
+	}
+
+
+
+	public String getContexteModif() {
+		return contexteModif;
+	}
+
+
+
+	public void setContexteModif(String contexteModif) {
+		this.contexteModif = contexteModif;
+	}
+
+
+
+	public String getExistantModif() {
+		return existantModif;
+	}
+
+
+
+	public void setExistantModif(String existantModif) {
+		this.existantModif = existantModif;
+	}
+
+
+
+	public String getDateModif() {
+		return dateModif;
+	}
+
+
+
+	public void setDateModif(String dateModif) {
+		this.dateModif = dateModif;
+	}
+
+	public double getTarifModif() {
+		return tarifModif;
+	}
+
+
+
+	public void setTarifModif(double tarifModif) {
+		this.tarifModif = tarifModif;
+	}
+
+
+
 	public boolean isAffichageModif() {
 		return affichageModif;
 	}
@@ -128,8 +194,58 @@ public class MBPropositionDetail {
 		return remarque;
 	}
 	
-	public void affichageModification()
+	public void affichageModification(DTOCdc cdc)
 	{
+		besoinModif = cdc.getBesoin();
+		contexteModif = cdc.getContexte();
+		existantModif = cdc.getExistant();
+		dateModif = cdc.getDateFinEstimee().toString().substring(0, 10);
+		tarifModif = cdc.getTarif();
 		affichageModif = true;
 	}
+	
+	public void modificationCdc(DTOCdc cdc)
+	{
+			cdc.setBesoin(besoinModif);
+			cdc.setContexte(contexteModif);
+			cdc.setExistant(existantModif);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateFinEstimee = null;
+		try {
+			dateFinEstimee = sdf.parse(dateModif);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			cdc.setDateFinEstimee(dateFinEstimee);
+		cdc.setTarif(tarifModif);
+		
+		DTOCdc cdcDtp = new DTOCdc(cdc.getIdCdc(), false, cdc.getContexte(), cdc.getBesoin(), cdc.getExistant(), 
+				cdc.getTarif(), cdc.getDateFinEstimee(), cdc.getProjet(), cdc.getTypeCdc());
+		
+		gestionCdc.modifierCdcDto(cdcDtp);		
+	}
+	
+	public void accepterProposition(DTOProposition proposition)
+	{
+		List<DTOTypeProposition> listeType = ucProjet.recupTousLesTypesProps();
+		
+		proposition.setTypeProposition(listeType.get(1));
+		ucProjet.modifierProposition(proposition);
+	}
+	
+	public void refuserProposition(DTOProposition prop)
+	{
+		List<DTOTypeProposition> listeType = ucProjet.recupTousLesTypesProps();
+		
+		prop.setTypeProposition(listeType.get(4));
+		ucProjet.modifierProposition(prop);
+	}
+	
+	public void validerLeProjet(DTOProposition proposition)
+	{
+		ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
+	}
+	
+	
 }
