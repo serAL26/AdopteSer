@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.business.gestion.utilisateur;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -8,18 +9,18 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import assembleur.DTOToEntity;
+import org.apache.log4j.Logger;
+
 import assembleur.EntityToDTO;
 import dto.DTODeveloppeur;
 import dto.DTONote;
-import dto.DTOProposition;
 import dto.DTOTechnologie;
-import dto.DTOTypeFonctionnalite;
 import entity.Developpeur;
 import entity.Note;
 import entity.Technologie;
-import entity.TypeFonctionnalite;
+import enumeration.TypeNotes;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
+import fr.afcepf.adopteundev.dto.nosobjets.NoNotes;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoUtilisateur;
@@ -30,7 +31,7 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
 @Remote(IBusinessDeveloppeur.class)
 @Stateless
 public class BusinessDeveloppeur implements IBusinessDeveloppeur {
-
+	static Logger log = Logger.getLogger(BusinessDeveloppeur.class);
 	@EJB
 	private IDaoUtilisateur daoUtilisateur;
 
@@ -47,7 +48,8 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 
 	@Override
 	public List<DTODeveloppeur> recupererTousLesDeveloppeurs() {
-		return null;
+		return EntityToDTO.listDevtoDTODeveloppeur(daoDeveloppeur
+				.recupererTousLesDeveloppeurs());
 	}
 
 	@Override
@@ -148,23 +150,37 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 	}
 
 	@Override
-	public List<DTODeveloppeur> recupDeveloppeurParNoteEtTechno(double note,
+	public Set<DTODeveloppeur> recupDeveloppeurParNoteEtTechno(double note,
 			DTOTechnologie techno) {
-		List<Developpeur> liste = daoDeveloppeur
-				.recupDeveloppeurParNoteEtTechno(note,
-						techno.getIdTechnologie());
+		log.info("id techno " + techno.getIdTechnologie());
+		log.info("note " + note);
+		Set<Developpeur> liste = null;
+		if (note <= 0) {
+			liste = daoDeveloppeur.recupDeveloppeursParTechnoSet(techno
+					.getIdTechnologie());
+			return EntityToDTO.listDevtoDTODeveloppeur(liste);
+		}
+		liste = daoDeveloppeur.recupDeveloppeurParNoteEtTechno(note,
+				techno.getIdTechnologie());
 		return EntityToDTO.listDevtoDTODeveloppeur(liste);
 
 	}
 
 	@Override
-	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
+	public Set<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies) {
-		List<DTODeveloppeur> listeDev = new ArrayList<>();
-		for (DTOTechnologie techno : technologies) {
-			listeDev.addAll(recupDeveloppeurParNoteEtTechno(note, techno));
+		Set<DTODeveloppeur> listeDev = new HashSet<>();
+		if (technologies != null) {
+			for (DTOTechnologie techno : technologies) {
+				listeDev.addAll(recupDeveloppeurParNoteEtTechno(note, techno));
+			}
+			return listeDev;
 		}
-		return listeDev;
+		if (note >0) {
+			listeDev = recupDevParNote(note);
+			return listeDev;
+		}
+		return new HashSet<>(recupererTousLesDeveloppeurs());
 	}
 
 	@Override
@@ -175,6 +191,46 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 
 	@Override
 	public DTOTechnologie recupTechnoById(int id) {
-		return EntityToDTO.technologieToDTOTechnologie(daoTechnologie.recupTechnoById(id));
+		return EntityToDTO.technologieToDTOTechnologie(daoTechnologie
+				.recupTechnoById(id));
 	}
+
+	@Override
+	public List<NoNotes> recupListNotes() {
+		List<NoNotes> liste = new ArrayList<>();
+		int i = 1;
+		for (TypeNotes typeNotes : TypeNotes.values()) {
+			NoNotes note = new NoNotes(i, typeNotes.toString());
+			liste.add(note);
+			i++;
+		}
+		return liste;
+	}
+
+	@Override
+	public Set<DTODeveloppeur> recupDevParNote(double note) {
+		return EntityToDTO.listDevtoDTODeveloppeur(daoDeveloppeur
+				.recupDevParNote(note));
+	}
+
+	@Override
+	public Set<NoDeveloppeur> recupNoDevParListeTechnoEtNote(double note,
+			List<DTOTechnologie> technologies) {
+		Set<NoDeveloppeur> liste = new HashSet<>();
+		Set<DTODeveloppeur> listeDev = recupDevParListeTechnoEtNote(note,
+				technologies);
+		for (DTODeveloppeur dtoDeveloppeur : listeDev) {
+			NoDeveloppeur nodev = creerNoDeveloppeur(dtoDeveloppeur);
+			liste.add(nodev);
+		}
+		return liste;
+	}
+
+	@Override
+	public NoDeveloppeur obtenirNoDevById(int id) {
+		return creerNoDeveloppeur(EntityToDTO
+				.developpeurToDTODeveloppeur(daoDeveloppeur
+						.obtenirDeveloppeurParId(id)));
+	}
+
 }
