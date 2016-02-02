@@ -1,5 +1,7 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,8 +38,10 @@ public class MBCreationProjet {
 	private String besoin;
 	private String contexte;
 	private String existant;
-	private Date dateFin;
+	private String dateFin;
 	private Double tarif;
+	private boolean panelCdc=false;
+	private boolean panelFonctionnalite=false;
 	private Set<DTOTypeAppli> listeAppli;
 	private Set<DTOTypeService> listeServices;
 	private DTOTypeAppli selectedAppli;
@@ -63,6 +67,9 @@ public class MBCreationProjet {
 		selectedAppli = new DTOTypeAppli();
 		selectedService = new DTOTypeService();
 		projetcree = new DTOProjet();
+		
+		panelCdc = false;
+		panelFonctionnalite = false;
 	}
 
 	public void remplirServices(AjaxBehaviorEvent event) {
@@ -75,7 +82,9 @@ public class MBCreationProjet {
 		}
 
 	}
-
+	public void testAjouterFonctionnaliteSaisie() {
+		System.out.println(commentaire);
+	}
 	public void ajouterFonctionnaliteSaisi() {
 		DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
 		fonctionnaliteCree.setCommentaire(commentaire);
@@ -110,7 +119,16 @@ public class MBCreationProjet {
 		cdc = new DTOCdc();
 		cdc.setBesoin(besoin);
 		cdc.setContexte(contexte);
-		cdc.setDateFinEstimee(dateFin);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateFinEstimee = null;
+		try {
+			dateFinEstimee = sdf.parse(dateFin);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cdc.setDateFinEstimee(dateFinEstimee);
 		cdc.setExistant(existant);
 		cdc.setLu(true);
 		cdc.setProjet(projet);
@@ -138,6 +156,22 @@ public class MBCreationProjet {
 
 		return "";
 
+	}
+
+	public boolean isPanelCdc() {
+		return panelCdc;
+	}
+
+	public void setPanelCdc(boolean panelCdc) {
+		this.panelCdc = panelCdc;
+	}
+
+	public boolean isPanelFonctionnalite() {
+		return panelFonctionnalite;
+	}
+
+	public void setPanelFonctionnalite(boolean panelFonctionnalite) {
+		this.panelFonctionnalite = panelFonctionnalite;
 	}
 
 	public Set<DTOTypeAppli> getListeAppli() {
@@ -211,12 +245,11 @@ public class MBCreationProjet {
 	public void setExistant(String existant) {
 		this.existant = existant;
 	}
-
-	public Date getDateFin() {
+	public String getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
+	public void setDateFin(String dateFin) {
 		this.dateFin = dateFin;
 	}
 
@@ -277,6 +310,15 @@ public class MBCreationProjet {
 
 	public void setActionAjout(boolean actionAjout) {
 		this.actionAjout = actionAjout;
+	}
+	
+	public void afficherPanelCdc()
+	{
+		panelCdc = true;
+	}
+	public void afficherPanelFonctionnalite()
+	{
+		panelFonctionnalite = true;
 	}
 
 }

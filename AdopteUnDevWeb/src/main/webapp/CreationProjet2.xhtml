@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="WEB-INF/lesimports.xhtml">
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="title">Création Projet</ui:define>
+	<ui:define name="body">
+
+		<div class="section">
+			<div class="container">
+
+				<!-- Creation projet -->
+
+				<div class="row">
+					<div class="col-sm-12  col-md-12">
+						<div class="row" style="margin-top: 50px">
+							<ul style="list-style: none; margin-bottom: 10px">
+								<li style="margin-bottom: 60px; text-align: center">
+									<h1>
+										<b><i>Créez votre projet pas à pas.</i></b>
+									</h1>
+								</li>
+								<li style="margin-left: 230px;"><img
+									style="margin-right: 40px" src="resources/img/text133.png"
+									alt="image projet" /> <img style="margin-right: 40px"
+									src="resources/img/chevron6.png" alt="image projet" /> <img
+									style="margin-right: 40px" src="resources/img/question42.png"
+									alt="image projet" /> <img style="margin-right: 40px"
+									src="resources/img/chevron6.png" alt="image projet" /> <img
+									style="margin-right: 40px" src="resources/img/add180.png"
+									alt="image projet" /></li>
+								<li style="display: flex">
+									<h4
+										style="margin-top: 20px; max-width: 150px; margin-left: 210px; text-align: center">Enregistrez
+										votre projet en choisissant le type d'appli et le type de
+										service.</h4>
+									<h4
+										style="margin-top: 20px; margin-left: 140px; max-width: 150px; text-align: center">Quel
+										est votre besoin ? L'environnement et le secteur de votre
+										application.</h4>
+									<h4
+										style="margin-top: 20px; margin-left: 135px; max-width: 150px; text-align: center">Ajoutez
+										les fonctionnalités qui doivent être développées pour ce
+										projet.</h4>
+								</li>
+								<li>
+									<h3 style="margin-top: 50px; text-align: center">Quel
+										type de service souhaitez-vous ?</h3>
+								</li>
+								<li style="margin-left: 38%"><h:selectOneMenu
+										style="max-width:260px" class="form-control"
+										value="#{mbCreationProjet.selectedAppli.idTypeAppli}"
+										id="applic">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems var="appli"
+											value="#{mbCreationProjet.listeAppli}"
+											itemLabel="#{appli.libelle}" itemValue="#{appli.idTypeAppli}" />
+										<f:ajax listener="#{mbCreationProjet.remplirServices}"
+											render=":formAdopte:service" execute="applic" />
+									</h:selectOneMenu></li>
+
+
+								<li>
+									<h3 style="margin-top: 40px; text-align: center">Quelle
+										genre d'application voulez-vous ?</h3>
+								</li>
+								<li style="margin-left: 38%"><h:selectOneMenu
+										style="max-width:260px" class="form-control" id="service"
+										value="#{mbCreationProjet.selectedService.idTypeService}">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems var="serv"
+											value="#{mbCreationProjet.listeServices}"
+											itemLabel="#{serv.libelle}" itemValue="#{serv.idTypeService}" />
+									</h:selectOneMenu></li>
+								<li>
+									<h3 style="margin-top: 40px; text-align: center">Dîtes
+										nous en plus sur votre appli !</h3>
+								</li>
+								<li><h:inputText style="margin-left:225px; max-width:60%"
+										class="form-control"
+										value="#{mbCreationProjet.projetcree.libelle}" /></li>
+							</ul>
+							
+							
+							<div style="margin-right: 50px">
+								<h:commandButton class="btn pull-right" action="#"
+									value="Suivant" ><f:ajax render="panelCdc" listener="#{mbCreationProjet.afficherPanelCdc()}"/></h:commandButton>
+							</div>
+							
+							<!-- Pour le premier rendere -->
+							
+							<h:panelGroup rendered="#{mbCreationProjet.panelCdc==true}" id="panelCdc">
+							<div
+								style="margin-top: 70px; margin-bottom: 20px; border: 1px solid #535b60; max-height: 2px"></div>
+
+
+							<div class="col-sm-12" style="margin-bottom: 20px">
+								<div class="tabbable">
+									<!-- Tabs -->
+									<ul class="nav nav-tabs product-details-nav">
+										<li class="active"><a href="#tab1" data-toggle="tab">Votre
+												Cahier des charges</a></li>
+									</ul>
+									<div class="tab-content product-detail-info">
+										<div class="tab-pane active" id="tab1"
+											style="padding-right: 40px">
+
+											<div>
+												<ul style="list-style: none">
+													<li class="portfolio-project-name"><h4>A quels
+															besoins doit répondre votre application ?</h4></li>
+
+													<li><h:inputTextarea style="height:8em"
+															class="form-control" value="#{mbCreationProjet.besoin}" /></li>
+													<li style="margin-top: 30px" class="portfolio-project-name"><h4>Quel
+															est le contexte ?</h4></li>
+
+													<li><h:inputTextarea style="height:8em;"
+															class="form-control" value="#{mbCreationProjet.contexte}" /></li>
+													<li style="margin-top: 30px" class="portfolio-project-name"><h4>Comment
+															travaillez-vous aujourd'hui ? Possédez-vous déjà un outil
+															?</h4></li>
+
+													<li><h:inputTextarea style="height:8em"
+															class="form-control" value="#{mbCreationProjet.existant}" /></li>
+													<li style="margin-top: 30px; display: flex"
+														class="portfolio-project-name">
+														<h4 style="max-width: 500px">A quelle date ce projet
+															doit-il être livré ?</h4>
+														<h4 style="margin-left: 150px">Quel est votre budget
+															?</h4>
+													</li>
+													<li style="display: flex" class="portfolio-project-name">
+														<h:inputText style="max-width:150px; margin-right:318px"
+															class="form-control" value="#{mbCreationProjet.dateFin}" />
+														<h:inputText style="max-width:150px; margin-right:5px"
+															class="form-control" value="#{mbCreationProjet.tarif}" />
+														<h4>
+															<b>€</b>
+														</h4>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<h:commandButton style="margin-right: 50px; margin-bottom:20px"
+								class="btn pull-right" value="Suivant" ><f:ajax render="panelFonct" listener="#{mbCreationProjet.afficherPanelFonctionnalite()}"/></h:commandButton>
+							</h:panelGroup>
+						</div>
+						</div>
+						<div>
+							
+						</div>
+						
+
+						<!-- Dans le renderd -->
+						
+						
+						<h:panelGroup rendered="#{mbCreationProjet.panelFonctionnalite==true}" id="panelFonct">
+						<div
+							style="margin-bottom: 20px; border: 1px solid #535b60; max-height: 2px; clear: both">
+						</div>
+
+
+						<div class="col-sm-12  col-md-12">
+							<div class="row" style="margin-top: 10px">
+								<ul style="list-style: none; margin-bottom: 10px">
+									<li>
+										<h3 style="margin-top: 50px; text-align: center">Ajoutez
+											les fonctionnalités que vous souhaitez !</h3>
+									</li>
+									<li><h:selectOneMenu
+											style="max-width:260px; margin-left:430px; margin-bottom:10px"
+											class="form-control"
+											value="#{mbCreationProjet.selectedTypeFonction.idTypeFonctionnalite}">
+											<f:selectItem itemValue="-1" itemLabel="" />
+											<f:selectItems value="#{mbCreationProjet.listTypeFonctionn}"
+												var="typeFonction"
+												itemValue="#{typeFonction.idTypeFonctionnalite}"
+												itemLabel="#{typeFonction.libelle}" />
+										</h:selectOneMenu></li>
+									<li style="display: flex"><h:inputText
+											style="margin-left:430px; max-width:260px; margin-right:10px"
+											class="form-control" value="#{mbCreationProjet.commentaire}" />
+										<h:commandLink
+											action="#{mbCreationProjet.ajouterFonctionnaliteSaisi}">
+											<img src="resources/img/plussign5.png" alt="image projet" />
+										</h:commandLink></li>
+								</ul>
+								<div style="margin-left: 100px">
+								<h:panelGroup rendered="#{mbCreationProjet.actionAjout==false}">
+										<div class="section">
+											<div class="container">
+												<div class="row">
+													<!-- Open Vacancies List -->
+													<div class="col-md-8">
+														<table class="jobs-list">
+															<tr>
+																<th>Fonctionnalité</th>
+																<th>Type</th>
+															</tr>
+															<ui:repeat var="fonctionnalite"
+																value="#{mbCreationProjet.listeFonctionnaliteCree}">
+																<tr>
+																	<!-- Position -->
+																	<td class="job-position">#{fonctionnalite.commentaire}</td>
+																	<!-- Location -->
+																	<td class="job-location">
+																		<div class="job-country">#{fonctionnalite.typeFonctionnalite.libelle}</div>
+																	</td>
+																</tr>
+															</ui:repeat>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</h:panelGroup>
+								</div>
+								
+								<div>
+								<h:commandButton class="btn pull-right"
+									action="#{mbCreationProjet.creeProjet}" value="Enregistrer" />
+							</div>
+							
+							</div>
+						</div>
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
+	</ui:define>
+</ui:composition>
+</html>
