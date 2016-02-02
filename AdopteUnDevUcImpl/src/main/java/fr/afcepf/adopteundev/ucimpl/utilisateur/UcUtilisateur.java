@@ -70,4 +70,9 @@ public class UcUtilisateur implements IUcUtilisateur{
 	public List<DTOTechnologie> recupToutesTechnos() {
 		return businessDeveloppeur.recupToutesTechnos();
 	}
+
+	@Override
+	public DTOTechnologie recupTechnoById(int id) {
+		return businessDeveloppeur.recupTechnoById(id);
+	}
 }
