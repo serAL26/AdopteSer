@@ -12,6 +12,13 @@
 		href="resources/font-awesome/css/font-awesome.css" type="text/css"></link>
 	<ui:insert name="head"></ui:insert>
 </h:head>
+<f:metadata>
+			<f:event listener="#{mBConnexion.initListePropositionNonLue()}"
+				type="preRenderView" />
+			<f:event listener="#{mBMessagerie.initListeNoMessage()}"
+				type="preRenderView" />
+			<ui:insert name="methodeAuChargement"></ui:insert>
+		</f:metadata>
 <h:body>
 	<h:form id="formAdopte" enctype="multipart/form-data">
 		<ui:include src="/WEB-INF/navbar.xhtml"></ui:include>
@@ -28,11 +35,7 @@
 				</div>
 			</div>
 		</div>
-		<f:metadata>
-		<f:event listener="#{mBConnexion.initListePropositionNonLue()}" type="preRenderView"/>
-		<f:event listener="#{mBMessagerie.initListeNoMessage()}" type="preRenderView"/>
-			<ui:insert name="methodeAuChargement"></ui:insert>
-		</f:metadata>
+		
 		<ui:insert name="body">
 
 		</ui:insert>

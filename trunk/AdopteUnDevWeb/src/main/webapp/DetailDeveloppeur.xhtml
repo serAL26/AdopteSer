@@ -1,75 +1,104 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="WEB-INF/lesimports.xhtml">
-    <ui:define name="head">
+	<ui:define name="head">
 
-    </ui:define>
-    <ui:define name="title">Détail développeur</ui:define>
-    <ui:define name="body">
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="product-image-large">
-                            <img src="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.photo}" alt="image projet"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 product-details">
-                    <ul style="list-style: none">
-                    <li>
-                        <h4>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.prenom}
-                         #{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.nom}</h4>
-                        <!--developpeur = 1-->
-                        </li>
-                       	 	<li style="margin-bottom: 50px">
-                                <h5>Note</h5>
-                               <p:rating value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
-												readonly="true"/>
-                            </li>
-                              <li>
-                                <h5>Compétences</h5>
-                               <p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.petiteListeDeTechnoPasPiqueeDesVers}</p>
-                            </li>
-                               <li>
-                                <h5>Contacts</h5>
-                             <p><img src= "resources/img/mail59.png" style="margin-right: 10px"/>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.mail}</p>
-                               <p><img src= "resources/img/phone399.png" style="margin-right: 10px"/>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.portable}</p>
-                            </li>
-                            <li>
-                             <h5>Date d'inscription</h5>
-                               <p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.dateInscription.toString().subSequence(0,10)}</p>
-                            </li>
-                          </ul>
-                            </div>
-                            
-                       <div class="col-sm-12">
-                        <div class="tabbable">
-                            <!-- Tabs -->
-                            <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">Avis</a></li>
-                            </ul>
-                            <div class="tab-content product-detail-info">
-                                <div class="tab-pane active" id="tab1">
-                                <ui:repeat var="com" value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.listeCommentaire}">
-                                <div style="border-bottom: 10px; border: 2px #4f8db3 solid; border-radius:8px; padding: 5px; margin-bottom: 10px">
-                                <ul style="list-style: none">
-                                  <li class="portfolio-project-name"><h4>#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).prenom} #{mBDetailDeveloppeur.recupClientParId(com.idNoteur).nom}</h4></li>
-                                  <li style="margin-bottom: 30px"><p:rating value="#{com.note.intValue()}"
-												readonly="true" style=""/></li>
-                                  <li><p>#{com.commentaire}</p></li>
-                                  </ul>
-                                  </div>
-                                    </ui:repeat>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </ui:define>
+	</ui:define>
+	<ui:define name="title">Détail développeur</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="product-image-large">
+							<img
+								src="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.photo}"
+								alt="image projet" />
+						</div>
+					</div>
+					<div class="col-sm-6 product-details">
+						<ul style="list-style: none">
+							<li>
+								<h4>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.prenom}
+									#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.nom}</h4>
+								<!--developpeur = 1-->
+							</li>
+							<li style="margin-bottom: 50px">
+								<h5>Note</h5> <p:rating
+									value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.noteEnInteger}"
+									readonly="true" />
+							</li>
+							<li>
+								<h5>Compétences</h5>
+								<p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.petiteListeDeTechnoPasPiqueeDesVers}</p>
+							</li>
+							<li>
+								<h5>Contacts</h5>
+								<p>
+									<img src="resources/img/mail59.png" style="margin-right: 10px" />#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.mail}
+								</p>
+								<p>
+									<img src="resources/img/phone399.png"
+										style="margin-right: 10px" />#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.portable}
+								</p>
+							</li>
+							<li>
+								<h5>Date d'inscription</h5>
+								<p>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.dateInscription.toString().subSequence(0,10)}</p>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="tabbable">
+							<!-- Tabs -->
+							<ul class="nav nav-tabs product-details-nav">
+								<li class="active"><a href="#tab1" data-toggle="tab">Avis</a></li>
+								<li><a href="#tab2" data-toggle="tab">Contacter</a></li>
+							</ul>
+							<div class="tab-content product-detail-info">
+								<div class="tab-pane active" id="tab1">
+									<ui:repeat var="com"
+										value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.listeCommentaire}">
+										<div
+											style="border-bottom: 10px; border: 2px #4f8db3 solid; border-radius: 8px; padding: 5px; margin-bottom: 10px">
+											<ul style="list-style: none">
+												<li class="portfolio-project-name"><h4>#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).prenom}
+														#{mBDetailDeveloppeur.recupClientParId(com.idNoteur).nom}</h4></li>
+												<li style="margin-bottom: 30px"><p:rating
+														value="#{com.note.intValue()}" readonly="true" style="" /></li>
+												<li><p>#{com.commentaire}</p></li>
+											</ul>
+										</div>
+									</ui:repeat>
+								</div>
+								<div class="tab-pane" id="tab2">
+									<div class="row">
+										<div class="col-md-2">Titre :</div>
+										<div class="col-md-6">
+											<h:inputText value="#{mBMessagerie.titre}"
+												class="form-control" />
+										</div>
+										<div class="col-md-offset-1 col-md-2">
+										<h:commandLink action="#{mBMessagerie.creerNouveauFil(mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur)}" value="Envoyer un message" styleClass="btn" />
+										</div>
+									</div>
+									<br/>
+									<br/>
+									<br/>
+									<div class="row">
+										<h:inputTextarea value="#{mBMessagerie.leMessage}" class="form-control" style="height: 200px; overflow: auto"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
 </ui:composition>
 </html>

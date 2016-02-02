@@ -13,7 +13,7 @@ public class NoMessage implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private List<DTOMessage> listeMessageMere;
 	private DTOUtilisateur mecEnFace;
-	private boolean isLu;
+	private boolean isLu = true;
 	public DTOUtilisateur getMecEnFace() {
 		return mecEnFace;
 	}
