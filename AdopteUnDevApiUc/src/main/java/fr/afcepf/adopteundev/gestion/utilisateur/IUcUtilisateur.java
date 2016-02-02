@@ -10,13 +10,23 @@ import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 
 public interface IUcUtilisateur {
 	DTOUtilisateur obtenirUtilisateurById(int idUtilisateur);
+
 	List<DTODeveloppeur> recupTousLesDeveloppeurs();
+
 	NoDeveloppeur creerNoDeveloppeur(DTODeveloppeur dtoDeveloppeur);
+
 	int typeUtilisateur(int idUtilisateur);
-    List<DTODeveloppeur> recupDevWeb();
-    List<DTODeveloppeur> recupDevParTechno(Integer id);
-    public DTOClient recupClientById(int id);
-    public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
+
+	List<DTODeveloppeur> recupDevWeb();
+
+	List<DTODeveloppeur> recupDevParTechno(Integer id);
+
+	public DTOClient recupClientById(int id);
+
+	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies);
-   public List<DTOTechnologie> recupToutesTechnos();
+
+	public List<DTOTechnologie> recupToutesTechnos();
+
+	public DTOTechnologie recupTechnoById(int id);
 }
