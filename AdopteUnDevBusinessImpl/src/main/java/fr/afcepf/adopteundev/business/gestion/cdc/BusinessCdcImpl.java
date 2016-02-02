@@ -183,4 +183,10 @@ public class BusinessCdcImpl implements IBusinessCdc {
 		return EntityToDTO.typeCdcToDTOTypeCdc(daoTypeCdc
 				.recupTypeCdcByLibelle(libelle));
 	}
+
+	@Override
+	public DTOTypeCdc recupTypeRemarque() {
+		
+		return EntityToDTO.typeCdcToDTOTypeCdc(daoCdc.recupTypeRemarque());
+	}
 }
