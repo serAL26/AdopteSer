@@ -55,7 +55,7 @@ public class MBCreationProjet {
 
     @PostConstruct
     public void init() {
-        ucProjet = (IUCProjet) ContextFactory
+         ucProjet = (IUCProjet) ContextFactory
                 .createProxy(UcName.UCGESTIONPROJET);
         gestionUtilisateur = (IUcUtilisateur) ContextFactory
                 .createProxy(UcName.UCGESTIONUTILISATEUR);
@@ -72,7 +72,7 @@ public class MBCreationProjet {
     }
 
     public void remplirServices(AjaxBehaviorEvent event) {
-        if (selectedAppli.getIdTypeAppli() > 0) {
+        if (selectedAppli.getIdTypeAppli() >  0) {
             listeServices = ucProjet.recupTypeAppliById(
                     selectedAppli.getIdTypeAppli()).getLesServices();
         } else {
