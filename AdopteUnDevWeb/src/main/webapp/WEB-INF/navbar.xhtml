@@ -6,98 +6,95 @@
 
 <h:head></h:head>
 <h:body>
- <!-- Navigation & Logo-->
-        <div class="mainmenu-wrapper">
-	        <div class="container">
-	        	<div class="menuextras">
-					<div class="extras">
-						<ul>
-							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==1 || mBConnexion.typeUtilisateur ==2}">
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="Panier.jsf"><b>#{mBPanier.obtenirTotalDesDev()} item(s)</b></a></li>
+	<!-- Navigation & Logo-->
+	<div class="mainmenu-wrapper">
+		<div class="container">
+			<div class="menuextras">
+				<div class="extras">
+					<ul>
+						<h:panelGroup
+							rendered="#{mBConnexion.typeUtilisateur ==1 || mBConnexion.typeUtilisateur ==2}">
+							<li class="shopping-cart-items"><i
+								class="glyphicon glyphicon-shopping-cart icon-white"></i> <a
+								href="Panier.jsf"><b>#{mBPanier.obtenirTotalDesDev()}
+										item(s)</b></a></li>
 							<li>Bonjour #{mBConnexion.utilisateur.prenom}</li>
-							<li><b><h:commandLink value="Déconnexion" action="#{mBConnexion.deconnexion()}" /></b></li>
-			        		</h:panelGroup>
-			        		<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==3}">
-			        		<li><b><a href="Login.jsf">Connexion</a></b></li>
-			        		<li><b><a href="Login.jsf">Inscription</a></b></li>
-			        		</h:panelGroup>
-			        	</ul>
-					</div>
-		        </div>
-		        
-		        <!-- Menu connecte Client -->
-		        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-		        <nav id="mainmenu" class="mainmenu">
-					<ul>
-						<li class="logo-wrapper"><a href="Accueil.jsf"><img src="resources/img/logo.jpg" alt="Multipurpose Twitter Bootstrap Template"/></a></li>
-						<li class="active">
-							<a href="Accueil.jsf">Accueil</a>
-						</li>
-						<li>
-							<a href="CatalogueDeveloppeur.jsf">Catalogue Dev</a>
-						</li>
-						<li>
-							<a href="CreationProjet.jsf">Créer un Projet</a>
-						</li>
-						<li>
-							<a href="Messagerie.jsf">Messagerie</a>
-						</li>
-						<li class="has-submenu">
-							<a href="#">Mon Espace</a>
-							<div class="mainmenu-submenu">
-								<div class="mainmenu-submenu-inner"> 
-										<ul>
-											<li><a href="ListeProjets.jsf">Mes Projets</a></li>
-											<li><a href="ListePropositions.jsf">Mes Propositions</a></li>
-										</ul>
-								</div><!-- /mainmenu-submenu-inner -->
-							</div><!-- /mainmenu-submenu -->
-						</li>
+							<li><b><h:commandLink value="Déconnexion"
+										action="#{mBConnexion.deconnexion()}" /></b></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==3}">
+							<li><b><a href="Login.jsf">Connexion</a></b></li>
+							<li><b><a href="Login.jsf">Inscription</a></b></li>
+						</h:panelGroup>
 					</ul>
-				</nav>
-				</h:panelGroup>
-				
-				<!-- Menu connecte Developpeur -->
-		        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-		        <nav id="mainmenu" class="mainmenu">
-					<ul>
-						<li class="logo-wrapper"><a href="Accueil.jsf"><img src="resources/img/logo.jpg" alt="Multipurpose Twitter Bootstrap Template"/></a></li>
-						<li class="active">
-							<a href="Accueil.jsf">Accueil</a>
-						</li>
-						<li>
-							<a href="Messagerie.jsf">Messagerie</a>
-						</li>
-<li class="has-submenu">
-							<a href="#">Mon Espace</a>
-							<div class="mainmenu-submenu">
-								<div class="mainmenu-submenu-inner"> 
-										<ul>
-											<li><a href="ListeProjets.jsf">Mes Projets</a></li>
-											<li><a href="ListePropositions.jsf">Mes Propositions</a></li>
-										</ul>
-								</div><!-- /mainmenu-submenu-inner -->
-							</div><!-- /mainmenu-submenu -->
-						</li>
-					</ul>
-				</nav>
-				</h:panelGroup>
-				
-				<!-- Menu non connecte -->
-			<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 3}">
-		        <nav id="mainmenu" class="mainmenu">
-					<ul>
-						<li class="logo-wrapper"><a href="Accueil.jsf"><img src="resources/img/logo.jpg" alt="Multipurpose Twitter Bootstrap Template"/></a></li>
-						<li class="active">
-							<a href="Accueil.jsf">Accueil</a>
-						</li>
-						<li>
-							<a href="CatalogueDeveloppeur.jsf">Catalogue Dev</a>
-						</li>
-					</ul>
-				</nav>
-				</h:panelGroup>
+				</div>
 			</div>
+
+			<!-- Menu connecte Client -->
+			<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+				<nav id="mainmenu" class="mainmenu">
+					<ul>
+						<li class="logo-wrapper"><a href="Accueil.jsf"><img
+								src="resources/img/logo.jpg"
+								alt="Multipurpose Twitter Bootstrap Template" /></a></li>
+						<li class="active"><a href="Accueil.jsf">Accueil</a></li>
+						<li><a href="CatalogueDeveloppeur.jsf">Catalogue Dev</a></li>
+						<li><a href="CreationProjet.jsf">Créer un Projet</a></li>
+						<li><a href="Messagerie.jsf">Messagerie</a></li>
+						<li class="has-submenu"><a href="#">Mon Espace</a>
+							<div class="mainmenu-submenu">
+								<div class="mainmenu-submenu-inner">
+									<ul>
+										<li><a href="ListeProjets.jsf">Mes Projets</a></li>
+										<li><a href="ListePropositions.jsf">Mes Propositions</a></li>
+									</ul>
+								</div>
+								<!-- /mainmenu-submenu-inner -->
+							</div>
+							<!-- /mainmenu-submenu --></li>
+					</ul>
+				</nav>
+			</h:panelGroup>
+
+			<!-- Menu connecte Developpeur -->
+			<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+				<nav id="mainmenu" class="mainmenu">
+					<ul>
+						<li class="logo-wrapper"><a href="Accueil.jsf"><img
+								src="resources/img/logo.jpg"
+								alt="Multipurpose Twitter Bootstrap Template" /></a></li>
+						<li class="active"><a href="Accueil.jsf">Accueil</a></li>
+						<li><a href="Messagerie.jsf">Messagerie</a></li>
+						<li class="has-submenu"><a href="#">Mon Espace</a>
+							<div class="mainmenu-submenu">
+								<div class="mainmenu-submenu-inner">
+									<ul>
+										<li>
+										<h:panelGroup rendered="#{mBConnexion.listePropositionNonLue.size() != 0}"><a class="glyphicon glyphicon-exclamation-sign"></a></h:panelGroup>
+										<a href="ListeProjets.jsf">Mes Projets</a></li>
+										<li><a href="ListePropositions.jsf">Mes Propositions</a></li>
+									</ul>
+								</div>
+								<!-- /mainmenu-submenu-inner -->
+							</div>
+							<!-- /mainmenu-submenu --></li>
+					</ul>
+				</nav>
+			</h:panelGroup>
+
+			<!-- Menu non connecte -->
+			<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 3}">
+				<nav id="mainmenu" class="mainmenu">
+					<ul>
+						<li class="logo-wrapper"><a href="Accueil.jsf"><img
+								src="resources/img/logo.jpg"
+								alt="Multipurpose Twitter Bootstrap Template" /></a></li>
+						<li class="active"><a href="Accueil.jsf">Accueil</a></li>
+						<li><a href="CatalogueDeveloppeur.jsf">Catalogue Dev</a></li>
+					</ul>
+				</nav>
+			</h:panelGroup>
 		</div>
+	</div>
 </h:body>
 </html>

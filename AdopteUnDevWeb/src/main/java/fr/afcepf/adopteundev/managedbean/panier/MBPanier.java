@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.managedbean.panier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -46,6 +47,7 @@ public class MBPanier {
 
     public void validerPanier() {
     	ucProposition.validerPanier(mBCatalogueDeveloppeur.getPanier());
+    	mBCatalogueDeveloppeur.setPanier(new HashMap<Integer, Set<NoDeveloppeur>>());
     }
     
     public String retirerDeveloppeurAuPanier(int idProjet,NoDeveloppeur developpeur) {

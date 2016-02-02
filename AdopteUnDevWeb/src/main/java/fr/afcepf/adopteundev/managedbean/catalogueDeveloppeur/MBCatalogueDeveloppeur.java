@@ -111,7 +111,11 @@ public class MBCatalogueDeveloppeur {
     }
     
     public List<DTOProjet> initListeProjet() {
-        return panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
+    	if (mBConnexion.getTypeUtilisateur() == 2)
+        {
+        projetList = panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
+        }
+    	return projetList;
     }
 	public NoDeveloppeur getDev() {
 		return dev;
@@ -129,10 +133,7 @@ public class MBCatalogueDeveloppeur {
        //TODO A decommenter après le test
         listFiche = initFichesDeveloppeur();
         //listFiche = initFichesDeveloppeurTest();
-        if (mBConnexion.getTypeUtilisateur() == 2)
-        {
-        projetList = initListeProjet();
-        }
+        initListeProjet();
     }
 
     public String renvoieVersPanier() {
