@@ -6,5 +6,6 @@ import entity.Technologie;
 
 public interface IDaoTechnologie {
 	List<Technologie> recupTechnoParDev(int idDev);
+	List<Technologie> recupToutesTechnos();
 
 }
