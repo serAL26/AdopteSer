@@ -29,7 +29,7 @@ p.speech {
 }
 
 #listeMessage {
-	max-height: 500px;
+	height: 400px;
 	overflow: auto;
 }
 
@@ -44,6 +44,8 @@ p.speech {
 .messageRecu {
 	float: left;
 	clear: both;
+	margin-left: 10px;
+	margin-top: 2px;
 	background-color: #E4E5E9 !important;
 }
 
@@ -63,3 +65,4 @@ p.speech {
 	justify-content: space-between;
 	align-items: center;
 }
+

@@ -12,5 +12,5 @@ public interface IBusinessMessagerie {
 	DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau);
 	List<DTOMessage> recupererFilConversation(DTOMessage messMere, int idUtilisateur);
 	DTOMessage majDuMessMere(DTOMessage message);
-	boolean dernierMessIsLu(DTOMessage dtoMessage);
+	boolean dernierMessIsLu(DTOMessage dtoMessage,int idUtilisateur);
 }

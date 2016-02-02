@@ -18,6 +18,7 @@ public class MBDetailDeveloppeur {
 	
 	 private IUCGestionCdc gestionCdc;
 	 private IUCProjet ucProjet;
+	 private boolean contacterDev = false;
 	 private IUcUtilisateur ucUtilisateur;
 	 private DTOClient client;
 	
@@ -43,11 +44,15 @@ public class MBDetailDeveloppeur {
 		public DTOClient recupClientParId(Integer id)
 		{
 			client = ucUtilisateur.recupClientById(id);
-			
 			return client;
 			
 		}
-	    
-	    
 
+		public boolean isContacterDev() {
+			return contacterDev;
+		}
+
+		public void setContacterDev(boolean contacterDev) {
+			this.contacterDev = contacterDev;
+		}
 }

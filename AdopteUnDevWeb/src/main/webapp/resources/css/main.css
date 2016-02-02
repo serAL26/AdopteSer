@@ -2696,3 +2696,13 @@ span.color-red {
 .dropdown.open a.dropdown-toggle .caret {
   border-top: 4px solid #FFF;
 }
+
+.detailDev{
+  display: flex;
+  justify-content: center;
+}
+
+.titreDetail{
+  width: 150px;
+  height: 30px;
+}

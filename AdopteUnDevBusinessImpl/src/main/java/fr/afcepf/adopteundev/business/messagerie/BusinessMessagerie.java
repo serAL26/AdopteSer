@@ -44,18 +44,27 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 		List<DTOMessage> listeMessMere = recupereTousLesMessMere(idUtilisateur);
 		for (DTOMessage dtoMessage : listeMessMere) {
 			NoMessage noMessage = new NoMessage();
-			noMessage.setLu(dernierMessIsLu(dtoMessage));
 			noMessage.setListeMessageMere(new ArrayList<DTOMessage>());
 			noMessage.setMecEnFace(trouveMecEnFace(idUtilisateur, dtoMessage));
+			if(dtoMessage.getUtilisateur1().getIdUtilisateur() == idUtilisateur) {
+				noMessage.setLu(true);
+			}
+			else {
+				noMessage.setLu(dernierMessIsLu(dtoMessage, idUtilisateur));
+			}
 			noMessage.getListeMessageMere().add(dtoMessage);
 			listeNoMessage.add(noMessage);
 		}
 		return listeNoMessage;
 	}
 
-	public boolean dernierMessIsLu(DTOMessage dtoMessage) {
+	public boolean dernierMessIsLu(DTOMessage dtoMessage, int idUtilisateur) {
 		List<DTOMessage> listeDtoMessage = recupFilConversationSansChangerLeBoolean(dtoMessage);
-		return listeDtoMessage.get(listeDtoMessage.size()-1).isLu();
+		boolean lu = true;
+		if(listeDtoMessage.get(listeDtoMessage.size()-1).getUtilisateur1().getIdUtilisateur() != idUtilisateur ) {
+			lu = listeDtoMessage.get(listeDtoMessage.size()-1).isLu();
+		}
+		return lu;
 	}
 
 	private DTOUtilisateur trouveMecEnFace(int idUtilisateur, DTOMessage dtoMessage) {
@@ -72,16 +81,15 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 	
 	public List<NoMessage> creerListeNoMessageComplete(int idUtilisateur, List<NoMessage> listeNonComplete) {
 		List<NoMessage> listeComplete = new ArrayList<>();
-		boolean unMessageIsLuDansLaListe = false;
 		for (NoMessage noMessage : listeNonComplete) {
 			boolean plusieursFilsAvecMemePersonne = false;
 			for (NoMessage noMessageComplet : listeComplete) {
 				if(noMessageComplet.getMecEnFace().getIdUtilisateur() == noMessage.getMecEnFace().getIdUtilisateur()) {
 					plusieursFilsAvecMemePersonne = true;
 					noMessageComplet.getListeMessageMere().add(noMessage.getListeMessageMere().get(0));
-					if(noMessage.getListeMessageMere().get(0).isLu()) {
-						noMessageComplet.setLu(true);
-					}
+				}
+				if(!noMessage.isLu()) {
+					noMessageComplet.setLu(false);
 				}
 			}
 			if(!plusieursFilsAvecMemePersonne) {
@@ -128,6 +136,7 @@ public class BusinessMessagerie implements IBusinessMessagerie{
 		DTOMessage dernierMessage = listeDTO.get(listeDTO.size() -1);
 		if(dernierMessage.getUtilisateur1().getIdUtilisateur() != idUtilisateur) {
 			dernierMessage.setLu(true);
+			daoMessagerie.majDuMessMere(DTOToEntity.dtoMessageToMessage(dernierMessage));
 		}
 		return listeDTO;
 	}

@@ -49,8 +49,8 @@ public class UCMessage implements IUCMessage{
 	}
 
 	@Override
-	public boolean dernierMessIsLu(DTOMessage messMere) {
-		return businessMessagerie.dernierMessIsLu(messMere);
+	public boolean dernierMessIsLu(DTOMessage messMere, int idUtilisateur) {
+		return businessMessagerie.dernierMessIsLu(messMere,idUtilisateur);
 	}
 	
 }

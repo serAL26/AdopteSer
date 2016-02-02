@@ -12,5 +12,5 @@ public interface IUCMessage {
 	DTOMessage ecrireUnNouveauMesssage(DTOMessage messageNouveau);
 	List<DTOMessage> recupererFilConversation(DTOMessage messMere, int idUtilisateur);
 	DTOMessage majDuMessMere(DTOMessage messMere);
-	boolean dernierMessIsLu(DTOMessage messMere);
+	boolean dernierMessIsLu(DTOMessage messMere, int idUtilisateur);
 }

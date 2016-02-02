@@ -93,15 +93,14 @@ public class MBMessagerie {
 		return "";
 	}
 
-	public String creerNouveauFil() {
+	public String creerNouveauFil(DTOUtilisateur recepteur) {
 		DTOMessage nouveauMessage = new DTOMessage();
 		nouveauMessage.setMessage(leMessage);
 		nouveauMessage.setDateEnvoi(new Date());
 		nouveauMessage.setTitre(titre);
 		nouveauMessage.setLu(false);
 		nouveauMessage.setUtilisateur1(mBConnexion.getUtilisateur());
-		//TODO changer le new en mec en face
-		nouveauMessage.setUtilisateur2(ucUtilisateur.obtenirUtilisateurById(3));
+		nouveauMessage.setUtilisateur2(recepteur);
 		ucMessage.creerNouveauFil(nouveauMessage);
 		return "";
 	}
