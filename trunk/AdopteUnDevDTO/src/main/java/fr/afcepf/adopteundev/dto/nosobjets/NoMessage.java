@@ -13,6 +13,7 @@ public class NoMessage implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private List<DTOMessage> listeMessageMere;
 	private DTOUtilisateur mecEnFace;
+	private boolean isLu;
 	public DTOUtilisateur getMecEnFace() {
 		return mecEnFace;
 	}
@@ -24,5 +25,11 @@ public class NoMessage implements Serializable{
 	}
 	public void setListeMessageMere(List<DTOMessage> listeMessageMere) {
 		this.listeMessageMere = listeMessageMere;
+	}
+	public boolean isLu() {
+		return isLu;
+	}
+	public void setLu(boolean isLu) {
+		this.isLu = isLu;
 	}
 }

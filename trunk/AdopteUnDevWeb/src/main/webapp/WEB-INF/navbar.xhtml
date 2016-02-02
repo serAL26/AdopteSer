@@ -6,6 +6,7 @@
 
 <h:head></h:head>
 <h:body>
+<ui:composition>
 	<!-- Navigation & Logo-->
 	<div class="mainmenu-wrapper">
 		<div class="container">
@@ -40,7 +41,10 @@
 						<li class="active"><a href="Accueil.jsf">Accueil</a></li>
 						<li><a href="CatalogueDeveloppeur.jsf">Catalogue Dev</a></li>
 						<li><a href="CreationProjet.jsf">Créer un Projet</a></li>
-						<li><a href="Messagerie.jsf">Messagerie</a></li>
+						<li>
+						<h:panelGroup rendered="#{mBMessagerie.tousLesMessLu == true}"> <a href="Messagerie.jsf">Messagerie</a></h:panelGroup>
+						<h:panelGroup rendered="#{mBMessagerie.tousLesMessLu == false}"> <a href="Messagerie.jsf">Messagerie <p class="glyphicon glyphicon-exclamation-sign" /></a></h:panelGroup>
+						</li>
 						<li class="has-submenu"><a href="#">Mon Espace</a>
 							<div class="mainmenu-submenu">
 								<div class="mainmenu-submenu-inner">
@@ -64,14 +68,17 @@
 								src="resources/img/logo.jpg"
 								alt="Multipurpose Twitter Bootstrap Template" /></a></li>
 						<li class="active"><a href="Accueil.jsf">Accueil</a></li>
-						<li><a href="Messagerie.jsf">Messagerie</a></li>
-						<li class="has-submenu"><a href="#">Mon Espace</a>
+						<li>
+						<h:panelGroup rendered="#{mBMessagerie.tousLesMessLu == true}"> <a href="Messagerie.jsf">Messagerie</a></h:panelGroup>
+						<h:panelGroup rendered="#{mBMessagerie.tousLesMessLu == false}"> <a href="Messagerie.jsf">Messagerie <p class="glyphicon glyphicon-exclamation-sign" /></a></h:panelGroup>
+						</li>
+						<li class="has-submenu">
+						<h:panelGroup rendered="#{mBConnexion.listePropositionNonLue.size() != 0}"><a href="#">Mon Espace <p class="glyphicon glyphicon-exclamation-sign" /></a></h:panelGroup>
+						<h:panelGroup rendered="#{mBConnexion.listePropositionNonLue.size() == 0}"><a href="#">Mon Espace</a></h:panelGroup>
 							<div class="mainmenu-submenu">
 								<div class="mainmenu-submenu-inner">
 									<ul>
-										<li>
-										<h:panelGroup rendered="#{mBConnexion.listePropositionNonLue.size() != 0}"><a class="glyphicon glyphicon-exclamation-sign"></a></h:panelGroup>
-										<a href="ListeProjets.jsf">Mes Projets</a></li>
+										<li><a href="ListeProjets.jsf">Mes Projets</a></li>
 										<li><a href="ListePropositions.jsf">Mes Propositions</a></li>
 									</ul>
 								</div>
@@ -96,5 +103,7 @@
 			</h:panelGroup>
 		</div>
 	</div>
+	</ui:composition>
 </h:body>
+
 </html>

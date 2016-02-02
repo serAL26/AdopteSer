@@ -41,7 +41,7 @@ public class MBConnexion {
 		ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
 	}
 
-	private void initListePropositionNonLue() {
+	public void initListePropositionNonLue() {
 		if(typeUtilisateur == 1) {
 			listePropositionNonLue = ucProposition.recupPropositionNonLue(utilisateur.getIdUtilisateur());
 		}
@@ -62,7 +62,6 @@ public class MBConnexion {
 		else {
 			retour = "/Messagerie.xhtml?faces-redirect=true";
 			typeUtilisateur = ucUtilisateur.typeUtilisateur(utilisateur.getIdUtilisateur());
-			initListePropositionNonLue();
 		}
 		return retour;
 	}

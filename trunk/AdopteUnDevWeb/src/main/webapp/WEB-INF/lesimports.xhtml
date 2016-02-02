@@ -29,6 +29,8 @@
 			</div>
 		</div>
 		<f:metadata>
+		<f:event listener="#{mBConnexion.initListePropositionNonLue()}" type="preRenderView"/>
+		<f:event listener="#{mBMessagerie.initListeNoMessage()}" type="preRenderView"/>
 			<ui:insert name="methodeAuChargement"></ui:insert>
 		</f:metadata>
 		<ui:insert name="body">
