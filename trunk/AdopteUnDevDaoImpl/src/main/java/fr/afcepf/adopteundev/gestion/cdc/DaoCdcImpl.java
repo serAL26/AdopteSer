@@ -103,4 +103,11 @@ public class DaoCdcImpl implements IDaoCdc {
 						Cdc.class).setParameter("idProjet", idProjet);
 		return query.getSingleResult();
 	}
+
+	@Override
+	public TypeCdc recupTypeRemarque() {
+		TypedQuery<TypeCdc> query = em.createQuery("Select t from TypeCdc t where t.idTypeCdc = 1", TypeCdc.class);
+		System.out.println(query.getSingleResult().getLibelle());
+		return query.getSingleResult();
+	}
 }

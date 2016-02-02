@@ -66,16 +66,15 @@
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
                             <div>
                                 <h5>Porteur du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</p>
+                                <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.client.nom} #{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.client.prenom}</p>
                             </div>
-                            <br/>
                             <div>
                                 <h5>Date de Livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
+                                <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.dateFinEstimee}</p>
                             </div>
                             <div>
                                 <h5>Type de projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
+                                <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.service.libelle}</p>
                             </div>
                         </h:panelGroup>
                         <!--client = 2-->
@@ -87,11 +86,11 @@
                             </div>
                             <div>
                                 <h5>Date de Livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee.toString().subSequence(0, 10)}</p>
+                                <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.dateFinEstimee.toString().subSequence(0, 10)}</p>
                             </div>
                             <div>
                                 <h5>Type du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
+                                <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.service.libelle}</p>
                             </div>
                         </h:panelGroup>
                     </div>
@@ -113,7 +112,7 @@
                     
                   <!--   Pour client -->
                     <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
-                                        <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
+                    <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
                     <div style="clear: both; margin-left: 200px;">
                     <h:commandLink style="margin:10px" svalue="" class="btn btn-small"><i
 											class="icon-shopping-cart icon-white"></i>Valider</h:commandLink>
@@ -130,21 +129,157 @@
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Cahier des charges</a></li>
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+                                <li><a href="#tab2" data-toggle="tab">Ajouter des remarques</a></li>
+                                </h:panelGroup>
+                                 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+                                <li><a href="#tab2" data-toggle="tab">Gérer les remarques</a></li>
+                                </h:panelGroup>
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
                                   <h4>Le besoin</h4>
-                                    <p>#{mBProjetDetail.cdc.besoin}</p>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.besoin}</p>
                                     <h4>Les contexte</h4>
-                                    <p>#{mBProjetDetail.cdc.contexte}</p>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.contexte}</p>
                                      <h4>L'existant</h4>
-                                    <p>#{mBProjetDetail.cdc.existant}</p>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.existant}</p>
                                 </div>
+                                <div class="tab-pane" id="tab2">
+                                
+                                <!-- affichage client mode consultation -->
+                                  <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2 and mBPropositionDetail.affichageModif==false}">
+									<h4>Le besoin</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.besoin}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.besoinRemarque}" />
+                                    <h4>Les contexte</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.contexte}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.contexteRemarque}" />
+                                     <h4>L'existant</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.existant}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.existantRemarque}" />
+									<div>				 
+									<ul style="list-style: none; margin-bottom: 30px">
+									<li style="margin-top: 30px; display: flex"
+														class="portfolio-project-name">
+														<h4 style="max-width: 500px">Date de fin espérée</h4>
+														<h4 style="margin-left: 300px">Budget prévisionnel</h4>
+													</li>
+													<li style="display: flex" class="portfolio-project-name">
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.dateFinEstimee.toString().subSequence(0, 10)}</h5>
+														<h:inputText style="max-width:150px; margin-right:225px"
+															class="form-control" value="#{mBPropositionDetail.dateRemarque}" />
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.tarif}</h5>	
+														<h:inputText style="max-width:150px; margin-right:5px"
+															class="form-control" value="#{mBPropositionDetail.tarifRemarque}" />
+														<h4>
+															<b>€</b>
+														</h4>
+													</li>
+													<li>
+													
+								<h:commandButton class="btn pull-right"
+									action="#{mBPropositionDetail.ajouterRemarque(mBPropositionDetail.mBPropositionParUtilisateur.cdc, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" value="Enregistrer" />
+													</li>
+													<li></li>
+													
+								</ul>
+								</div>
+								</h:panelGroup>
+								  
+								<!--   affichage client mode modif -->
+								 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2 and mBPropositionDetail.affichageModif==false}">
+									<h4>Le besoin</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.besoin}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.besoinRemarque}" />
+                                    <h4>Les contexte</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.contexte}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.contexteRemarque}" />
+                                     <h4>L'existant</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.existant}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.existantRemarque}" />
+									<div>				 
+									<ul style="list-style: none; margin-bottom: 30px">
+									<li style="margin-top: 30px; display: flex"
+														class="portfolio-project-name">
+														<h4 style="max-width: 500px">Date de fin espérée</h4>
+														<h4 style="margin-left: 300px">Budget prévisionnel</h4>
+													</li>
+													<li style="display: flex" class="portfolio-project-name">
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.dateFinEstimee.toString().subSequence(0, 10)}</h5>
+														<h:inputText style="max-width:150px; margin-right:225px"
+															class="form-control" value="#{mBPropositionDetail.dateRemarque}" />
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.tarif}</h5>	
+														<h:inputText style="max-width:150px; margin-right:5px"
+															class="form-control" value="#{mBPropositionDetail.tarifRemarque}" />
+														<h4>
+															<b>€</b>
+														</h4>
+													</li>
+													<li>
+													
+								<h:commandButton class="btn pull-right"
+									action="#{mBPropositionDetail.ajouterRemarque(mBPropositionDetail.mBPropositionParUtilisateur.cdc, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" value="Enregistrer" />
+													</li>
+													<li></li>
+													
+								</ul>
+								</div>
+								</h:panelGroup>
+								
+								<!-- affichage développeur -->
+								<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+									<h4>Le besoin</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.besoin}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.besoinRemarque}" />
+                                    <h4>Les contexte</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.contexte}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.contexteRemarque}" />
+                                     <h4>L'existant</h4>
+                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.existant}</p>
+                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+															class="form-control" value="#{mBPropositionDetail.existantRemarque}" />
+									<div>				 
+									<ul style="list-style: none; margin-bottom: 30px">
+									<li style="margin-top: 30px; display: flex"
+														class="portfolio-project-name">
+														<h4 style="max-width: 500px">Date de fin espérée</h4>
+														<h4 style="margin-left: 300px">Budget prévisionnel</h4>
+													</li>
+													<li style="display: flex" class="portfolio-project-name">
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.dateFinEstimee.toString().subSequence(0, 10)}</h5>
+														<h:inputText style="max-width:150px; margin-right:225px"
+															class="form-control" value="#{mBPropositionDetail.dateRemarque}" />
+													<h5 style="margin-right: 10px">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.tarif}</h5>	
+														<h:inputText style="max-width:150px; margin-right:5px"
+															class="form-control" value="#{mBPropositionDetail.tarifRemarque}" />
+														<h4>
+															<b>€</b>
+														</h4>
+													</li>
+													<li>
+													
+								<h:commandButton class="btn pull-right"
+									action="#{mBPropositionDetail.ajouterRemarque(mBPropositionDetail.mBPropositionParUtilisateur.cdc, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" value="Enregistrer" />
+													</li>
+													<li></li>
+													
+								</ul>
+								</div>
+								</h:panelGroup>
+								</div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Full Description & Specification -->
                 </div>
             </div>
     </ui:define>

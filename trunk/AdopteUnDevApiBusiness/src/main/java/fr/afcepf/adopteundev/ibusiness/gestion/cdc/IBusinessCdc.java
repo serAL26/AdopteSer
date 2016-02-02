@@ -23,4 +23,5 @@ public interface IBusinessCdc {
 	DTOCdc recupDerniereRemarque (Integer idDev, Integer idProjet);
 	DTOCdc recupCdcFinalParidProjet(Integer idProjet);
 	DTOTypeCdc recupTypeCDCParLibelle(String libelle);
+	DTOTypeCdc recupTypeRemarque();
 }

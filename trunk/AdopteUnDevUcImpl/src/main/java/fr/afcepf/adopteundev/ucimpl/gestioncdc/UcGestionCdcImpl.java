@@ -116,4 +116,10 @@ static Logger log = Logger.getLogger(UcGestionCdcImpl.class);
 		// TODO Auto-generated method stub
 		return businessFonctionnalite.recupFonctionnaliteParCDC(cdc);
 	}
+
+	@Override
+	public DTOTypeCdc recupTypeRemarque() {
+		// TODO Auto-generated method stub
+		return businessCdc.recupTypeRemarque();
+	}
 }

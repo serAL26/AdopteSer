@@ -27,4 +27,5 @@ public interface IUCGestionCdc {
 	public DTOTypeCdc recupTypeCdcByLibelle(String libelle);
 	public DTOTypeFonctionnalite recupTypeFonctionnaliteParID(Integer id);
 	public List<DTOFonctionnalite> recupFonctionnaliteParCDC(DTOCdc cdc);
+	public DTOTypeCdc recupTypeRemarque();
 }

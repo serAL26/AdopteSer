@@ -89,7 +89,7 @@
 							
 							<div style="margin-right: 50px">
 								<h:commandButton class="btn pull-right" action="#"
-									value="Suivant" ><f:ajax render="panelCdc" listener="#{mbCreationProjet.afficherPanelCdc()}"/></h:commandButton>
+									value="Suivant" ><f:ajax render=":formAdopte:panelCdc" listener="#{mbCreationProjet.afficherPanelCdc()}"/></h:commandButton>
 							</div>
 							
 							<!-- Pour le premier rendere -->
@@ -151,7 +151,7 @@
 								</div>
 							</div>
 							<h:commandButton style="margin-right: 50px; margin-bottom:20px"
-								class="btn pull-right" value="Suivant" ><f:ajax render="panelFonct" listener="#{mbCreationProjet.afficherPanelFonctionnalite()}"/></h:commandButton>
+								class="btn pull-right" value="Suivant" ><f:ajax render=":formAdopte:panelFonct" listener="#{mbCreationProjet.afficherPanelFonctionnalite()}"/></h:commandButton>
 							</h:panelGroup>
 						</div>
 						</div>
