@@ -8,5 +8,6 @@ public interface IDaoTechnologie {
 	List<Technologie> recupTechnoParDev(int idDev);
 	List<Technologie> recupToutesTechnos();
 	Technologie recupTechnoById();
+	Technologie recupTechnoById(int id);
 
 }
