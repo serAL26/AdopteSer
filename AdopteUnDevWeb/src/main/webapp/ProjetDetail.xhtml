@@ -91,8 +91,8 @@
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12 product-details">
-                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
-                        <h:panelGroup rendered="false">
+                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+                        <!--<h:panelGroup rendered="false">-->
                             <h5>Vos livrables :</h5>
                             <div class="col-sm-8 table-responsive">
                                 <table class="table">
@@ -118,9 +118,14 @@
                         <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
                         <h:panelGroup rendered="true">
                             <h5>Vos livrables :</h5>
-                            <div>
-                                <input type="file" name="fichierUpload"/>
-                                <h:commandButton action="#{mBProjetDetail.upload}" value="Envoyer votre livrable"/>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="file" name="fichierUpload"/>
+                                    <h:commandButton action="#{mBProjetDetail.upload}" value="Envoyer votre livrable"/>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h:inputTextarea value="#{mBProjetDetail.descriptionLivrable}"/>
+                                </div>
                             </div>
                         </h:panelGroup>
                     </div>

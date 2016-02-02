@@ -283,12 +283,12 @@ public class DTOToEntity {
         entity.setFichier(dto.getFichier());
         entity.setDescription(dto.getDescription());
         entity.setTypeEvaluation(dtoTypeEvaluationToEvaluation(dto.getTypeEvaluation()));
-        if(dto.getEcheance() != null) {
-        entity.setEcheance(dto.getEcheance());
-        }
-        if(dto.getDateLivraison()!= null) {
-        entity.setDateLivraison(dto.getDateLivraison());
-        }
+        if(dto.getEcheance() != null)
+            entity.setEcheance(dto.getEcheance());
+        if(dto.getDateLivraison()!= null)
+            entity.setDateLivraison(dto.getDateLivraison());
+        if (dto.getProjet()!=null)
+            entity.setProjet(dtoProjetToProjet(dto.getProjet()));
         return entity;
     }
 

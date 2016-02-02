@@ -30,6 +30,7 @@ public class MBProjetDetail {
     private Logger log = Logger.getLogger(MBProjetDetail.class);
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
+    private String descriptionLivrable;
     private IUCProjet ucProjet;
     private List<DTOLivrable> livrableList;
 
@@ -49,23 +50,27 @@ public class MBProjetDetail {
 
         log.info("Debut de l'upload...");
         HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        log.info(httpServletRequest.getAttribute("fichierUpload"));
         List<DiskFileItem>params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
         for (DiskFileItem diskFileItem :
                 params) {
-            log.info(diskFileItem.getName());
             String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
             //la methode en dessous est moins fiable car tout depend du serveur
             //String path = this.getClass().getResource(".").getPath();
             path = path.split("/WEB-INF")[0];
-            log.info(path);
-            File file1 = new File(path+"/livrables/"+diskFileItem.getName());
-            boolean bool = file1.mkdirs();
-            log.info(bool);
+            File instal = new File(path+"/Livrables");
+            instal.mkdirs();
+            File file1 = new File(path+"/Livrables/"+diskFileItem.getName());
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file1);
                 fileOutputStream.write(diskFileItem.get());
                 fileOutputStream.close();
+                DTOLivrable livrable = new DTOLivrable();
+                livrable.setDateLivraison(new Date());
+                livrable.setDescription(descriptionLivrable);
+                livrable.setProjet(cdc.projet);
+                livrable.setEcheance(new Date());
+                livrable.setFichier(path+"/"+diskFileItem.getName());
+                ucProjet.creerLivrable(livrable);
             } catch (IOException e) {
                 log.error(e.getMessage());
                 e.printStackTrace();
@@ -145,4 +150,11 @@ public class MBProjetDetail {
         this.livrableList = livrableList;
     }
 
+    public String getDescriptionLivrable() {
+        return descriptionLivrable;
+    }
+
+    public void setDescriptionLivrable(String descriptionLivrable) {
+        this.descriptionLivrable = descriptionLivrable;
+    }
 }
