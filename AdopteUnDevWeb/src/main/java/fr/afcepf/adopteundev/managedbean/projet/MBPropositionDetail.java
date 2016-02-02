@@ -32,7 +32,7 @@ public class MBPropositionDetail {
 	private String dateRemarque;
 	private Double tarifRemarque;
 	private boolean affichageModif = false;
-
+	
 	@ManagedProperty(value="#{mBPropositionParUtilisateur}")
 	private MBPropositionParUtilisateur mBPropositionParUtilisateur;
 
@@ -126,5 +126,10 @@ public class MBPropositionDetail {
 		DTOCdc remarque = gestionCdc.recupDerniereRemarque(idDev, idProjet);
 		
 		return remarque;
+	}
+	
+	public void affichageModification()
+	{
+		affichageModif = true;
 	}
 }
