@@ -6,7 +6,6 @@ import dto.DTOClient;
 import dto.DTODeveloppeur;
 import dto.DTOTechnologie;
 import dto.DTOUtilisateur;
-import enumeration.RoleUtilisateur;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 
 public interface IUcUtilisateur {
@@ -19,4 +18,5 @@ public interface IUcUtilisateur {
     public DTOClient recupClientById(int id);
     public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies);
+   public List<DTOTechnologie> recupToutesTechnos();
 }
