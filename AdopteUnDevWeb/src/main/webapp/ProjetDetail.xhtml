@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
@@ -23,29 +22,37 @@
                     </div>
                     <div class="col-lg-offset-1 col-sm-5 product-details">
                         <div>
-                         <h5>Tarif</h5>
+                            <h5>Tarif</h5>
                         </div>
                         <div class="price">
                             <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
                         </div>
                         <div>
-                         <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==1}">
-                        <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}<img src= "resources/img/time29.png" style="margin-left: 5px"/></p>
-                          </h:panelGroup>    
-                            <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==3}">
-                        <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
-                          </h:panelGroup>     
-                            <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==4}">
-                        <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
-                          </h:panelGroup>  
-                         <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2}">
-                        <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/done2.png" style="margin-left: 5px"/></p>
-                          </h:panelGroup>  
-                          </div>
+                            <h:panelGroup
+                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==1}">
+                                <h5>Etat du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}<img
+                                        src="resources/img/time29.png" style="margin-left: 5px"/></p>
+                            </h:panelGroup>
+                            <h:panelGroup
+                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==3}">
+                                <h5>Etat du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
+                                        src="resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                            </h:panelGroup>
+                            <h:panelGroup
+                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==4}">
+                                <h5>Etat du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
+                                        src="resources/img/clock136.png" style="margin-left: 5px"/></p>
+                            </h:panelGroup>
+                            <h:panelGroup
+                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2}">
+                                <h5>Etat du projet</h5>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
+                                        src="resources/img/done2.png" style="margin-left: 5px"/></p>
+                            </h:panelGroup>
+                        </div>
                         <!--developpeur = 1-->
                         <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
                             <div>
@@ -67,10 +74,10 @@
                             <div>
                                 <h5>Développeur en charge</h5>
                                 <h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur != null}">
-                                <p>#{mBProjetDetail.cdc.developpeur.prenom} #{mBProjetDetail.cdc.developpeur.nom} </p>
+                                    <p>#{mBProjetDetail.cdc.developpeur.prenom} #{mBProjetDetail.cdc.developpeur.nom} </p>
                                 </h:panelGroup>
-                                 <h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur == null}">
-                                <p>En cours de sélection.</p>
+                                <h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur == null}">
+                                    <p>En cours de sélection.</p>
                                 </h:panelGroup>
                             </div>
                             <div>
@@ -111,22 +118,26 @@
                         <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
                         <h:panelGroup rendered="true">
                             <h5>Vos livrables :</h5>
-
+                            <div>
+                                <input type="file" name="fichierUpload"/>
+                                <h:commandButton action="#{mBProjetDetail.upload}" value="Envoyer votre livrable"/>
+                            </div>
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12">
                         <div class="tabbable">
                             <!-- Tabs -->
                             <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
+                                <li class="active"><a href="#tab1"
+                                                      data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
                             </ul>
                             <div class="tab-content product-detail-info">
                                 <div class="tab-pane active" id="tab1">
-                                  <h4>Le besoin</h4>
+                                    <h4>Le besoin</h4>
                                     <p>#{mBProjetDetail.cdc.besoin}</p>
                                     <h4>Les contexte</h4>
                                     <p>#{mBProjetDetail.cdc.contexte}</p>
-                                     <h4>L'existant</h4>
+                                    <h4>L'existant</h4>
                                     <p>#{mBProjetDetail.cdc.existant}</p>
                                 </div>
                             </div>
