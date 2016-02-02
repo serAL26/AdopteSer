@@ -34,4 +34,8 @@ public class DaoTechnologie implements IDaoTechnologie{
 		return liste;
 	}
 
+	@Override
+	public Technologie recupTechnoById(int id) {
+		return em.find(Technologie.class, id);
+	}
 }
