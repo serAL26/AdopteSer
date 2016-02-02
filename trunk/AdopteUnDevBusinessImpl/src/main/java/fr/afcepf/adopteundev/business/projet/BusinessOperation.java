@@ -31,12 +31,14 @@ public class BusinessOperation implements IBusinessOperation {
     public List<DTOOperation> payerLivrable(DTOOperation dtoOperation) {
         List<DTOOperation> listeDTOOperation = new ArrayList<>();
         Operation operation = DTOToEntity.dtoOperationToOperation(dtoOperation);
+        if(operation.getTypeOperation().getIdTypeOperation() == 3)  {
         operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(1));
         daoOperation.creerOperation(operation);
         listeDTOOperation.add(EntityToDTO.operationToDTOOperation(operation));
         operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(2));
         daoOperation.creerOperation(operation);
         listeDTOOperation.add(EntityToDTO.operationToDTOOperation(operation));
+        }
         return listeDTOOperation;
     }
 

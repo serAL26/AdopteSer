@@ -8,6 +8,7 @@ import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
+
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.log4j.Logger;
 
@@ -18,8 +19,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -31,14 +34,16 @@ public class MBProjetDetail {
     private Logger log = Logger.getLogger(MBProjetDetail.class);
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
+    private boolean livrablePaye;
+    private String descriptionPaiement;
     private String descriptionLivrable;
     private IUCProjet ucProjet;
     private List<DTOLivrable> livrableList;
 
     @ManagedProperty(value = "#{mBProjetParUtilisateur}")
     private MBProjetParUtilisateur mBProjetParUtilisateur;
-
-
+    
+    
     @PostConstruct
     private void init() {
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
@@ -84,6 +89,25 @@ public class MBProjetDetail {
         return "";
     }
 
+    public void initIsPaye(DTOLivrable livrable) {
+    	livrablePaye = ucProjet.initIsPaye(livrable);
+    	if(livrablePaye) {
+    		descriptionPaiement = "Payé";
+    	}
+    	else {
+    		descriptionPaiement = "En attente de paiement";
+    	}
+    }
+    
+    public void payerLivrable(DTOLivrable livrable) {
+    	List<DTOOperation> liste = new ArrayList<>();
+    	if(livrable.getLesOperation()!= null) {
+    	liste.addAll(livrable.getLesOperation());
+    	ucProjet.payerLivrable(liste.get(0));
+    	livrablePaye = ucProjet.initIsPaye(livrable);
+    	}
+    }
+    
     public String upload() {
         log.info("Debut de l'upload...");
         HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -195,4 +219,20 @@ public class MBProjetDetail {
     public void setDescriptionLivrable(String descriptionLivrable) {
         this.descriptionLivrable = descriptionLivrable;
     }
+
+	public boolean isLivrablePaye() {
+		return livrablePaye;
+	}
+
+	public void setLivrablePaye(boolean livrablePaye) {
+		this.livrablePaye = livrablePaye;
+	}
+
+	public String getDescriptionPaiement() {
+		return descriptionPaiement;
+	}
+
+	public void setDescriptionPaiement(String descriptionPaiement) {
+		this.descriptionPaiement = descriptionPaiement;
+	}
 }
