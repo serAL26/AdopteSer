@@ -19,13 +19,19 @@ public class DaoTechnologie implements IDaoTechnologie{
 	private EntityManager em;
 	
 	private String recupTechnoParDev ="SELECT a.technologie FROM AssociationDevTechno a WHERE a.developpeur.idUtilisateur = :idDev ";
-	
+	private String recupToutesTechno = "SELECT t FROM Technologie t";
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Technologie> recupTechnoParDev(int idDev) {
 		Query query = em.createQuery(recupTechnoParDev);
 		query.setParameter("idDev", idDev);
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Technologie> recupToutesTechnos() {
+		List<Technologie> liste = em.createQuery(recupToutesTechno, Technologie.class).getResultList();
+		return liste;
 	}
 
 }
