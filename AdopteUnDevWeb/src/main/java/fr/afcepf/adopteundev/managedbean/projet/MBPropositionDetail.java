@@ -39,6 +39,7 @@ public class MBPropositionDetail {
 	private String existantModif;
 	private String dateModif;
 	private double tarifModif;
+	private boolean paiement=false;
 	
 	@ManagedProperty(value="#{mBPropositionParUtilisateur}")
 	private MBPropositionParUtilisateur mBPropositionParUtilisateur;
@@ -52,6 +53,21 @@ public class MBPropositionDetail {
 
 	
 	
+	
+	public boolean isPaiement() {
+		return paiement;
+	}
+
+
+
+
+	public void setPaiement(boolean paiement) {
+		this.paiement = paiement;
+	}
+
+
+
+
 	public String getBesoinModif() {
 		return besoinModif;
 	}
@@ -244,7 +260,8 @@ public class MBPropositionDetail {
 	
 	public void validerLeProjet(DTOProposition proposition)
 	{
-		ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
+		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
+		paiement=true;
 	}
 	
 	

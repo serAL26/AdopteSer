@@ -324,24 +324,6 @@ public class MBCreationProjet {
     }
 
     public void afficherPanelCdc() {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
-        for (DiskFileItem diskFileItem :
-                params) {
-            String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
-            path = path.split("/WEB-INF")[0];
-            File instal = new File(path + "/Photos");
-            instal.mkdirs();
-            File file1 = new File(path + "/Photos/" + diskFileItem.getName());
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file1);
-                fileOutputStream.write(diskFileItem.get());
-                fileOutputStream.close();
-                projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         
         panelCdc = true;
     }
