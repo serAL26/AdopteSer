@@ -1,157 +1,200 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="WEB-INF/lesimports.xhtml">
-    <ui:define name="head">
+	<ui:define name="head">
 
-    </ui:define>
-    <ui:define name="title">#{mBProjetDetail.mBProjetParUtilisateur.projet.libelle}</ui:define>
-    <ui:define name="methodeAuChargement">
-        <f:event type="preRenderView" listener="#{mBProjetDetail.initCdc}"/>
-    </ui:define>
-    <ui:define name="body">
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="product-image-large">
-                            <img src="#{mBProjetDetail.mBProjetParUtilisateur.projet.photo}" alt="image projet"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-offset-1 col-sm-5 product-details">
-                        <div>
-                            <h5>Tarif</h5>
-                        </div>
-                        <div class="price">
-                            <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
-                        </div>
-                        <div>
-                            <h:panelGroup
-                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==1}">
-                                <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}<img
-                                        src="resources/img/time29.png" style="margin-left: 5px"/></p>
-                            </h:panelGroup>
-                            <h:panelGroup
-                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==3}">
-                                <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
-                                        src="resources/img/cancel19.png" style="margin-left: 5px"/></p>
-                            </h:panelGroup>
-                            <h:panelGroup
-                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==4}">
-                                <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
-                                        src="resources/img/clock136.png" style="margin-left: 5px"/></p>
-                            </h:panelGroup>
-                            <h:panelGroup
-                                    rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2}">
-                                <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img
-                                        src="resources/img/done2.png" style="margin-left: 5px"/></p>
-                            </h:panelGroup>
-                        </div>
-                        <!--developpeur = 1-->
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-                            <div>
-                                <h5>Porteur du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom} #{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</p>
-                            </div>
-                            <br/>
-                            <div>
-                                <h5>Date de Livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
-                            </div>
-                            <div>
-                                <h5>Type de projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
-                            </div>
-                        </h:panelGroup>
-                        <!--client = 2-->
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
-                            <div>
-                                <h5>Développeur en charge</h5>
-                                <h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur != null}">
-                                    <p>#{mBProjetDetail.cdc.developpeur.prenom} #{mBProjetDetail.cdc.developpeur.nom} </p>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur == null}">
-                                    <p>En cours de sélection.</p>
-                                </h:panelGroup>
-                            </div>
-                            <div>
-                                <h5>Date de Livrable</h5>
-                                <p>#{mBProjetDetail.cdc.dateFinEstimee.toString().subSequence(0, 10)}</p>
-                            </div>
-                            <div>
-                                <h5>Type du projet</h5>
-                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
-                            </div>
-                        </h:panelGroup>
-                    </div>
-                    <div class="col-sm-12 product-details">
-                        <!--<h:panelGroup rendered="false">-->
-                            <h5>Vos livrables :</h5>
-                            <div class="col-sm-8 table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <td>Liens</td>
-                                        <td>Date de livraison</td>
-                                        <td>Echeance</td>
-                                        <td>description</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
-                                        <tr>
-                                            <td><h:outputLink value="#{livrable.fichier}">Livrable</h:outputLink></td>
-                                            <td>#{livrable.dateLivraison.toString().subSequence(0, 10)}</td>
-                                            <td>#{livrable.echeance.toString().subSequence(0, 10)}</td>
-                                            <td>#{livrable.description}</td>
-                                        </tr>
-                                    </ui:repeat>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
-                        <h:panelGroup rendered="true">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="file" name="fichierUpload"/>
-                                    <h:commandButton action="#{mBProjetDetail.upload}" value="Envoyer votre livrable"/>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3>Votre description du livrable</h3>
-                                    <h:inputTextarea  value="#{mBProjetDetail.descriptionLivrable}"/>
-                                </div>
-                            </div>
-                        </h:panelGroup>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="tabbable">
-                            <!-- Tabs -->
-                            <ul class="nav nav-tabs product-details-nav">
-                                <li class="active"><a href="#tab1"
-                                                      data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
-                            </ul>
-                            <div class="tab-content product-detail-info">
-                                <div class="tab-pane active" id="tab1">
-                                    <h4>Le besoin</h4>
-                                    <p>#{mBProjetDetail.cdc.besoin}</p>
-                                    <h4>Les contexte</h4>
-                                    <p>#{mBProjetDetail.cdc.contexte}</p>
-                                    <h4>L'existant</h4>
-                                    <p>#{mBProjetDetail.cdc.existant}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Full Description & Specification -->
-                </div>
-            </div>
-        </div>
-    </ui:define>
+	</ui:define>
+	<ui:define name="title">#{mBProjetDetail.mBProjetParUtilisateur.projet.libelle}</ui:define>
+	<ui:define name="methodeAuChargement">
+		<f:event type="preRenderView" listener="#{mBProjetDetail.initCdc}" />
+	</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="product-image-large">
+							<img src="#{mBProjetDetail.mBProjetParUtilisateur.projet.photo}"
+								alt="image projet" />
+						</div>
+					</div>
+					<div class="col-lg-offset-1 col-sm-5 product-details">
+						<div>
+							<h5>Tarif</h5>
+						</div>
+						<div class="price">
+							<span class="price-was">#{mBProjetDetail.cdc.tarif}€</span>
+							#{mBProjetDetail.tarifRestant}€
+						</div>
+						<div>
+							<h:panelGroup
+								rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==1}">
+								<h5>Etat du projet</h5>
+								<p>
+									#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}<img
+										src="resources/img/time29.png" style="margin-left: 5px" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup
+								rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==3}">
+								<h5>Etat du projet</h5>
+								<p>
+									#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}
+									<img src="resources/img/cancel19.png" style="margin-left: 5px" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup
+								rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==4}">
+								<h5>Etat du projet</h5>
+								<p>
+									#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}
+									<img src="resources/img/clock136.png" style="margin-left: 5px" />
+								</p>
+							</h:panelGroup>
+							<h:panelGroup
+								rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2}">
+								<h5>Etat du projet</h5>
+								<p>
+									#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}
+									<img src="resources/img/done2.png" style="margin-left: 5px" />
+								</p>
+							</h:panelGroup>
+						</div>
+						<!--developpeur = 1-->
+						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+							<div>
+								<h5>Porteur du projet</h5>
+								<p>#{mBProjetDetail.mBProjetParUtilisateur.projet.client.nom}
+									#{mBProjetDetail.mBProjetParUtilisateur.projet.client.prenom}</p>
+							</div>
+							<br />
+							<div>
+								<h5>Date de Livrable</h5>
+								<p>#{mBProjetDetail.cdc.dateFinEstimee}</p>
+							</div>
+							<div>
+								<h5>Type de projet</h5>
+								<p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
+							</div>
+						</h:panelGroup>
+						<!--client = 2-->
+						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+							<div>
+								<h5>Développeur en charge</h5>
+								<h:panelGroup
+									rendered="#{mBProjetDetail.cdc.developpeur != null}">
+									<p>#{mBProjetDetail.cdc.developpeur.prenom}
+										#{mBProjetDetail.cdc.developpeur.nom}</p>
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{mBProjetDetail.cdc.developpeur == null}">
+									<p>En cours de sélection.</p>
+								</h:panelGroup>
+							</div>
+							<div>
+								<h5>Date de Livrable</h5>
+								<p>#{mBProjetDetail.cdc.dateFinEstimee.toString().subSequence(0,
+									10)}</p>
+							</div>
+							<div>
+								<h5>Type du projet</h5>
+								<p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
+							</div>
+						</h:panelGroup>
+					</div>
+					<div class="col-sm-12">
+						<div class="tabbable">
+							<!-- Tabs -->
+							<ul class="nav nav-tabs product-details-nav">
+								<li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
+								<li><a href="#tab2" data-toggle="tab">Livrable</a></li>
+							</ul>
+							<div class="tab-content product-detail-info">
+								<div class="tab-pane active" id="tab1">
+									<h4>Le besoin</h4>
+									<p>#{mBProjetDetail.cdc.besoin}</p>
+									<h4>Les contexte</h4>
+									<p>#{mBProjetDetail.cdc.contexte}</p>
+									<h4>L'existant</h4>
+									<p>#{mBProjetDetail.cdc.existant}</p>
+								</div>
+								<div class="tab-pane" id="tab2">
+								<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+									<h5>Vos livrables :</h5>
+									<div class="col-sm-12 table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Description</th>
+													<th>Date de livraison</th>
+													<th>Echeance</th>
+													<th>Reglement du livrable</th>
+													<th>livrables</th>
+												</tr>
+											</thead>
+											<tbody class="table-striped">
+												<ui:repeat value="#{mBProjetDetail.livrableList}"
+													var="livrable">
+													<tr>
+														<td>#{livrable.description}</td>
+														<td>#{livrable.dateLivraison.toString().subSequence(0,
+															10)}</td>
+														<td>#{livrable.echeance.toString().subSequence(0,
+															10)}</td>
+															<td>#{mBProjetDetail.initIsPaye(livrable)}</td>
+														<td><h:outputLink value="#{livrable.fichier}">
+														<h:inputHidden value="#{mBProjetDetail.payerLivrable(livrable)}" />
+														Livrable</h:outputLink></td>
+													</tr>
+												</ui:repeat>
+											</tbody>
+										</table>
+									</div>
+										<div class="row">
+										</div>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+									<!--<h:panelGroup rendered="false">-->
+									<h5>Vos livrables :</h5>
+									<div class="col-sm-12 table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Description</th>
+													<th>Date de livraison</th>
+													<th>Echeance</th>
+													<th>livrables</th>
+												</tr>
+											</thead>
+											<tbody class="table-striped">
+												<ui:repeat value="#{mBProjetDetail.livrableList}"
+													var="livrable">
+													<tr>
+														<td>#{livrable.description}</td>
+														<td>#{livrable.dateLivraison.toString().subSequence(0,
+															10)}</td>
+														<td>#{livrable.echeance.toString().subSequence(0,
+															10)}</td>
+														<td><input type="file" name="fichierUpload" />
+												<h:commandButton action="#{mBProjetDetail.upload}"
+													value="Envoyer votre livrable" class="btn" /></td>
+													</tr>
+												</ui:repeat>
+											</tbody>
+										</table>
+										</div>
+									</h:panelGroup>
+									</div>
+							</div>
+						</div>
+					</div>
+					<!-- End Full Description & Specification -->
+				</div>
+			</div>
+		</div>
+	</ui:define>
 </ui:composition>
 </html>
