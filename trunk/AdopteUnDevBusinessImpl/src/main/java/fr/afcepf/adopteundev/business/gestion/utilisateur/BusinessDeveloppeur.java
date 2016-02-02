@@ -166,4 +166,10 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 		}
 		return listeDev;
 	}
+
+	@Override
+	public List<DTOTechnologie> recupToutesTechnos() {
+		List<Technologie> liste = daoTechnologie.recupToutesTechnos();
+		return EntityToDTO.listeTechnologieToDTOTechnologie(liste);
+	}
 }
