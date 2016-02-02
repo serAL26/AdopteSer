@@ -47,7 +47,6 @@ public class MBProjetDetail {
     }
 
     public String upload() {
-
         log.info("Debut de l'upload...");
         HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         List<DiskFileItem>params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
@@ -78,6 +77,7 @@ public class MBProjetDetail {
         }
         return "";
     }
+
     public int noteDeProjetParUtilisateur(int idUtilisateur){
         int note = getNoteParUtilisateur(idUtilisateur).getNote().intValue();
         log.info("valeur de la  note : "+note);
