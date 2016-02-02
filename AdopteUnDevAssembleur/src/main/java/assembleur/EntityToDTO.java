@@ -563,7 +563,14 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
-
+	public static Set<DTODeveloppeur> listDevtoDTODeveloppeur(
+			Set<Developpeur> set) {
+		Set<DTODeveloppeur> listDto = new HashSet<>();
+		for (Developpeur entity : set) {
+			listDto.add(developpeurToDTODeveloppeur((entity)));
+		}
+		return listDto;
+	}
 	private static Set<DTOProjet> listProjetToDtoProjet(Set<Projet> listEntity) {
 		Set<DTOProjet> listDto = new HashSet<>();
 		for (Projet entity : listEntity) {
