@@ -5,6 +5,7 @@ import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
 
@@ -14,6 +15,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +31,6 @@ public class MBProjetDetail {
     private IUCGestionCdc gestionCdc;
     private DTOCdc cdc;
     private IUCProjet ucProjet;
-    private UploadedFile file;
     private List<DTOLivrable> livrableList;
 
     @ManagedProperty(value="#{mBProjetParUtilisateur}")
@@ -40,10 +45,33 @@ public class MBProjetDetail {
         livrableList = ucProjet.recupListLivrableParProjet(mBProjetParUtilisateur.getProjet());
     }
 
-    public void upload() {
-        if (file != null) {
-            log.info("Succesful"+file.getFileName()+" is uploaded.");
+    public String upload() {
+
+        log.info("Debut de l'upload...");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        log.info(httpServletRequest.getAttribute("fichierUpload"));
+        List<DiskFileItem>params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
+        for (DiskFileItem diskFileItem :
+                params) {
+            log.info(diskFileItem.getName());
+            String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+            //la methode en dessous est moins fiable car tout depend du serveur
+            //String path = this.getClass().getResource(".").getPath();
+            path = path.split("/WEB-INF")[0];
+            log.info(path);
+            File file1 = new File(path+"/livrables/"+diskFileItem.getName());
+            boolean bool = file1.mkdirs();
+            log.info(bool);
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(file1);
+                fileOutputStream.write(diskFileItem.get());
+                fileOutputStream.close();
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                e.printStackTrace();
+            }
         }
+        return "";
     }
     public int noteDeProjetParUtilisateur(int idUtilisateur){
         int note = getNoteParUtilisateur(idUtilisateur).getNote().intValue();
@@ -93,7 +121,6 @@ public class MBProjetDetail {
         Double tarif = cdc.getTarif();
         List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
         if (operationList != null) {
-            log.info("taille de la liste des operations : "+operationList.size());
             for (DTOOperation anOperationList : operationList) {
                 tarif -= anOperationList.getMontant();
             }
@@ -118,11 +145,4 @@ public class MBProjetDetail {
         this.livrableList = livrableList;
     }
 
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
 }
