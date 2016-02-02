@@ -24,6 +24,9 @@
 		</div>
 	</h:panelGroup>
 	</ui:define>
+	<ui:define name="methodeAuChargement">
+	<f:event listener="#{mBCatalogueDeveloppeur.initListeProjet()}" type="preRenderView"></f:event>
+	</ui:define>
 	<ui:define name="body">
 		<div class="section">
 			<div class="container">
