@@ -183,7 +183,7 @@
 													<li>
 													
 								<h:commandButton class="btn pull-right"
-									action="#{mBPropositionDetail.ajouterRemarque(mBPropositionDetail.mBPropositionParUtilisateur.cdc, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" value="Enregistrer" />
+									action="#{mBPropositionDetail.affichageModification()}" value="Modifier" />
 													</li>
 													<li></li>
 													
@@ -192,24 +192,30 @@
 								</h:panelGroup>
 								  
 								<!--   affichage client mode modif -->
-								 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2 and mBPropositionDetail.affichageModif==false}">
+								 <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2 and mBPropositionDetail.affichageModif==true}">
 									<h4>Le besoin</h4>
-                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.besoin}</p>
-                                    <h:inputTextarea style="height:8em; margin-bottom:30px"
+                                    <h:inputTextarea style="height:auto; margin-bottom:30px"
 															class="form-control" value="#{mBPropositionDetail.besoinRemarque}" />
+									<p><i>#{mBPropositionDetail.chargerDerniereRemarque(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.idUtilisateur, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.idProjet).besoin}</i></p>
+									
                                     <h4>Les contexte</h4>
-                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.contexte}</p>
                                     <h:inputTextarea style="height:8em; margin-bottom:30px"
 															class="form-control" value="#{mBPropositionDetail.contexteRemarque}" />
+				<p><i>#{mBPropositionDetail.chargerDerniereRemarque(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.idUtilisateur, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.idProjet).contexte}</i></p>
+															
                                      <h4>L'existant</h4>
-                                    <p>#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.existant}</p>
                                     <h:inputTextarea style="height:8em; margin-bottom:30px"
 															class="form-control" value="#{mBPropositionDetail.existantRemarque}" />
+			<p><i>#{mBPropositionDetail.chargerDerniereRemarque(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.idUtilisateur, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.idProjet).existant}</i></p>
+															
 									<div>				 
 									<ul style="list-style: none; margin-bottom: 30px">
 									<li style="margin-top: 30px; display: flex"
 														class="portfolio-project-name">
+														<h:panelGroup rendered="#{mBPropositionDetail.chargerDerniereRemarque(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.idUtilisateur, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.idProjet).dateFinEstimee != null}">
 														<h4 style="max-width: 500px">Date de fin espérée</h4>
+														</h:panelGroup>
+														<h:panelGroup rendered="#{mBPropositionDetail.chargerDerniereRemarque(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.idUtilisateur, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.idProjet).tarif != 0.0}"></h:panelGroup>
 														<h4 style="margin-left: 300px">Budget prévisionnel</h4>
 													</li>
 													<li style="display: flex" class="portfolio-project-name">
@@ -226,7 +232,7 @@
 													<li>
 													
 								<h:commandButton class="btn pull-right"
-									action="#{mBPropositionDetail.ajouterRemarque(mBPropositionDetail.mBPropositionParUtilisateur.cdc, mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" value="Enregistrer" />
+									action="#{}" value="Enregistrer" />
 													</li>
 													<li></li>
 													
