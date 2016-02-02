@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import dto.DTOProposition;
 import dto.DTOUtilisateur;
 import fr.afcepf.adopteundev.gestion.connexion.IUcConnexion;
-import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.proposition.IUcProposition;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
