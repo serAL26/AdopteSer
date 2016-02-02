@@ -7,6 +7,7 @@ import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
@@ -28,6 +29,7 @@ import java.util.Set;
 @ManagedBean(name = "mbCreationProjet")
 @SessionScoped
 public class MBCreationProjet {
+    private Logger log = Logger.getLogger(MBCreationProjet.class);
     private Set<DTOTypeFonctionnalite> listTypeFonctionn;
     private DTOTypeFonctionnalite selectedTypeFonction = new DTOTypeFonctionnalite();
     private List<DTOFonctionnalite> listeFonctionnaliteCree = new ArrayList<>();
@@ -160,7 +162,9 @@ public class MBCreationProjet {
                 FileOutputStream fileOutputStream = new FileOutputStream(file1);
                 fileOutputStream.write(diskFileItem.get());
                 fileOutputStream.close();
+                log.info("photo : "+path + "/Photos/" + diskFileItem.getName());
                 projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
+                log.info("projet.photo : "+projetcree.getPhoto());
             } catch (IOException e) {
                 e.printStackTrace();
             }
