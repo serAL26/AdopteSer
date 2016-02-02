@@ -14,4 +14,5 @@ public interface IBusinessDeveloppeur {
     List<DTODeveloppeur> recupDeveloppeurParNoteEtTechno(double note, DTOTechnologie techno );
     List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note, List<DTOTechnologie> technologies);
     List<DTOTechnologie> recupToutesTechnos();
+    DTOTechnologie recupTechnoById(int id) ;
 }
