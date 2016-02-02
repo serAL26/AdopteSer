@@ -85,8 +85,11 @@
 										class="form-control"
 										value="#{mbCreationProjet.projetcree.libelle}" /></li>
 							</ul>
-							
-							
+
+							<div class="col-sm-6">
+								<input type="file" name="fichierUpload" placeholder="envoyer"/>
+								<h:commandButton action="#{mbCreationProjet.upload}" value="ajoutez votre photo !"/>
+							</div>
 							<div style="margin-right: 50px">
 								<h:commandButton class="btn pull-right" action="#"
 									value="Suivant" ><f:ajax render=":formAdopte:panelCdc" listener="#{mbCreationProjet.afficherPanelCdc()}"/></h:commandButton>
