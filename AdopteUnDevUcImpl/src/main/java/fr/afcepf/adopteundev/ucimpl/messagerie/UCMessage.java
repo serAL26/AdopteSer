@@ -39,13 +39,18 @@ public class UCMessage implements IUCMessage{
 	}
 
 	@Override
-	public List<DTOMessage> recupererFilConversation(DTOMessage messMere) {
-		return businessMessagerie.recupererFilConversation(messMere);
+	public List<DTOMessage> recupererFilConversation(DTOMessage messMere, int idUtilisateur) {
+		return businessMessagerie.recupererFilConversation(messMere, idUtilisateur);
 	}
 
 	@Override
 	public DTOMessage majDuMessMere(DTOMessage messMere) {
 		return businessMessagerie.majDuMessMere(messMere) ;
+	}
+
+	@Override
+	public boolean dernierMessIsLu(DTOMessage messMere) {
+		return businessMessagerie.dernierMessIsLu(messMere);
 	}
 	
 }

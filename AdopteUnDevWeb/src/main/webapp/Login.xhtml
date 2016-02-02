@@ -5,7 +5,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
-
     </ui:define>
     <ui:define name="title">Identification</ui:define>
     <ui:define name="body">
@@ -14,7 +13,6 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="basic-login">
-                            <h:form >
                                 <div class="form-group">
                                     <label for="login-username"><i class="icon-user"/> <b>Votre Email</b></label>
                                     <h:inputText styleClass="form-control" id="login-username" value="#{mBConnexion.mail}"/>
@@ -32,7 +30,6 @@
                                     <h:commandButton styleClass="btn pull-right" value="Se Connecter" action="#{mBConnexion.seConnecter}"/>
                                     <div class="clearfix"></div>
                                 </div>
-                            </h:form>
                         </div>
                     </div>
                     <div class="col-sm-7 social-login">

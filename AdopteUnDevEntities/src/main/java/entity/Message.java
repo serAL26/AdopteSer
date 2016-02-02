@@ -40,6 +40,8 @@ public class Message implements Serializable{
     @Column(nullable=false, name="MESSAGE")
     private String message;
 
+    private boolean lu;
+    
     /**
      * 
      */
@@ -133,5 +135,11 @@ private Message messFille;
 		this.utilisateur2 = utilisateur2;
 	}
 
-    
+	public boolean isLu() {
+		return lu;
+	}
+
+	public void setLu(boolean lu) {
+		this.lu = lu;
+	}
 }

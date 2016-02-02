@@ -22,6 +22,9 @@
 					action="#{mBMessagerie.creerNouveauFil()}"
 					value="creer nouveau fil" />
 
+<h:inputTextarea styleClass="form-control textReponse"
+								value="#{mBMessagerie.leMessage}" />
+
 				<ui:repeat var="noMessage" value="#{mBMessagerie.listeNoMessage}">
 					<div class="row">
 						<div></div>
@@ -44,13 +47,15 @@
 			</div>
 			<div class="col-md-offset-1 col-md-5">
 				<div class="row">
-					<div id="listeMessage" class="listeMessage">
-						<h:panelGroup rendered="#{mBMessagerie.premierChargement == true}">
+						<h:panelGroup rendered="#{mBMessagerie.filConversation == null}">
 							<div id="vide">
 								<h4>Veuillez choisir une conversation sur la gauche pour
 									afficher la discussion.</h4>
 							</div>
 						</h:panelGroup>
+						
+						<!-- Fil Conversation -->
+					<div id="listeMessage" class="listeMessage">
 						<h:panelGroup id="filConversation"
 							rendered="#{mBMessagerie.premierChargement == false}">
 							<ui:repeat var="messConversation"
@@ -72,8 +77,9 @@
 					</div>
 					<div class="row rep" style="height: 100px;">
 						<div class="col-md-8 espaceReponse">
-							<h:inputTextarea styleClass="form-control textReponse"
-								value="#{mBMessagerie.leMessage}" />
+							
+							
+							
 						</div>
 						<div class="col-md-3 btnRep">
 							<h:commandButton immediate="true"

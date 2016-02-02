@@ -180,6 +180,7 @@ public class DTOToEntity {
         entity.setIdMessage(dto.getIdMessage());
         entity.setDateEnvoi(dto.getDateEnvoi());
         entity.setMessage(dto.getMessage());
+        entity.setLu(dto.isLu());
         if (dto.getMessFille()!= null)
             entity.setMessFille(dtoMessageToMessage(dto.getMessFille()));
         if (dto.getMessMere()!= null)

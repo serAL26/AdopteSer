@@ -232,6 +232,7 @@ public class EntityToDTO {
 	public static DTOMessage messageToDTOMessage(Message message) {
 		DTOMessage dTOMessage = new DTOMessage();
 		dTOMessage.setIdMessage(message.getIdMessage());
+		dTOMessage.setLu(message.isLu());
 		dTOMessage.setDateEnvoi(message.getDateEnvoi());
 		dTOMessage.setMessage(message.getMessage());
 		if (message.getMessFille() != null) {

@@ -24,6 +24,8 @@ public class DTOMessage implements Serializable{
      */
     private Integer idMessage;
 
+    private boolean lu;
+    
     /**
      * 
      */
@@ -123,6 +125,11 @@ public class DTOMessage implements Serializable{
 		this.utilisateur2 = utilisateur2;
 	}
 
-    
-	
+	public boolean isLu() {
+		return lu;
+	}
+
+	public void setLu(boolean lu) {
+		this.lu = lu;
+	}
 }

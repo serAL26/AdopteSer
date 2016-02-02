@@ -27,17 +27,26 @@ public class MBMessagerie {
 	private DTOMessage messMereDeLaConverse = new DTOMessage();
 	private DTOMessage messageAjoute = new DTOMessage();
 	private List<DTOMessage> filConversation = new ArrayList<>();
+	private boolean tousLesMessLu = true;
 	private List<NoMessage> listeNoMessage = new ArrayList<>();
 	private DTOUtilisateur mecEnFace = new DTOUtilisateur();
+	private DTOUtilisateur correspondantPourNouveauFil = new DTOUtilisateur();
 	private NoMessage noMessage = new NoMessage();
 	private IUCMessage ucMessage;
 	private DTOMessage dernierMessFilConversation = new DTOMessage();
 	private IUcUtilisateur ucUtilisateur;
 	@ManagedProperty(value="#{mBConnexion}")
 	private MBConnexion mBConnexion;
-	
-	private void initListeNoMessage() {
-		listeNoMessage = ucMessage.recupereNoMessage(mBConnexion.getUtilisateur().getIdUtilisateur());
+
+	public void initListeNoMessage() {
+		if(mBConnexion.getUtilisateur() != null) {
+			listeNoMessage = ucMessage.recupereNoMessage(mBConnexion.getUtilisateur().getIdUtilisateur());
+			for (NoMessage noMessage : listeNoMessage) {
+				if(!noMessage.isLu()) {
+					tousLesMessLu = false;
+				}
+			}
+		}
 	}
 
 	private void obtenirLesInterfaces(){
@@ -56,45 +65,47 @@ public class MBMessagerie {
 		obtenirFilConversation(messMereDeLaConverse, noMessage);
 		return "";
 	}
-	
+
 	public void majDuMessMere() {
 		dernierMessFilConversation.setMessFille(messageAjoute);
 		ucMessage.majDuMessMere(dernierMessFilConversation);
 	}
-	
+
 	public String ajouterMessAUnFil(){
 		DTOMessage messageCree = new DTOMessage();
 		dernierMessFilConversation = filConversation.get(filConversation.size()-1);
 		messageCree.setMessMere(dernierMessFilConversation);
 		messageCree.setDateEnvoi(new Date());
 		messageCree.setMessage(leMessage);
+		messageCree.setLu(false);
 		messageCree.setTitre(dernierMessFilConversation.getTitre());
 		messageCree.setUtilisateur1(mBConnexion.getUtilisateur());
 		messageCree.setUtilisateur2(mecEnFace);
 		messageAjoute = ucMessage.ecrireUnNouveauMesssage(messageCree);
 		return "";
 	}
-	
+
 	public String obtenirFilConversation(DTOMessage messMere, NoMessage noMessParam) {
 		mecEnFace = noMessParam.getMecEnFace();
 		messMereDeLaConverse = messMere;
 		noMessage = noMessParam;
-		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse);
+		filConversation = ucMessage.recupererFilConversation(messMereDeLaConverse, mBConnexion.getUtilisateur().getIdUtilisateur());
 		return "";
 	}
-	
+
 	public String creerNouveauFil() {
 		DTOMessage nouveauMessage = new DTOMessage();
 		nouveauMessage.setMessage(leMessage);
 		nouveauMessage.setDateEnvoi(new Date());
 		nouveauMessage.setTitre(titre);
+		nouveauMessage.setLu(false);
 		nouveauMessage.setUtilisateur1(mBConnexion.getUtilisateur());
 		//TODO changer le new en mec en face
 		nouveauMessage.setUtilisateur2(ucUtilisateur.obtenirUtilisateurById(3));
 		ucMessage.creerNouveauFil(nouveauMessage);
 		return "";
 	}
-	
+
 	public List<NoMessage> getListeNoMessage() {
 		return listeNoMessage;
 	}
@@ -183,5 +194,20 @@ public class MBMessagerie {
 	public void setPremierChargement(boolean premierChargement) {
 		this.premierChargement = premierChargement;
 	}
-	
+
+	public DTOUtilisateur getCorrespondantPourNouveauFil() {
+		return correspondantPourNouveauFil;
+	}
+
+	public void setCorrespondantPourNouveauFil(DTOUtilisateur correspondantPourNouveauFil) {
+		this.correspondantPourNouveauFil = correspondantPourNouveauFil;
+	}
+
+	public boolean isTousLesMessLu() {
+		return tousLesMessLu;
+	}
+
+	public void setTousLesMessLu(boolean tousLesMessLu) {
+		this.tousLesMessLu = tousLesMessLu;
+	}
 }
