@@ -113,13 +113,39 @@
                   <!--   Pour client -->
                     <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
                     <h:panelGroup rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
-                    <div style="clear: both; margin-left: 200px;">
-                    <h:commandLink style="margin:10px" action="#{mBPropositionDetail.validerLeProjet(mBPropositionDetail.mBPropositionParUtilisateur.proposition)}" class="btn btn-small"><i
-											class="icon-shopping-cart icon-white"></i>Valider</h:commandLink>
+                   <h:panelGroup rendered="#{mBPropositionDetail.paiement==false}">
+                    <div style="clear: both; margin-left: 200px">
+                    <h:commandLink style="margin:10px" action="#{mBPropositionDetail.validerLeProjet(mBPropositionDetail.mBPropositionParUtilisateur.proposition)}" class="btn btn-small">
+											Valider</h:commandLink>
 					
-					 <h:commandLink action="#{mBPropositionDetail.refuserProposition(mBPropositionDetail.mBPropositionParUtilisateur.proposition)}" class="btn btn-small"><i
-											class="icon-shopping-cart icon-white"></i>Refuser</h:commandLink>
+					 <h:commandLink action="#{mBPropositionDetail.refuserProposition(mBPropositionDetail.mBPropositionParUtilisateur.proposition)}" class="btn btn-small">
+											Refuser</h:commandLink>				
+					
                     </div>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup rendered="#{mBPropositionDetail.paiement==true}">
+                    <ul style="list-style: none;  clear: both">
+                    <li>
+                    <h3>Total à payer</h3>
+                    </li>
+                    <li>
+                    <label class="radio-inline"><input type="radio" name="optradio"/><img  src="" /></label>
+					<label class="radio-inline"><input type="radio" name="optradio"/><img  src="" /></label>
+					<label class="radio-inline"><input type="radio" name="optradio"/><img  src="" /></label>
+                    </li>
+                    <li style="margin-top: 20px"> 
+                    <p style="margin-bottom: 0px"><b>Numéro de carte*</b></p>
+                    <h:inputText class="form-control" style="width:200px"/>
+                    </li>
+                    <li style="margin-top: 20px"> 
+                    <p><b>Code de sécurité*</b></p>
+                    <h:inputText class="form-control" style="width:60px"/>
+                    </li>
+                    </ul>
+                    
+                    </h:panelGroup>
+                    
                     </h:panelGroup>
                     </h:panelGroup>
                         

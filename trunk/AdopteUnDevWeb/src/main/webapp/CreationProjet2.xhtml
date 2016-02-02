@@ -14,7 +14,7 @@
 		<div class="section">
 			<div class="container">
 
-				<!-- Creation projet --> 
+				<!-- Creation projet -->
 
 				<div class="row">
 					<div class="col-sm-12  col-md-12">
@@ -85,15 +85,16 @@
 										class="form-control"
 										value="#{mbCreationProjet.projetcree.libelle}" /></li>
 							</ul>
-							
-							<div class="col-sm-6">
+
+							<div style="margin-left: 40%; margin-top: 20px">
 								<input type="file" name="fichierUpload" placeholder="envoyer"/>
-								<h:commandButton action="#{mbCreationProjet.upload}" value="ajoutez votre photo !"/>
+								<h:commandButton class="btn btn-orange" style="min-width:146px; text-align:center" action="#{mbCreationProjet.upload}" value="Ajouter"/>
 							</div>
 							
+							
 							<div style="margin-right: 50px">
-								<h:commandButton class="btn pull-right" action="#"
-									value="Suivant" ><f:ajax render=":formAdopte:panelCdc" listener="#{mbCreationProjet.afficherPanelCdc()}"/></h:commandButton>
+								<h:commandButton class="btn pull-right" action="#{mbCreationProjet.afficherPanelCdc()}"
+									value="Suivant" ></h:commandButton>
 							</div>
 							
 							<!-- Pour le premier rendere -->
@@ -154,8 +155,8 @@
 									</div>
 								</div>
 							</div>
-							<h:commandButton style="margin-right: 50px; margin-bottom:20px"
-								class="btn pull-right" value="Suivant" ><f:ajax render=":formAdopte:panelFonct" listener="#{mbCreationProjet.afficherPanelFonctionnalite()}"/></h:commandButton>
+							<h:commandButton id="panelFonct" style="margin-right: 50px; margin-bottom:20px"
+								action="#{mbCreationProjet.afficherPanelFonctionnalite()}" class="btn pull-right" value="Suivant" />
 							</h:panelGroup>
 						</div>
 						</div>
@@ -167,7 +168,7 @@
 						<!-- Dans le renderd -->
 						
 						
-						<h:panelGroup rendered="#{mbCreationProjet.panelFonctionnalite==true}" id="panelFonct">
+						<h:panelGroup rendered="#{mbCreationProjet.panelFonctionnalite==true}">
 						<div
 							style="margin-bottom: 20px; border: 1px solid #535b60; max-height: 2px; clear: both">
 						</div>
@@ -240,6 +241,10 @@
 					</div>
 				</div>
 			</div>
+			
+					<script type="text/javascript">
+ 								var elem = document.getElementById('panelCdc');
+								   elem.scrollTop = elem.scrollHeight;</script>
 	</ui:define>
 </ui:composition>
 </html>
