@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 
 import dto.DTODeveloppeur;
 import dto.DTOProjet;
+import dto.DTOTechnologie;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
@@ -32,7 +33,8 @@ public class MBCatalogueDeveloppeur {
     private IUCPanier panierUc;
     private IUcUtilisateur ucUtilisateur;
     private NoDeveloppeur dev;
-    
+    private List<DTOTechnologie> listeTouteTechno = new ArrayList<>();
+    private List<DTOTechnologie> listeSelectedTechno = new ArrayList<>();
     @ManagedProperty(value="#{mBConnexion}")
     private MBConnexion mBConnexion;
 
@@ -90,6 +92,24 @@ public class MBCatalogueDeveloppeur {
         return listeNoDeveloppeur;
     }
     
+    private List<NoDeveloppeur> initFichesDeveloppeurTest() {
+    	List<DTOTechnologie> listeTechno = new ArrayList<>();
+    	DTOTechnologie techno = new DTOTechnologie();
+    	techno.setIdTechnologie(8);
+    	listeTechno.add(techno);
+    	List<DTODeveloppeur> listeTousLesDevs = ucUtilisateur.recupDevParListeTechnoEtNote(4, listeTechno);
+    	List<DTODeveloppeur> listeDtoDevWeb= ucUtilisateur.recupDevWeb();
+    	for (DTODeveloppeur dtoDeveloppeur : listeDtoDevWeb) {
+    		NoDeveloppeur developpeur = ucUtilisateur.creerNoDeveloppeur(dtoDeveloppeur);
+    		listeDevWeb.add(developpeur);
+		}
+    	List<NoDeveloppeur> listeNoDeveloppeur = new ArrayList<>();
+    	for (DTODeveloppeur dtoDeveloppeur : listeTousLesDevs) {
+    		listeNoDeveloppeur.add(panierUc.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
+		}
+        return listeNoDeveloppeur;
+    }
+    
     public List<DTOProjet> initListeProjet() {
         return panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
     }
@@ -105,7 +125,10 @@ public class MBCatalogueDeveloppeur {
     public void obtenirLesInterfaces() {
         panierUc = (IUCPanier) ContextFactory.createProxy(UcName.UCGESTIONPANIER);
         ucUtilisateur = (IUcUtilisateur) ContextFactory.createProxy(UcName.UCGESTIONUTILISATEUR);
+        listeTouteTechno = ucUtilisateur.recupToutesTechnos();
+       //TODO A decommenter après le test
         listFiche = initFichesDeveloppeur();
+        //listFiche = initFichesDeveloppeurTest();
         if (mBConnexion.getTypeUtilisateur() == 2)
         {
         projetList = initListeProjet();
@@ -139,6 +162,26 @@ public class MBCatalogueDeveloppeur {
 	{
 		dev = developpeur;
 		return "/DetailDeveloppeur.xhtml?faces-redirect=true";
+	}
+
+
+	public List<DTOTechnologie> getListeTouteTechno() {
+		return listeTouteTechno;
+	}
+
+
+	public void setListeTouteTechno(List<DTOTechnologie> listeTouteTechno) {
+		this.listeTouteTechno = listeTouteTechno;
+	}
+
+
+	public List<DTOTechnologie> getListeSelectedTechno() {
+		return listeSelectedTechno;
+	}
+
+
+	public void setListeSelectedTechno(List<DTOTechnologie> listeSelectedTechno) {
+		this.listeSelectedTechno = listeSelectedTechno;
 	}
 	
 }
