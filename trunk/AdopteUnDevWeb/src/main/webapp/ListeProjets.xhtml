@@ -6,178 +6,192 @@
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
-    <ui:define name="title">Mes Projets : </ui:define>
     </ui:define>
+    <ui:define name="title">Mes Projets : </ui:define>
     <ui:define name="body">
-    
-		<!-- Projet en attente  -->
-		
-		<h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsEnAttente.size() != 0}">
-    	    <div class="section">
-	        <div class="container">
-	        	<h2>Projets en attente</h2>
-	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnAttente}" var="projet">
-	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
-        			<div class="col-sm-4">
-        				<div class="service-image">
-        				<h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">
-        					<img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
-        				</div>
-        			</div>
-        			<div class="col-sm-8">
-    					<h3><h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink></h3>
-    					<p>
-    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
-    					</p>
-    				<p>
-    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
-    					</p>
-    					<p>
-    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
-    					</p>
-    					<p>
-    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
-    					</p>
-    					
-    				</div>
-				</div>
-	        	</ui:repeat>
-	        	</div>
-	        </div>
-	       </h:panelGroup>
-	        
-	        <!-- Projet(s) en cours -->
-	        
-	        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsEnCours.size() != 0}">
-	         <div class="section">
-	        <div class="container">
-	        	<h2>Projets en cours</h2>
-	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnCours}" var="projet">
-	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
-        			<div class="col-sm-4">
-        				<div class="service-image">
-        					<h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}"><img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
-        				</div>
-        			</div>
-        			<div class="col-sm-8">
-    					<h3><h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink></h3>
-    					<p>
-    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
-    					</p>
-    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-    				<p>
-    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
-    					</p>
-    					</h:panelGroup>
-    					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-    				<p>
-    					Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
-    					</p>
-    					</h:panelGroup>
-    					<p>
-    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
-    					</p>
-    					<p>
-    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
-    					</p>
-    				</div>
-				</div>
-	        	</ui:repeat>
-	        	</div>
-	        </div>
-	        </h:panelGroup>
-	        
-	        <!-- Projet(s) validé(s) -->
-	        
-	        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsValide.size() != 0}">
-	         <div class="section">
-	        <div class="container">
-	        	<h2>Projets terminé</h2>
-	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsValide}" var="projet">
-	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
-        			<div class="col-sm-4">
-        				<div class="service-image">
-        				<h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">
-        					<img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
-        				</div>
-        			</div>
-        			<div class="col-sm-8">
-    					<h3><h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink></h3>
-    					<p>
-    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
-    					</p>
-    				
-    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-    				<p>
-    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
-    					</p>
-    					</h:panelGroup>
-    					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-    				<p>
-    					Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
-    					</p>
-    					</h:panelGroup>
-    				
-    					<p>
-    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
-    					</p>
-    					<p>
-    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
-    					</p>
-    				</div>
-				</div>
-	        	</ui:repeat>
-	        	</div>
-	        </div>
-	        </h:panelGroup>
-	        
-	        <!-- Projet(s) Arretes(s) -->
-	        
-	        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsArrete.size() != 0}">
-	         <div class="section">
-	        <div class="container">
-	        	<h2>Projet(s) suspendu(s) :</h2>
-	        	<ui:repeat value="#{mBProjetParUtilisateur.listeProjetsArrete}" var="projet">
-	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
-        			<div class="col-sm-4">
-        				<div class="service-image">
-        					<h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}"><img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
-        				</div>
-        			</div>
-        			<div class="col-sm-8">
-    					<h3><h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink></h3>
-    					<p>
-    						Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
-    					</p>
-    				
-    				<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-    				<p>
-    					Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
-    					#{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
-    					</p>
-    					</h:panelGroup>
-    					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-    				<p>
-    					Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
-    					</p>
-    					</h:panelGroup>
-    				
-    					<p>
-    						Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
-    					</p>
-    					<p>
-    						Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
-    					</p>
-    				</div>
-				</div>
-	        	</ui:repeat>
-	        	</div>
-	        </div>
-	        </h:panelGroup>
-	        
+
+        <!-- Projet en attente  -->
+
+        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsEnAttente.size() != 0}">
+            <div class="section">
+                <div class="container">
+                    <h2>Projets en attente</h2>
+                    <ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnAttente}" var="projet">
+                        <div class="row service-wrapper-row"
+                             style="background-color: white; border-radius:10px; margin-bottom: 20px">
+                            <div class="col-sm-4">
+                                <div class="service-image">
+                                    <h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">
+                                        <img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><h:commandLink
+                                        action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink>
+                                </h3>
+                                <p>
+                                    Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+                                </p>
+                                <p>
+                                    Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+                                    #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
+                                </p>
+                                <p>
+                                    Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
+                                </p>
+                                <p>
+                                    Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+                                </p>
+
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:panelGroup>
+
+        <!-- Projet(s) en cours -->
+
+        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsEnCours.size() != 0}">
+            <div class="section">
+                <div class="container">
+                    <h2>Projets en cours</h2>
+                    <ui:repeat value="#{mBProjetParUtilisateur.listeProjetsEnCours}" var="projet">
+                        <div class="row service-wrapper-row"
+                             style="background-color: white; border-radius:10px; margin-bottom: 20px">
+                            <div class="col-sm-4">
+                                <div class="service-image">
+                                    <h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}"><img
+                                            src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><h:commandLink
+                                        action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink>
+                                </h3>
+                                <p>
+                                    Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+                                </p>
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+                                    <p>
+                                        Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+                                        #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
+                                    </p>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+                                    <p>
+                                        Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
+                                    </p>
+                                </h:panelGroup>
+                                <p>
+                                    Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
+                                </p>
+                                <p>
+                                    Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+                                </p>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:panelGroup>
+
+        <!-- Projet(s) validé(s) -->
+
+        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsValide.size() != 0}">
+            <div class="section">
+                <div class="container">
+                    <h2>Projets terminé</h2>
+                    <ui:repeat value="#{mBProjetParUtilisateur.listeProjetsValide}" var="projet">
+                        <div class="row service-wrapper-row"
+                             style="background-color: white; border-radius:10px; margin-bottom: 20px">
+                            <div class="col-sm-4">
+                                <div class="service-image">
+                                    <h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}">
+                                        <img src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><h:commandLink
+                                        action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink>
+                                </h3>
+                                <p>
+                                    Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+                                </p>
+
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+                                    <p>
+                                        Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+                                        #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
+                                    </p>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+                                    <p>
+                                        Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
+                                    </p>
+                                </h:panelGroup>
+
+                                <p>
+                                    Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
+                                </p>
+                                <p>
+                                    Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+                                </p>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:panelGroup>
+
+        <!-- Projet(s) Arretes(s) -->
+
+        <h:panelGroup rendered="#{mBProjetParUtilisateur.listeProjetsArrete.size() != 0}">
+            <div class="section">
+                <div class="container">
+                    <h2>Projet(s) suspendu(s) :</h2>
+                    <ui:repeat value="#{mBProjetParUtilisateur.listeProjetsArrete}" var="projet">
+                        <div class="row service-wrapper-row"
+                             style="background-color: white; border-radius:10px; margin-bottom: 20px">
+                            <div class="col-sm-4">
+                                <div class="service-image">
+                                    <h:commandLink action="#{mBProjetParUtilisateur.recupProjet(projet)}"><img
+                                            src="#{projet.photo}" alt="Color Schemes"/></h:commandLink>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><h:commandLink
+                                        action="#{mBProjetParUtilisateur.recupProjet(projet)}">#{projet.libelle}</h:commandLink>
+                                </h3>
+                                <p>
+                                    Besoin client : #{mBProjetParUtilisateur.recupInfoCdc(projet).besoin}
+                                </p>
+
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
+                                    <p>
+                                        Développeur : #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.prenom}
+                                        #{mBProjetParUtilisateur.recupInfoCdc(projet).developpeur.nom}
+                                    </p>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+                                    <p>
+                                        Porteur du projet : #{projet.client.prenom} #{projet.client.nom}
+                                    </p>
+                                </h:panelGroup>
+
+                                <p>
+                                    Date de livraison : #{mBProjetParUtilisateur.recupInfoCdc(projet).dateFinEstimee.toString().subSequence(0, 10)}
+                                </p>
+                                <p>
+                                    Tarif : #{mBProjetParUtilisateur.recupInfoCdc(projet).tarif}€
+                                </p>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:panelGroup>
+
     </ui:define>
 </ui:composition>
 </html>
