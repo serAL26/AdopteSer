@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.ucimpl.utilisateur;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -10,21 +11,21 @@ import dto.DTOClient;
 import dto.DTODeveloppeur;
 import dto.DTOTechnologie;
 import dto.DTOUtilisateur;
-import enumeration.RoleUtilisateur;
 import fr.afcepf.adopteundev.dto.nosobjets.NoDeveloppeur;
+import fr.afcepf.adopteundev.dto.nosobjets.NoNotes;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessDeveloppeur;
 import fr.afcepf.adopteundev.ibusiness.gestion.utilisateur.IBusinessUtilisateur;
 
 @Remote(IUcUtilisateur.class)
 @Stateless
-public class UcUtilisateur implements IUcUtilisateur{
+public class UcUtilisateur implements IUcUtilisateur {
 
 	@EJB
 	private IBusinessUtilisateur businessUtilisateur;
 	@EJB
 	private IBusinessDeveloppeur businessDeveloppeur;
-	
+
 	@Override
 	public DTOUtilisateur obtenirUtilisateurById(int idUtilisateur) {
 		return businessUtilisateur.obtenirUtilisateurById(idUtilisateur);
@@ -61,9 +62,10 @@ public class UcUtilisateur implements IUcUtilisateur{
 	}
 
 	@Override
-	public List<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
+	public Set<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies) {
-		return businessDeveloppeur.recupDevParListeTechnoEtNote(note, technologies);
+		return businessDeveloppeur.recupDevParListeTechnoEtNote(note,
+				technologies);
 	}
 
 	@Override
@@ -74,5 +76,21 @@ public class UcUtilisateur implements IUcUtilisateur{
 	@Override
 	public DTOTechnologie recupTechnoById(int id) {
 		return businessDeveloppeur.recupTechnoById(id);
+	}
+
+	@Override
+	public List<NoNotes> recupListNotes() {
+		return businessDeveloppeur.recupListNotes();
+	}
+
+	@Override
+	public Set<NoDeveloppeur> recupNoDevParListeTechnoEtNote(double note,
+			List<DTOTechnologie> technologies) {
+		return businessDeveloppeur.recupNoDevParListeTechnoEtNote(note, technologies);
+	}
+
+	@Override
+	public NoDeveloppeur obtenirNoDevById(int id) {
+		return businessDeveloppeur.obtenirNoDevById(id);
 	}
 }
