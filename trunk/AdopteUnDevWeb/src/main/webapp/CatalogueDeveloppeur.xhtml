@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="WEB-INF/lesimports.xhtml">
-	<ui:define name="head">
-		<link rel="stylesheet" href="resources/css/catalogueUtilisateur.css"
-			type="text/css" />
-	</ui:define>
-	<ui:define name="title"> Catalogue développeurs
-	<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}" >
-			<div onload="#{mBCatalogueDeveloppeur.initListeProjet()}">
-		<p>Choisissez le projet qui vous appartient :
-			#{mBCatalogueDeveloppeur.projetSelectionne.libelle}</p>
-		<h:selectOneMenu id="listprojet"
-			value="#{mBCatalogueDeveloppeur.projetSelectionne.idProjet}">
-			<f:selectItem itemValue="-1" itemLabel="----------" />
-			<f:selectItems var="projet"
-				value="#{mBCatalogueDeveloppeur.projetList}"
-				itemLabel="#{projet.libelle}" itemValue="#{projet.idProjet}" />
-		</h:selectOneMenu>
-		</div>
-	</h:panelGroup>
-	</ui:define>
-	<ui:define name="methodeAuChargement">
-	<f:event listener="#{mBCatalogueDeveloppeur.initListeProjet()}" type="preRenderView"></f:event>
-	</ui:define>
-	<ui:define name="body">
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<ui:repeat value="#{mBCatalogueDeveloppeur.listFiche}" var="fiche">
-						<div class="col-md-4 col-sm-6">
-							<div class="portfolio-item">
-								<div class="portfolio-image">
-									<h:commandLink action="#{mBCatalogueDeveloppeur.recupDeveloppeur(fiche)}"><img
-										src="#{fiche.developpeur.photo}" alt="Developpeur" /></h:commandLink>
-								</div>
-								<div class="portfolio-info">
-									<ul>
-										<li class="portfolio-project-name">#{fiche.developpeur.prenom} #{fiche.developpeur.nom}
-										</li>
-										<li>#{fiche.petiteListeDeTechnoPasPiqueeDesVers}</li>
-										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur !=2}">
-										<li style="margin-bottom: 25px; margin-left: 132px"><p:rating value="#{fiche.noteEnInteger}"
-												readonly="true"/></li>
-										</h:panelGroup>
-										<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==2}">
-										<li style="margin-bottom: 13px; margin-left: 132px"><p:rating value="#{fiche.noteEnInteger}"
-												readonly="true"/></li>
-										<li class="read-more"><h:commandButton styleClass="btn"
-												action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur)}"
-												value="Ajouter au panier" /></li>
-										</h:panelGroup>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</ui:repeat>
-				</div>
-			</div>
-		</div>
-	</ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="resources/css/catalogueUtilisateur.css"
+              type="text/css"/>
+    </ui:define>
+    <ui:define name="title"> Catalogue développeurs
+        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+            <div onload="#{mBCatalogueDeveloppeur.initListeProjet()}">
+                <p>Choisissez le projet qui vous appartient :
+                    #{mBCatalogueDeveloppeur.projetSelectionne.libelle}</p>
+                <h:selectOneMenu id="listprojet"
+                                 value="#{mBCatalogueDeveloppeur.projetSelectionne.idProjet}">
+                    <f:selectItem itemValue="-1" itemLabel="----------"/>
+                    <f:selectItems var="projet"
+                                   value="#{mBCatalogueDeveloppeur.projetList}"
+                                   itemLabel="#{projet.libelle}" itemValue="#{projet.idProjet}"/>
+                </h:selectOneMenu>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="methodeAuChargement">
+        <f:event listener="#{mBCatalogueDeveloppeur.initListeProjet()}" type="preRenderView"/>
+    </ui:define>
+    <ui:define name="body">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <ui:repeat value="#{mBCatalogueDeveloppeur.listFiche}" var="fiche">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="portfolio-item">
+                                <div class="portfolio-image">
+                                    <h:commandLink action="#{mBCatalogueDeveloppeur.recupDeveloppeur(fiche)}"><img
+                                            src="#{fiche.developpeur.photo}" alt="Developpeur"/></h:commandLink>
+                                </div>
+                                <div class="portfolio-info">
+                                    <ul>
+                                        <li class="portfolio-project-name">#{fiche.developpeur.prenom} #{fiche.developpeur.nom}
+                                        </li>
+                                        <li>#{fiche.petiteListeDeTechnoPasPiqueeDesVers}</li>
+                                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur !=2}">
+                                            <li style="margin-bottom: 25px; margin-left: 132px"><p:rating
+                                                    value="#{fiche.noteEnInteger}"
+                                                    readonly="true"/></li>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==2}">
+                                            <li style="margin-bottom: 13px; margin-left: 132px"><p:rating
+                                                    value="#{fiche.noteEnInteger}"
+                                                    readonly="true"/></li>
+                                            <li class="read-more"><h:commandButton styleClass="btn"
+                                                                                   action="#{mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBCatalogueDeveloppeur.projetSelectionne.idProjet,fiche.developpeur)}"
+                                                                                   value="Ajouter au panier"/></li>
+                                        </h:panelGroup>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </div>
+    </ui:define>
 </ui:composition>
 </html>

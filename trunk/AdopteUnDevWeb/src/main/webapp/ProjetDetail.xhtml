@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
 
     </ui:define>
     <ui:define name="title">#{mBProjetDetail.mBProjetParUtilisateur.projet.libelle}</ui:define>
+    <ui:define name="methodeAuChargement">
+        <f:event type="preRenderView" listener="#{mBProjetDetail.initCdc}"/>
+    </ui:define>
     <ui:define name="body">
         <div class="section">
             <div class="container">
@@ -25,21 +29,21 @@
                             <span class="price-was">#{mBProjetDetail.cdc.tarif}€</span> #{mBProjetDetail.tarifRestant}€
                         </div>
                         <div>
-                         <h:panelGroup rendered="#{mBProjetDetail.cdc.projet.etatProjet.idEtatProjet==1}">
+                         <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==1}">
                         <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.cdc.projet.etatProjet.libelle} <img src= "resources/img/time29.png" style="margin-left: 5px"/></p>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}<img src= "resources/img/time29.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>    
-                            <h:panelGroup rendered="#{mBProjetDetail.cdc.projet.etatProjet.idEtatProjet==3}">
+                            <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==3}">
                         <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.cdc.projet.etatProjet.libelle} <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/cancel19.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>     
-                            <h:panelGroup rendered="#{mBProjetDetail.cdc.projet.etatProjet.idEtatProjet==4}">
+                            <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==4}">
                         <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.cdc.projet.etatProjet.libelle} <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/clock136.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>  
-                         <h:panelGroup rendered="#{mBProjetDetail.cdc.projet.etatProjet.idEtatProjet==2}">
+                         <h:panelGroup rendered="#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2}">
                         <h5>Etat du projet</h5>
-                                <p>#{mBProjetDetail.cdc.projet.etatProjet.libelle} <img src= "resources/img/done2.png" style="margin-left: 5px"/></p>
+                                <p>#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle} <img src= "resources/img/done2.png" style="margin-left: 5px"/></p>
                           </h:panelGroup>  
                           </div>
                         <!--developpeur = 1-->
@@ -80,7 +84,8 @@
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12 product-details">
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">-->
+                        <h:panelGroup rendered="false">
                             <h5>Vos livrables :</h5>
                             <div class="col-sm-8 table-responsive">
                                 <table class="table">
@@ -103,14 +108,10 @@
                                 </table>
                             </div>
                         </h:panelGroup>
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+                        <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
+                        <h:panelGroup rendered="true">
                             <h5>Vos livrables :</h5>
-                            <p:growl id="messages" showDetail="true"/>
 
-                            <p:fileUpload value="#{mBProjetDetail.file}" mode="simple" skinSimple="true"/>
-
-                            <p:commandButton value="Submit" ajax="false" actionListener="#{mBProjetDetail.upload}"
-                                             disabled="true"/>
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12">

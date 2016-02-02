@@ -36,15 +36,13 @@ public class MBProjetDetail {
     private void init() {
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
-        //projet = ucProjet.recupProjetById(2);
-        cdc = getFinalCdc();
+        initCdc();
         livrableList = ucProjet.recupListLivrableParProjet(mBProjetParUtilisateur.getProjet());
     }
 
     public void upload() {
         if (file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            log.info("Succesful"+file.getFileName()+" is uploaded.");
         }
     }
     public int noteDeProjetParUtilisateur(int idUtilisateur){
@@ -77,8 +75,9 @@ public class MBProjetDetail {
         return note;
     }
 
-    public DTOCdc getFinalCdc() {
-        return gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
+    public DTOCdc initCdc() {
+        cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
+        return cdc;
     }
 
     public MBProjetParUtilisateur getmBProjetParUtilisateur() {
