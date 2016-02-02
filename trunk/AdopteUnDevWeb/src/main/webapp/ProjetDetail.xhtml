@@ -91,13 +91,13 @@
                         </h:panelGroup>
                     </div>
                     <div class="col-sm-12 product-details">
-                        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
                         <!--<h:panelGroup rendered="false">-->
                             <h5>Vos livrables :</h5>
                             <div class="col-sm-8 table-responsive">
                                 <table class="table">
                                     <thead>
                                     <tr>
+                                        <td>Liens</td>
                                         <td>Date de livraison</td>
                                         <td>Echeance</td>
                                         <td>description</td>
@@ -106,6 +106,7 @@
                                     <tbody>
                                     <ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
                                         <tr>
+                                            <td><h:outputLink value="#{livrable.fichier}">Livrable</h:outputLink></td>
                                             <td>#{livrable.dateLivraison.toString().subSequence(0, 10)}</td>
                                             <td>#{livrable.echeance.toString().subSequence(0, 10)}</td>
                                             <td>#{livrable.description}</td>
@@ -114,16 +115,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </h:panelGroup>
                         <!--<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">-->
                         <h:panelGroup rendered="true">
-                            <h5>Vos livrables :</h5>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="file" name="fichierUpload"/>
                                     <h:commandButton action="#{mBProjetDetail.upload}" value="Envoyer votre livrable"/>
                                 </div>
                                 <div class="col-sm-6">
+                                    <h3>Votre description du livrable</h3>
                                     <h:inputTextarea  value="#{mBProjetDetail.descriptionLivrable}"/>
                                 </div>
                             </div>
