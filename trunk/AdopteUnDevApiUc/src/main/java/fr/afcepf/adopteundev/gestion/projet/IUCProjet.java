@@ -9,6 +9,7 @@ import dto.DTONote;
 import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
+import dto.DTOTechnologie;
 import dto.DTOTypeAppli;
 import dto.DTOTypeProposition;
 import dto.DTOTypeService;
@@ -56,5 +57,9 @@ public interface IUCProjet {
     
     List<DTONote> recupNoteParProjet(int idProjet);
     DTONote ajouterUnCommentaire(DTONote dtoNote);
+
+    public Set<DTOTechnologie> recupTechnoParService(int idTypeService);
+
     DTOOperation creerOperationAttente(DTOOperation operation);
+
 }
