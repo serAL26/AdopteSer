@@ -156,4 +156,14 @@ public class UCProjet implements IUCProjet {
 		return businessOperation.creerOperationAttente(operation);
 	}
 
+	@Override
+	public List<DTOLivrable> recupListLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur) {
+		return businessLivrable.recupListeLivrableParProjetEtParDev(dtoProjet, idDeveloppeur);
+	}
+
+	@Override
+	public DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable) {
+		return businessLivrable.renvoiLOperationEnAttentePaiement(livrable);
+	}
+
 }

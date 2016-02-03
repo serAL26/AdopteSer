@@ -17,6 +17,8 @@ public class Developpeur extends Utilisateur {
     }
 
 
+    @OneToMany(mappedBy="developpeur")
+    private Set<Livrable> lesLivrable;
     
     @OneToMany(mappedBy="developpeur")
     private Set<AssociationDevTechno> lesAssociationDevTechno;
@@ -52,5 +54,12 @@ public class Developpeur extends Utilisateur {
 		this.listeDispo = listeDispo;
 	}
 
+	public Set<Livrable> getLesLivrable() {
+		return lesLivrable;
+	}
+
+	public void setLesLivrable(Set<Livrable> lesLivrable) {
+		this.lesLivrable = lesLivrable;
+	}
     
 }

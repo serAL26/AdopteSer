@@ -17,53 +17,56 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="livrable")
-public class Livrable implements Serializable{
+@Table(name = "livrable")
+public class Livrable implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Default constructor
-     */
-    public Livrable() {
-    }
+	 * Default constructor
+	 */
+	public Livrable() {
+	}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable=false)
-    private Date echeance;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	private Date echeance;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_livrable",nullable=false)
-    private Integer idLivrable;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_livrable", nullable = false)
+	private Integer idLivrable;
 
-    /**
+	/**
      * 
      */
-    private String fichier;
+	private String fichier;
 
-    
-    private String description;
-    /**
+	@ManyToOne
+	@JoinColumn(name = "idDeveloppeur")
+	private Developpeur developpeur;
+
+	private String description;
+	/**
      * 
      */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="date_livraison",nullable=false)
-    private Date dateLivraison;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_livraison", nullable = false)
+	private Date dateLivraison;
 
-    @ManyToOne
-    @JoinColumn(name="idProjet")
-    private Projet projet;
+	@ManyToOne
+	@JoinColumn(name = "idProjet")
+	private Projet projet;
 
-    @ManyToOne
-    @JoinColumn(name="idTypeEvaluation")
-    private TypeEvaluation typeEvaluation;
-    
-    @OneToMany(mappedBy="livrable")
-    private Set<Operation> lesOperation;
+	@ManyToOne
+	@JoinColumn(name = "idTypeEvaluation")
+	private TypeEvaluation typeEvaluation;
+
+	@OneToMany(mappedBy = "livrable")
+	private Set<Operation> lesOperation;
 
 	public Set<Operation> getLesOperation() {
 		return lesOperation;
@@ -128,5 +131,12 @@ public class Livrable implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+
+	public Developpeur getDeveloppeur() {
+		return developpeur;
+	}
+
+	public void setDeveloppeur(Developpeur developpeur) {
+		this.developpeur = developpeur;
+	}
 }

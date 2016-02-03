@@ -111,7 +111,7 @@ public class MBCatalogueDeveloppeur {
 		List<DTODeveloppeur> listeTousLesDevs = null;
 		Set<DTOTechnologie> listTechnoParProjet = mbCreationProjet
 				.getListeTechnoParService();
-	
+
 		if (listTechnoParProjet != null && listTechnoParProjet.size() > 0) {
 			listeTousLesDevs = new ArrayList<>(
 					ucUtilisateur.recupDevParListeTechnoEtNote(-1,
