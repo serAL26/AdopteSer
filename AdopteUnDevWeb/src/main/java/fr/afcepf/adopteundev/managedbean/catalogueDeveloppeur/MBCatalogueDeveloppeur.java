@@ -260,6 +260,11 @@ public class MBCatalogueDeveloppeur {
 		this.projetSelectionne = projetSelectionne;
 	}
 
+	public String recupDTODeveloppeur(DTODeveloppeur developpeur) {
+		NoDeveloppeur noDev = ucUtilisateur.creerNoDeveloppeur(developpeur);
+		return recupDeveloppeur(noDev);
+	}
+	
 	public String recupDeveloppeur(NoDeveloppeur developpeur) {
 		dev = developpeur;
 		return "/DetailDeveloppeur.xhtml?faces-redirect=true";

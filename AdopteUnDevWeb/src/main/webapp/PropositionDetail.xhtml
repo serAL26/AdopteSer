@@ -48,7 +48,7 @@
 									rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
 									<h5>Etat de la proposition</h5>
 									<p>
-										Non traitée <img src="resources/img/question58.png"
+										Nouvelle proposition <i class="glyphicon glyphicon-plus-sign"
 											style="margin-left: 5px" />
 									</p>
 								</h:panelGroup>
@@ -56,7 +56,7 @@
 									rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
 									<h5>Etat de la proposition</h5>
 									<p>
-										En attente de validation <img src="resources/img/clock136.png"
+										En attente de validation du client <img src="resources/img/clock136.png"
 											style="margin-left: 5px" />
 									</p>
 								</h:panelGroup>
@@ -76,7 +76,7 @@
 									rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==1}">
 									<h5>Etat de la proposition</h5>
 									<p>
-										Non traitée <img src="resources/img/question58.png"
+										En attente de réponse <img src="resources/img/clock136.png"
 											style="margin-left: 5px" />
 									</p>
 								</h:panelGroup>
@@ -84,8 +84,7 @@
 									rendered="#{mBPropositionDetail.mBPropositionParUtilisateur.proposition.typeProposition.idTypeProposition==2}">
 									<h5>Etat de la proposition</h5>
 									<p>
-										En attente de validation <img src="resources/img/clock136.png"
-											style="margin-left: 5px" />
+										Validée par le dev <i class="glyphicon glyphicon-ok" style="margin-left: 5px" />
 									</p>
 								</h:panelGroup>
 								<h:panelGroup
@@ -121,7 +120,7 @@
 						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
 							<div>
 								<h5>Développeur en charge</h5>
-								<p>En cours de sélection.</p>
+								<p><h:commandLink action="#{mBCatalogueDeveloppeur.recupDTODeveloppeur(mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur)}" > #{mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.prenom}  #{mBPropositionDetail.mBPropositionParUtilisateur.proposition.developpeur.nom}</h:commandLink></p>
 							</div>
 							<div>
 								<h5>Date de Livrable</h5>
