@@ -109,7 +109,7 @@
 						<div class="tabbable">
 							<!-- Tabs -->
 							<ul class="nav nav-tabs product-details-nav">
-								<li class="active"><a href="#tab1" data-toggle="tab">#{mBProjetDetail.cdc.typeCdc.libelle}</a></li>
+								<li class="active"><a href="#tab1" data-toggle="tab">Cahier des Charges</a></li>
 								<li><a href="#tab2" data-toggle="tab">Livrable</a></li>
 							</ul>
 							<div class="tab-content product-detail-info">
@@ -122,7 +122,7 @@
 									<p>#{mBProjetDetail.cdc.existant}</p>
 								</div>
 								<div class="tab-pane" id="tab2">
-									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2} AND #{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet!=4}">
+									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
 										<h5>Vos livrables :</h5>
 										<div class="col-sm-12 table-responsive">
 											<table class="table table-bordered">
@@ -140,10 +140,8 @@
 														var="livrable">
 														<tr>
 															<td>#{livrable.description}</td>
-															<td>#{livrable.dateLivraison.toString().subSequence(0,
-																10)}</td>
-															<td>#{livrable.echeance.toString().subSequence(0,
-																10)}</td>
+															<td>#{livrable.dateLivraison.toString().subSequence(0,10)}</td>
+															<td>#{livrable.echeance.toString().subSequence(0,10)}</td>
 															<td>#{mBProjetDetail.initIsPaye(livrable)}
 																#{mBProjetDetail.descriptionPaiement}</td>
 															<td>
@@ -160,8 +158,36 @@
 										</div>
 										<div class="row"></div>
 									</h:panelGroup>
+									
+									
 									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-										<!--<h:panelGroup rendered="false">-->
+										<h:panelGroup rendered = "#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet == 4}">
+										<h5>Vos livrables :</h5>
+										<div class="col-sm-12 table-responsive">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Description</th>
+														<th>Echeance</th>
+														<th>Montant</th>
+													</tr>
+												</thead>
+												<tbody class="table-striped">
+													<ui:repeat value="#{mBProjetDetail.livrableList}" var="livrable">
+														<tr>
+															<td>#{livrable.description}</td>
+															<td>#{livrable.echeance.toString().subSequence(0,
+																10)}</td>
+																<td>#{mBLivrable.}</td>
+														</tr>
+													</ui:repeat>
+												</tbody>
+											</table>
+										</div>
+										<div class="row"></div>
+										</h:panelGroup>
+										
+										<h:panelGroup rendered = "#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet != 4}"> 
 										<h5>Vos livrables :</h5>
 										<div class="col-sm-12 table-responsive">
 											<table class="table table-bordered">
@@ -199,6 +225,7 @@
 											</table>
 										</div>
 										<div class="row"></div>
+										</h:panelGroup>
 									</h:panelGroup>
 								</div>
 							</div>

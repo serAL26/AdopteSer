@@ -176,4 +176,9 @@ public class UCProjet implements IUCProjet {
 		return businessGestionProjet.recupPropositionValidePourProjet(projet);
 	}
 
+	@Override
+	public int obtenirMontantLivrable(DTOLivrable dtoLivrable) {
+		return 0;
+	}
+
 }
