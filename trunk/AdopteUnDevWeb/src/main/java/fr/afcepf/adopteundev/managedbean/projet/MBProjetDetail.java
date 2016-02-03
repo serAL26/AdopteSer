@@ -99,6 +99,11 @@ public class MBProjetDetail {
     	}
     }
     
+    public String downloadEtPayer(DTOLivrable livrable) {
+    	payerLivrable(livrable);
+    	return download();
+    }
+    
     public void payerLivrable(DTOLivrable livrable) {
     	List<DTOOperation> liste = new ArrayList<>();
     	if(livrable.getLesOperation()!= null) {

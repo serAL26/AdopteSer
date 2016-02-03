@@ -8,5 +8,5 @@ public interface IDaoOperation {
 	Operation creerOperation(Operation operation);
 	List<Operation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation);
 	List<Operation> recupListOperationParClientEtType(int idTypeOperation, int idClient);
-	Operation operationPayeeParLivrable(int idLivrable);
+	List<Operation> operationPayeeParLivrable(int idLivrable);
 }

@@ -46,7 +46,7 @@ public interface IUCProjet {
 
     List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet);
 
-    boolean initIsPaye(DTOLivrable livrable);
+    Boolean initIsPaye(DTOLivrable livrable);
 
     public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 
@@ -56,4 +56,5 @@ public interface IUCProjet {
     
     List<DTONote> recupNoteParProjet(int idProjet);
     DTONote ajouterUnCommentaire(DTONote dtoNote);
+    DTOOperation creerOperationAttente(DTOOperation operation);
 }

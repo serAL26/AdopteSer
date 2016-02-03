@@ -49,10 +49,9 @@ public class DaoOperation implements IDaoOperation{
 	}
 
 	@Override
-	public Operation operationPayeeParLivrable(int idLivrable) {
+	public List<Operation> operationPayeeParLivrable(int idLivrable) {
 		Query query = em.createQuery(operationPayeeParLivrable);
 		query.setParameter("idLivrable", idLivrable);
-		return  (Operation) query.getSingleResult();
+		return  query.getResultList();
 	}
-
 }
