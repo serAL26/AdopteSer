@@ -5,6 +5,7 @@ import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.TechnoConverter;
+import fr.afcepf.adopteundev.managedbean.connexion.MBConnexion;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
@@ -14,6 +15,7 @@ import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -56,6 +58,17 @@ public class MBCreationProjet {
 	private IUcUtilisateur gestionUtilisateur;
 	private IUCGestionCdc gestionCdc;
 	private Set<DTOTechnologie> listeTechnoParService;
+
+	@ManagedProperty(value = "#{mBConnexion}")
+	private MBConnexion mBConnexion;
+
+	public MBConnexion getmBConnexion() {
+		return mBConnexion;
+	}
+
+	public void setmBConnexion(MBConnexion mBConnexion) {
+		this.mBConnexion = mBConnexion;
+	}
 
 	@PostConstruct
 	public void init() {
@@ -107,7 +120,7 @@ public class MBCreationProjet {
 	}
 
 	public void remplirChamps() {
-		besoin ="Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum."; 
+		besoin = "Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum.";
 		contexte = "Les solutions de mise en relation de professionnels de l’informatique avec des clients à la recherche de développeurs ne sont pas prévues aux particuliers ou aux micro-entreprises. ";
 		existant = "La majorité des sites proposent un système d’abonnement en plus de se rémunérer en récupérant un pourcentage des transactions.";
 		tarif = 1500.0;
@@ -140,7 +153,8 @@ public class MBCreationProjet {
 	public String creeProjet() {
 
 		System.out.println(gestionUtilisateur.recupClientById(16).getNom());
-		projetcree.setClient(gestionUtilisateur.recupClientById(16));
+		projetcree.setClient(gestionUtilisateur.recupClientById(mBConnexion
+				.getUtilisateur().getIdUtilisateur()));
 		projetcree.setService(selectedService);
 		if (file != null)
 			projetcree.setPhoto(file.getFileName());
@@ -162,10 +176,11 @@ public class MBCreationProjet {
 	}
 
 	public String upload() {
-		HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
-		for (DiskFileItem diskFileItem :
-			params) {
+		HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext
+				.getCurrentInstance().getExternalContext().getRequest();
+		List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest
+				.getAttribute("fichierUpload");
+		for (DiskFileItem diskFileItem : params) {
 			String path = this.getClass().getResource("").getPath();
 			path = path.split("/WEB-INF")[0];
 			File file1 = new File(path + "/Livrables");
@@ -176,9 +191,10 @@ public class MBCreationProjet {
 				FileOutputStream fileOutputStream = new FileOutputStream(file1);
 				fileOutputStream.write(diskFileItem.get());
 				fileOutputStream.close();
-				log.info("photo : "+path + "/Photos/" + diskFileItem.getName());
+				log.info("photo : " + path + "/Photos/"
+						+ diskFileItem.getName());
 				projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
-				log.info("projet.photo : "+projetcree.getPhoto());
+				log.info("projet.photo : " + projetcree.getPhoto());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
