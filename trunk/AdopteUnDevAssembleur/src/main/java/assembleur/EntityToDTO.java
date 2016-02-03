@@ -468,7 +468,14 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
-
+	private static Set<DTOTechnologie> listTechnoToDtotechno(
+			Set<Technologie> listEntity) {
+		Set<DTOTechnologie> listDto = new HashSet<DTOTechnologie>();
+		for (Technologie entity : listEntity) {
+			listDto.add(technologieToDTOTechnologie(entity));
+		}
+		return listDto;
+	}
 	private static Set<DTOLitige> listLitigesToDtoLitiges(Set<Litige> listEntity) {
 		Set<DTOLitige> listDto = new HashSet<DTOLitige>();
 		for (Litige entity : listEntity) {
