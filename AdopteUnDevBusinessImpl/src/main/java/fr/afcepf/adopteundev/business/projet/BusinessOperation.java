@@ -21,66 +21,79 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTypeOperation;
 @Stateless
 public class BusinessOperation implements IBusinessOperation {
 
-    @EJB
-    private IDaoOperation daoOperation;
-    @EJB
-    private IDaoDeveloppeur daoDeveloppeur;
-    @EJB
-    private IDaoTypeOperation daoTypeOperation;
+	@EJB
+	private IDaoOperation daoOperation;
+	@EJB
+	private IDaoDeveloppeur daoDeveloppeur;
+	@EJB
+	private IDaoTypeOperation daoTypeOperation;
 
-    @Override
-    public List<DTOOperation> payerLivrable(DTOOperation dtoOperation) {
-        List<DTOOperation> listeDTOOperation = new ArrayList<>();
-        Operation operation = DTOToEntity.dtoOperationToOperation(dtoOperation);
-        if(operation.getTypeOperation().getIdTypeOperation() == 3)  {
-        operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(4));
-        Operation  op = new Operation();
-        op.setDate(new Date());
-        op.setLivrable(operation.getLivrable());
-        op.setMontant(operation.getMontant());
-        op.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(1));
-        daoOperation.creerOperation(op);
-        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(op));
-        Operation ope = new Operation();
-        ope.setDate(new Date());
-        ope.setLivrable(operation.getLivrable());
-        ope.setMontant(operation.getMontant());
-        ope.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(2));
-        daoOperation.creerOperation(ope);
-        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(ope));
-        }
-        return listeDTOOperation;
-    }
+	@Override
+	public List<DTOOperation> payerLivrable(DTOOperation dtoOperation) {
+		List<DTOOperation> listeDTOOperation = new ArrayList<>();
+		Operation operation = DTOToEntity.dtoOperationToOperation(dtoOperation);
+		if (operation.getTypeOperation().getIdTypeOperation() == 3) {
+			operation.setTypeOperation(daoTypeOperation
+					.obtenirTypeOperationParId(4));
+			Operation op = new Operation();
+			op.setDate(new Date());
+			op.setLivrable(operation.getLivrable());
+			op.setMontant(operation.getMontant());
+			op.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(1));
+			daoOperation.creerOperation(op);
+			listeDTOOperation.add(EntityToDTO.operationToDTOOperation(op));
+			Operation ope = new Operation();
+			ope.setDate(new Date());
+			ope.setLivrable(operation.getLivrable());
+			ope.setMontant(operation.getMontant());
+			ope.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(2));
+			daoOperation.creerOperation(ope);
+			listeDTOOperation.add(EntityToDTO.operationToDTOOperation(ope));
+		}
+		return listeDTOOperation;
+	}
 
-    @Override
-    public List<DTOOperation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation) {
-        List<Operation> operationList = daoOperation.recupListOperationParProjetEtType(idProjet, idTypeOperation);
-        List<DTOOperation> dtoOperationList = new ArrayList<>();
-        for (Operation operation :
-                operationList) {
-            dtoOperationList.add(EntityToDTO.operationToDTOOperation(operation));
-        }
-        return dtoOperationList;
-    }
+	@Override
+	public List<DTOOperation> recupListOperationParProjetEtType(int idProjet,
+			int idTypeOperation) {
+		List<Operation> operationList = daoOperation
+				.recupListOperationParProjetEtType(idProjet, idTypeOperation);
+		List<DTOOperation> dtoOperationList = new ArrayList<>();
+		for (Operation operation : operationList) {
+			dtoOperationList
+					.add(EntityToDTO.operationToDTOOperation(operation));
+		}
+		return dtoOperationList;
+	}
 
-    @Override
-    public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation) {
-        List<Projet> listeProjet = daoDeveloppeur.obtenirProjetParDev(idUtilisateur);
-        List<DTOOperation> listeDTOProjet = new ArrayList<>();
-        for (Projet projet : listeProjet) {
-            listeDTOProjet.addAll(EntityToDTO.listeOperationToDTOOperation(daoOperation.recupListOperationParProjetEtType(projet.getIdProjet(), idTypeOperation)));
-        }
-        return listeDTOProjet;
-    }
+	@Override
+	public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur,
+			int idTypeOperation) {
+		List<Projet> listeProjet = daoDeveloppeur
+				.obtenirProjetParDev(idUtilisateur);
+		List<DTOOperation> listeDTOProjet = new ArrayList<>();
+		for (Projet projet : listeProjet) {
+			listeDTOProjet.addAll(EntityToDTO
+					.listeOperationToDTOOperation(daoOperation
+							.recupListOperationParProjetEtType(
+									projet.getIdProjet(), idTypeOperation)));
+		}
+		return listeDTOProjet;
+	}
 
-    @Override
-    public List<DTOOperation> recupListOperationParClientEtType(int idUtilisateur, int idTypeOperation) {
-        return null;
-    }
+	@Override
+	public List<DTOOperation> recupListOperationParClientEtType(
+			int idUtilisateur, int idTypeOperation) {
+		return null;
+	}
 
 	@Override
 	public DTOOperation creerOperationAttente(DTOOperation operation) {
-		Operation operationEntity = daoOperation.creerOperation(DTOToEntity.dtoOperationToOperation(operation));
+		operation.setTypeOperation(EntityToDTO
+				.typeOperationToDTOTypeOperation(daoTypeOperation
+						.obtenirTypeOperationParId(3)));
+		Operation operationEntity = daoOperation.creerOperation(DTOToEntity
+				.dtoOperationToOperation(operation));
 		return EntityToDTO.operationToDTOOperation(operationEntity);
 	}
 }
