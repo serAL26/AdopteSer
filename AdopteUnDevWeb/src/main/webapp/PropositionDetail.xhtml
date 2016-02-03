@@ -348,9 +348,74 @@
 									<div class="row"></div>
 								</h:panelGroup>
 							</div>
-							<div class="tab-pane active" id="tab3">
-								<label>creation livrable</label>
+							<div class="tab-pane" id="tab3">
+										<ul style="list-style: none; margin-bottom: 10px">
+											<li>
 
+												<h4>Description Livrable :</h4> <h:inputTextarea
+													style="height:8em; margin-bottom:30px" class="form-control"
+													value="#{mbCreerLivrable.description}" />
+											</li>
+											<li>
+												<h4>Montant :</h4> <h:inputText
+													style="max-width:150px; margin-left:10px; margin-right:5px;margin-bottom:30px"
+													class="form-control"
+													value="#{mbCreerLivrable.montantOperation}" />
+											</li>
+											<li>
+												<h4>Date d'echéance :</h4> <h:inputText
+													style="max-width:150px; margin-left:10px; margin-right:5px; float:left; margin-bottom:30px"
+													class="form-control"
+													value="#{mbCreerLivrable.dateEcheance}">
+													<f:convertDateTime pattern="dd/mm/yyyy" />
+												</h:inputText>
+											</li>
+											<li><h:commandLink class="btn pull-right"
+													action="#{mbCreerLivrable.creerLivrable}">
+													<img src="resources/img/plussign5.png" alt="image projet" />
+												</h:commandLink></li>
+										</ul>
+										<div class="row"></div>
+										<div style="margin-left: 100px">
+											<h:panelGroup rendered="#{mbCreerLivrable.actionAjout==true}">
+												<div class="section">
+													<div class="container">
+														<div class="row">
+															<!-- Open Vacancies List -->
+															<div class="col-md-8">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Livrable</th>
+																			<th>Montant</th>
+																			<th>Echéance</th>
+																		</tr>
+
+																	</thead>
+																	<tbody class="table-striped">
+																		<ui:repeat var="livrable"
+																			value="#{mbCreerLivrable.listeLivrableCrees}">
+																			<tr>
+																				<!-- Position -->
+																				<td class="job-position">#{livrable.description}</td>
+																				<!-- Location -->
+																				<td class="job-location">
+																					<div class="job-country">#{livrable.lesOperation.iterator().next().montant}</div>
+																				</td>
+																				<td class="job-location">
+																					<div class="job-country">#{livrable.echeance.toString().subSequence(0,10)}</div>
+																				</td>
+																			</tr>
+																		</ui:repeat>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</h:panelGroup>
+										</div>
+									
 							</div>
 						</div>
 					</div>
@@ -358,7 +423,6 @@
 
 			</div>
 		</div>
-
 	</ui:define>
 </ui:composition>
 </html>
