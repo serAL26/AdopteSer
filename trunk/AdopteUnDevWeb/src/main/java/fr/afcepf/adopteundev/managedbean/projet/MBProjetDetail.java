@@ -92,7 +92,7 @@ public class MBProjetDetail {
     public void initIsPaye(DTOLivrable livrable) {
     	livrablePaye = ucProjet.initIsPaye(livrable);
     	if(livrablePaye) {
-    		descriptionPaiement = "Payé";
+    		descriptionPaiement = "Payï¿½";
     	}
     	else {
     		descriptionPaiement = "En attente de paiement";
@@ -119,13 +119,22 @@ public class MBProjetDetail {
         List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
         for (DiskFileItem diskFileItem :
                 params) {
-            String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+            //String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
             //la methode en dessous est moins fiable car tout depend du serveur
-            //String path = this.getClass().getResource(".").getPath();
+            String path = this.getClass().getResource("").getPath();
+            log.info(path);
             path = path.split("/WEB-INF")[0];
-            File instal = new File(path + "/Livrables");
-            instal.mkdirs();
-            File file1 = new File(path + "/Livrables/" + diskFileItem.getName());
+            log.info(path);
+            File file1 = new File(path + "/Livrables");
+            if(!file1.exists())
+                file1.mkdirs();
+            log.info(diskFileItem.getName());
+            StringBuffer test= new StringBuffer("");
+            test.append(path);
+            test.append("/Livrables/");
+            test.append(diskFileItem.getName());
+            log.info("stringbuffer = "+test);
+            file1 = new File(test.toString());
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file1);
                 fileOutputStream.write(diskFileItem.get());
@@ -135,7 +144,7 @@ public class MBProjetDetail {
                 livrable.setDescription(descriptionLivrable);
                 livrable.setProjet(cdc.projet);
                 livrable.setEcheance(new Date());
-                livrable.setFichier(path + "/" + diskFileItem.getName());
+                livrable.setFichier(diskFileItem.getName());
                 ucProjet.creerLivrable(livrable);
             } catch (IOException e) {
                 log.error(e.getMessage());
