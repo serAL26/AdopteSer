@@ -49,9 +49,8 @@ public class MBPropositionDetail {
 	public void payerTousLesLivrables() {
 		List<DTOLivrable> listeDtoLivrable = ucProjet.recupListLivrableParProjetEtParDev(mBPropositionParUtilisateur.getProposition().getProjet(), mBPropositionParUtilisateur.getProposition().getDeveloppeur().getIdUtilisateur());
 		for (DTOLivrable dtoLivrable : listeDtoLivrable) {
-			ucProjet.payerLivrable(ucProjet.)
+			ucProjet.payerLivrable(ucProjet.renvoiLOperationEnAttentePaiement(dtoLivrable));
 		}
-		
 	}
 	
 	public String ajouterRemarque(DTOCdc cdc, DTOProjet projet, DTODeveloppeur developpeur)
@@ -92,10 +91,8 @@ public class MBPropositionDetail {
 			cdc.setContexte(contexteModif);
 			cdc.setExistant(existantModif);
 			cdc.setTarif(tarifModif);
-		
 		DTOCdc cdcDtp = new DTOCdc(cdc.getIdCdc(), false, cdc.getContexte(), cdc.getBesoin(), cdc.getExistant(), 
 				cdc.getTarif(), cdc.getDateFinEstimee(), cdc.getProjet(), cdc.getTypeCdc());
-		
 		gestionCdc.modifierCdcDto(cdcDtp);	
 		return "/ListePropositions.xhtml?faces-redirect=true";
 	}

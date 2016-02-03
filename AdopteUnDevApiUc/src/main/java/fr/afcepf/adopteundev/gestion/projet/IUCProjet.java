@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import dto.DTOClient;
+import dto.DTODeveloppeur;
 import dto.DTOLivrable;
 import dto.DTONote;
 import dto.DTOOperation;
@@ -64,4 +65,6 @@ public interface IUCProjet {
     List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet);
     List<DTOLivrable> recupListLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur);
     DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable);
+
+	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet);
 }

@@ -20,7 +20,8 @@ public class DaoProposition implements IDaoProposition {
 	    EntityManager em;
 	
 	 private String propositionValideePourUnDev = "SELECT p FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev AND p.typeProposition.idTypeProposition = 3";
-	 private String recupListPropParProjetSaufPropValidee = "SELECT p FROM Proposition p WHERE p.typeProposition <> 3 AND p.projet.idProjet = :idProjet";
+	 private String recupListPropParProjetSaufPropValidee = "SELECT p FROM Proposition p WHERE p.typeProposition.idTypeProposition <> 3 AND p.projet.idProjet = :idProjet";
+	 private String recupListPropValideePourProjet ="SELECT p FROM Propostion p WHERE p.typeProposition.idTypeProposition = 3 AND p.projet.idProjet = :idProjet";
 
 	@Override
 	public Proposition modifierEtatProposition(Proposition proposition) {
@@ -56,6 +57,14 @@ public class DaoProposition implements IDaoProposition {
 	@Override
 	public List<Proposition> recupListPropParProjetSaufPropValidee(int idProjet) {
 		Query query = em.createQuery(recupListPropParProjetSaufPropValidee);
+		query.setParameter("idProjet", idProjet);
+		return query.getResultList();
+	}
+
+
+	@Override
+	public List<Proposition> recupPropValideePourProjet(Integer idProjet) {
+		Query query = em.createQuery(recupListPropValideePourProjet);
 		query.setParameter("idProjet", idProjet);
 		return query.getResultList();
 	}
