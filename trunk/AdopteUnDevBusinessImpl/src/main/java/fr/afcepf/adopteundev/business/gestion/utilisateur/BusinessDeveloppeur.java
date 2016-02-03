@@ -158,6 +158,7 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 		if (note <= 0) {
 			liste = daoDeveloppeur.recupDeveloppeursParTechnoSet(techno
 					.getIdTechnologie());
+			log.info("taille liste dev " + liste.size());
 			return EntityToDTO.listDevtoDTODeveloppeur(liste);
 		}
 		liste = daoDeveloppeur.recupDeveloppeurParNoteEtTechno(note,
