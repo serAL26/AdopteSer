@@ -52,138 +52,95 @@ public class MBProjetDetail {
 		initCdc();
 	}
 
+    public void initIsPaye(DTOLivrable livrable) {
+    	livrablePaye = ucProjet.initIsPaye(livrable);
+    	if(livrablePaye) {
+    		descriptionPaiement = "Payé";
+    	}
+    	else {
+    		descriptionPaiement = "En attente de paiement";
+    	}
+    }
+    
+    public void payerLivrable(DTOLivrable livrable) {
+    	List<DTOOperation> liste = new ArrayList<>();
+    	if(livrable.getLesOperation()!= null) {
+    	liste.addAll(livrable.getLesOperation());
+    	ucProjet.payerLivrable(liste.get(0));
+    	livrablePaye = ucProjet.initIsPaye(livrable);
+    	}
+    }
+    
+    public String upload(DTOLivrable livrable) {
+        log.info("Debut de l'upload...");
+        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
+        for (DiskFileItem diskFileItem :
+                params) {
+            //String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+            //la methode en dessous est moins fiable car tout depend du serveur
+            String path = this.getClass().getResource("").getPath();
+            log.info(path);
+            path = path.split("/WEB-INF")[0];
+            log.info(path);
+            File file1 = new File(path + "/Livrables");
+            if(!file1.exists())
+                file1.mkdirs();
+            log.info(diskFileItem.getName());
+            StringBuffer test= new StringBuffer("");
+            test.append(path);
+            test.append("/Livrables/");
+            test.append(diskFileItem.getName());
+            log.info("stringbuffer = "+test);
+            file1 = new File(test.toString());
 
-	public String download() {
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		String requestFile = request.getPathInfo();
-		try {
-			if (requestFile == null)
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			else {
-				File file = new File("/download", URLDecoder.decode(requestFile, "UTF-8"));
-				if (!file.exists())
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
-				String contentType = FacesContext.getCurrentInstance().getExternalContext().getMimeType(file.getName());
-				if (contentType==null)
-					contentType = "application/octet-stream";
-				else {
-					response.reset();
-					response.setBufferSize(DEFAULT_BUFFER_SIZE);
-					response.setContentType(contentType);
-					response.setHeader("Content-Length", String.valueOf(file.length()));
-					response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
-					BufferedInputStream input = new BufferedInputStream(new FileInputStream(file),DEFAULT_BUFFER_SIZE);
-					BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream(),DEFAULT_BUFFER_SIZE);
-					byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-					int length;
-					while ((length = input.read(buffer)) > 0) {
-						output.write(buffer, 0, length);
-					}
-					output.close();
-					input.close();
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
+            try {
+                if (!file1.exists())
+                    file1.createNewFile();
+                FileOutputStream fileOutputStream = new FileOutputStream(file1);
+                fileOutputStream.write(diskFileItem.get());
+                fileOutputStream.close();
+                log.info("livrable : "+livrable.getFichier());
+                log.info("livrable : "+livrable.getIdLivrable());
+                livrable.setFichier(diskFileItem.getName());
+                log.info("livrable : "+livrable.getFichier());
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
 
-	public void initIsPaye(DTOLivrable livrable) {
-		livrablePaye = ucProjet.initIsPaye(livrable);
-		if(livrablePaye) {
-			descriptionPaiement = "Pay�";
-		}
-		else {
-			descriptionPaiement = "En attente de paiement";
-		}
-	}
+    public int noteDeProjetParUtilisateur(int idUtilisateur) {
+        int note = getNoteParUtilisateur(idUtilisateur).getNote().intValue();
+        log.info("valeur de la  note : " + note);
+        return note;
+    }
 
-	public String downloadEtPayer(DTOLivrable livrable) {
-		payerLivrable(livrable);
-		return download();
-	}
+    public String commentaireDeProjetParUtilisateur(int idUtilisateur) {
+        return getNoteParUtilisateur(idUtilisateur).getCommentaire();
+    }
 
-	public void payerLivrable(DTOLivrable livrable) {
-		List<DTOOperation> liste = new ArrayList<>();
-		if(livrable.getLesOperation()!= null) {
-			liste.addAll(livrable.getLesOperation());
-			ucProjet.payerLivrable(liste.get(0));
-			livrablePaye = ucProjet.initIsPaye(livrable);
-		}
-	}
-
-	public String upload() {
-		log.info("Debut de l'upload...");
-		HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
-		for (DiskFileItem diskFileItem :
-			params) {
-			//String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
-			//la methode en dessous est moins fiable car tout depend du serveur
-			String path = this.getClass().getResource("").getPath();
-			log.info(path);
-			path = path.split("/WEB-INF")[0];
-			log.info(path);
-			File file1 = new File(path + "/Livrables");
-			if(!file1.exists())
-				file1.mkdirs();
-			log.info(diskFileItem.getName());
-			StringBuffer test= new StringBuffer("");
-			test.append(path);
-			test.append("/Livrables/");
-			test.append(diskFileItem.getName());
-			log.info("stringbuffer = "+test);
-			file1 = new File(test.toString());
-			try {
-				FileOutputStream fileOutputStream = new FileOutputStream(file1);
-				fileOutputStream.write(diskFileItem.get());
-				fileOutputStream.close();
-				DTOLivrable livrable = new DTOLivrable();
-				livrable.setDateLivraison(new Date());
-				livrable.setDescription(descriptionLivrable);
-				livrable.setProjet(cdc.projet);
-				livrable.setEcheance(new Date());
-				livrable.setFichier(diskFileItem.getName());
-				ucProjet.creerLivrable(livrable);
-			} catch (IOException e) {
-				log.error(e.getMessage());
-				e.printStackTrace();
-			}
-		}
-		return "";
-	}
-
-	public int noteDeProjetParUtilisateur(int idUtilisateur) {
-		int note = getNoteParUtilisateur(idUtilisateur).getNote().intValue();
-		log.info("valeur de la  note : " + note);
-		return note;
-	}
-
-	public String commentaireDeProjetParUtilisateur(int idUtilisateur) {
-		return getNoteParUtilisateur(idUtilisateur).getCommentaire();
-	}
-
-	private DTONote getNoteParUtilisateur(int idUtilisateur) {
-		DTONote note = new DTONote();
-		Set<DTONote> noteSet = mBProjetParUtilisateur.getProjet().getLesNotes();
-		if (noteSet != null) {
-			for (DTONote note2 :
-				noteSet) {
-				if (note2.getIdEstNote() != idUtilisateur)
-					note = note2;
-			}
-		} else {
-			//pour le test
-			note.setNote(5.0);
-			note.setCommentaire("test test test");
-			note.setDate(new Date());
-			note.setIdEstNote(1);
-			note.setIdNoteur(17);
-		}
-		return note;
-	}
+    private DTONote getNoteParUtilisateur(int idUtilisateur) {
+        DTONote note = new DTONote();
+        Set<DTONote> noteSet = mBProjetParUtilisateur.getProjet().getLesNotes();
+        if (noteSet != null) {
+            for (DTONote note2 :
+                    noteSet) {
+                if (note2.getIdEstNote() != idUtilisateur)
+                    note = note2;
+            }
+        } else {
+            //pour le test
+            note.setNote(5.0);
+            note.setCommentaire("test test test");
+            note.setDate(new Date());
+            note.setIdEstNote(1);
+            note.setIdNoteur(17);
+        }
+        return note;
+    }
 
 	public DTOCdc initCdc() {
 		cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
