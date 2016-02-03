@@ -223,6 +223,18 @@ public class MBCatalogueDeveloppeur {
 		listeSelectedTechno.clear();
 		return "";
 	}
+	
+	public String remisAZero()
+	{
+		listeFicheFiltre.clear();
+		List<DTODeveloppeur>listeDto = ucUtilisateur.recupTousLesDeveloppeurs();
+		for (DTODeveloppeur dtoDeveloppeur : listeDto) {
+			NoDeveloppeur developpeur = ucUtilisateur
+					.creerNoDeveloppeur(dtoDeveloppeur);
+			listeFicheFiltre.add(developpeur);
+		}
+		return "";
+	}
 
 	public String renvoieVersPanier() {
 		return "/Panier.xhtml?faces-redirect=true";
