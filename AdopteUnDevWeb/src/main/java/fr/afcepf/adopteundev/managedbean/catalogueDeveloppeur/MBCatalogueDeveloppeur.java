@@ -20,6 +20,7 @@ import fr.afcepf.adopteundev.dto.nosobjets.NoNotes;
 import fr.afcepf.adopteundev.gestion.panier.IUCPanier;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
 import fr.afcepf.adopteundev.managedbean.connexion.MBConnexion;
+import fr.afcepf.adopteundev.managedbean.projet.MBCreationProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
 
@@ -45,6 +46,9 @@ public class MBCatalogueDeveloppeur {
 	private Double selectedNote;
 	@ManagedProperty(value = "#{mBConnexion}")
 	private MBConnexion mBConnexion;
+
+	@ManagedProperty(value = "#{mbCreationProjet}")
+	private MBCreationProjet mbCreationProjet;
 
 	public List<NoNotes> getListeNote() {
 		return listeNote;
@@ -104,8 +108,20 @@ public class MBCatalogueDeveloppeur {
 	}
 
 	private List<NoDeveloppeur> initFichesDeveloppeur() {
-		List<DTODeveloppeur> listeTousLesDevs = ucUtilisateur
-				.recupTousLesDeveloppeurs();
+		List<DTODeveloppeur> listeTousLesDevs = null;
+		Set<DTOTechnologie> listTechnoParProjet = mbCreationProjet
+				.getListeTechnoParService();
+		System.out.println("liste techno de projet "
+				+ listTechnoParProjet.size());
+		if (listTechnoParProjet != null && listTechnoParProjet.size() > 0) {
+			listeTousLesDevs = new ArrayList<>(
+					ucUtilisateur.recupDevParListeTechnoEtNote(-1,
+							new ArrayList<>(listTechnoParProjet)));
+			if (listeTousLesDevs.size() < 1)
+				listeTousLesDevs = ucUtilisateur.recupTousLesDeveloppeurs();
+		} else {
+			listeTousLesDevs = ucUtilisateur.recupTousLesDeveloppeurs();
+		}
 		List<DTODeveloppeur> listeDtoDevWeb = ucUtilisateur.recupDevWeb();
 		for (DTODeveloppeur dtoDeveloppeur : listeDtoDevWeb) {
 			NoDeveloppeur developpeur = ucUtilisateur
@@ -117,34 +133,39 @@ public class MBCatalogueDeveloppeur {
 			listeNoDeveloppeur.add(panierUc
 					.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
 		}
-        return listeNoDeveloppeur;
-    }
-    
-    private List<NoDeveloppeur> initFichesDeveloppeurTest() {
-    	List<DTOTechnologie> listeTechno = new ArrayList<>();
-    	DTOTechnologie techno = new DTOTechnologie();
-    	techno.setIdTechnologie(8);
-    	listeTechno.add(techno);
-    	List<DTODeveloppeur> listeTousLesDevs = (List<DTODeveloppeur>) ucUtilisateur.recupDevParListeTechnoEtNote(4, listeTechno);
-    	List<DTODeveloppeur> listeDtoDevWeb= ucUtilisateur.recupDevWeb();
-    	for (DTODeveloppeur dtoDeveloppeur : listeDtoDevWeb) {
-    		NoDeveloppeur developpeur = ucUtilisateur.creerNoDeveloppeur(dtoDeveloppeur);
-    		listeDevWeb.add(developpeur);
+		return listeNoDeveloppeur;
+	}
+
+	private List<NoDeveloppeur> initFichesDeveloppeurTest() {
+		List<DTOTechnologie> listeTechno = new ArrayList<>();
+		DTOTechnologie techno = new DTOTechnologie();
+		techno.setIdTechnologie(8);
+		listeTechno.add(techno);
+		List<DTODeveloppeur> listeTousLesDevs = (List<DTODeveloppeur>) ucUtilisateur
+				.recupDevParListeTechnoEtNote(4, listeTechno);
+		List<DTODeveloppeur> listeDtoDevWeb = ucUtilisateur.recupDevWeb();
+		for (DTODeveloppeur dtoDeveloppeur : listeDtoDevWeb) {
+			NoDeveloppeur developpeur = ucUtilisateur
+					.creerNoDeveloppeur(dtoDeveloppeur);
+			listeDevWeb.add(developpeur);
 		}
-    	List<NoDeveloppeur> listeNoDeveloppeur = new ArrayList<>();
-    	for (DTODeveloppeur dtoDeveloppeur : listeTousLesDevs) {
-    		listeNoDeveloppeur.add(panierUc.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
+		List<NoDeveloppeur> listeNoDeveloppeur = new ArrayList<>();
+		for (DTODeveloppeur dtoDeveloppeur : listeTousLesDevs) {
+			listeNoDeveloppeur.add(panierUc
+					.recupererFicheResumeDeveloppeur(dtoDeveloppeur));
 		}
-        return listeNoDeveloppeur;
-    }
-    
-    public List<DTOProjet> initListeProjet() {
-    	if (mBConnexion.getTypeUtilisateur() == 2)
-        {
-        projetList = panierUc.recupererListProjetEnAttenteParUtilisateur(mBConnexion.getUtilisateur().getIdUtilisateur());
-        }
-    	return projetList;
-    }
+		return listeNoDeveloppeur;
+	}
+
+	public List<DTOProjet> initListeProjet() {
+		if (mBConnexion.getTypeUtilisateur() == 2) {
+			projetList = panierUc
+					.recupererListProjetEnAttenteParUtilisateur(mBConnexion
+							.getUtilisateur().getIdUtilisateur());
+		}
+		return projetList;
+	}
+
 	public NoDeveloppeur getDev() {
 		return dev;
 	}
@@ -201,7 +222,7 @@ public class MBCatalogueDeveloppeur {
 		for (NoDeveloppeur fich : listDev) {
 			System.out.println("dev" + fich.getDeveloppeur().getNom());
 		}
-		 listeSelectedTechno.clear();
+		listeSelectedTechno.clear();
 		return "";
 	}
 
@@ -280,6 +301,14 @@ public class MBCatalogueDeveloppeur {
 
 	public void setListDevRafraichi(Set<NoDeveloppeur> listDevRafraichi) {
 		this.listDevRafraichi = listDevRafraichi;
+	}
+
+	public MBCreationProjet getMbCreationProjet() {
+		return mbCreationProjet;
+	}
+
+	public void setMbCreationProjet(MBCreationProjet mbCreationProjet) {
+		this.mbCreationProjet = mbCreationProjet;
 	}
 
 }
