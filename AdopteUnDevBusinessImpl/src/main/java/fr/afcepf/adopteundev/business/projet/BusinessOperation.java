@@ -67,4 +67,10 @@ public class BusinessOperation implements IBusinessOperation {
     public List<DTOOperation> recupListOperationParClientEtType(int idUtilisateur, int idTypeOperation) {
         return null;
     }
+
+	@Override
+	public DTOOperation creerOperationAttente(DTOOperation operation) {
+		Operation operationEntity = daoOperation.creerOperation(DTOToEntity.dtoOperationToOperation(operation));
+		return EntityToDTO.operationToDTOOperation(operationEntity);
+	}
 }

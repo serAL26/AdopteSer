@@ -17,6 +17,7 @@ import fr.afcepf.adopteundev.managedbean.util.UcName;
 public class MBLivrable {
 	private DTOLivrable dtoLivrable = new DTOLivrable();
 	private DTOOperation dtoOperation = new DTOOperation();
+	private DTOOperation dtoOperationACreationLivrable = new DTOOperation();
 	private NoLivrable noLivrable = new NoLivrable();
 	private boolean isPaye = false;
 	@ManagedProperty(value="#{mBCreationProjet}")
@@ -39,7 +40,9 @@ public class MBLivrable {
 	}
 	
 	public String creerLivrable() {
-		ucProjet.creerLivrable(dtoLivrable);
+		DTOLivrable livrable = ucProjet.creerLivrable(dtoLivrable);
+		dtoOperationACreationLivrable.setLivrable(livrable);
+		ucProjet.creerOperationAttente(dtoOperationACreationLivrable);
 		dtoLivrable = new DTOLivrable();
 		return "";
 	}

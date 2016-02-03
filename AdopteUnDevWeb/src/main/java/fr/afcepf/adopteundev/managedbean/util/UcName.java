@@ -8,6 +8,4 @@ public class UcName {
     public static final String UCGESTIONPANIER = "ejb:AdopteUnDevEAR/AdopteUnDevUcImpl/UcPanierImpl!fr.afcepf.adopteundev.gestion.panier.IUCPanier";
     public static final String UCGESTIONUTILISATEUR = "ejb:AdopteUnDevEAR/AdopteUnDevUcImpl/UcUtilisateur!fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur";
     public static final String UCGESTIONPROPOSITION = "ejb:AdopteUnDevEAR/AdopteUnDevUcImpl/UcPropositionImpl!fr.afcepf.adopteundev.gestion.proposition.IUcProposition";
-
-    public static final String test = "sfdml";
 }

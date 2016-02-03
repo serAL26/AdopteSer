@@ -6,6 +6,7 @@ import dto.DTOLivrable;
 import dto.DTOProjet;
 import dto.DTOTypeEvaluation;
 import entity.Livrable;
+import entity.Operation;
 import enumeration.TypeEvaluationEnum;
 import fr.afcepf.adopteundev.idao.projet.IDaoLivrable;
 import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
@@ -14,6 +15,8 @@ import fr.afcepf.adopteundev.idao.projet.IDaoTypeEvaluation;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Remote(IBusinessLivrable.class)
@@ -29,8 +32,7 @@ public class BusinessLivrable implements IBusinessLivrable {
 
     @Override
     public DTOLivrable creerLivrable(DTOLivrable dtoLivrable) {
-        dtoLivrable.setTypeEvaluation(EntityToDTO
-                .typeEvaluationToDTOTypeEvaluation(daoTypeEvaluation.recupererTypeEvaluationParLibelle(TypeEvaluationEnum.ATTENTE.toString())));
+        dtoLivrable.setTypeEvaluation(EntityToDTO.typeEvaluationToDTOTypeEvaluation(daoTypeEvaluation.recupererTypeEvaluationParLibelle(TypeEvaluationEnum.ATTENTE.toString())));
         Livrable livrable = daoLivrable.creerLivrable(DTOToEntity.dtoLivrableToLivrable(dtoLivrable));
         return EntityToDTO.livrableToDTOLivrable(livrable);
     }
@@ -47,9 +49,11 @@ public class BusinessLivrable implements IBusinessLivrable {
     }
 
     @Override
-    public boolean initIsPaye(DTOLivrable livrable) {
-        boolean retour = false;
-        if (daoOperation.operationPayeeParLivrable(livrable.getIdLivrable()) != null) {
+    public Boolean initIsPaye(DTOLivrable livrable) {
+        Boolean retour = false;
+        List<Operation> listeOperation = new ArrayList<>();
+        listeOperation.addAll(daoOperation.operationPayeeParLivrable(livrable.getIdLivrable()));
+        if (listeOperation.size() > 0) {
             retour = true;
         }
         return retour;

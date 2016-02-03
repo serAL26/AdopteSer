@@ -7,6 +7,7 @@ import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+
 import java.util.List;
 import java.util.Set;
 
@@ -126,7 +127,7 @@ public class UCProjet implements IUCProjet {
     }
 
     @Override
-    public boolean initIsPaye(DTOLivrable livrable) {
+    public Boolean initIsPaye(DTOLivrable livrable) {
         return businessLivrable.initIsPaye(livrable);
     }
 
@@ -144,5 +145,10 @@ public class UCProjet implements IUCProjet {
     public DTONote ajouterUnCommentaire(DTONote dtoNote) {
         return businessNote.ajouterUnCommentaire(dtoNote);
     }
+
+	@Override
+	public DTOOperation creerOperationAttente(DTOOperation operation) {
+		return businessOperation.creerOperationAttente(operation);
+	}
 
 }

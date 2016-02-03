@@ -11,5 +11,5 @@ public interface IBusinessLivrable {
 
     List<DTOLivrable> recupListeLivrableParProjet(DTOProjet dtoProjet);
 	DTOTypeEvaluation recupererTypeEvaluationParLibelle(String libelle);
-    boolean initIsPaye(DTOLivrable livrable);
+    Boolean initIsPaye(DTOLivrable livrable);
 }

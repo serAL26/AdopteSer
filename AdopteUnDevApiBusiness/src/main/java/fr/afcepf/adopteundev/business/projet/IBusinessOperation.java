@@ -9,4 +9,5 @@ public interface IBusinessOperation {
 	List<DTOOperation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation);
 	List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation);
 	List<DTOOperation> recupListOperationParClientEtType(int idUtilisateur, int idTypeOperation);
+	DTOOperation creerOperationAttente(DTOOperation operation);
 }

@@ -122,72 +122,77 @@
 									<p>#{mBProjetDetail.cdc.existant}</p>
 								</div>
 								<div class="tab-pane" id="tab2">
-								<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
-									<h5>Vos livrables :</h5>
-									<div class="col-sm-12 table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>Description</th>
-													<th>Date de livraison</th>
-													<th>Echeance</th>
-													<th>Reglement du livrable</th>
-													<th>livrables</th>
-												</tr>
-											</thead>
-											<tbody class="table-striped">
-												<ui:repeat value="#{mBProjetDetail.livrableList}"
-													var="livrable">
+									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+										<h5>Vos livrables :</h5>
+										<div class="col-sm-12 table-responsive">
+											<table class="table table-bordered">
+												<thead>
 													<tr>
-														<td>#{livrable.description}</td>
-														<td>#{livrable.dateLivraison.toString().subSequence(0,
-															10)}</td>
-														<td>#{livrable.echeance.toString().subSequence(0,
-															10)}</td>
-															<td>#{mBProjetDetail.initIsPaye(livrable)}</td>
-														<td><h:outputLink value="#{livrable.fichier}">
-														<h:inputHidden value="#{mBProjetDetail.payerLivrable(livrable)}" />
-														Livrable</h:outputLink></td>
+														<th>Description</th>
+														<th>Date de livraison</th>
+														<th>Echeance</th>
+														<th>Reglement du livrable</th>
+														<th>livrables</th>
 													</tr>
-												</ui:repeat>
-											</tbody>
-										</table>
-									</div>
-										<div class="row">
+												</thead>
+												<tbody class="table-striped">
+													<ui:repeat value="#{mBProjetDetail.livrableList}"
+														var="livrable">
+														<tr>
+															<td>#{livrable.description}</td>
+															<td>#{livrable.dateLivraison.toString().subSequence(0,
+																10)}</td>
+															<td>#{livrable.echeance.toString().subSequence(0,
+																10)}</td>
+															<td>#{mBProjetDetail.initIsPaye(livrable)}
+																#{mBProjetDetail.descriptionPaiement}</td>
+															<td><h:outputLink value="#{livrable.fichier}">
+														<h:commandButton
+																	action="#{mBProjetDetail.payerLivrable(livrable)}"
+																	value="Envoyer votre livrable" class="btn" /></h:outputLink></td>
+														</tr>
+													</ui:repeat>
+												</tbody>
+											</table>
 										</div>
+										<div class="row"></div>
 									</h:panelGroup>
 									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
-									<!--<h:panelGroup rendered="false">-->
-									<h5>Vos livrables :</h5>
-									<div class="col-sm-12 table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>Description</th>
-													<th>Date de livraison</th>
-													<th>Echeance</th>
-													<th>livrables</th>
-												</tr>
-											</thead>
-											<tbody class="table-striped">
-												<ui:repeat value="#{mBProjetDetail.livrableList}"
-													var="livrable">
+										<!--<h:panelGroup rendered="false">-->
+										<h5>Vos livrables :</h5>
+										<div class="col-sm-12 table-responsive">
+											<table class="table table-bordered">
+												<thead>
 													<tr>
-														<td>#{livrable.description}</td>
-														<td>#{livrable.dateLivraison.toString().subSequence(0,
-															10)}</td>
-														<td>#{livrable.echeance.toString().subSequence(0,
-															10)}</td>
-														<td><input type="file" name="fichierUpload" />
-												<h:commandButton action="#{mBProjetDetail.upload}"
-													value="Envoyer votre livrable" class="btn" /></td>
+														<th>Description</th>
+														<th>Date de livraison</th>
+														<th>Echeance</th>
+														<th>Reglement du livrable</th>
+														<th>livrables</th>
 													</tr>
-												</ui:repeat>
-											</tbody>
-										</table>
+												</thead>
+												<tbody class="table-striped">
+													<ui:repeat value="#{mBProjetDetail.livrableList}"
+														var="livrable">
+														<tr>
+															<td>#{livrable.description}</td>
+															<td>#{livrable.dateLivraison.toString().subSequence(0,
+																10)}</td>
+															<td>#{livrable.echeance.toString().subSequence(0,
+																10)}</td>
+															<td>#{mBProjetDetail.initIsPaye(livrable)}
+																#{mBProjetDetail.descriptionPaiement}</td>
+															<td><input type="file" name="fichierUpload" /> <h:commandButton
+																	action="#{mBProjetDetail.upload()}"
+																	value="Envoyer votre livrable" class="btn" /></td>
+														</tr>
+													</ui:repeat>
+												</tbody>
+											</table>
 										</div>
+										<div class="row"></div>
 									</h:panelGroup>
-									</div>
+								</div>
 							</div>
 						</div>
 					</div>
