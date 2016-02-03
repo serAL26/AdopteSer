@@ -21,7 +21,7 @@ public class DaoProposition implements IDaoProposition {
 	
 	 private String propositionValideePourUnDev = "SELECT p FROM Proposition p WHERE p.developpeur.idUtilisateur = :idDev AND p.typeProposition.idTypeProposition = 3";
 	 private String recupListPropParProjetSaufPropValidee = "SELECT p FROM Proposition p WHERE p.typeProposition.idTypeProposition <> 3 AND p.projet.idProjet = :idProjet";
-	 private String recupListPropValideePourProjet ="SELECT p FROM Propostion p WHERE p.typeProposition.idTypeProposition = 3 AND p.projet.idProjet = :idProjet";
+	 private String recupListPropValideePourProjet ="SELECT p FROM Proposition p WHERE p.typeProposition.idTypeProposition = 3 AND p.projet.idProjet = :idProjet";
 
 	@Override
 	public Proposition modifierEtatProposition(Proposition proposition) {

@@ -272,8 +272,10 @@ public class EntityToDTO {
 		dTOOperation.setIdOperation(operation.getIdOperation());
 		dTOOperation.setDate(operation.getDate());
 		dTOOperation.setMontant(operation.getMontant());
+		if(operation.getTypeOperation()!= null) {
 		dTOOperation.setTypeOperation(typeOperationToDTOTypeOperation(operation
 				.getTypeOperation()));
+		}
 		dTOOperation
 				.setLivrable(livrableToDTOLivrable(operation.getLivrable()));
 		return dTOOperation;
