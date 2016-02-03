@@ -1,6 +1,5 @@
 package fr.afcepf.adopteundev.ibusiness.gestion.utilisateur;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
