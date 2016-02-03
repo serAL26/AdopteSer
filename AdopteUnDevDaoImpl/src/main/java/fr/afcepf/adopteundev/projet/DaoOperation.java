@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
+
 import entity.Operation;
 import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 
@@ -15,7 +17,7 @@ import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 @Remote(IDaoOperation.class)
 @Stateless
 public class DaoOperation implements IDaoOperation{
-
+private static Logger log = Logger.getLogger(DaoOperation.class);
 	 @PersistenceContext(unitName="AdopteUnDev")
 	 private EntityManager em;
 	 
@@ -26,6 +28,7 @@ public class DaoOperation implements IDaoOperation{
 	
 	@Override
 	public Operation creerOperation(Operation operation) {
+		log.info("operation : " +operation.getMontant());
 		em.persist(operation);
 		em.flush();
 		return operation;
