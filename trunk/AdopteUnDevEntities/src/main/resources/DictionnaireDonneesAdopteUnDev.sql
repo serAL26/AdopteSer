@@ -202,8 +202,8 @@ INSERT INTO `etat_projet` (`id_etat_projet`, `LIBELLE`) VALUES
 
 /*!40000 ALTER TABLE `livrable` DISABLE KEYS */;
 INSERT INTO livrable (id_livrable, date_livraison, ECHEANCE, FICHIER, idProjet, idTypeEvaluation) VALUES
-  (1,2015-02-09,2015-02-12,'',4,3),
-  (2,2015-02-09,2015-02-12,'',5,1);
+  (1,2015-02-09,2015-02-12,'/C:/serveurs/apache-tomcat-7.0.42/lib//adopteUnDevUML.pdf',4,3),
+  (2,2015-02-09,2015-02-12,'/C:/serveurs/apache-tomcat-7.0.42/lib//Jellyfish.jpg',5,1);
 /*!40000 ALTER TABLE `livrable` ENABLE KEYS */;
 
 --
