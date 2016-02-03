@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 
 import dto.DTOCdc;
 import dto.DTODeveloppeur;
+import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTypeCdc;
@@ -30,14 +31,12 @@ public class MBPropositionDetail {
 	private String besoinRemarque;
 	private String contexteRemarque;
 	private String existantRemarque;
-	private String dateRemarque;
 	private Double tarifRemarque;
 	private boolean affichageModif = false;
 	
 	private String besoinModif;
 	private String contexteModif;
 	private String existantModif;
-	private String dateModif;
 	private double tarifModif;
 	private boolean paiement=false;
 	
@@ -103,17 +102,6 @@ public class MBPropositionDetail {
 	}
 
 
-
-	public String getDateModif() {
-		return dateModif;
-	}
-
-
-
-	public void setDateModif(String dateModif) {
-		this.dateModif = dateModif;
-	}
-
 	public double getTarifModif() {
 		return tarifModif;
 	}
@@ -169,14 +157,6 @@ public class MBPropositionDetail {
 		this.existantRemarque = existantRemarque;
 	}
 
-	public String getDateRemarque() {
-		return dateRemarque;
-	}
-
-	public void setDateRemarque(String dateRemarque) {
-		this.dateRemarque = dateRemarque;
-	}
-
 	public Double getTarifRemarque() {
 		return tarifRemarque;
 	}
@@ -187,16 +167,16 @@ public class MBPropositionDetail {
 	
 	public String ajouterRemarque(DTOCdc cdc, DTOProjet projet, DTODeveloppeur developpeur)
 	{		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date dateFinEstimee = null;
-		try {
-			dateFinEstimee = sdf.parse(dateRemarque);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		DTOCdc remarque = new DTOCdc(false, contexteRemarque, besoinRemarque, existantRemarque, tarifRemarque, dateFinEstimee, projet, developpeur, null, gestionCdc.recupTypeRemarque());
+		DTOCdc remarque = new DTOCdc();
+		remarque.setLu(false);;
+		remarque.setContexte(contexteRemarque);
+		remarque.setBesoin(besoinRemarque);
+		remarque.setExistant(existantRemarque);
+		remarque.setTarif(tarifRemarque);
+		remarque.setProjet(projet);
+		remarque.setDeveloppeur(developpeur);
+		remarque.setRemarque(null);
+		remarque.setTypeCdc(gestionCdc.recupTypeRemarque());
 		
 		gestionCdc.ajouterRemarqueCdcComplet(remarque, developpeur.getIdUtilisateur(), projet.getIdProjet());
 		
@@ -215,31 +195,22 @@ public class MBPropositionDetail {
 		besoinModif = cdc.getBesoin();
 		contexteModif = cdc.getContexte();
 		existantModif = cdc.getExistant();
-		dateModif = cdc.getDateFinEstimee().toString().substring(0, 10);
 		tarifModif = cdc.getTarif();
 		affichageModif = true;
 	}
 	
-	public void modificationCdc(DTOCdc cdc)
+	public String modificationCdc(DTOCdc cdc)
 	{
 			cdc.setBesoin(besoinModif);
 			cdc.setContexte(contexteModif);
 			cdc.setExistant(existantModif);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date dateFinEstimee = null;
-		try {
-			dateFinEstimee = sdf.parse(dateModif);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			cdc.setDateFinEstimee(dateFinEstimee);
-		cdc.setTarif(tarifModif);
+			cdc.setTarif(tarifModif);
 		
 		DTOCdc cdcDtp = new DTOCdc(cdc.getIdCdc(), false, cdc.getContexte(), cdc.getBesoin(), cdc.getExistant(), 
 				cdc.getTarif(), cdc.getDateFinEstimee(), cdc.getProjet(), cdc.getTypeCdc());
 		
-		gestionCdc.modifierCdcDto(cdcDtp);		
+		gestionCdc.modifierCdcDto(cdcDtp);	
+		return "/ListePropositions.xhtml?faces-redirect=true";
 	}
 	
 	public void accepterProposition(DTOProposition proposition)
@@ -262,6 +233,11 @@ public class MBPropositionDetail {
 	{
 		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
 		paiement=true;
+	}
+	
+	public void payerProjet()
+	{
+		
 	}
 	
 	
