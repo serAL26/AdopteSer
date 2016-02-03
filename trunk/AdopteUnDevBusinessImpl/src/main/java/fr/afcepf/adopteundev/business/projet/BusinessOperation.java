@@ -1,6 +1,7 @@
 package fr.afcepf.adopteundev.business.projet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -32,12 +33,21 @@ public class BusinessOperation implements IBusinessOperation {
         List<DTOOperation> listeDTOOperation = new ArrayList<>();
         Operation operation = DTOToEntity.dtoOperationToOperation(dtoOperation);
         if(operation.getTypeOperation().getIdTypeOperation() == 3)  {
-        operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(1));
-        daoOperation.creerOperation(operation);
-        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(operation));
-        operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(2));
-        daoOperation.creerOperation(operation);
-        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(operation));
+        operation.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(4));
+        Operation  op = new Operation();
+        op.setDate(new Date());
+        op.setLivrable(operation.getLivrable());
+        op.setMontant(operation.getMontant());
+        op.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(1));
+        daoOperation.creerOperation(op);
+        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(op));
+        Operation ope = new Operation();
+        ope.setDate(new Date());
+        ope.setLivrable(operation.getLivrable());
+        ope.setMontant(operation.getMontant());
+        ope.setTypeOperation(daoTypeOperation.obtenirTypeOperationParId(2));
+        daoOperation.creerOperation(ope);
+        listeDTOOperation.add(EntityToDTO.operationToDTOOperation(ope));
         }
         return listeDTOOperation;
     }

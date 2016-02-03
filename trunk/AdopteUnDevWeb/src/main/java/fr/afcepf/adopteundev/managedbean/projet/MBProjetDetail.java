@@ -49,9 +49,9 @@ public class MBProjetDetail {
         ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
         gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
         initCdc();
-        livrableList = ucProjet.recupListLivrableParProjet(mBProjetParUtilisateur.getProjet());
     }
 
+    
     public String download() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -177,6 +177,7 @@ public class MBProjetDetail {
 
     public DTOCdc initCdc() {
         cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
+        livrableList = ucProjet.recupListLivrableParProjet(mBProjetParUtilisateur.getProjet());
         return cdc;
     }
 

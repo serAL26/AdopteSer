@@ -146,10 +146,13 @@
 																10)}</td>
 															<td>#{mBProjetDetail.initIsPaye(livrable)}
 																#{mBProjetDetail.descriptionPaiement}</td>
-															<td><h:outputLink value="#{livrable.fichier}">
-														<h:commandButton
+															<td>
+															<h:commandButton
 																	action="#{mBProjetDetail.payerLivrable(livrable)}"
-																	value="Envoyer votre livrable" class="btn" /></h:outputLink></td>
+																	value="Récupérer et payer votre livrable" class="btn">
+														</h:commandButton> 
+															<h:outputLink value="#{livrable.fichier}">
+														 </h:outputLink></td>
 														</tr>
 													</ui:repeat>
 												</tbody>

@@ -9,4 +9,5 @@ public interface IDaoOperation {
 	List<Operation> recupListOperationParProjetEtType(int idProjet, int idTypeOperation);
 	List<Operation> recupListOperationParClientEtType(int idTypeOperation, int idClient);
 	List<Operation> operationPayeeParLivrable(int idLivrable);
+	List<Operation> operationParLivrable(int idLivrable);
 }

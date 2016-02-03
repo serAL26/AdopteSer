@@ -3,6 +3,7 @@ package fr.afcepf.adopteundev.business.projet;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOLivrable;
+import dto.DTOOperation;
 import dto.DTOProjet;
 import dto.DTOTypeEvaluation;
 import entity.Livrable;
@@ -17,6 +18,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Remote(IBusinessLivrable.class)
@@ -40,7 +42,19 @@ public class BusinessLivrable implements IBusinessLivrable {
     @Override
     public List<DTOLivrable> recupListeLivrableParProjet(DTOProjet dtoProjet) {
         List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjet(dtoProjet.getIdProjet());
-        return EntityToDTO.listeLivrableToDTOLivrable(listeLivrable);
+        List<DTOLivrable> listeDto= new ArrayList<>();
+        for (Livrable livrable : listeLivrable){
+        	DTOLivrable dtoLivrable = EntityToDTO.livrableToDTOLivrable(livrable);
+        	List<Operation> listeOperation = daoOperation.operationParLivrable(livrable.getIdLivrable()); 
+        	if(listeOperation.size() > 0) {
+        		dtoLivrable.setLesOperation(new HashSet<DTOOperation>());
+        		for (Operation operation : listeOperation) {
+        			dtoLivrable.getLesOperation().add(EntityToDTO.operationToDTOOperation(operation));
+				}
+        	}
+        	listeDto.add(dtoLivrable);
+		}
+        return listeDto;
     }
 
     @Override
