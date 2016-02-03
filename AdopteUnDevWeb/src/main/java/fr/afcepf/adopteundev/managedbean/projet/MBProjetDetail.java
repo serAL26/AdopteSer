@@ -1,17 +1,12 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import dto.DTOCdc;
-import dto.DTOLivrable;
-import dto.DTONote;
-import dto.DTOOperation;
-import dto.DTOProposition;
-import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
-import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
-import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
-import fr.afcepf.adopteundev.managedbean.util.UcName;
-
-import org.apache.commons.fileupload.disk.DiskFileItem;
-import org.apache.log4j.Logger;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,14 +14,20 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import java.io.*;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.log4j.Logger;
+
+import dto.DTOCdc;
+import dto.DTOLivrable;
+import dto.DTONote;
+import dto.DTOOperation;
+import dto.DTOProposition;
+import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
+import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
+import fr.afcepf.adopteundev.managedbean.connexion.MBConnexion;
+import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
+import fr.afcepf.adopteundev.managedbean.util.UcName;
 
 @ManagedBean
 @SessionScoped
@@ -44,6 +45,8 @@ public class MBProjetDetail {
     @ManagedProperty(value = "#{mBProjetParUtilisateur}")
     private MBProjetParUtilisateur mBProjetParUtilisateur;
 
+	@ManagedProperty(value="#{mBConnexion}")
+	private MBConnexion mBConnexion;
 
     @PostConstruct
     private void init() {
@@ -142,14 +145,17 @@ public class MBProjetDetail {
         return note;
     }
 
-    public DTOCdc initCdc() {
-        cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
-        if (mBProjetParUtilisateur.getProjet().getEtatProjet().getIdEtatProjet() != 4) {
-            DTOProposition propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet());
-            livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), propositionValidee.getDeveloppeur().getIdUtilisateur());
-        }
-        return cdc;
-    }
+	public DTOCdc initCdc() {
+		cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
+		if(mBProjetParUtilisateur.getProjet().getEtatProjet().getIdEtatProjet() != 4) {
+			DTOProposition propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet());
+			livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), propositionValidee.getDeveloppeur().getIdUtilisateur());
+		}
+		else if (mBConnexion.getTypeUtilisateur() == 1){
+			livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), mBConnexion.getUtilisateur().getIdUtilisateur());
+		}
+		return cdc;
+	}
 
     public MBProjetParUtilisateur getmBProjetParUtilisateur() {
         return mBProjetParUtilisateur;
@@ -208,7 +214,14 @@ public class MBProjetDetail {
         return descriptionPaiement;
     }
 
+	public MBConnexion getmBConnexion() {
+		return mBConnexion;
+	}
+	public void setmBConnexion(MBConnexion mBConnexion) {
+		this.mBConnexion = mBConnexion;
+	}
     public void setDescriptionPaiement(String descriptionPaiement) {
         this.descriptionPaiement = descriptionPaiement;
     }
+	
 }
