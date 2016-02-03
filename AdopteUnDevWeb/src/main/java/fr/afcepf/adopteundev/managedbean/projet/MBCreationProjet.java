@@ -56,6 +56,7 @@ public class MBCreationProjet {
 	private IUcUtilisateur gestionUtilisateur;
 	private IUCGestionCdc gestionCdc;
 	private Set<DTOTechnologie> listeTechnoParService;
+
 	@PostConstruct
 	public void init() {
 		ucProjet = (IUCProjet) ContextFactory
@@ -75,7 +76,7 @@ public class MBCreationProjet {
 	}
 
 	public void remplirServices(AjaxBehaviorEvent event) {
-		if (selectedAppli.getIdTypeAppli() >  0) {
+		if (selectedAppli.getIdTypeAppli() > 0) {
 			listeServices = ucProjet.recupTypeAppliById(
 					selectedAppli.getIdTypeAppli()).getLesServices();
 		} else {
@@ -103,6 +104,15 @@ public class MBCreationProjet {
 		}
 		commentaire = "";
 		setActionAjout(false);
+	}
+
+	public void remplirChamps() {
+		besoin ="Les particuliers et les micro-entreprises ont besoin d’être aiguillés, accompagnés dans leur"+ "recherche de solution informatique. Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum."; 
+		contexte = "Les solutions de mise en relation de professionnels de l’informatique avec des clients à la recherche de développeurs ne sont pas prévues aux particuliers ou aux micro-entreprises. ";
+		existant = "La majorité des sites proposent un système d’abonnement en plus de se rémunérer en récupérant un pourcentage des transactions. Les différents abonnements permettent d’acquérir des fonctionnalités (ou avantages) supplémentaires. Notre site ne prévoit pas de système d’abonnement mais se rémunère uniquement sur les transactions.";
+		tarif = 1500.0;
+		dateFin = "04/02/2015";
+
 	}
 
 	private DTOCdc ajouterCDC(DTOProjet projet) {
@@ -142,9 +152,10 @@ public class MBCreationProjet {
 						listeFonctionnaliteCree);
 		}
 
-		listeTechnoParService = ucProjet.recupTechnoParService(selectedService.getIdTypeService());
+		listeTechnoParService = ucProjet.recupTechnoParService(selectedService
+				.getIdTypeService());
 		for (DTOTechnologie techno : listeTechnoParService) {
-			System.out.println("techno : "+techno.getTechnologieLibelle());
+			System.out.println("techno : " + techno.getTechnologieLibelle());
 		}
 		return "/CatalogueDeveloppeurTestRech.xhtml?faces-redirect=true";
 
@@ -343,7 +354,8 @@ public class MBCreationProjet {
 		return listeTechnoParService;
 	}
 
-	public void setListeTechnoParService(Set<DTOTechnologie> listeTechnoParService) {
+	public void setListeTechnoParService(
+			Set<DTOTechnologie> listeTechnoParService) {
 		this.listeTechnoParService = listeTechnoParService;
 	}
 
