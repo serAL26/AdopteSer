@@ -9,12 +9,48 @@
 		<link rel="stylesheet" href="resources/css/catalogueUtilisateur.css"
 			type="text/css" />
 	</ui:define>
-	<ui:define name="title"> Catalogue développeurs
-	<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-			<div onload="#{mBCatalogueDeveloppeur.initListeProjet()}">
-				<p>Choisissez le projet qui vous appartient :
-					#{mBCatalogueDeveloppeur.projetSelectionne.libelle}</p>
-				<h:selectOneMenu id="listprojet"
+	<ui:define name="title"> Catalogue développeurs	</ui:define>
+	<ui:define name="body">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					
+			
+					
+						<div style="max-width: 1135px; height: auto; margin-left: 16px; margin-bottom: 25px; background-color:white; border:solid 4px #4f8db3; border-radius:8px">
+
+							<div class="collapse navbar-collapse">
+								
+									<h4><b>Trouvez le développeur qui vous correspond</b></h4>
+									<h:selectManyCheckbox style="margin-top:15px; margin-bottom:10px; word-spacing:15px"
+										value="#{mBCatalogueDeveloppeur.listeSelectedTechnoId}">
+										<f:selectItems 
+											value="#{mBCatalogueDeveloppeur.listeTouteTechno}"
+											itemLabel="#{techno.technologieLibelle} &#160;" var="techno"
+											itemValue="#{techno.idTechnologie}" />
+									</h:selectManyCheckbox>
+									<!--  <p:commandLink value="Submit" update="display" />-->
+							
+								<h:panelGrid columns="3" cellpadding="5" style="float:left; margin-bottom:10px">
+									<h:outputLabel value="Notes   " style="margin-right: 8px"><img src="resources/img/etoile-icone-4268.png"/></h:outputLabel>
+									
+									<h:selectOneMenu class="form-control" value="#{mBCatalogueDeveloppeur.selectedNote}">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems value="#{mBCatalogueDeveloppeur.listeNote}"
+											var="note" itemLabel="#{note.libelle}"
+											itemValue="#{note.note}" />
+									</h:selectOneMenu>
+								</h:panelGrid>
+								
+					<h:commandLink action="#{mBCatalogueDeveloppeur.rechercherDev()}" style="float:left; margin-left:30px">
+							<img src="resources/img/magnifying-glass11.png"/>
+							</h:commandLink>
+						
+								
+			<!-- <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}"> -->
+			<div style="margin-bottom: 10px" onload="#{mBCatalogueDeveloppeur.initListeProjet()}">
+				<h4 style="clear: both"><b>Sélectionnez votre projet</b></h4>
+				<h:selectOneMenu style="max-width:400px" class="form-control" id="listprojet"
 					value="#{mBCatalogueDeveloppeur.projetSelectionne.idProjet}">
 					<f:selectItem itemValue="-1" itemLabel="----------" />
 					<f:selectItems var="projet"
@@ -22,48 +58,12 @@
 						itemLabel="#{projet.libelle}" itemValue="#{projet.idProjet}" />
 				</h:selectOneMenu>
 			</div>
-		</h:panelGroup>
+		<!-- </h:panelGroup> -->
 
-	</ui:define>
-	<ui:define name="body">
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<nav class="navbar navbar-default">
-						<div class="collapse navbar-collapse navbar-ex1-collapse">
+			</div>
 
-							<div class="collapse navbar-collapse">
-								
-									<h:outputLabel value="Compétences souhaités : " />
-									<h:selectManyCheckbox
-										value="#{mBCatalogueDeveloppeur.listeSelectedTechnoId}">
-										<f:selectItems
-											value="#{mBCatalogueDeveloppeur.listeTouteTechno}"
-											itemLabel="#{techno.technologieLibelle}" var="techno"
-											itemValue="#{techno.idTechnologie}" />
-									</h:selectManyCheckbox>
-									<!--  <p:commandLink value="Submit" update="display" />-->
-							
-								<h:panelGrid columns="3" cellpadding="5">
-									<h:outputLabel value="Notes souhaités : " />
-									<h:selectOneMenu value="#{mBCatalogueDeveloppeur.selectedNote}">
-										<f:selectItem itemValue="-1" itemLabel="-------" />
-										<f:selectItems value="#{mBCatalogueDeveloppeur.listeNote}"
-											var="note" itemLabel="#{note.libelle}"
-											itemValue="#{note.note}" />
-									</h:selectOneMenu>
-
-								</h:panelGrid>
-
-							</div>
-
-							<h:commandButton
-								action="#{mBCatalogueDeveloppeur.rechercherDev()}"
-								value="rechercher" class="btn btn-default">
-								<i class="glyphicon glyphicon-search"></i>
-							</h:commandButton>
-						</div>
-					</nav>
+		</div>
+				
 					<ui:repeat value="#{mBCatalogueDeveloppeur.listeFicheFiltre}"
 						var="fiche">
 						<div class="col-md-4 col-sm-6">
