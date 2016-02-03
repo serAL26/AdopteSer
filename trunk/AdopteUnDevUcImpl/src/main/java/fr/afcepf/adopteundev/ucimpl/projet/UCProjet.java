@@ -147,6 +147,11 @@ public class UCProjet implements IUCProjet {
     }
 
 	@Override
+	public Set<DTOTechnologie> recupTechnoParService(int idTypeService) {
+		return businessGestionProjet.recupTechnoParService(idTypeService);
+	}
+
+	@Override
 	public DTOOperation creerOperationAttente(DTOOperation operation) {
 		return businessOperation.creerOperationAttente(operation);
 	}
