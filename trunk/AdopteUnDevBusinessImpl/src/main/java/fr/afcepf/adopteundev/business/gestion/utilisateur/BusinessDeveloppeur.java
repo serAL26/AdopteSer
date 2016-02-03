@@ -170,17 +170,22 @@ public class BusinessDeveloppeur implements IBusinessDeveloppeur {
 	public Set<DTODeveloppeur> recupDevParListeTechnoEtNote(double note,
 			List<DTOTechnologie> technologies) {
 		Set<DTODeveloppeur> listeDev = new HashSet<>();
-		if (technologies != null) {
+		if (technologies != null&& technologies.size()>=1) {
 			for (DTOTechnologie techno : technologies) {
 				listeDev.addAll(recupDeveloppeurParNoteEtTechno(note, techno));
 			}
 			return listeDev;
 		}
-		if (note >0) {
+		if (note > 0) {
 			listeDev = recupDevParNote(note);
 			return listeDev;
 		}
-		return new HashSet<>(recupererTousLesDeveloppeurs());
+		if (technologies != null && note <= 0 && technologies.size()>1) {
+			listeDev.addAll(recupererTousLesDeveloppeurs());
+			return listeDev;
+		}
+		listeDev.addAll(recupererTousLesDeveloppeurs());
+		return listeDev;
 	}
 
 	@Override
