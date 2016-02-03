@@ -11,9 +11,14 @@ public interface IBusinessLivrable {
     DTOLivrable creerLivrable(DTOLivrable dtoLivrable);
 
     List<DTOLivrable> recupListeLivrableParProjet(DTOProjet dtoProjet);
-	DTOTypeEvaluation recupererTypeEvaluationParLibelle(String libelle);
-    Boolean initIsPaye(DTOLivrable livrable);
-	List<DTOLivrable> recupListeLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur);
 
-	DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable);
+    DTOTypeEvaluation recupererTypeEvaluationParLibelle(String libelle);
+
+    Boolean initIsPaye(DTOLivrable livrable);
+
+    List<DTOLivrable> recupListeLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur);
+
+    DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable);
+
+    void ajouterLeFichierDansLeLivrable(DTOLivrable livrable);
 }

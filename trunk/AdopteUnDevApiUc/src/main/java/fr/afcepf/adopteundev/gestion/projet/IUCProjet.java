@@ -46,7 +46,7 @@ public interface IUCProjet {
 
     List<DTOOperation> payerLivrable(DTOOperation dtoOperation);
 
-    
+    void ajouterLeFichierDansLeLivrable(DTOLivrable livrable);
 
     Boolean initIsPaye(DTOLivrable livrable);
 

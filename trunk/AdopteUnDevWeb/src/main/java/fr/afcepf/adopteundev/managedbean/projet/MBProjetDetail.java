@@ -31,46 +31,45 @@ import java.util.Set;
 @ManagedBean
 @SessionScoped
 public class MBProjetDetail {
-	private static final int DEFAULT_BUFFER_SIZE = 10240;
-	private Logger log = Logger.getLogger(MBProjetDetail.class);
-	private IUCGestionCdc gestionCdc;
-	private DTOCdc cdc;
-	private boolean livrablePaye;
-	private String descriptionPaiement;
-	private String descriptionLivrable;
-	private IUCProjet ucProjet;
-	private List<DTOLivrable> livrableList;
+    private static final int DEFAULT_BUFFER_SIZE = 10240;
+    private Logger log = Logger.getLogger(MBProjetDetail.class);
+    private IUCGestionCdc gestionCdc;
+    private DTOCdc cdc;
+    private boolean livrablePaye;
+    private String descriptionPaiement;
+    private String descriptionLivrable;
+    private IUCProjet ucProjet;
+    private List<DTOLivrable> livrableList;
 
-	@ManagedProperty(value = "#{mBProjetParUtilisateur}")
-	private MBProjetParUtilisateur mBProjetParUtilisateur;
+    @ManagedProperty(value = "#{mBProjetParUtilisateur}")
+    private MBProjetParUtilisateur mBProjetParUtilisateur;
 
 
-	@PostConstruct
-	private void init() {
-		ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
-		gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
-		initCdc();
-	}
+    @PostConstruct
+    private void init() {
+        ucProjet = (IUCProjet) ContextFactory.createProxy(UcName.UCGESTIONPROJET);
+        gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
+        initCdc();
+    }
 
     public void initIsPaye(DTOLivrable livrable) {
-    	livrablePaye = ucProjet.initIsPaye(livrable);
-    	if(livrablePaye) {
-    		descriptionPaiement = "Payé";
-    	}
-    	else {
-    		descriptionPaiement = "En attente de paiement";
-    	}
+        livrablePaye = ucProjet.initIsPaye(livrable);
+        if (livrablePaye) {
+            descriptionPaiement = "Payé";
+        } else {
+            descriptionPaiement = "En attente de paiement";
+        }
     }
-    
+
     public void payerLivrable(DTOLivrable livrable) {
-    	List<DTOOperation> liste = new ArrayList<>();
-    	if(livrable.getLesOperation()!= null) {
-    	liste.addAll(livrable.getLesOperation());
-    	ucProjet.payerLivrable(liste.get(0));
-    	livrablePaye = ucProjet.initIsPaye(livrable);
-    	}
+        List<DTOOperation> liste = new ArrayList<>();
+        if (livrable.getLesOperation() != null) {
+            liste.addAll(livrable.getLesOperation());
+            ucProjet.payerLivrable(liste.get(0));
+            livrablePaye = ucProjet.initIsPaye(livrable);
+        }
     }
-    
+
     public String upload(DTOLivrable livrable) {
         log.info("Debut de l'upload...");
         HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -84,14 +83,14 @@ public class MBProjetDetail {
             path = path.split("/WEB-INF")[0];
             log.info(path);
             File file1 = new File(path + "/Livrables");
-            if(!file1.exists())
+            if (!file1.exists())
                 file1.mkdirs();
             log.info(diskFileItem.getName());
-            StringBuffer test= new StringBuffer("");
+            StringBuffer test = new StringBuffer("");
             test.append(path);
             test.append("/Livrables/");
             test.append(diskFileItem.getName());
-            log.info("stringbuffer = "+test);
+            log.info("stringbuffer = " + test);
             file1 = new File(test.toString());
 
             try {
@@ -100,10 +99,11 @@ public class MBProjetDetail {
                 FileOutputStream fileOutputStream = new FileOutputStream(file1);
                 fileOutputStream.write(diskFileItem.get());
                 fileOutputStream.close();
-                log.info("livrable : "+livrable.getFichier());
-                log.info("livrable : "+livrable.getIdLivrable());
+                log.info("livrable : " + livrable.getFichier());
+                log.info("livrable : " + livrable.getIdLivrable());
                 livrable.setFichier(diskFileItem.getName());
-                log.info("livrable : "+livrable.getFichier());
+                log.info("livrable : " + livrable.getFichier());
+                ucProjet.ajouterLeFichierDansLeLivrable(livrable);
             } catch (IOException e) {
                 log.error(e.getMessage());
                 e.printStackTrace();
@@ -142,73 +142,73 @@ public class MBProjetDetail {
         return note;
     }
 
-	public DTOCdc initCdc() {
-		cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
-		if(mBProjetParUtilisateur.getProjet().getEtatProjet().getIdEtatProjet() != 4) {
-			DTOProposition propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet());
-			livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), propositionValidee.getDeveloppeur().getIdUtilisateur());
-		}
-		return cdc;
-	}
+    public DTOCdc initCdc() {
+        cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
+        if (mBProjetParUtilisateur.getProjet().getEtatProjet().getIdEtatProjet() != 4) {
+            DTOProposition propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet());
+            livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), propositionValidee.getDeveloppeur().getIdUtilisateur());
+        }
+        return cdc;
+    }
 
-	public MBProjetParUtilisateur getmBProjetParUtilisateur() {
-		return mBProjetParUtilisateur;
-	}
+    public MBProjetParUtilisateur getmBProjetParUtilisateur() {
+        return mBProjetParUtilisateur;
+    }
 
-	public void setmBProjetParUtilisateur(
-			MBProjetParUtilisateur mBProjetParUtilisateur) {
-		this.mBProjetParUtilisateur = mBProjetParUtilisateur;
-	}
+    public void setmBProjetParUtilisateur(
+            MBProjetParUtilisateur mBProjetParUtilisateur) {
+        this.mBProjetParUtilisateur = mBProjetParUtilisateur;
+    }
 
-	public Double getTarifRestant() {
-		Double tarif = cdc.getTarif();
-		List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
-		if (operationList != null) {
-			for (DTOOperation anOperationList : operationList) {
-				tarif -= anOperationList.getMontant();
-			}
-		}
-		return tarif;
-	}
+    public Double getTarifRestant() {
+        Double tarif = cdc.getTarif();
+        List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
+        if (operationList != null) {
+            for (DTOOperation anOperationList : operationList) {
+                tarif -= anOperationList.getMontant();
+            }
+        }
+        return tarif;
+    }
 
 
-	public DTOCdc getCdc() {
-		return cdc;
-	}
+    public DTOCdc getCdc() {
+        return cdc;
+    }
 
-	public void setCdc(DTOCdc cdc) {
-		this.cdc = cdc;
-	}
+    public void setCdc(DTOCdc cdc) {
+        this.cdc = cdc;
+    }
 
-	public List<DTOLivrable> getLivrableList() {
-		return livrableList;
-	}
+    public List<DTOLivrable> getLivrableList() {
+        return livrableList;
+    }
 
-	public void setLivrableList(List<DTOLivrable> livrableList) {
-		this.livrableList = livrableList;
-	}
+    public void setLivrableList(List<DTOLivrable> livrableList) {
+        this.livrableList = livrableList;
+    }
 
-	public String getDescriptionLivrable() {
-		return descriptionLivrable;
-	}
+    public String getDescriptionLivrable() {
+        return descriptionLivrable;
+    }
 
-	public void setDescriptionLivrable(String descriptionLivrable) {
-		this.descriptionLivrable = descriptionLivrable;
-	}
+    public void setDescriptionLivrable(String descriptionLivrable) {
+        this.descriptionLivrable = descriptionLivrable;
+    }
 
-	public boolean isLivrablePaye() {
-		return livrablePaye;
-	}
+    public boolean isLivrablePaye() {
+        return livrablePaye;
+    }
 
-	public void setLivrablePaye(boolean livrablePaye) {
-		this.livrablePaye = livrablePaye;
-	}
+    public void setLivrablePaye(boolean livrablePaye) {
+        this.livrablePaye = livrablePaye;
+    }
 
-	public String getDescriptionPaiement() {
-		return descriptionPaiement;
-	}
+    public String getDescriptionPaiement() {
+        return descriptionPaiement;
+    }
 
-	public void setDescriptionPaiement(String descriptionPaiement) {
-		this.descriptionPaiement = descriptionPaiement;
-	}
+    public void setDescriptionPaiement(String descriptionPaiement) {
+        this.descriptionPaiement = descriptionPaiement;
+    }
 }

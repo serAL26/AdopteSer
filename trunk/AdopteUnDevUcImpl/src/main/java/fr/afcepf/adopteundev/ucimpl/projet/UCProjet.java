@@ -122,6 +122,11 @@ public class UCProjet implements IUCProjet {
     }
 
     @Override
+    public void ajouterLeFichierDansLeLivrable(DTOLivrable livrable) {
+        businessLivrable.ajouterLeFichierDansLeLivrable(livrable);
+    }
+
+    @Override
     public List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet) {
         return businessLivrable.recupListeLivrableParProjet(dtoProjet);
     }
