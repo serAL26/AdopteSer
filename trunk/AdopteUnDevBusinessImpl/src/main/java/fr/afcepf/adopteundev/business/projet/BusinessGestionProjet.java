@@ -151,7 +151,7 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 		List<Proposition> listeProposition = daoProposition.recupPropValideePourProjet(projet.getIdProjet());
 		DTOProposition dTOPropostion = null;
 		if(listeProposition != null && listeProposition.size() > 0) {
-			EntityToDTO.propositionToDTOProposition(listeProposition.get(0));
+			dTOPropostion = EntityToDTO.propositionToDTOProposition(listeProposition.get(0));
 		}
 		return dTOPropostion;
 	}

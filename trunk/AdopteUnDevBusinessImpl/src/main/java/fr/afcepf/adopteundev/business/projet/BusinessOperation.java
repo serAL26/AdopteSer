@@ -69,22 +69,24 @@ public class BusinessOperation implements IBusinessOperation {
 	@Override
 	public List<DTOOperation> recupListOperationParDevEtType(int idUtilisateur,
 			int idTypeOperation) {
-		List<Projet> listeProjet = daoDeveloppeur
-				.obtenirProjetParDev(idUtilisateur);
-		List<DTOOperation> listeDTOProjet = new ArrayList<>();
-		for (Projet projet : listeProjet) {
-			listeDTOProjet.addAll(EntityToDTO
-					.listeOperationToDTOOperation(daoOperation
-							.recupListOperationParProjetEtType(
-									projet.getIdProjet(), idTypeOperation)));
+		
+		List<DTOOperation> listeDTOOperation = new ArrayList<>();
+		List<Operation> listeOperation = daoOperation.recupListOperationParDevEtType(idUtilisateur, idTypeOperation);
+		if(listeOperation != null && listeOperation.size() > 0) {
+		listeDTOOperation = EntityToDTO.listeOperationToDTOOperation(listeOperation);
 		}
-		return listeDTOProjet;
+		return listeDTOOperation;
 	}
 
 	@Override
 	public List<DTOOperation> recupListOperationParClientEtType(
 			int idUtilisateur, int idTypeOperation) {
-		return null;
+		List<DTOOperation> listeDTOOperation = new ArrayList<>();
+		List<Operation> listeOperation = daoOperation.recupListOperationParClientEtType(idUtilisateur, idTypeOperation);
+		if(listeOperation != null && listeOperation.size() > 0) {
+		listeDTOOperation = EntityToDTO.listeOperationToDTOOperation(listeOperation);
+		}
+		return listeDTOOperation;
 	}
 
 	@Override
