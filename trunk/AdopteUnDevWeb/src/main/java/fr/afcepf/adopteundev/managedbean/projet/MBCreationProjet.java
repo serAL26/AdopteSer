@@ -155,11 +155,12 @@ public class MBCreationProjet {
 		List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
 		for (DiskFileItem diskFileItem :
 			params) {
-			String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+			String path = this.getClass().getResource("").getPath();
 			path = path.split("/WEB-INF")[0];
-			File instal = new File(path + "/Photos");
-			instal.mkdirs();
-			File file1 = new File(path + "/Photos/" + diskFileItem.getName());
+			File file1 = new File(path + "/Livrables");
+			if (!file1.exists())
+				file1.mkdirs();
+			file1 = new File(path + "/Photos/" + diskFileItem.getName());
 			try {
 				FileOutputStream fileOutputStream = new FileOutputStream(file1);
 				fileOutputStream.write(diskFileItem.get());
