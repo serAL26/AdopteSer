@@ -86,14 +86,28 @@ INSERT INTO `adresse` (`id_adresse`, `NUMERO`, `RUE`, `idVille`) VALUES
 
 /*!40000 ALTER TABLE `association_dev_techno` DISABLE KEYS */;
 INSERT INTO `association_dev_techno` (`id_association_dev_techno`, `idDeveloppeur`, `idTechnologie`) VALUES
-  (1, 1, 8),
-  (2, 2, 8),
-  (3, 3, 8),
-  (4, 4, 8),
-  (5, 5, 8),
-  (6, 6, 8),
-  (7, 7, 8),
-  (8, 8, 8);
+  (1, 1, 6),
+  (2, 2, 9),
+  (3, 3, 10),
+  (4, 4, 7),
+  (5, 5, 7),
+  (6, 6, 1),
+  (7, 6, 8),
+  (8, 6, 11),
+  (9, 7, 8),
+  (10, 8, 1),
+  (11, 8, 2),
+  (12, 9, 1),
+  (13, 9, 11),
+  (14, 10, 6),
+  (15, 11, 8),
+  (16, 12, 8),
+  (17, 13, 8),
+  (18, 13, 1),
+  (19, 13, 7),
+  (20, 14, 8),
+  (21, 15, 8),
+  (22, 8, 8);
 /*!40000 ALTER TABLE `association_dev_techno` ENABLE KEYS */;
 
 --
@@ -109,8 +123,26 @@ INSERT INTO `association_dev_techno` (`id_association_dev_techno`, `idDeveloppeu
 INSERT INTO association_typeservice_techno (id_association_typeservice_techno, idTechnologie, idTypeService) VALUES
   (1,1,1),
   (2,1,5),
-  (4,11,6),
-  (5,2,4);
+  (3,2,3),
+  (4,2,10),
+  (5,2,4),
+  (6,3,1),
+  (7,4,1),
+  (8,5,1),
+  (9,6,3),
+  (10,6,4),
+  (11,6,5),
+  (12,7,3),
+  (13,7,4),
+  (14,7,5),
+  (15,7,10),
+  (16,8,3),
+  (17,8,4),
+  (18,8,5),
+  (19,9,5),
+  (20,10,5),
+  (21,11,6),
+  (22,11,7);
 /*!40000 ALTER TABLE `association_typeservice_techno` ENABLE KEYS */;
 
 --
@@ -202,8 +234,13 @@ INSERT INTO `etat_projet` (`id_etat_projet`, `LIBELLE`) VALUES
 
 /*!40000 ALTER TABLE `livrable` DISABLE KEYS */;
 INSERT INTO livrable (id_livrable, date_livraison, ECHEANCE, FICHIER, idProjet, idTypeEvaluation) VALUES
-  (1,2015-02-09,2015-02-12,'/C:/serveurs/apache-tomcat-7.0.42/lib//adopteUnDevUML.pdf',4,3),
-  (2,2015-02-09,2015-02-12,'/C:/serveurs/apache-tomcat-7.0.42/lib//Jellyfish.jpg',5,1);
+  (1,2015-02-09,2015-02-12,'Paypal.pdf',4,3),
+  (2,2015-02-09,2015-02-12,'',5,1),
+  (3,2015-02-09,2015-02-12,'Paypal.pdf',5,3),
+  (4,2015-02-09,2015-02-12,'Paypal.pdf',6,3),
+  (5,2015-02-09,2015-02-12,'Paypal.pdf',7,3),
+  (6,2015-02-09,2015-02-12,'Paypal.pdf',8,3),
+  (7,2015-02-09,2015-02-12,'Paypal.pdf',9,3);
 /*!40000 ALTER TABLE `livrable` ENABLE KEYS */;
 
 --
@@ -228,7 +265,13 @@ INSERT INTO note (id_note, COMMENTAIRE, DATE, NOTE, id_est_note, id_noteur, idPr
   (1,'tres bien travail',2015-02-12,5.0,1,17,5),
   (2,'peut mieux faire',2015-03-12,4.0,1,19,4),
   (3,'mauvaise assimilation du client avec les methodes agiles',2015-03-15,1.0,19,1,4),
-  (4,'excelent client toujours disponible pour repondre aux questions',2015-02-13,5.0,17,1,5);
+  (4,'excelent client toujours disponible pour repondre aux questions',2015-02-13,5.0,17,1,5),
+  (5,'Enfin un developpeur qui sait developper !il propose des idées innovantes et fonctionnelle avec une rapidité d\'execution du niveau d\'un ordinateur nouvelle generation.',2015-02-13,5,6,19,5),
+  (6,'Deux jours ! deux jours pour me faire un site Ecommerce alors que des entreprises du numerique me proposait un an de developpement ! Il a utilisé des nouvelles technologies innovantes tel que le COBOL et le FORTRAN (ironique) qui lui ont fait gagné un temps precieux',2015-02-13,5,6,20,6),
+  (7,'Du bon travail mais il a du maitriser un outil technologique ce qui lui a fait perdre du temps et donc une etoile...',2015-02-13,4,6,21,7),
+  (8,'je veux mon application qui tourne sous blackberry, donc je refuse tous conseils concernant le support d\'utilisation de mon application. le developpeur n\'est pas la pour conseiller un MOA mais pour appliquer les ordre qu\'on lui donne.',2015-02-13,2,6,21,8),
+  (9,'une application developpé à temps ',2015-02-13,4,6,21,9),
+  (10,'Enfin une personne qui aime travailler en agilité et qui s\'adapte à tout changement de planning',2015-02-13,5,6,22,10);
 /*!40000 ALTER TABLE `note` ENABLE KEYS */;
 
 --
@@ -253,7 +296,13 @@ INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeSer
   (1,'DoYouKnow',17,4,'/resources/img/portfolio1.jpg',3),
   (2,'ShowMeYourFace',17,4,'/resources/img/portfolio2.jpg',8),
   (3,'HugNeeded',17,1,'/resources/img/portfolio3.jpg',8),
-  (4,'offrezLuiDes',17,1,'/resources/img/portfolio3.jpg',8);
+  (4,'BoutiqueDeVetement',17,1,'/resources/img/portfolio4.jpg',5),
+  (5,'SiteWebPerso',19,2,'/resources/img/portfolio5.jpg',4),
+  (6,'siteEcommerce',20,2,'/resources/img/portfolio4.jpg',5),
+  (7,'ApplicationMobile',21,2,'/resources/img/portfolio5.jpg',8),
+  (8,'ApplicationMobile',21,2,'/resources/img/portfolio7.jpg',9),
+  (9,'ApplicationMobile',21,2,'/resources/img/portfolio8.jpg',6),
+  (10,'ConversionModeleEnSite',22,1,'/resources/img/portfolio6.jpg',3);
 /*!40000 ALTER TABLE `projet` ENABLE KEYS */;
 --
 -- Definition of table `propostion`

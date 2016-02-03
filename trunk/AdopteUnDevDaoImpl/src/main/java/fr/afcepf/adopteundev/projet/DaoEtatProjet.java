@@ -22,12 +22,10 @@ public class DaoEtatProjet implements IDaoEtatProjet {
 
 	@Override
 	public EtatProjet recupEtatProjetByLibelle(String libelle) {
-		log.info(libelle);
 		Query query = em.createQuery(
 				"SELECT e FROM EtatProjet e WHERE e.libelle like :plibelle")
 				.setParameter("plibelle", libelle);
 		List<EtatProjet> liste = query.getResultList();
-		log.info("size : "+liste.size());
 		if (liste.size() == 1)
 			return liste.get(0);
 		return null;
