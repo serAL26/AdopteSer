@@ -2,6 +2,7 @@ package fr.afcepf.adopteundev.business.projet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -13,6 +14,7 @@ import dto.DTOClient;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import dto.DTOProposition;
+import dto.DTOTechnologie;
 import dto.DTOTypeCdc;
 import entity.Client;
 import entity.Developpeur;
@@ -25,6 +27,7 @@ import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoClient;
 import fr.afcepf.adopteundev.idao.gestion.utilisateur.IDaoDeveloppeur;
 import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
+import fr.afcepf.adopteundev.idao.projet.IDaoTechnologie;
 
 @Remote(IBusinessGestionProjet.class)
 @Stateless
@@ -43,6 +46,9 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	private IDaoDeveloppeur daoDev;
 	@EJB 
 	private IDaoClient daoClient;
+	
+	@EJB 
+	private IDaoTechnologie daoTechnologie;
 
 	@Override
 	public List<DTOProjet> recupProjetParIdClient(Integer id) {
@@ -132,5 +138,10 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 			daoProposition.modifierEtatProposition(proposition2);
 		}
 		return EntityToDTO.propositionToDTOProposition(proposition);
+	}
+
+	@Override
+	public Set<DTOTechnologie> recupTechnoParService(int idTypeService) {
+		return EntityToDTO.listTechnoToDtotechno(daoTechnologie.recupTechnoParService(idTypeService));
 	}
 }
