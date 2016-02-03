@@ -15,7 +15,7 @@
     	    <div class="section">
 	        <div class="container">
 	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-	        	<h2>Proposition(s) non traitée(s)</h2>
+	        	<h2>Nouvelle(s) proposition(s)</h2>
 	        </h:panelGroup>
 	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
 	        	<h2>Proposition(s) en attente de réponse</h2>
@@ -65,10 +65,10 @@
 	       <div class="section">
 	        <div class="container">
 	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-	        	<h2>Proposition(s) non traitée(s)</h2>
+	        	<h2>Proposition(s) validée par le dev(s)</h2>
 	        </h:panelGroup>
 	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
-	        	<h2>Proposition(s) en attente de réponse</h2>
+	        	<h2>Proposition(s) en attente de validation du client</h2>
 	        </h:panelGroup>
 	        	<ui:repeat value="#{mBPropositionParUtilisateur.listeAccepteParDev}" var="prop">
 	        	<div class="row service-wrapper-row" style="background-color: white; border-radius:10px; margin-bottom: 20px">
