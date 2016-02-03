@@ -13,15 +13,17 @@
 			<div class="menuextras">
 				<div class="extras">
 					<ul>
+					
 						<h:panelGroup
 							rendered="#{mBConnexion.typeUtilisateur ==1 || mBConnexion.typeUtilisateur ==2}">
+							<li> #{mBLivrable.obtenirArgent()} <i class="glyphicon glyphicon-euro"></i> </li>
 							<li class="shopping-cart-items"><i
-								class="glyphicon glyphicon-shopping-cart icon-white"></i> <a
+								class="glyphicon glyphicon-shopping-cart icon-white" style="margin-left: 7px"></i> <a
 								href="Panier.jsf"><b>#{mBPanier.obtenirTotalDesDev()}
 										item(s)</b></a></li>
 							<li>Bonjour #{mBConnexion.utilisateur.prenom}</li>
 							<li><b><h:commandLink value="Déconnexion"
-										action="#{mBConnexion.deconnexion()}" /></b></li>
+										action="#{mBConnexion.deconnexion()}" > <i class="glyphicon glyphicon-off"></i> </h:commandLink> </b></li>
 						</h:panelGroup>
 						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur ==3}">
 							<li><b><a href="Login.jsf">Connexion</a></b></li>

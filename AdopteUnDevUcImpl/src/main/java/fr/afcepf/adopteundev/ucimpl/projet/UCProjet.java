@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import java.rmi.server.Operation;
 import java.util.List;
 import java.util.Set;
 
@@ -184,6 +185,16 @@ public class UCProjet implements IUCProjet {
 			retour = operation.getMontant().intValue();
 		}
 		return retour;
+	}
+
+	@Override
+	public List<DTOOperation> obtenirSommeDev(int idUtilisateur, int idTypeOperation) {
+		return businessOperation.recupListOperationParDevEtType(idUtilisateur, idTypeOperation);
+	}
+
+	@Override
+	public List<DTOOperation> obtenirSommeClient(int idUtilisateur, int idTypeOperation) {
+		return businessOperation.recupListOperationParClientEtType(idUtilisateur, idTypeOperation);
 	}
 
 }

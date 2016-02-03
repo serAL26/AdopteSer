@@ -17,7 +17,6 @@ import fr.afcepf.adopteundev.idao.projet.IDaoOperation;
 @Remote(IDaoOperation.class)
 @Stateless
 public class DaoOperation implements IDaoOperation{
-private static Logger log = Logger.getLogger(DaoOperation.class);
 	 @PersistenceContext(unitName="AdopteUnDev")
 	 private EntityManager em;
 	 
@@ -25,10 +24,9 @@ private static Logger log = Logger.getLogger(DaoOperation.class);
 	 private String recupListOperationParClientEtType = "SELECT o FROM Operation o  WHERE o.livrable.projet.client.idUtilisateur = :idClient AND o.typeOperation.idTypeOperation = :idTypeOperation";
 	 private String operationPayeeParLivrable = "SELECT o FROM Operation o WHERE o.typeOperation.idTypeOperation = 1 AND o.livrable.idLivrable = :idLivrable";
 	 private String operationParLivrable = "SELECT o FROM Operation o WHERE o.livrable.idLivrable = :idLivrable";
-	
+	private String operationParTypeOperationEtParDeveloppeur = "SELECT o FROM Operation o WHERE o.livrable.developpeur.idUtilisateur = :idUtilisateur AND  o.typeOperation.idTypeOperation = :idTypeOperation";
 	@Override
 	public Operation creerOperation(Operation operation) {
-		log.info("operation : " +operation.getMontant());
 		em.persist(operation);
 		em.flush();
 		return operation;
@@ -45,7 +43,7 @@ private static Logger log = Logger.getLogger(DaoOperation.class);
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Operation> recupListOperationParClientEtType(int idTypeOperation, int idClient) {
+	public List<Operation> recupListOperationParClientEtType(int idClient, int idTypeOperation) {
 		Query query = em.createQuery(recupListOperationParClientEtType);
 		query.setParameter("idClient", idClient);
 		query.setParameter("idTypeOperation", idTypeOperation);
@@ -63,6 +61,14 @@ private static Logger log = Logger.getLogger(DaoOperation.class);
 	public List<Operation> operationParLivrable(int idLivrable) {
 		Query query = em.createQuery(operationParLivrable);
 		query.setParameter("idLivrable", idLivrable);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Operation> recupListOperationParDevEtType(int idUtilisateur, int idTypeOperation) {
+		Query query = em.createQuery(operationParTypeOperationEtParDeveloppeur);
+		query.setParameter("idUtilisateur", idUtilisateur);
+		query.setParameter("idTypeOperation", idTypeOperation);
 		return query.getResultList();
 	}
 }

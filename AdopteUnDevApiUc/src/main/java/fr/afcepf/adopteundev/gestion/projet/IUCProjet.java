@@ -68,4 +68,6 @@ public interface IUCProjet {
 
 	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet);
 	int obtenirMontantLivrable(DTOLivrable dtoLivrable);
+	List<DTOOperation> obtenirSommeDev(int idUtilisateur, int idTypeProposition);
+	List<DTOOperation> obtenirSommeClient(int idUtilisateur, int idTypeProposition);
 }
