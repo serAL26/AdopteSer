@@ -23,22 +23,49 @@
 				</h:selectOneMenu>
 			</div>
 		</h:panelGroup>
-		<h:panelGrid columns="3" cellpadding="5">
-			<h:outputLabel for="menu" value="Compétences souhaités : " />
-			<p:selectCheckboxMenu id="menu"
-				value="#{mBCatalogueDeveloppeur.listeSelectedTechno}" label="Technologies" filter="true"
-				filterMatchMode="startsWith" panelStyle="width:250px">
-				<f:selectItems value="#{mBCatalogueDeveloppeur.listeTouteTechno}" itemLabel="#{techno.libelle}" var="techno"/>
-			</p:selectCheckboxMenu>
-			<p:commandLink value="Submit" update="display" />
-		</h:panelGrid>
 
 	</ui:define>
 	<ui:define name="body">
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<ui:repeat value="#{mBCatalogueDeveloppeur.listFiche}" var="fiche">
+					<nav class="navbar navbar-default">
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+
+							<div class="collapse navbar-collapse">
+								
+									<h:outputLabel value="Compétences souhaités : " />
+									<h:selectManyCheckbox
+										value="#{mBCatalogueDeveloppeur.listeSelectedTechnoId}">
+										<f:selectItems
+											value="#{mBCatalogueDeveloppeur.listeTouteTechno}"
+											itemLabel="#{techno.technologieLibelle}" var="techno"
+											itemValue="#{techno.idTechnologie}" />
+									</h:selectManyCheckbox>
+									<!--  <p:commandLink value="Submit" update="display" />-->
+							
+								<h:panelGrid columns="3" cellpadding="5">
+									<h:outputLabel value="Notes souhaités : " />
+									<h:selectOneMenu value="#{mBCatalogueDeveloppeur.selectedNote}">
+										<f:selectItem itemValue="-1" itemLabel="-------" />
+										<f:selectItems value="#{mBCatalogueDeveloppeur.listeNote}"
+											var="note" itemLabel="#{note.libelle}"
+											itemValue="#{note.note}" />
+									</h:selectOneMenu>
+
+								</h:panelGrid>
+
+							</div>
+
+							<h:commandButton
+								action="#{mBCatalogueDeveloppeur.rechercherDev()}"
+								value="rechercher" class="btn btn-default">
+								<i class="glyphicon glyphicon-search"></i>
+							</h:commandButton>
+						</div>
+					</nav>
+					<ui:repeat value="#{mBCatalogueDeveloppeur.listeFicheFiltre}"
+						var="fiche">
 						<div class="col-md-4 col-sm-6">
 							<div class="portfolio-item">
 								<div class="portfolio-image">
