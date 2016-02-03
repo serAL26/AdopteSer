@@ -19,7 +19,7 @@ public class DaoPropositionImpl implements IDaoProposition{
 	EntityManager em;
 
 	private String recupPropositionNonLue = "SELECT p FROM Proposition p WHERE p.Lu = 0 AND p.developpeur.idUtilisateur = :idDev AND p.typeProposition.idTypeProposition = 1";
-	private String passerPropositionALue = "UPDATE p FROM Proposition p WHERE p.idProposition = :idProposition";
+	private String passerPropositionALue = "UPDATE Proposition p SET p.Lu = 1 WHERE p.idProposition = :idProposition";
 	private String recupPropositoinNonLuePourClient = "SELECT p FROM Proposition p WHERE  p.Lu = 0 AND p.projet.client.idUtilisateur = :idClient AND p.typeProposition.idTypeProposition = 2";
 	
 	@Override
@@ -69,6 +69,7 @@ public class DaoPropositionImpl implements IDaoProposition{
 	public void passerPropositionEnLue(int idProposition) {
 		Query query = em.createQuery(passerPropositionALue);
 		query.setParameter("idProposition", idProposition);
+		query.executeUpdate();
 	}
 
 	@Override

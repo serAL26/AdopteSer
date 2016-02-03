@@ -48,7 +48,7 @@ public class DaoLivrable implements IDaoLivrable {
     @Override
     public List<Operation> renvoiLOperationEnAttentePaiement(Livrable dtoLivrableToLivrable) {
         Query query = em.createQuery(recupOperationEnAttente);
-        query.setParameter("idLivrable", dtoLivrableToLivrable);
+        query.setParameter("idLivrable", dtoLivrableToLivrable.getIdLivrable());
         return query.getResultList();
     }
 

@@ -103,7 +103,7 @@ public class MBPropositionParUtilisateur {
 	
 	public String recupProposition(DTOProposition prop) {
 		proposition = prop;
-
+		gestionProposition.passerPropositionEnLue(prop.getIdProposition());
 		return "/PropositionDetail.xhtml?faces-redirect=true";
 	}
 
