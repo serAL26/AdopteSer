@@ -105,16 +105,16 @@
 							</h:panelGroup>
 							</div>
 							
-<!-- 					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2 and mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2 and mBProjetDetail.recupNote(mBProjetDetail.mBProjetParUtilisateur.projet.idProjet).size()==1}"> -->
-					<div style="margin-bottom: 10px" class="col-md-6">
+<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2 and mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2 }">
+					<div style="margin-top:20px; margin-bottom: 10px" class="col-md-6">
 					<p:rating value="#{mBProjetDetail.note}"/>
-					<h:inputTextarea value="#{mBProjetDetail.commentaire}" />
+					<h:inputTextarea style="margin-top:15px; min-width:250px; height:8em; border-radius:8px" value="#{mBProjetDetail.commentaire}" />
 					<h:commandButton styleClass="btn" style="margin-top:15px; margin-left:3px"
 													action="#{mBProjetDetail.noter(mBProjetDetail.mBProjetParUtilisateur.projet,mBProjetDetail.mBProjetParUtilisateur.cdc.developpeur ,mBProjetDetail.mBProjetParUtilisateur.projet.client)}"
 													value="Noter" />
 						
 					</div>
-<!-- 					</h:panelGroup> -->
+					</h:panelGroup>
 					</div>
 					</div>
 					</div>

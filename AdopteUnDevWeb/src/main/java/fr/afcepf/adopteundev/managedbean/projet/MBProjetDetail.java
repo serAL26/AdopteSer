@@ -264,7 +264,7 @@ public class MBProjetDetail {
 		noteDto.setProjet(projet);
 		noteDto.setNote(note.doubleValue());
 		ucProjet.ajouterUnCommentaire(noteDto);
-		return "";
+		return "/ListeProjets.xhtml?faces-redirect=true";
 	}
 	
 	public List<DTONote> recupNote(Integer idProjet)

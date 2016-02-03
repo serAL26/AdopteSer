@@ -60,7 +60,7 @@ public class MBConnexion {
 			message = "Login/Mdp errone";
 		}
 		else {
-			retour = "/Messagerie.xhtml?faces-redirect=true";
+			retour = "/Accueil.xhtml?faces-redirect=true";
 			typeUtilisateur = ucUtilisateur.typeUtilisateur(utilisateur.getIdUtilisateur());
 		}
 		return retour;

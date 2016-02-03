@@ -14,6 +14,11 @@
 				listener="#{mBPropositionDetail.affichageModification(mBPropositionDetail.mBPropositionParUtilisateur.cdc)}"
 				type="preRenderView" />
 		</f:metadata>
+		<f:metadata>
+			<f:event
+				listener="#{mbCreerLivrable.remplirListeLivrable(mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet, mBPropositionDetail.mBPropositionParUtilisateur.cdc.developpeur.idUtilisateur)}"
+				type="preRenderView" />
+		</f:metadata>
 	</ui:define>
 	<ui:define name="title">#{mBPropositionDetail.mBPropositionParUtilisateur.cdc.projet.libelle}</ui:define>
 	<ui:define name="body">
@@ -225,8 +230,10 @@
 										remarques</a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
-								<li><a href="#tab3" data-toggle="tab">Ajouter une
-										livrable</a></li>
+								<li><a href="#tab3" data-toggle="tab">Gérer les livrables</a></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
+								<li><a href="#tab3" data-toggle="tab">Livrables</a></li>
 							</h:panelGroup>
 						</ul>
 						<div class="tab-content product-detail-info">
@@ -348,71 +355,68 @@
 									<div class="row"></div>
 								</h:panelGroup>
 							</div>
+							
+							
 							<div class="tab-pane" id="tab3">
-										<ul style="list-style: none; margin-bottom: 10px">
-											<li>
-
-												<h4>Description Livrable :</h4> <h:inputTextarea
-													style="height:8em; margin-bottom:30px" class="form-control"
-													value="#{mbCreerLivrable.description}" />
-											</li>
-											<li>
-												<h4>Montant :</h4> <h:inputText
-													style="max-width:150px; margin-left:10px; margin-right:5px;margin-bottom:30px"
-													class="form-control"
-													value="#{mbCreerLivrable.montantOperation}" />
-											
-												<h4>Date d'echéance :</h4> <h:inputText
-													style="max-width:150px; margin-left:10px; margin-right:5px; float:left; margin-bottom:30px"
-													class="form-control"
-													value="#{mbCreerLivrable.dateEcheance}">
-													<f:convertDateTime pattern="dd/mm/yyyy" />
-												</h:inputText>
-											</li>
-											<li><h:commandLink class="btn pull-right"
-													action="#{mbCreerLivrable.creerLivrable}">
-													<img src="resources/img/plussign5.png" alt="image projet" />
-												</h:commandLink></li>
-										</ul>
+							<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+									<h4>Description livrable</h4>
+									<h:inputTextarea style="height:8em; margin-bottom:30px"
+										class="form-control"
+										value="#{mbCreerLivrable.description}" />
+									<h4>Montant</h4>
+									<h:inputText style="max-width:150px; margin-bottom:30px"
+										class="form-control"
+										value="#{mbCreerLivrable.montantOperation}" />
+									<h4>Date d'échéance</h4>
+									<h:inputText style="max-width:150px; margin-bottom:30px"
+										class="form-control"
+										value="#{mbCreerLivrable.dateEcheance}" >
+									<f:convertDateTime pattern="dd/mm/yyyy" /></h:inputText>
+										
+										<h:commandLink class="btn pull-right"
+													action="#{mbCreerLivrable.creerLivrable}" value="Ajouter">
+										</h:commandLink>
+																						
 										<div class="row"></div>
-										<div style="margin-left: 100px">
-											<h:panelGroup rendered="#{mbCreerLivrable.actionAjout==true}">
+							</h:panelGroup>
+										
+										<div >
+											
 												<div class="section">
 													<div class="container">
 														<div class="row">
 															<!-- Open Vacancies List -->
-															<div class="col-md-8">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>Livrable</th>
-																			<th>Montant</th>
-																			<th>Echéance</th>
-																		</tr>
+															
+															
+															<h5>Vos livrables :</h5>
+										<div class="col-sm-10 table-responsive">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Description</th>
+														<th>Echeance</th>
+														<th>Montant</th>
+													</tr>
+												</thead>
+												<tbody class="table-striped">
+													<ui:repeat value="#{mbCreerLivrable.listeLivrableCrees}" var="livrable">
+														<tr>
+															<td>#{livrable.description}</td>
+															<td>#{livrable.echeance.toString().subSequence(0,10)}</td>
+																<td>#{livrable.lesOperation.iterator().next().montant}</td>
 
-																	</thead>
-																	<tbody class="table-striped">
-																		<ui:repeat var="livrable"
-																			value="#{mbCreerLivrable.listeLivrableCrees}">
-																			<tr>
-																				<!-- Position -->
-																				<td class="job-position">#{livrable.description}</td>
-																				<!-- Location -->
-																				<td class="job-location">
-																					<div class="job-country">#{livrable.lesOperation.iterator().next().montant}</div>
-																				</td>
-																				<td class="job-location">
-																					<div class="job-country">#{livrable.echeance.toString().subSequence(0,10)}</div>
-																				</td>
-																			</tr>
-																		</ui:repeat>
-																	</tbody>
-																</table>
-															</div>
+														</tr>
+													</ui:repeat>
+												</tbody>
+											</table>
+										</div>
+										<div class="row"></div>
+
+
 														</div>
 													</div>
 												</div>
-											</h:panelGroup>
+											
 										</div>
 									
 							</div>
