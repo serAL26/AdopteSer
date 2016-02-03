@@ -63,7 +63,7 @@
 								<h5>Etat du projet</h5>
 								<p>
 									#{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.libelle}
-									<img src="resources/img/done2.png" style="margin-left: 5px" />
+									<img src="resources/img/good1.png" style="margin-left: 5px" />
 								</p>
 							</h:panelGroup>
 						</div>
@@ -88,10 +88,15 @@
 						<!--client = 2-->
 						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
 							<div>
+							<h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur !=null}">
 								<h5>Développeur en charge</h5>
 									<p>#{mBProjetDetail.cdc.developpeur.prenom}
 										#{mBProjetDetail.cdc.developpeur.nom}</p>
-							
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mBProjetDetail.cdc.developpeur ==null}">
+								<h5>Développeur en charge</h5>
+									<p>En cours de sélection</p>
+							</h:panelGroup>
 							</div>
 							<div>
 								<h5>Date de Livrable</h5>
