@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-md-6">
 					<div class="row">
-					<div class="col-lg-offset-1 col-sm-5 product-details">
+					<div class="col-lg-offset-1 col-md-6 product-details">
 						<div>
 							<h5>Tarif</h5>
 						</div>
@@ -89,15 +89,9 @@
 						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
 							<div>
 								<h5>Développeur en charge</h5>
-								<h:panelGroup
-									rendered="#{mBProjetDetail.cdc.developpeur != null}">
 									<p>#{mBProjetDetail.cdc.developpeur.prenom}
 										#{mBProjetDetail.cdc.developpeur.nom}</p>
-								</h:panelGroup>
-								<h:panelGroup
-									rendered="#{mBProjetDetail.cdc.developpeur == null}">
-									<p>En cours de sélection.</p>
-								</h:panelGroup>
+							
 							</div>
 							<div>
 								<h5>Date de Livrable</h5>
@@ -108,15 +102,21 @@
 								<h5>Type du projet</h5>
 								<p>#{mBProjetDetail.mBProjetParUtilisateur.projet.service.libelle}</p>
 							</div>
-						</h:panelGroup>
-					</div>
-					
-					<div class="row">
+							</h:panelGroup>
+							</div>
+							
+					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2 and mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet==2 and mBProjetDetail.recupNote(mBProjetDetail.mBProjetParUtilisateur.projet.idProjet).size()==1}">
+					<div style="margin-bottom: 10px" class="col-md-6">
 					<p:rating value="#{mBProjetDetail.note}" readonly="true"/>
 					<h:inputTextarea value="#{mBProjetDetail.commentaire}" />
 					<h:commandButton styleClass="btn" style="margin-top:15px; margin-left:3px"
-													action="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBDetailDeveloppeur.mBCatalogueDeveloppeur.projetSelectionne.idProjet,mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur)}"
-													value="Ajouter au panier" />
+													action="#{mBProjetDetail.noter(mBProjetDetail.mBProjetParUtilisateur.projet,mBProjetDetail.mBProjetParUtilisateur.cdc.developpeur ,mBProjetDetail.mBProjetParUtilisateur.projet.client)}"
+													value="Noter" />
+						
+					</div>
+					</h:panelGroup>
+					</div>
+					</div>
 					</div>
 					
 					
@@ -194,6 +194,7 @@
 															<td>#{livrable.echeance.toString().subSequence(0,
 																10)}</td>
 																<td>#{mBProjetDetail.obtenirMontantLivrable(livrable)}</td>
+
 														</tr>
 													</ui:repeat>
 												</tbody>

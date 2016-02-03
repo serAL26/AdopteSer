@@ -267,4 +267,10 @@ public class MBProjetDetail {
 		return "";
 	}
 	
+	public List<DTONote> recupNote(Integer idProjet)
+	{
+		List<DTONote> listeNote = ucProjet.recupNoteParProjet(idProjet);
+		return listeNote;
+	}
+	
 }
