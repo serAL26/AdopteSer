@@ -19,10 +19,10 @@ public class DaoTechnologie implements IDaoTechnologie{
 
 	@PersistenceContext(unitName="AdopteUnDev")
 	private EntityManager em;
-	
+
 	private String recupTechnoParDev ="SELECT a.technologie FROM AssociationDevTechno a WHERE a.developpeur.idUtilisateur = :idDev ";
 	private String recupToutesTechno = "SELECT t FROM Technologie t";
-	private String recupTechnoParServ = "SELECT as.technologie FROM AssociationTypeServiceTechno as WHERE as.typeService.idTypeService = :id";
+	private String recupTechnoParServ = "SELECT a.technologie FROM AssociationTypeServiceTechno a WHERE a.typeService.idTypeService = :idserv";
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Technologie> recupTechnoParDev(int idDev) {
@@ -44,7 +44,9 @@ public class DaoTechnologie implements IDaoTechnologie{
 
 	@Override
 	public Set<Technologie> recupTechnoParService(int idTypeService) {
-		List<Technologie> liste = em.createQuery(recupTechnoParServ, Technologie.class).setParameter("id", idTypeService).getResultList();
+		Query query = em.createQuery(recupTechnoParServ);
+		query.setParameter("idserv", idTypeService);
+		List<Technologie> liste = query.getResultList();
 		return new HashSet<>(liste);
 	}
 }
