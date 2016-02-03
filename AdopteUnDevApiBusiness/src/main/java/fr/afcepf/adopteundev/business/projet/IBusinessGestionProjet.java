@@ -1,12 +1,13 @@
 package fr.afcepf.adopteundev.business.projet;
 
 import java.util.List;
+import java.util.Set;
 
 import dto.DTOClient;
 import dto.DTOProjet;
 import dto.DTOProposition;
+import dto.DTOTechnologie;
 import dto.DTOTypeCdc;
-import dto.DTOUtilisateur;
 
 public interface IBusinessGestionProjet {
 
@@ -21,4 +22,6 @@ public interface IBusinessGestionProjet {
 	
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 	public DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet);
+	public Set<DTOTechnologie> recupTechnoParService(int idTypeService);
+	
 }
