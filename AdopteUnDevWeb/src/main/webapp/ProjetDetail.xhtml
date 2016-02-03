@@ -168,6 +168,7 @@
 												<thead>
 													<tr>
 														<th>Description</th>
+														<th>Liens</th>
 														<th>Date de livraison</th>
 														<th>Echeance</th>
 														<th>Reglement du livrable</th>
@@ -179,6 +180,10 @@
 														var="livrable">
 														<tr>
 															<td>#{livrable.description}</td>
+															<td>
+																<a href="Livrables/#{livrable.fichier}">Livrable</a>
+																<h:outputLink value="#{livrable.fichier}">
+																Livrable</h:outputLink></td>
 															<td>#{livrable.dateLivraison.toString().subSequence(0,
 																10)}</td>
 															<td>#{livrable.echeance.toString().subSequence(0,
