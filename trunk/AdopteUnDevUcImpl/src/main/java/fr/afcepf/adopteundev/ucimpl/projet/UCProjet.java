@@ -166,4 +166,9 @@ public class UCProjet implements IUCProjet {
 		return businessLivrable.renvoiLOperationEnAttentePaiement(livrable);
 	}
 
+	@Override
+	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet) {
+		return businessGestionProjet.recupPropositionValidePourProjet(projet);
+	}
+
 }

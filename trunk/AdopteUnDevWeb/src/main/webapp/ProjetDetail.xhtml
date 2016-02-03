@@ -122,7 +122,7 @@
 									<p>#{mBProjetDetail.cdc.existant}</p>
 								</div>
 								<div class="tab-pane" id="tab2">
-									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2}">
+									<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==2} AND #{mBProjetDetail.mBProjetParUtilisateur.projet.etatProjet.idEtatProjet!=4}">
 										<h5>Vos livrables :</h5>
 										<div class="col-sm-12 table-responsive">
 											<table class="table table-bordered">

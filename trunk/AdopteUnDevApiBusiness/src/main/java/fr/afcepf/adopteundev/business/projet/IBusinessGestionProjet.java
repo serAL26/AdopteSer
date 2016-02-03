@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import dto.DTOClient;
+import dto.DTODeveloppeur;
 import dto.DTOProjet;
 import dto.DTOProposition;
 import dto.DTOTechnologie;
@@ -23,5 +24,6 @@ public interface IBusinessGestionProjet {
 	public List<DTOProjet> recupProjerParEtatParUtilisateur(String etat, Integer id);
 	public DTOProposition validerProjet(DTOProposition dtoProposition, int idProjet);
 	public Set<DTOTechnologie> recupTechnoParService(int idTypeService);
+	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet);
 	
 }

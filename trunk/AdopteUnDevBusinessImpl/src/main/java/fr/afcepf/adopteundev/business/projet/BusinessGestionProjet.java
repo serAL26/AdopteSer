@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import assembleur.DTOToEntity;
 import assembleur.EntityToDTO;
 import dto.DTOClient;
+import dto.DTODeveloppeur;
 import dto.DTOEtatProjet;
 import dto.DTOProjet;
 import dto.DTOProposition;
@@ -143,5 +144,11 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	@Override
 	public Set<DTOTechnologie> recupTechnoParService(int idTypeService) {
 		return EntityToDTO.listTechnoToDtotechno(daoTechnologie.recupTechnoParService(idTypeService));
+	}
+
+	@Override
+	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet) {
+		List<Proposition> listeProposition = daoProposition.recupPropValideePourProjet(projet.getIdProjet());
+		return EntityToDTO.propositionToDTOProposition(listeProposition.get(0));
 	}
 }
