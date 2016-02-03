@@ -68,7 +68,11 @@ public class MBProjetDetail {
             descriptionPaiement = "En attente de paiement";
         }
     }
-
+    
+    public int obtenirMontantLivrable(DTOLivrable dtoLivrable) {
+    	return ucProjet.obtenirMontantLivrable(dtoLivrable);
+    }
+    
     public void payerLivrable(DTOLivrable livrable) {
         List<DTOOperation> liste = new ArrayList<>();
         if (livrable.getLesOperation() != null) {
@@ -241,7 +245,6 @@ public class MBProjetDetail {
 	public void setNote(Integer note) {
 		this.note = note;
 	}
-	
     
 	public String getCommentaire() {
 		return commentaire;

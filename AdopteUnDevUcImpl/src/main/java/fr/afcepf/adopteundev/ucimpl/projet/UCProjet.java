@@ -178,7 +178,12 @@ public class UCProjet implements IUCProjet {
 
 	@Override
 	public int obtenirMontantLivrable(DTOLivrable dtoLivrable) {
-		return 0;
+		DTOOperation operation = businessLivrable.renvoiLOperationEnAttentePaiement(dtoLivrable);
+		int retour = 0;
+		if(operation != null) {
+			retour = operation.getMontant().intValue();
+		}
+		return retour;
 	}
 
 }
