@@ -253,7 +253,7 @@ INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeSer
   (1,'DoYouKnow',17,4,'/resources/img/portfolio1.jpg',3),
   (2,'ShowMeYourFace',17,4,'/resources/img/portfolio2.jpg',8),
   (3,'HugNeeded',17,1,'/resources/img/portfolio3.jpg',8),
-  (3,'HugNeeded',17,1,'/resources/img/portfolio3.jpg',8);
+  (4,'offrezLuiDes',17,1,'/resources/img/portfolio3.jpg',8);
 /*!40000 ALTER TABLE `projet` ENABLE KEYS */;
 --
 -- Definition of table `propostion`
