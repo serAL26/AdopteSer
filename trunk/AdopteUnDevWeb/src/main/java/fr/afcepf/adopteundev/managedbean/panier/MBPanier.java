@@ -45,9 +45,10 @@ public class MBPanier {
         initListProjet();
     }
 
-    public void validerPanier() {
+    public String validerPanier() {
     	ucProposition.validerPanier(mBCatalogueDeveloppeur.getPanier());
     	mBCatalogueDeveloppeur.setPanier(new HashMap<Integer, Set<NoDeveloppeur>>());
+    	return "/CatalogueDeveloppeurTestRech.xhtml?faces-redirect=true";
     }
     
     public String retirerDeveloppeurAuPanier(int idProjet,NoDeveloppeur developpeur) {
