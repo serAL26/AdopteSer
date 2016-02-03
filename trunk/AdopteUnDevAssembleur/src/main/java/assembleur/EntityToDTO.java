@@ -468,7 +468,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
-	private static Set<DTOTechnologie> listTechnoToDtotechno(
+	public static Set<DTOTechnologie> listTechnoToDtotechno(
 			Set<Technologie> listEntity) {
 		Set<DTOTechnologie> listDto = new HashSet<DTOTechnologie>();
 		for (Technologie entity : listEntity) {
