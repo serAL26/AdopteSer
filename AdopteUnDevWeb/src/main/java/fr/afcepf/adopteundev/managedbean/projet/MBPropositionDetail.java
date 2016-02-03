@@ -45,14 +45,14 @@ public class MBPropositionDetail {
 		gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
 		//cdc = getFinalCdc();
 	}
-	
+	/*
 	public void payerTousLesLivrables() {
 		List<DTOLivrable> listeDtoLivrable = ucProjet.recupListLivrableParProjetEtParDev(mBPropositionParUtilisateur.getProposition().getProjet(), mBPropositionParUtilisateur.getProposition().getDeveloppeur().getIdUtilisateur());
 		for (DTOLivrable dtoLivrable : listeDtoLivrable) {
 			ucProjet.payerLivrable(ucProjet.renvoiLOperationEnAttentePaiement(dtoLivrable));
 		}
 	}
-	
+	*/
 	public String ajouterRemarque(DTOCdc cdc, DTOProjet projet, DTODeveloppeur developpeur)
 	{		
 		DTOCdc remarque = new DTOCdc();

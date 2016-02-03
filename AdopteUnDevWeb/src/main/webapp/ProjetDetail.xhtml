@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="WEB-INF/lesimports.xhtml">
-	<ui:define name="head">
+    <ui:define name="head">
 
 	</ui:define>
 	<ui:define name="title">#{mBProjetDetail.mBProjetParUtilisateur.projet.libelle}</ui:define>
@@ -191,7 +191,7 @@
 															<td>#{mBProjetDetail.initIsPaye(livrable)}
 																#{mBProjetDetail.descriptionPaiement}</td>
 															<td><input type="file" name="fichierUpload" /> <h:commandButton
-																	action="#{mBProjetDetail.upload()}"
+																	action="#{mBProjetDetail.upload(livrable)}"
 																	value="Envoyer votre livrable" class="btn" /></td>
 														</tr>
 													</ui:repeat>
