@@ -256,13 +256,13 @@ public class MBProjetDetail {
 
 	public String noter(DTOProjet projet, DTODeveloppeur dev, DTOClient client)
 	{
-		Double noteDouble = note.doubleValue();
 		DTONote noteDto = new DTONote();
 		noteDto.setCommentaire(commentaire);
 		noteDto.setDate(new Date());
 		noteDto.setIdEstNote(dev.getIdUtilisateur());
 		noteDto.setIdNoteur(client.getIdUtilisateur());
 		noteDto.setProjet(projet);
+		noteDto.setNote(note.doubleValue());
 		ucProjet.ajouterUnCommentaire(noteDto);
 		return "";
 	}
