@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="WEB-INF/lesimports.xhtml">
     <ui:define name="head">
@@ -15,12 +16,15 @@
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-6">
+				<div class="row">
+					<div class="col-md-6">
 						<div class="product-image-large">
 							<img src="#{mBProjetDetail.mBProjetParUtilisateur.projet.photo}"
 								alt="image projet" />
 						</div>
 					</div>
+					<div class="col-md-6">
+					<div class="row">
 					<div class="col-lg-offset-1 col-sm-5 product-details">
 						<div>
 							<h5>Tarif</h5>
@@ -63,6 +67,7 @@
 								</p>
 							</h:panelGroup>
 						</div>
+						
 						<!--developpeur = 1-->
 						<h:panelGroup rendered="#{mBConnexion.typeUtilisateur==1}">
 							<div>
@@ -105,6 +110,16 @@
 							</div>
 						</h:panelGroup>
 					</div>
+					
+					<div class="row">
+					<p:rating value="#{mBProjetDetail.note}" readonly="true"/>
+					<h:inputTextarea value="#{mBProjetDetail.commentaire}" />
+					<h:commandButton styleClass="btn" style="margin-top:15px; margin-left:3px"
+													action="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBDetailDeveloppeur.mBCatalogueDeveloppeur.projetSelectionne.idProjet,mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur)}"
+													value="Ajouter au panier" />
+					</div>
+					
+					
 					<div class="col-sm-12">
 						<div class="tabbable">
 							<!-- Tabs -->
