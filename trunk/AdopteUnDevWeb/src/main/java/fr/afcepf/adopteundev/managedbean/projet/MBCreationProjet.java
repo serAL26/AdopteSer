@@ -101,7 +101,7 @@ public class MBCreationProjet {
 			System.out.println("fonctionnalite : "
 					+ fonctionna.getCommentaire());
 		}
-
+		commentaire = "";
 		setActionAjout(false);
 	}
 
