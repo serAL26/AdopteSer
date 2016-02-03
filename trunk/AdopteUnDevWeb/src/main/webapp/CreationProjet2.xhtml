@@ -92,14 +92,10 @@
 							</div>
 							
 							
-							<div style="margin-right: 50px">
-								<h:commandButton class="btn pull-right" action="#{mbCreationProjet.afficherPanelCdc()}"
-									value="Suivant" ></h:commandButton>
-							</div>
 							
 							<!-- Pour le premier rendere -->
 							
-							<h:panelGroup rendered="#{mbCreationProjet.panelCdc==true}" id="panelCdc">
+							
 							<div
 								style="margin-top: 70px; margin-bottom: 20px; border: 1px solid #535b60; max-height: 2px"></div>
 
@@ -155,9 +151,7 @@
 									</div>
 								</div>
 							</div>
-							<h:commandButton id="panelFonct" style="margin-right: 50px; margin-bottom:20px"
-								action="#{mbCreationProjet.afficherPanelFonctionnalite()}" class="btn pull-right" value="Suivant" />
-							</h:panelGroup>
+						
 						</div>
 						</div>
 						<div>
@@ -168,7 +162,7 @@
 						<!-- Dans le renderd -->
 						
 						
-						<h:panelGroup rendered="#{mbCreationProjet.panelFonctionnalite==true}">
+						
 						<div
 							style="margin-bottom: 20px; border: 1px solid #535b60; max-height: 2px; clear: both">
 						</div>
@@ -200,6 +194,7 @@
 										</h:commandLink></li>
 								</ul>
 								<div style="margin-left: 100px">
+								
 								<h:panelGroup rendered="#{mbCreationProjet.actionAjout==false}">
 										<div class="section">
 											<div class="container">
@@ -237,7 +232,6 @@
 							
 							</div>
 						</div>
-						</h:panelGroup>
 					</div>
 				</div>
 			</div>
