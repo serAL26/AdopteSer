@@ -225,7 +225,12 @@ public class EntityToDTO {
 		dTOLivrable
 				.setTypeEvaluation(typeEvaluationToDTOTypeEvaluation(livrable
 						.getTypeEvaluation()));
-		// dTOLivrable.setLesOperation(listOperationToDtoOperation(livrable.getLesOperation()));
+//		if(livrable.getLesOperation() != null && livrable.getLesOperation().size() > 0) {
+//			dTOLivrable.setLesOperation(new HashSet<DTOOperation>());
+//			for (Operation operation : livrable.getLesOperation()) {
+//				dTOLivrable.getLesOperation().add(operationToDTOOperation(operation));
+//			}
+//		}
 		return dTOLivrable;
 	}
 

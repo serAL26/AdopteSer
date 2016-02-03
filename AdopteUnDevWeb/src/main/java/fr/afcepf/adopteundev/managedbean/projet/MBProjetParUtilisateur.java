@@ -126,7 +126,7 @@ public class MBProjetParUtilisateur {
 
     public String recupProjet(DTOProjet proj) {
         projet = proj;
-
+        
         return "/ProjetDetail.xhtml?faces-redirect=true";
     }
 

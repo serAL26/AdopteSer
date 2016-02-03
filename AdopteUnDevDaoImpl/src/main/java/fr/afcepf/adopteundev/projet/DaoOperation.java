@@ -22,6 +22,7 @@ public class DaoOperation implements IDaoOperation{
 	 private String recupListOperationParProjetEtTypeOperation = "SELECT o FROM Operation o  WHERE o.livrable.projet.idProjet = :idProjet AND o.typeOperation.idTypeOperation = :idTypeOperation";
 	 private String recupListOperationParClientEtType = "SELECT o FROM Operation o  WHERE o.livrable.projet.client.idUtilisateur = :idClient AND o.typeOperation.idTypeOperation = :idTypeOperation";
 	 private String operationPayeeParLivrable = "SELECT o FROM Operation o WHERE o.typeOperation.idTypeOperation = 1 AND o.livrable.idLivrable = :idLivrable";
+	 private String operationParLivrable = "SELECT o FROM Operation o WHERE o.livrable.idLivrable = :idLivrable";
 	
 	@Override
 	public Operation creerOperation(Operation operation) {
@@ -53,5 +54,12 @@ public class DaoOperation implements IDaoOperation{
 		Query query = em.createQuery(operationPayeeParLivrable);
 		query.setParameter("idLivrable", idLivrable);
 		return  query.getResultList();
+	}
+
+	@Override
+	public List<Operation> operationParLivrable(int idLivrable) {
+		Query query = em.createQuery(operationParLivrable);
+		query.setParameter("idLivrable", idLivrable);
+		return query.getResultList();
 	}
 }
