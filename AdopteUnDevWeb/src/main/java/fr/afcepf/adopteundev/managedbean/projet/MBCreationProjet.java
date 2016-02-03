@@ -107,9 +107,9 @@ public class MBCreationProjet {
 	}
 
 	public void remplirChamps() {
-		besoin ="Les particuliers et les micro-entreprises ont besoin d’être aiguillés, accompagnés dans leur"+ "recherche de solution informatique. Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum."; 
+		besoin ="Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum."; 
 		contexte = "Les solutions de mise en relation de professionnels de l’informatique avec des clients à la recherche de développeurs ne sont pas prévues aux particuliers ou aux micro-entreprises. ";
-		existant = "La majorité des sites proposent un système d’abonnement en plus de se rémunérer en récupérant un pourcentage des transactions. Les différents abonnements permettent d’acquérir des fonctionnalités (ou avantages) supplémentaires. Notre site ne prévoit pas de système d’abonnement mais se rémunère uniquement sur les transactions.";
+		existant = "La majorité des sites proposent un système d’abonnement en plus de se rémunérer en récupérant un pourcentage des transactions.";
 		tarif = 1500.0;
 		dateFin = "04/02/2015";
 
