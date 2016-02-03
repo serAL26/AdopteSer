@@ -183,7 +183,6 @@ public class MBCatalogueDeveloppeur {
 		listeNote = ucUtilisateur.recupListNotes();
 		listeTouteTechno = new ArrayList<>();
 		listeTouteTechno = ucUtilisateur.recupToutesTechnos();
-		// TODO A decommenter apres le test
 		listeSelectedTechno = new ArrayList<>();
 		listFiche = initFichesDeveloppeur();
 		listeFicheFiltre = initFichesDeveloppeur();
