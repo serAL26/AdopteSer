@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="WEB-INF/lesimports.xhtml">
 	<ui:define name="head">
@@ -12,14 +13,17 @@
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="row">
+					<div class="col-md-6">
 						<div class="product-image-large">
 							<img
 								src="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.photo}"
 								alt="image projet" />
 						</div>
 					</div>
-					<div class="col-sm-6 product-details">
+					<div class="col-md-6">
+					<div class="row">
+					<div class="col-md-6 product-details">
 						<ul style="list-style: none">
 							<li>
 								<h4>#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur.prenom}
@@ -51,7 +55,25 @@
 							</li>
 						</ul>
 					</div>
-
+					
+					<h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
+					<div style="margin-bottom: 10px" onload="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.initListeProjet()}" class="col-md-6">
+				<h4><b>Sélectionnez votre projet</b></h4>
+				<h:selectOneMenu style="max-width:200px" class="form-control" id="listprojet"
+					value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.projetSelectionne.idProjet}">
+					<f:selectItem itemValue="-1" itemLabel="----------" />
+					<f:selectItems var="projet"
+						value="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.projetList}"
+						itemLabel="#{projet.libelle}" itemValue="#{projet.idProjet}" />
+				</h:selectOneMenu>
+				<h:commandButton styleClass="btn" style="margin-top:15px; margin-left:3px"
+													action="#{mBDetailDeveloppeur.mBCatalogueDeveloppeur.ajouterDeveloppeurAuPanier(mBDetailDeveloppeur.mBCatalogueDeveloppeur.projetSelectionne.idProjet,mBDetailDeveloppeur.mBCatalogueDeveloppeur.dev.developpeur)}"
+													value="Ajouter au panier" />
+			</div>
+			</h:panelGroup>
+			</div>
+				</div>
+</div>
 					<div class="col-sm-12">
 						<div class="tabbable">
 							<!-- Tabs -->

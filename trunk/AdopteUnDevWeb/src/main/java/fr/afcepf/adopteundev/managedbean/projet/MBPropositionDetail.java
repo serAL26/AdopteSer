@@ -113,10 +113,11 @@ public class MBPropositionDetail {
 		ucProjet.modifierProposition(prop);
 	}
 	
-	public void validerLeProjet(DTOProposition proposition)
+	public String validerLeProjet(DTOProposition proposition)
 	{
 		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
 		paiement=true;
+		return "/ListePropositions.xhtml?faces-redirect=true";
 	}
 	
 	public void payerProjet()
@@ -217,9 +218,5 @@ public class MBPropositionDetail {
 
 	public void setTarifRemarque(Double tarifRemarque) {
 		this.tarifRemarque = tarifRemarque;
-	}
-	
-	
-	
-	
+	}	
 }

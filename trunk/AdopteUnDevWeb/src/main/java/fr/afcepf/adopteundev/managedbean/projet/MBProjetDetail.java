@@ -19,9 +19,12 @@ import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.log4j.Logger;
 
 import dto.DTOCdc;
+import dto.DTOClient;
+import dto.DTODeveloppeur;
 import dto.DTOLivrable;
 import dto.DTONote;
 import dto.DTOOperation;
+import dto.DTOProjet;
 import dto.DTOProposition;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
@@ -41,6 +44,8 @@ public class MBProjetDetail {
     private String descriptionLivrable;
     private IUCProjet ucProjet;
     private List<DTOLivrable> livrableList = new ArrayList<>();
+    private Integer note = 0;
+    private String commentaire="";
 
     @ManagedProperty(value = "#{mBProjetParUtilisateur}")
     private MBProjetParUtilisateur mBProjetParUtilisateur;
@@ -228,5 +233,35 @@ public class MBProjetDetail {
     public void setDescriptionPaiement(String descriptionPaiement) {
         this.descriptionPaiement = descriptionPaiement;
     }
+
+	public Integer getNote() {
+		return note;
+	}
+
+	public void setNote(Integer note) {
+		this.note = note;
+	}
+	
+    
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	public String noter(DTOProjet projet, DTODeveloppeur dev, DTOClient client)
+	{
+		Double noteDouble = note.doubleValue();
+		DTONote noteDto = new DTONote();
+		noteDto.setCommentaire(commentaire);
+		noteDto.setDate(new Date());
+		noteDto.setIdEstNote(dev.getIdUtilisateur());
+		noteDto.setIdNoteur(client.getIdUtilisateur());
+		noteDto.setProjet(projet);
+		ucProjet.ajouterUnCommentaire(noteDto);
+		return "";
+	}
 	
 }

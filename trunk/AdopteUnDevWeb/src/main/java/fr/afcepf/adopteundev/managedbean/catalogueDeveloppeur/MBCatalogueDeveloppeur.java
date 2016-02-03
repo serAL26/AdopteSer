@@ -67,7 +67,7 @@ public class MBCatalogueDeveloppeur {
 		}
 		setDeveloppeur.add(developpeur);
 		panier.put(idProjet, setDeveloppeur);
-		return "";
+		return"/CatalogueDeveloppeur.xhtml?faces-redirect=true";
 	}
 
 	public List<NoDeveloppeur> getListeDevWeb() {
