@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import dto.DTODeveloppeur;
 import dto.DTOLivrable;
 import dto.DTOOperation;
+import dto.DTOProjet;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
@@ -34,7 +35,11 @@ public class MbCreationLivrable {
 	public void obtenirLesInterfaces() {
 		ucProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
-		listeLivrableCrees = new ArrayList<>();
+	}
+	
+	public void remplirListeLivrable(DTOProjet dtoProjet, Integer idDeveloppeur)
+	{
+		listeLivrableCrees = ucProjet.recupListLivrableParProjetEtParDev(dtoProjet, idDeveloppeur);
 	}
 
 	public String creerLivrable() {
