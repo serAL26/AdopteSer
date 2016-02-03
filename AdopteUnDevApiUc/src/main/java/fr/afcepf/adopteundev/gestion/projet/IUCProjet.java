@@ -67,4 +67,5 @@ public interface IUCProjet {
     DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable);
 
 	public DTOProposition recupPropositionValidePourProjet(DTOProjet projet);
+	int obtenirMontantLivrable(DTOLivrable dtoLivrable);
 }

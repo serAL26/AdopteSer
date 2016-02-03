@@ -49,6 +49,7 @@ public class MBConnexion {
 	public String deconnexion() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().invalidateSession();
+		typeUtilisateur = 3;
 		return "/Accueil.xhtml?faces-redirect=true";
 	}
 

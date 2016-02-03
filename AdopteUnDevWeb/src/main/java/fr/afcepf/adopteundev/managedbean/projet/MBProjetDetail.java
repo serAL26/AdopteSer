@@ -40,7 +40,7 @@ public class MBProjetDetail {
     private String descriptionPaiement;
     private String descriptionLivrable;
     private IUCProjet ucProjet;
-    private List<DTOLivrable> livrableList;
+    private List<DTOLivrable> livrableList = new ArrayList<>();
 
     @ManagedProperty(value = "#{mBProjetParUtilisateur}")
     private MBProjetParUtilisateur mBProjetParUtilisateur;
@@ -148,11 +148,16 @@ public class MBProjetDetail {
 	public DTOCdc initCdc() {
 		cdc = gestionCdc.recupCdcFinalParidProjet(mBProjetParUtilisateur.getProjet().getIdProjet());
 		if(mBProjetParUtilisateur.getProjet().getEtatProjet().getIdEtatProjet() != 4) {
-			DTOProposition propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet());
+			DTOProposition propositionValidee = new DTOProposition();
+ 					if((propositionValidee = ucProjet.recupPropositionValidePourProjet(mBProjetParUtilisateur.getProjet())) != null){
 			livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), propositionValidee.getDeveloppeur().getIdUtilisateur());
+ 					}
 		}
 		else if (mBConnexion.getTypeUtilisateur() == 1){
 			livrableList = ucProjet.recupListLivrableParProjetEtParDev(mBProjetParUtilisateur.getProjet(), mBConnexion.getUtilisateur().getIdUtilisateur());
+		}
+		else {
+			livrableList = new ArrayList<>();
 		}
 		return cdc;
 	}
