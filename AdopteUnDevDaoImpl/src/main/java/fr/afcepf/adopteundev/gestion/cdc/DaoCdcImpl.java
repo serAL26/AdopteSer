@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
@@ -25,6 +26,10 @@ public class DaoCdcImpl implements IDaoCdc {
 	@PersistenceContext(unitName = "AdopteUnDev")
 	EntityManager em;
 
+	
+	private String recupCdcParIdProjet = "SELECT c FROM Cdc c WHERE c.projet.idProjet = :idProjet";
+	private String recupCdcFinalParidProjet = "SELECT c FROM Cdc c WHERE c.projet.idProjet = :idProjet AND c.typeCdc.idTypeCdc = 2";
+	
 	@Override
 	public Cdc ajouterCdc(Cdc cdc) {
 		em.persist(cdc);
@@ -96,10 +101,10 @@ public class DaoCdcImpl implements IDaoCdc {
 	}
 
 	@Override
-	public Cdc recupCdcFinalParidProjet(Integer idProjet) {
+	public Cdc recupCdcFinalParidProjet(int idProjet) {
 		TypedQuery<Cdc> query = em
 				.createQuery(
-						"SELECT c FROM Cdc c WHERE c.projet.idProjet=:idProjet AND c.typeCdc.idTypeCdc = 2",
+						"SELECT c FROM Cdc c WHERE c.projet.idProjet = :idProjet AND c.typeCdc.idTypeCdc = 2",
 						Cdc.class).setParameter("idProjet", idProjet);
 		return query.getSingleResult();
 	}
@@ -109,5 +114,12 @@ public class DaoCdcImpl implements IDaoCdc {
 		TypedQuery<TypeCdc> query = em.createQuery("Select t from TypeCdc t where t.idTypeCdc = 1", TypeCdc.class);
 		System.out.println(query.getSingleResult().getLibelle());
 		return query.getSingleResult();
+	}
+
+	@Override
+	public List<Cdc> recupCdcParidProjet(Integer idProjet) {
+		Query query = em.createQuery(recupCdcParIdProjet);
+		query.setParameter("idProjet", idProjet);
+		return query.getResultList();
 	}
 }

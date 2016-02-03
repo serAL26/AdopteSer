@@ -20,5 +20,6 @@ public interface IDaoCdc {
 	Cdc recupCdcParId(Integer id);
 	List<Cdc> recupRemarqueParIdDevEtIdProjet(Integer idDev, Integer idProjet);
 
-	Cdc recupCdcFinalParidProjet(Integer idProjet);
+	Cdc recupCdcFinalParidProjet(int idProjet);
+	List<Cdc> recupCdcParidProjet(Integer idProjet);
 }

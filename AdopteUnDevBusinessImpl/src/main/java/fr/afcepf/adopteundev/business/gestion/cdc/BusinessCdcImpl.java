@@ -174,8 +174,13 @@ public class BusinessCdcImpl implements IBusinessCdc {
 
 	@Override
 	public DTOCdc recupCdcFinalParidProjet(Integer idProjet) {
-		Cdc cdc = daoCdc.recupCdcFinalParidProjet(idProjet);
-		DTOCdc dtoCdc = EntityToDTO.cdcToDTOCdc(cdc);
+		List<Cdc> cdc = daoCdc.recupCdcParidProjet(idProjet);
+		DTOCdc dtoCdc = new DTOCdc();
+		for (Cdc cdc2 : cdc) {
+			if(cdc2.getTypeCdc().getIdTypeCdc() == 2) {
+				dtoCdc = EntityToDTO.cdcToDTOCdc(cdc2);
+			}
+		}
 		return dtoCdc;
 	}
 
