@@ -42,18 +42,18 @@ public class BusinessLivrable implements IBusinessLivrable {
     @Override
     public List<DTOLivrable> recupListeLivrableParProjet(DTOProjet dtoProjet) {
         List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjet(dtoProjet.getIdProjet());
-        List<DTOLivrable> listeDto= new ArrayList<>();
-        for (Livrable livrable : listeLivrable){
-        	DTOLivrable dtoLivrable = EntityToDTO.livrableToDTOLivrable(livrable);
-        	List<Operation> listeOperation = daoOperation.operationParLivrable(livrable.getIdLivrable()); 
-        	if(listeOperation.size() > 0) {
-        		dtoLivrable.setLesOperation(new HashSet<DTOOperation>());
-        		for (Operation operation : listeOperation) {
-        			dtoLivrable.getLesOperation().add(EntityToDTO.operationToDTOOperation(operation));
-				}
-        	}
-        	listeDto.add(dtoLivrable);
-		}
+        List<DTOLivrable> listeDto = new ArrayList<>();
+        for (Livrable livrable : listeLivrable) {
+            DTOLivrable dtoLivrable = EntityToDTO.livrableToDTOLivrable(livrable);
+            List<Operation> listeOperation = daoOperation.operationParLivrable(livrable.getIdLivrable());
+            if (listeOperation.size() > 0) {
+                dtoLivrable.setLesOperation(new HashSet<DTOOperation>());
+                for (Operation operation : listeOperation) {
+                    dtoLivrable.getLesOperation().add(EntityToDTO.operationToDTOOperation(operation));
+                }
+            }
+            listeDto.add(dtoLivrable);
+        }
         return listeDto;
     }
 
@@ -73,32 +73,38 @@ public class BusinessLivrable implements IBusinessLivrable {
         return retour;
     }
 
-	@Override
-	public List<DTOLivrable> recupListeLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur) {
-		List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjetEtParDev(dtoProjet.getIdProjet(), idDeveloppeur);
-		 List<DTOLivrable> listeDto= new ArrayList<>();
-	        for (Livrable livrable : listeLivrable){
-	        	DTOLivrable dtoLivrable = EntityToDTO.livrableToDTOLivrable(livrable);
-	        	List<Operation> listeOperation = daoOperation.operationParLivrable(livrable.getIdLivrable()); 
-	        	if(listeOperation.size() > 0) {
-	        		dtoLivrable.setLesOperation(new HashSet<DTOOperation>());
-	        		for (Operation operation : listeOperation) {
-	        			dtoLivrable.getLesOperation().add(EntityToDTO.operationToDTOOperation(operation));
-					}
-	        	}
-	        	listeDto.add(dtoLivrable);
-			}
-	        return listeDto;
-	    }
+    @Override
+    public List<DTOLivrable> recupListeLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur) {
+        List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjetEtParDev(dtoProjet.getIdProjet(), idDeveloppeur);
+        List<DTOLivrable> listeDto = new ArrayList<>();
+        for (Livrable livrable : listeLivrable) {
+            DTOLivrable dtoLivrable = EntityToDTO.livrableToDTOLivrable(livrable);
+            List<Operation> listeOperation = daoOperation.operationParLivrable(livrable.getIdLivrable());
+            if (listeOperation.size() > 0) {
+                dtoLivrable.setLesOperation(new HashSet<DTOOperation>());
+                for (Operation operation : listeOperation) {
+                    dtoLivrable.getLesOperation().add(EntityToDTO.operationToDTOOperation(operation));
+                }
+            }
+            listeDto.add(dtoLivrable);
+        }
+        return listeDto;
+    }
 
-	@Override
-	public DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable) {
-		List<Operation> listeOperation = daoLivrable.renvoiLOperationEnAttentePaiement(DTOToEntity.dtoLivrableToLivrable(livrable));
-		DTOOperation dtoOperation = null;
-		if(listeOperation != null && listeOperation.size() > 0) {
-			dtoOperation = EntityToDTO.operationToDTOOperation(listeOperation.get(0));
-		}
-		return dtoOperation;
-	}
+    @Override
+    public DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable) {
+        List<Operation> listeOperation = daoLivrable.renvoiLOperationEnAttentePaiement(DTOToEntity.dtoLivrableToLivrable(livrable));
+        DTOOperation dtoOperation = null;
+        if (listeOperation != null && listeOperation.size() > 0) {
+            dtoOperation = EntityToDTO.operationToDTOOperation(listeOperation.get(0));
+        }
+        return dtoOperation;
+    }
+
+    @Override
+    public void ajouterLeFichierDansLeLivrable(DTOLivrable livrable) {
+        Livrable livrable1 = DTOToEntity.dtoLivrableToLivrable(livrable);
+        daoLivrable.ajouterLeFichierDansLeLivrable(livrable1);
+    }
 
 }
