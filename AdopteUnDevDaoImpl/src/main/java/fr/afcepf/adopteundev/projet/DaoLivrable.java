@@ -22,7 +22,6 @@ public class DaoLivrable implements IDaoLivrable {
     private String recupListeLivrableParProjet = "SELECT l FROM Livrable l WHERE l.projet.idProjet = :id";
     private String recupListeLivrableParProjetEtParDev = "SELECT l FROM Livrable l WHERE l.projet.idProjet = :id AND l.developpeur.idUtilisateur = :idDeveloppeur";
     private String recupOperationEnAttente = "SELECT o FROM Operation o WHERE o.livrable.idLivrable = :idLivrable AND o.typeOperation.idTypeOperation = 3";
-    //private String ajouterLeFichierDansLeLivrable = "UPDATE l FROM Livrable l WHERE l.idLivrable = :id";
 
     @Override
     public Livrable creerLivrable(Livrable livrable) {
@@ -55,10 +54,8 @@ public class DaoLivrable implements IDaoLivrable {
 
     @Override
     public void ajouterLeFichierDansLeLivrable(Livrable livrable) {
-        Livrable livrable1 = em.find(Livrable.class,livrable.getIdLivrable());
-        em.getTransaction().begin();
-        livrable1.setFichier(livrable.getFichier());
-        em.getTransaction().commit();
+        TypedQuery<Livrable> query = em.createQuery("UPDATE l FROM Livrable l WHERE l.idLivrable = :idLivrable", Livrable.class)
+                .setParameter("idLivrable",livrable.getIdLivrable());
     }
 
 }
