@@ -4,8 +4,10 @@ import dto.*;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
 import fr.afcepf.adopteundev.gestion.utilisateur.IUcUtilisateur;
+import fr.afcepf.adopteundev.managedbean.catalogueDeveloppeur.TechnoConverter;
 import fr.afcepf.adopteundev.managedbean.util.ContextFactory;
 import fr.afcepf.adopteundev.managedbean.util.UcName;
+
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
@@ -16,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,307 +32,318 @@ import java.util.Set;
 @ManagedBean(name = "mbCreationProjet")
 @SessionScoped
 public class MBCreationProjet {
-    private Logger log = Logger.getLogger(MBCreationProjet.class);
-    private Set<DTOTypeFonctionnalite> listTypeFonctionn;
-    private DTOTypeFonctionnalite selectedTypeFonction = new DTOTypeFonctionnalite();
-    private List<DTOFonctionnalite> listeFonctionnaliteCree = new ArrayList<>();
-    private String commentaire;
-    private String besoin;
-    private String contexte;
-    private String existant;
-    private String dateFin;
-    private Double tarif;
-    private boolean panelCdc = false;
-    private boolean panelFonctionnalite = false;
-    private Set<DTOTypeAppli> listeAppli;
-    private Set<DTOTypeService> listeServices;
-    private DTOTypeAppli selectedAppli;
-    private DTOTypeService selectedService;
-    private DTOProjet projetcree;
-    private UploadedFile file;
-    private boolean actionAjout = true;
-    private IUCProjet ucProjet;
-    private DTOCdc cdc;
-    private IUcUtilisateur gestionUtilisateur;
-    private IUCGestionCdc gestionCdc;
+	private Logger log = Logger.getLogger(MBCreationProjet.class);
+	private Set<DTOTypeFonctionnalite> listTypeFonctionn;
+	private DTOTypeFonctionnalite selectedTypeFonction = new DTOTypeFonctionnalite();
+	private List<DTOFonctionnalite> listeFonctionnaliteCree = new ArrayList<>();
+	private String commentaire;
+	private String besoin;
+	private String contexte;
+	private String existant;
+	private String dateFin;
+	private Double tarif;
+	private boolean panelCdc = false;
+	private boolean panelFonctionnalite = false;
+	private Set<DTOTypeAppli> listeAppli;
+	private Set<DTOTypeService> listeServices;
+	private DTOTypeAppli selectedAppli;
+	private DTOTypeService selectedService;
+	private DTOProjet projetcree;
+	private UploadedFile file;
+	private boolean actionAjout = true;
+	private IUCProjet ucProjet;
+	private DTOCdc cdc;
+	private IUcUtilisateur gestionUtilisateur;
+	private IUCGestionCdc gestionCdc;
+	private Set<DTOTechnologie> listeTechnoParService;
+	@PostConstruct
+	public void init() {
+		ucProjet = (IUCProjet) ContextFactory
+				.createProxy(UcName.UCGESTIONPROJET);
+		gestionUtilisateur = (IUcUtilisateur) ContextFactory
+				.createProxy(UcName.UCGESTIONUTILISATEUR);
+		gestionCdc = (IUCGestionCdc) ContextFactory
+				.createProxy(UcName.UCGESTIONCDC);
+		listeAppli = ucProjet.rechercherTousApplication();
+		listTypeFonctionn = gestionCdc.recupTousLesTypesFonctionnalites();
+		selectedAppli = new DTOTypeAppli();
+		selectedService = new DTOTypeService();
+		projetcree = new DTOProjet();
 
-    @PostConstruct
-    public void init() {
-         ucProjet = (IUCProjet) ContextFactory
-                .createProxy(UcName.UCGESTIONPROJET);
-        gestionUtilisateur = (IUcUtilisateur) ContextFactory
-                .createProxy(UcName.UCGESTIONUTILISATEUR);
-        gestionCdc = (IUCGestionCdc) ContextFactory
-                .createProxy(UcName.UCGESTIONCDC);
-        listeAppli = ucProjet.rechercherTousApplication();
-        listTypeFonctionn = gestionCdc.recupTousLesTypesFonctionnalites();
-        selectedAppli = new DTOTypeAppli();
-        selectedService = new DTOTypeService();
-        projetcree = new DTOProjet();
+		panelCdc = false;
+		panelFonctionnalite = false;
+	}
 
-        panelCdc = false;
-        panelFonctionnalite = false;
-    }
+	public void remplirServices(AjaxBehaviorEvent event) {
+		if (selectedAppli.getIdTypeAppli() >  0) {
+			listeServices = ucProjet.recupTypeAppliById(
+					selectedAppli.getIdTypeAppli()).getLesServices();
+		} else {
+			if (listeServices != null)
+				listeServices.clear();
+		}
 
-    public void remplirServices(AjaxBehaviorEvent event) {
-        if (selectedAppli.getIdTypeAppli() >  0) {
-            listeServices = ucProjet.recupTypeAppliById(
-                    selectedAppli.getIdTypeAppli()).getLesServices();
-        } else {
-            if (listeServices != null)
-                listeServices.clear();
-        }
+	}
 
-    }
+	public void ajouterFonctionnaliteSaisi() {
+		DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
+		fonctionnaliteCree.setCommentaire(commentaire);
+		System.out.println("type fonctionnalite "
+				+ selectedTypeFonction.getIdTypeFonctionnalite());
+		selectedTypeFonction = gestionCdc
+				.recupTypeFonctionnaliteParID(selectedTypeFonction
+						.getIdTypeFonctionnalite());
+		fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
+		System.out.println("fonctionnalite id : "
+				+ fonctionnaliteCree.getIdFonctionnalite());
+		listeFonctionnaliteCree.add(fonctionnaliteCree);
+		for (DTOFonctionnalite fonctionna : listeFonctionnaliteCree) {
+			System.out.println("fonctionnalite : "
+					+ fonctionna.getCommentaire());
+		}
 
-    public void ajouterFonctionnaliteSaisi() {
-        DTOFonctionnalite fonctionnaliteCree = new DTOFonctionnalite();
-        fonctionnaliteCree.setCommentaire(commentaire);
-        System.out.println("type fonctionnalite "
-                + selectedTypeFonction.getIdTypeFonctionnalite());
-        selectedTypeFonction = gestionCdc
-                .recupTypeFonctionnaliteParID(selectedTypeFonction
-                        .getIdTypeFonctionnalite());
-        fonctionnaliteCree.setTypeFonctionnalite(selectedTypeFonction);
-        System.out.println("fonctionnalite id : "
-                + fonctionnaliteCree.getIdFonctionnalite());
-        listeFonctionnaliteCree.add(fonctionnaliteCree);
-        for (DTOFonctionnalite fonctionna : listeFonctionnaliteCree) {
-            System.out.println("fonctionnalite : "
-                    + fonctionna.getCommentaire());
-        }
+		setActionAjout(false);
+	}
 
-        setActionAjout(false);
-    }
+	private DTOCdc ajouterCDC(DTOProjet projet) {
+		cdc = new DTOCdc();
+		cdc.setBesoin(besoin);
+		cdc.setContexte(contexte);
 
-    private DTOCdc ajouterCDC(DTOProjet projet) {
-        cdc = new DTOCdc();
-        cdc.setBesoin(besoin);
-        cdc.setContexte(contexte);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateFinEstimee = null;
+		try {
+			dateFinEstimee = sdf.parse(dateFin);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cdc.setDateFinEstimee(dateFinEstimee);
+		cdc.setExistant(existant);
+		cdc.setLu(true);
+		cdc.setProjet(projet);
+		System.out.println("id projet " + projet.getIdProjet());
+		cdc.setTarif(tarif);
+		return gestionCdc.ajouterCdcDto(cdc);
+	}
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateFinEstimee = null;
-        try {
-            dateFinEstimee = sdf.parse(dateFin);
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        cdc.setDateFinEstimee(dateFinEstimee);
-        cdc.setExistant(existant);
-        cdc.setLu(true);
-        cdc.setProjet(projet);
-        System.out.println("id projet " + projet.getIdProjet());
-        cdc.setTarif(tarif);
-        return gestionCdc.ajouterCdcDto(cdc);
-    }
+	public String creeProjet() {
 
-    public String creeProjet() {
+		System.out.println(gestionUtilisateur.recupClientById(16).getNom());
+		projetcree.setClient(gestionUtilisateur.recupClientById(16));
+		projetcree.setService(selectedService);
+		if (file != null)
+			projetcree.setPhoto(file.getFileName());
+		projetcree = ucProjet.creerProjet(projetcree);
+		if (projetcree.getIdProjet() != 0) {
+			cdc = ajouterCDC(projetcree);
+			if (cdc.getIdCdc() != 0)
+				gestionCdc.ajouterAssociationFonctCdcComplet(cdc,
+						listeFonctionnaliteCree);
+		}
 
-        System.out.println(gestionUtilisateur.recupClientById(16).getNom());
-        projetcree.setClient(gestionUtilisateur.recupClientById(16));
-        projetcree.setService(selectedService);
-        if (file != null)
-            projetcree.setPhoto(file.getFileName());
-        projetcree = ucProjet.creerProjet(projetcree);
-        if (projetcree.getIdProjet() != 0) {
-            cdc = ajouterCDC(projetcree);
-            if (cdc.getIdCdc() != 0)
-                gestionCdc.ajouterAssociationFonctCdcComplet(cdc,
-                        listeFonctionnaliteCree);
-        }
+		listeTechnoParService = ucProjet.recupTechnoParService(selectedService.getIdTypeService());
+		for (DTOTechnologie techno : listeTechnoParService) {
+			System.out.println("techno : "+techno.getTechnologieLibelle());
+		}
+		return "/CatalogueDeveloppeurTestRech.xhtml?faces-redirect=true";
 
+	}
 
-        return "";
+	public String upload() {
+		HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
+		for (DiskFileItem diskFileItem :
+			params) {
+			String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
+			path = path.split("/WEB-INF")[0];
+			File instal = new File(path + "/Photos");
+			instal.mkdirs();
+			File file1 = new File(path + "/Photos/" + diskFileItem.getName());
+			try {
+				FileOutputStream fileOutputStream = new FileOutputStream(file1);
+				fileOutputStream.write(diskFileItem.get());
+				fileOutputStream.close();
+				log.info("photo : "+path + "/Photos/" + diskFileItem.getName());
+				projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
+				log.info("projet.photo : "+projetcree.getPhoto());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return "";
+	}
 
-    }
+	public boolean isPanelCdc() {
+		return panelCdc;
+	}
 
-    public String upload() {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        List<DiskFileItem> params = (List<DiskFileItem>) httpServletRequest.getAttribute("fichierUpload");
-        for (DiskFileItem diskFileItem :
-                params) {
-            String path = Thread.currentThread().getContextClassLoader().getResource(".").getPath();
-            path = path.split("/WEB-INF")[0];
-            File instal = new File(path + "/Photos");
-            instal.mkdirs();
-            File file1 = new File(path + "/Photos/" + diskFileItem.getName());
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file1);
-                fileOutputStream.write(diskFileItem.get());
-                fileOutputStream.close();
-                log.info("photo : "+path + "/Photos/" + diskFileItem.getName());
-                projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
-                log.info("projet.photo : "+projetcree.getPhoto());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return "";
-    }
+	public void setPanelCdc(boolean panelCdc) {
+		this.panelCdc = panelCdc;
+	}
 
-    public boolean isPanelCdc() {
-        return panelCdc;
-    }
+	public boolean isPanelFonctionnalite() {
+		return panelFonctionnalite;
+	}
 
-    public void setPanelCdc(boolean panelCdc) {
-        this.panelCdc = panelCdc;
-    }
+	public void setPanelFonctionnalite(boolean panelFonctionnalite) {
+		this.panelFonctionnalite = panelFonctionnalite;
+	}
 
-    public boolean isPanelFonctionnalite() {
-        return panelFonctionnalite;
-    }
+	public Set<DTOTypeAppli> getListeAppli() {
+		return listeAppli;
+	}
 
-    public void setPanelFonctionnalite(boolean panelFonctionnalite) {
-        this.panelFonctionnalite = panelFonctionnalite;
-    }
+	public void setListeAppli(Set<DTOTypeAppli> listeAppli) {
+		this.listeAppli = listeAppli;
+	}
 
-    public Set<DTOTypeAppli> getListeAppli() {
-        return listeAppli;
-    }
+	public Set<DTOTypeService> getListeServices() {
+		return listeServices;
+	}
 
-    public void setListeAppli(Set<DTOTypeAppli> listeAppli) {
-        this.listeAppli = listeAppli;
-    }
+	public void setListeServices(Set<DTOTypeService> listeServices) {
+		this.listeServices = listeServices;
+	}
 
-    public Set<DTOTypeService> getListeServices() {
-        return listeServices;
-    }
+	public DTOTypeAppli getSelectedAppli() {
+		return selectedAppli;
+	}
 
-    public void setListeServices(Set<DTOTypeService> listeServices) {
-        this.listeServices = listeServices;
-    }
+	public void setSelectedAppli(DTOTypeAppli selectedAppli) {
+		this.selectedAppli = selectedAppli;
+	}
 
-    public DTOTypeAppli getSelectedAppli() {
-        return selectedAppli;
-    }
+	public DTOTypeService getSelectedService() {
+		return selectedService;
+	}
 
-    public void setSelectedAppli(DTOTypeAppli selectedAppli) {
-        this.selectedAppli = selectedAppli;
-    }
+	public void setSelectedService(DTOTypeService selectedService) {
+		this.selectedService = selectedService;
+	}
 
-    public DTOTypeService getSelectedService() {
-        return selectedService;
-    }
+	public DTOProjet getProjetcree() {
+		return projetcree;
+	}
 
-    public void setSelectedService(DTOTypeService selectedService) {
-        this.selectedService = selectedService;
-    }
+	public void setProjetcree(DTOProjet projetcree) {
+		this.projetcree = projetcree;
+	}
 
-    public DTOProjet getProjetcree() {
-        return projetcree;
-    }
+	public UploadedFile getFile() {
+		return file;
+	}
 
-    public void setProjetcree(DTOProjet projetcree) {
-        this.projetcree = projetcree;
-    }
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 
-    public UploadedFile getFile() {
-        return file;
-    }
+	public String getBesoin() {
+		return besoin;
+	}
 
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
+	public void setBesoin(String besoin) {
+		this.besoin = besoin;
+	}
 
-    public String getBesoin() {
-        return besoin;
-    }
+	public String getContexte() {
+		return contexte;
+	}
 
-    public void setBesoin(String besoin) {
-        this.besoin = besoin;
-    }
+	public void setContexte(String contexte) {
+		this.contexte = contexte;
+	}
 
-    public String getContexte() {
-        return contexte;
-    }
+	public String getExistant() {
+		return existant;
+	}
 
-    public void setContexte(String contexte) {
-        this.contexte = contexte;
-    }
+	public void setExistant(String existant) {
+		this.existant = existant;
+	}
 
-    public String getExistant() {
-        return existant;
-    }
+	public String getDateFin() {
+		return dateFin;
+	}
 
-    public void setExistant(String existant) {
-        this.existant = existant;
-    }
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
 
-    public String getDateFin() {
-        return dateFin;
-    }
+	public Double getTarif() {
+		return tarif;
+	}
 
-    public void setDateFin(String dateFin) {
-        this.dateFin = dateFin;
-    }
+	public void setTarif(Double tarif) {
+		this.tarif = tarif;
+	}
 
-    public Double getTarif() {
-        return tarif;
-    }
+	public Set<DTOTypeFonctionnalite> getListTypeFonctionn() {
+		return listTypeFonctionn;
+	}
 
-    public void setTarif(Double tarif) {
-        this.tarif = tarif;
-    }
+	public void setListTypeFonctionn(
+			Set<DTOTypeFonctionnalite> listTypeFonctionn) {
+		this.listTypeFonctionn = listTypeFonctionn;
+	}
 
-    public Set<DTOTypeFonctionnalite> getListTypeFonctionn() {
-        return listTypeFonctionn;
-    }
+	public DTOTypeFonctionnalite getSelectedTypeFonction() {
+		return selectedTypeFonction;
+	}
 
-    public void setListTypeFonctionn(
-            Set<DTOTypeFonctionnalite> listTypeFonctionn) {
-        this.listTypeFonctionn = listTypeFonctionn;
-    }
+	public void setSelectedTypeFonction(
+			DTOTypeFonctionnalite selectedTypeFonction) {
+		this.selectedTypeFonction = selectedTypeFonction;
+	}
 
-    public DTOTypeFonctionnalite getSelectedTypeFonction() {
-        return selectedTypeFonction;
-    }
+	public List<DTOFonctionnalite> getListeFonctionnaliteCree() {
+		return listeFonctionnaliteCree;
+	}
 
-    public void setSelectedTypeFonction(
-            DTOTypeFonctionnalite selectedTypeFonction) {
-        this.selectedTypeFonction = selectedTypeFonction;
-    }
+	public void setListeFonctionnaliteCree(
+			List<DTOFonctionnalite> listeFonctionnaliteCree) {
+		this.listeFonctionnaliteCree = listeFonctionnaliteCree;
+	}
 
-    public List<DTOFonctionnalite> getListeFonctionnaliteCree() {
-        return listeFonctionnaliteCree;
-    }
+	public String getCommentaire() {
+		return commentaire;
+	}
 
-    public void setListeFonctionnaliteCree(
-            List<DTOFonctionnalite> listeFonctionnaliteCree) {
-        this.listeFonctionnaliteCree = listeFonctionnaliteCree;
-    }
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
-    public String getCommentaire() {
-        return commentaire;
-    }
+	public DTOCdc getCdc() {
+		return cdc;
+	}
 
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
-    }
+	public void setCdc(DTOCdc cdc) {
+		this.cdc = cdc;
+	}
 
-    public DTOCdc getCdc() {
-        return cdc;
-    }
+	public boolean isActionAjout() {
+		return actionAjout;
+	}
 
-    public void setCdc(DTOCdc cdc) {
-        this.cdc = cdc;
-    }
+	public void setActionAjout(boolean actionAjout) {
+		this.actionAjout = actionAjout;
+	}
 
-    public boolean isActionAjout() {
-        return actionAjout;
-    }
+	public void afficherPanelCdc() {
 
-    public void setActionAjout(boolean actionAjout) {
-        this.actionAjout = actionAjout;
-    }
+		panelCdc = true;
+	}
 
-    public void afficherPanelCdc() {
-        
-        panelCdc = true;
-    }
+	public void afficherPanelFonctionnalite() {
+		panelFonctionnalite = true;
+	}
 
-    public void afficherPanelFonctionnalite() {
-        panelFonctionnalite = true;
-    }
+	public Set<DTOTechnologie> getListeTechnoParService() {
+		return listeTechnoParService;
+	}
+
+	public void setListeTechnoParService(Set<DTOTechnologie> listeTechnoParService) {
+		this.listeTechnoParService = listeTechnoParService;
+	}
 
 }
