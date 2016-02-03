@@ -113,10 +113,10 @@ public class EntityToDTO {
 		dtoCdc.setTarif(cdc.getTarif());
 		dtoCdc.setLu(cdc.getLu());
 		dtoCdc.setTypeCdc(typeCdcToDTOTypeCdc(cdc.getTypeCdc()));
-		if (cdc.getDeveloppeurCdc() !=null)
-        {
-			dtoCdc.setDeveloppeur(developpeurToDTODeveloppeur(cdc.getDeveloppeurCdc()));
-        }
+		if (cdc.getDeveloppeurCdc() != null) {
+			dtoCdc.setDeveloppeur(developpeurToDTODeveloppeur(cdc
+					.getDeveloppeurCdc()));
+		}
 		return dtoCdc;
 	}
 
@@ -217,23 +217,26 @@ public class EntityToDTO {
 			dTOLivrable.setDeveloppeur(developpeurToDTODeveloppeur(livrable.getDeveloppeur()));
 		}
 		dTOLivrable.setDescription(livrable.getDescription());
-		if(livrable.getDateLivraison()!= null) {
-		dTOLivrable.setDateLivraison(livrable.getDateLivraison());
+		if (livrable.getDateLivraison() != null) {
+			dTOLivrable.setDateLivraison(livrable.getDateLivraison());
 		}
-		if(livrable.getEcheance()!= null) {
-		dTOLivrable.setEcheance(livrable.getEcheance());
+		if (livrable.getEcheance() != null) {
+			dTOLivrable.setEcheance(livrable.getEcheance());
 		}
-		dTOLivrable.setFichier(livrable.getFichier());
-		dTOLivrable.setProjet(projetToDTOProjet(livrable.getProjet()));
+		if (livrable.getFichier() != null)
+			dTOLivrable.setFichier(livrable.getFichier());
+		if (livrable.getProjet() != null)
+			dTOLivrable.setProjet(projetToDTOProjet(livrable.getProjet()));
 		dTOLivrable
 				.setTypeEvaluation(typeEvaluationToDTOTypeEvaluation(livrable
 						.getTypeEvaluation()));
-//		if(livrable.getLesOperation() != null && livrable.getLesOperation().size() > 0) {
-//			dTOLivrable.setLesOperation(new HashSet<DTOOperation>());
-//			for (Operation operation : livrable.getLesOperation()) {
-//				dTOLivrable.getLesOperation().add(operationToDTOOperation(operation));
-//			}
-//		}
+		// if(livrable.getLesOperation() != null &&
+		// livrable.getLesOperation().size() > 0) {
+		// dTOLivrable.setLesOperation(new HashSet<DTOOperation>());
+		// for (Operation operation : livrable.getLesOperation()) {
+		// dTOLivrable.getLesOperation().add(operationToDTOOperation(operation));
+		// }
+		// }
 		return dTOLivrable;
 	}
 
@@ -244,9 +247,10 @@ public class EntityToDTO {
 		dTOMessage.setDateEnvoi(message.getDateEnvoi());
 		dTOMessage.setMessage(message.getMessage());
 		if (message.getMessFille() != null) {
-			dTOMessage.setMessFille(messageToDTOMessage(message.getMessFille()));
+			dTOMessage
+					.setMessFille(messageToDTOMessage(message.getMessFille()));
 		}
-		
+
 		dTOMessage.setTitre(message.getTitre());
 		dTOMessage.setUtilisateur1(utilisateurToDTOUtilisateur(message
 				.getUtilisateur1()));
@@ -284,7 +288,7 @@ public class EntityToDTO {
 	public static DTOProjet projetToDTOProjet(Projet projet) {
 		DTOProjet dTOProjet = new DTOProjet();
 		dTOProjet.setIdProjet(projet.getIdProjet());
-		if (projet.getPhoto() != null){
+		if (projet.getPhoto() != null) {
 			dTOProjet.setPhoto(projet.getPhoto());
 		}
 		dTOProjet.setClient(clientToDTOClient(projet.getClient()));
@@ -329,7 +333,8 @@ public class EntityToDTO {
 		dTOProposition.setLu(proposition.getLu());
 		dTOProposition.setProjet(projetToDTOProjet(proposition.getProjet()));
 		dTOProposition.setTitre(proposition.getTitre());
-		dTOProposition.setTypeProposition(typePropositionToDTOTypeProposition(proposition
+		dTOProposition
+				.setTypeProposition(typePropositionToDTOTypeProposition(proposition
 						.getTypeProposition()));
 		return dTOProposition;
 	}
@@ -478,6 +483,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+
 	public static Set<DTOTechnologie> listTechnoToDtotechno(
 			Set<Technologie> listEntity) {
 		Set<DTOTechnologie> listDto = new HashSet<DTOTechnologie>();
@@ -486,6 +492,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+
 	private static Set<DTOLitige> listLitigesToDtoLitiges(Set<Litige> listEntity) {
 		Set<DTOLitige> listDto = new HashSet<DTOLitige>();
 		for (Litige entity : listEntity) {
@@ -563,6 +570,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+
 	public static List<DTOFonctionnalite> listFonctionnalitetoDTOfonctionnalite(
 			List<Fonctionnalite> set) {
 		List<DTOFonctionnalite> listDto = new ArrayList<>();
@@ -571,7 +579,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
-	
+
 	public static List<DTODeveloppeur> listDevtoDTODeveloppeur(
 			List<Developpeur> set) {
 		List<DTODeveloppeur> listDto = new ArrayList<>();
@@ -580,6 +588,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+
 	public static Set<DTODeveloppeur> listDevtoDTODeveloppeur(
 			Set<Developpeur> set) {
 		Set<DTODeveloppeur> listDto = new HashSet<>();
@@ -588,6 +597,7 @@ public class EntityToDTO {
 		}
 		return listDto;
 	}
+
 	private static Set<DTOProjet> listProjetToDtoProjet(Set<Projet> listEntity) {
 		Set<DTOProjet> listDto = new HashSet<>();
 		for (Projet entity : listEntity) {
@@ -604,16 +614,19 @@ public class EntityToDTO {
 		}
 		return listeDTO;
 	}
-	
-	public static List<DTOProposition> listePropositionToDtoProposition(List<Proposition> listeProposition) {
+
+	public static List<DTOProposition> listePropositionToDtoProposition(
+			List<Proposition> listeProposition) {
 		List<DTOProposition> listeDTOProposition = new ArrayList<>();
 		for (Proposition proposition : listeProposition) {
-			listeDTOProposition.add(EntityToDTO.propositionToDTOProposition(proposition));
+			listeDTOProposition.add(EntityToDTO
+					.propositionToDTOProposition(proposition));
 		}
 		return listeDTOProposition;
 	}
-	
-	public static List<DTOTechnologie> listeTechnologieToDTOTechnologie(List<Technologie> listeTechnologie) {
+
+	public static List<DTOTechnologie> listeTechnologieToDTOTechnologie(
+			List<Technologie> listeTechnologie) {
 		List<DTOTechnologie> listeDTOTechnologie = new ArrayList<>();
 		for (Technologie technologie : listeTechnologie) {
 			listeDTOTechnologie.add(technologieToDTOTechnologie(technologie));
@@ -621,21 +634,24 @@ public class EntityToDTO {
 		return listeDTOTechnologie;
 	}
 
-	public static List<DTOLivrable> listeLivrableToDTOLivrable(List<Livrable> listeLivrable) {
+	public static List<DTOLivrable> listeLivrableToDTOLivrable(
+			List<Livrable> listeLivrable) {
 		List<DTOLivrable> listeDTOLivrable = new ArrayList<>();
 		for (Livrable livrable : listeLivrable) {
 			listeDTOLivrable.add(livrableToDTOLivrable(livrable));
 		}
 		return listeDTOLivrable;
 	}
-	
-	public static List<DTOOperation> listeOperationToDTOOperation (List<Operation> listeOperation) {
+
+	public static List<DTOOperation> listeOperationToDTOOperation(
+			List<Operation> listeOperation) {
 		List<DTOOperation> listeDTOOperation = new ArrayList<>();
 		for (Operation operation : listeOperation) {
 			listeDTOOperation.add(operationToDTOOperation(operation));
 		}
 		return listeDTOOperation;
 	}
+
 	public static List<DTONote> listeNoteToDTONote(List<Note> listeNote) {
 		List<DTONote> listeDTONote = new ArrayList<>();
 		for (Note note : listeNote) {
