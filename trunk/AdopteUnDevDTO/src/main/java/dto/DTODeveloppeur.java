@@ -14,6 +14,8 @@ public class DTODeveloppeur extends DTOUtilisateur {
     }
 
 
+    private Set<DTODeveloppeur> lesLivrable;
+    
     /**
      * 
      */
@@ -54,6 +56,14 @@ public class DTODeveloppeur extends DTOUtilisateur {
 		this.listeDispo = listeDispo;
 	}
 
+	public Set<DTODeveloppeur> getLesLivrable() {
+		return lesLivrable;
+	}
+
+	public void setLesLivrable(Set<DTODeveloppeur> lesLivrable) {
+		this.lesLivrable = lesLivrable;
+	}
+	
     
 	
 }

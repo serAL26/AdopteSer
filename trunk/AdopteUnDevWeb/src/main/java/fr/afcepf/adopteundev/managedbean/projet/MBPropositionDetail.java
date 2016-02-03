@@ -1,8 +1,5 @@
 package fr.afcepf.adopteundev.managedbean.projet;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,10 +9,9 @@ import javax.faces.bean.SessionScoped;
 
 import dto.DTOCdc;
 import dto.DTODeveloppeur;
-import dto.DTOOperation;
+import dto.DTOLivrable;
 import dto.DTOProjet;
 import dto.DTOProposition;
-import dto.DTOTypeCdc;
 import dto.DTOTypeProposition;
 import fr.afcepf.adopteundev.gestion.cdc.IUCGestionCdc;
 import fr.afcepf.adopteundev.gestion.projet.IUCProjet;
@@ -49,120 +45,13 @@ public class MBPropositionDetail {
 		gestionCdc = (IUCGestionCdc) ContextFactory.createProxy(UcName.UCGESTIONCDC);
 		//cdc = getFinalCdc();
 	}
-
 	
-	
-	
-	public boolean isPaiement() {
-		return paiement;
-	}
-
-
-
-
-	public void setPaiement(boolean paiement) {
-		this.paiement = paiement;
-	}
-
-
-
-
-	public String getBesoinModif() {
-		return besoinModif;
-	}
-
-
-
-	public void setBesoinModif(String besoinModif) {
-		this.besoinModif = besoinModif;
-	}
-
-
-
-	public String getContexteModif() {
-		return contexteModif;
-	}
-
-
-
-	public void setContexteModif(String contexteModif) {
-		this.contexteModif = contexteModif;
-	}
-
-
-
-	public String getExistantModif() {
-		return existantModif;
-	}
-
-
-
-	public void setExistantModif(String existantModif) {
-		this.existantModif = existantModif;
-	}
-
-
-	public double getTarifModif() {
-		return tarifModif;
-	}
-
-
-
-	public void setTarifModif(double tarifModif) {
-		this.tarifModif = tarifModif;
-	}
-
-
-
-	public boolean isAffichageModif() {
-		return affichageModif;
-	}
-
-
-	public void setAffichageModif(boolean affichageModif) {
-		this.affichageModif = affichageModif;
-	}
-
-
-	public MBPropositionParUtilisateur getmBPropositionParUtilisateur() {
-		return mBPropositionParUtilisateur;
-	}
-
-	public void setmBPropositionParUtilisateur(
-			MBPropositionParUtilisateur mBPropositionParUtilisateur) {
-		this.mBPropositionParUtilisateur = mBPropositionParUtilisateur;
-	}
-
-	public String getBesoinRemarque() {
-		return besoinRemarque;
-	}
-
-	public void setBesoinRemarque(String besoinRemarque) {
-		this.besoinRemarque = besoinRemarque;
-	}
-
-	public String getContexteRemarque() {
-		return contexteRemarque;
-	}
-
-	public void setContexteRemarque(String contexteRemarque) {
-		this.contexteRemarque = contexteRemarque;
-	}
-
-	public String getExistantRemarque() {
-		return existantRemarque;
-	}
-
-	public void setExistantRemarque(String existantRemarque) {
-		this.existantRemarque = existantRemarque;
-	}
-
-	public Double getTarifRemarque() {
-		return tarifRemarque;
-	}
-
-	public void setTarifRemarque(Double tarifRemarque) {
-		this.tarifRemarque = tarifRemarque;
+	public void payerTousLesLivrables() {
+		List<DTOLivrable> listeDtoLivrable = ucProjet.recupListLivrableParProjetEtParDev(mBPropositionParUtilisateur.getProposition().getProjet(), mBPropositionParUtilisateur.getProposition().getDeveloppeur().getIdUtilisateur());
+		for (DTOLivrable dtoLivrable : listeDtoLivrable) {
+			ucProjet.payerLivrable(ucProjet.)
+		}
+		
 	}
 	
 	public String ajouterRemarque(DTOCdc cdc, DTOProjet projet, DTODeveloppeur developpeur)
@@ -177,9 +66,7 @@ public class MBPropositionDetail {
 		remarque.setDeveloppeur(developpeur);
 		remarque.setRemarque(null);
 		remarque.setTypeCdc(gestionCdc.recupTypeRemarque());
-		
 		gestionCdc.ajouterRemarqueCdcComplet(remarque, developpeur.getIdUtilisateur(), projet.getIdProjet());
-		
 		return "/ListePropositions.xhtml?faces-redirect=true";
 	}
 	
@@ -239,6 +126,103 @@ public class MBPropositionDetail {
 	{
 		
 	}
+	
+	public boolean isPaiement() {
+		return paiement;
+	}
+
+	public void setPaiement(boolean paiement) {
+		this.paiement = paiement;
+	}
+
+	public String getBesoinModif() {
+		return besoinModif;
+	}
+
+	public void setBesoinModif(String besoinModif) {
+		this.besoinModif = besoinModif;
+	}
+
+	public String getContexteModif() {
+		return contexteModif;
+	}
+
+	public void setContexteModif(String contexteModif) {
+		this.contexteModif = contexteModif;
+	}
+
+	public String getExistantModif() {
+		return existantModif;
+	}
+
+	public void setExistantModif(String existantModif) {
+		this.existantModif = existantModif;
+	}
+
+
+	public double getTarifModif() {
+		return tarifModif;
+	}
+
+
+
+	public void setTarifModif(double tarifModif) {
+		this.tarifModif = tarifModif;
+	}
+
+
+
+	public boolean isAffichageModif() {
+		return affichageModif;
+	}
+
+
+	public void setAffichageModif(boolean affichageModif) {
+		this.affichageModif = affichageModif;
+	}
+
+	public MBPropositionParUtilisateur getmBPropositionParUtilisateur() {
+		return mBPropositionParUtilisateur;
+	}
+
+	public void setmBPropositionParUtilisateur(
+			MBPropositionParUtilisateur mBPropositionParUtilisateur) {
+		this.mBPropositionParUtilisateur = mBPropositionParUtilisateur;
+	}
+
+	public String getBesoinRemarque() {
+		return besoinRemarque;
+	}
+
+	public void setBesoinRemarque(String besoinRemarque) {
+		this.besoinRemarque = besoinRemarque;
+	}
+
+	public String getContexteRemarque() {
+		return contexteRemarque;
+	}
+
+	public void setContexteRemarque(String contexteRemarque) {
+		this.contexteRemarque = contexteRemarque;
+	}
+
+	public String getExistantRemarque() {
+		return existantRemarque;
+	}
+
+	public void setExistantRemarque(String existantRemarque) {
+		this.existantRemarque = existantRemarque;
+	}
+
+	public Double getTarifRemarque() {
+		return tarifRemarque;
+	}
+
+	public void setTarifRemarque(Double tarifRemarque) {
+		this.tarifRemarque = tarifRemarque;
+	}
+	
+	
 	
 	
 }

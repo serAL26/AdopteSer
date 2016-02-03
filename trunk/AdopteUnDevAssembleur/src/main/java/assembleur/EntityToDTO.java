@@ -213,6 +213,9 @@ public class EntityToDTO {
 	public static DTOLivrable livrableToDTOLivrable(Livrable livrable) {
 		DTOLivrable dTOLivrable = new DTOLivrable();
 		dTOLivrable.setIdLivrable(livrable.getIdLivrable());
+		if(livrable.getDeveloppeur() != null) {
+			dTOLivrable.setDeveloppeur(developpeurToDTODeveloppeur(livrable.getDeveloppeur()));
+		}
 		dTOLivrable.setDescription(livrable.getDescription());
 		if(livrable.getDateLivraison()!= null) {
 		dTOLivrable.setDateLivraison(livrable.getDateLivraison());

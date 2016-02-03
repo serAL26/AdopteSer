@@ -281,6 +281,9 @@ public class DTOToEntity {
         Livrable entity = new Livrable();
         entity.setIdLivrable(dto.getIdLivrable());
         entity.setFichier(dto.getFichier());
+        if(dto.getDeveloppeur() != null) {
+        	entity.setDeveloppeur(dtoDeveloppeurToDeveloppeur(dto.getDeveloppeur()));
+        }
         entity.setDescription(dto.getDescription());
         entity.setTypeEvaluation(dtoTypeEvaluationToEvaluation(dto.getTypeEvaluation()));
         if(dto.getEcheance() != null)

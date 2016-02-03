@@ -45,7 +45,7 @@ public interface IUCProjet {
 
     List<DTOOperation> payerLivrable(DTOOperation dtoOperation);
 
-    List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet);
+    
 
     Boolean initIsPaye(DTOLivrable livrable);
 
@@ -61,5 +61,7 @@ public interface IUCProjet {
     public Set<DTOTechnologie> recupTechnoParService(int idTypeService);
 
     DTOOperation creerOperationAttente(DTOOperation operation);
-
+    List<DTOLivrable> recupListLivrableParProjet(DTOProjet dtoProjet);
+    List<DTOLivrable> recupListLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur);
+    DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable);
 }

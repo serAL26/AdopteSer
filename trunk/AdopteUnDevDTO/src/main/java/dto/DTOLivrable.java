@@ -47,6 +47,8 @@ public class DTOLivrable implements Serializable {
      */
     public DTOProjet projet;
 
+    private DTODeveloppeur developpeur;
+    
     /**
      *
      */
@@ -128,4 +130,13 @@ public class DTOLivrable implements Serializable {
                 ", dateLivraison=" + dateLivraison +
                 '}';
     }
+
+	public DTODeveloppeur getDeveloppeur() {
+		return developpeur;
+	}
+
+	public void setDeveloppeur(DTODeveloppeur developpeur) {
+		this.developpeur = developpeur;
+	}
+
 }

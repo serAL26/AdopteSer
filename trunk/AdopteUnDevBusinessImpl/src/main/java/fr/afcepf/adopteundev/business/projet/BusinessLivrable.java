@@ -73,4 +73,16 @@ public class BusinessLivrable implements IBusinessLivrable {
         return retour;
     }
 
+	@Override
+	public List<DTOLivrable> recupListeLivrableParProjetEtParDev(DTOProjet dtoProjet, int idDeveloppeur) {
+		List<Livrable> listeLivrable = daoLivrable.recupListeLivrableParProjetEtParDev(dtoProjet.getIdProjet(), idDeveloppeur);
+		return EntityToDTO.listeLivrableToDTOLivrable(listeLivrable);
+	}
+
+	@Override
+	public DTOOperation renvoiLOperationEnAttentePaiement(DTOLivrable livrable) {
+		daoLivrable.renvoiLOperationEnAttentePaiement(DTOToEntity.dtoLivrableToLivrable(livrable));
+		return null;
+	}
+
 }
