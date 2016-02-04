@@ -467,7 +467,9 @@ INSERT INTO `typefonctionnalite` (`id_type_fonctionnalite`, `LIBELLE`) VALUES
 /*!40000 ALTER TABLE `typeoperation` DISABLE KEYS */;
 INSERT INTO `typeoperation` (`id_type_operation`, `LIBELLE`) VALUES
   (1, 'DEBIT'),
-  (2, 'CREDIT');
+  (2, 'CREDIT'),
+  (3, 'EN ATTENTE'),
+  (4, 'TERMINE');
 /*!40000 ALTER TABLE `typeoperation` ENABLE KEYS */;
 
 --
@@ -518,24 +520,24 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `type_utilisateur`, `date_inscripti
 VALUES
   (1, 'DEVELOPPEUR', '2015-02-12 00:00:00', '148910675', 'AHMIM', 'resources/img/avatarDeveloppeur2.jpg', '643677732',
       'Ferhat', 'ferhat.ahmim@gmail.com', 'azerty', 1),
-  (2, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'AIT TALEB', 'resources/img/avatarDeveloppeur3.jpg', '605017075', 'Lahcen', 'aittaleb.lahcen@yahoo.fr', 'azerty', 2),
-  (3, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ESSID', 'resources/img/avatarDeveloppeur4.jpg', '695264816', 'Amal', 'amal.jaziri@gmail.com', 'azerty', 3),
-  (4, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'HICHRI', 'resources/img/avatarDeveloppeur7.jpg', '778020125', 'Sabrine', 'sabrine.hichri@gmail.com', 'azerty', 4),
-  (5, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'MORIN', 'resources/img/avatarDeveloppeur6.jpg', '625830547', 'Sylvain', 'morin.slv@gmail.com', 'azerty', 5),
-  (6, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'QUERE', 'resources/img/avatarDeveloppeur5.jpg', '633120842', 'Alexandre', 'alexquere1@gmail.com', 'azerty', 6),
-  (7, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'WAILLE', 'resources/img/avatarDeveloppeur.jpg', '646808184', 'Emilie', 'ewaille@hotmail.fr', 'azerty', 9),
-  (8, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ROIGNANT', 'resources/img/avatarDeveloppeur.jpg', '665335584', 'Pierre-Yves', 'py@roignant.fr', 'azerty', 8),
-  (9, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ZRELLI', 'resources/img/avatarDeveloppeur.jpg', NULL, 'Yasmine', 'yasmine_zr@hotmail.fr', 'azerty', 15),
-  (10, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ZHANG', 'resources/img/avatarDeveloppeur.jpg', '650499021', 'Gege', 'gege.zhang@gmx.com', 'azerty', 14),
-  (11, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'SABOUNDJI', 'resources/img/avatarDeveloppeur.jpg', '661506153', 'Mehdi', 'mehdi.saboundji', 'azerty', 17),
-  (12, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'LE BARON', 'resources/img/avatarDeveloppeur.jpg', '671972061', 'JerÃ´me', 'lebaronjerome@free.fr', 'azerty', 19),
-  (13, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'GUERIN', 'resources/img/avatarDeveloppeur8.jpg', '683269593', 'Emmanuel', 'emmanuel.guerin9@gmail.com', 'azerty', 7),
-  (14, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'DANGUEUGER', 'resources/img/avatarDeveloppeur.jpg', '637449875', 'Raphael', 'raphael.dangueuger@gmail.com', 'azerty', 10),
-  (15, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ESTACAILLE', 'resources/img/avatarDeveloppeur.jpg', '603943699', 'Julien', 'julien.estacaille@gmail.com', 'azerty', 12),
-  (16, 'CLIENT', '2015-02-12 00:00:00', NULL, 'RAKOTOMALALA', '/resources/img/portfolio4.jpg', '611121314', 'Patrick', 'patrick.rakotomalala@madagascar.com', 'afcepf', 2),
-  (17, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'BINISTI', '/resources/img/portfolio5.jpg', '612134556', 'Mickael', 'mickael.binisti@iris.fr', 'afcepf', 1),
-  (18, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'PIERRE', '/resources/img/portfolio6.jpg', '612134556', 'Pierre', 'pierre@gmail.com', 'afcepf', 3),
-  (19, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'PAUL', '/resources/img/img.jpg', '612134556', 'Paul', 'paul@gmail.com', 'afcepf', 1),
+  (2, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'AIT TALEB', 'avatarDeveloppeur2.jpg', '605017075', 'Lahcen', 'aittaleb.lahcen@yahoo.fr', 'azerty', 2),
+  (3, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ESSID', 'avatarDeveloppeur14.jpg', '695264816', 'Amal', 'amal.jaziri@gmail.com', 'azerty', 3),
+  (4, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'HICHRI', 'avatarDeveloppeur4.jpg', '778020125', 'Sabrine', 'sabrine.hichri@gmail.com', 'azerty', 4),
+  (5, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'MORIN', 'avatarDeveloppeur6.jpg', '625830547', 'Sylvain', 'morin.slv@gmail.com', 'azerty', 5),
+  (6, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'QUERE', 'avatarDeveloppeur5.jpg', '633120842', 'Alexandre', 'alexquere1@gmail.com', 'azerty', 6),
+  (7, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'WAILLE', 'avatarDeveloppeur14.jpg', '646808184', 'Emilie', 'ewaille@hotmail.fr', 'azerty', 9),
+  (8, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ROIGNANT', 'avatarDeveloppeur.jpg', '665335584', 'Pierre-Yves', 'py@roignant.fr', 'azerty', 8),
+  (9, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'BINISTI', 'avatarDeveloppeur3.jpg','612134556', 'Mickael', 'mickael.binisti@iris.fr', 'afcepf', 1),
+  (10, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ZHANG', 'avatarDeveloppeur7.jpg', '650499021', 'Gege', 'gege.zhang@gmx.com', 'azerty', 14),
+  (11, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'SABOUNDJI', 'avatarDeveloppeur10.jpg', '661506153', 'Mehdi', 'mehdi.saboundji', 'azerty', 17),
+  (12, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'LE BARON', 'avatarDeveloppeur9.jpg', '671972061', 'Jerome', 'lebaronjerome@free.fr', 'azerty', 19),
+  (13, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'GUERIN', 'avatarDeveloppeur8.jpg', '683269593', 'Emmanuel', 'emmanuel.guerin9@gmail.com', 'azerty', 7),
+  (14, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'DANGUEUGER', 'avatarDeveloppeur11.jpg', '637449875', 'Raphael', 'raphael.dangueuger@gmail.com', 'azerty', 10),
+  (15, 'DEVELOPPEUR', '2015-02-12 00:00:00', NULL, 'ESTACAILLE', 'avatarDeveloppeur12.jpg', '603943699', 'Julien', 'julien.estacaille@gmail.com', 'azerty', 12),
+  (16, 'CLIENT', '2015-02-12 00:00:00', NULL, 'RAKOTOMALALA', 'portfolio4.jpg', '611121314', 'Patrick', 'patrick.rakotomalala@madagascar.com', 'afcepf', 2),
+  (17, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'ZRELLI', 'portfolio5.jpg',NULL, 'Yasmine', 'yasmine_zr@hotmail.fr', 'azerty', 15),
+  (18, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'PIERRE', 'portfolio6.jpg', '612134556', 'Pierre', 'pierre@gmail.com', 'afcepf', 3),
+  (19, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'PAUL', 'img.jpg', '612134556', 'Paul', 'paul@gmail.com', 'afcepf', 1),
   (20, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'JACQUES', '/resources/img/img.jpg', '612134556', 'Jacques', 'jacques@gmail.com', 'afcepf', 6),
   (21, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'FRANCOIS', '/resources/img/img.jpg', '612134556', 'Francois', 'francois@gmail.com', 'afcepf', 1),
   (22, 'CLIENT', '2015-02-12 00:00:00', '123124565', 'MATTHIEU', '/resources/img/img.jpg', '612134556', 'Matthieu', 'matthieu@gmail.com', 'afcepf', 2),

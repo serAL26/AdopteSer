@@ -32,7 +32,7 @@
 									<!--  <p:commandLink value="Submit" update="display" />-->
 							
 								<h:panelGrid columns="3" cellpadding="5" style="float:left; margin-bottom:10px">
-									<h:outputLabel value="Notes   " style="margin-right: 8px"><img src="resources/img/etoile-icone-4268.png"/></h:outputLabel>
+									<h:outputLabel value="Notes   " style="margin-right: 8px"><img src="Photos/etoile-icone-4268.png"/></h:outputLabel>
 									
 									<h:selectOneMenu class="form-control" value="#{mBCatalogueDeveloppeur.selectedNote}">
 										<f:selectItem itemValue="-1" itemLabel="-------" />
@@ -43,11 +43,11 @@
 								</h:panelGrid>
 								
 					<h:commandLink action="#{mBCatalogueDeveloppeur.rechercherDev()}" style="float:left; margin-left:30px">
-							<img src="resources/img/magnifying-glass11.png"/>
+							<img src="Photos/magnifying-glass11.png"/>
 							</h:commandLink>
 							
 							<h:commandLink action="#{mBCatalogueDeveloppeur.remisAZero()}" style="float:left; margin-left:20px">
-							<img src="resources/img/clear5.png"/>
+							<img src="Photos/clear5.png"/>
 							</h:commandLink>
 						
 								
@@ -75,7 +75,7 @@
 								<div class="portfolio-image">
 									<h:commandLink
 										action="#{mBCatalogueDeveloppeur.recupDeveloppeur(fiche)}">
-										<img src="#{fiche.developpeur.photo}" alt="Developpeur" />
+										<img src="Photos/#{fiche.developpeur.photo}" alt="Developpeur" />
 									</h:commandLink>
 								</div>
 								<div class="portfolio-info">
