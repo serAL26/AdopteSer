@@ -289,7 +289,7 @@ INSERT INTO note (id_note, COMMENTAIRE, DATE, NOTE, id_est_note, id_noteur, idPr
   (6,'Deux jours ! deux jours pour me faire un site Ecommerce alors que des entreprises du numerique me proposait un an de developpement ! Il a utilisé des nouvelles technologies innovantes tel que le COBOL et le FORTRAN (ironique) qui lui ont fait gagné un tem','2016-02-03 00:00:00',5,6,20,6),
   (7,'Du bon travail mais il a du maitriser un outil technologique ce qui lui a fait perdre du temps et donc une etoile...','2016-02-03 00:00:00',4,6,21,7),
   (8,'je veux mon application qui tourne sous blackberry, donc je refuse tous conseils concernant le support d\'utilisation de mon application. le developpeur n\'est pas la pour conseiller un MOA mais pour appliquer les ordre qu\'on lui donne.','2016-02-03 00:00:00',2,6,21,8),
-  (9,'une application developpé à temps ','2016-02-03 00:00:00',4,6,21,9),
+  (9,'une application developpe a� temps ','2016-02-03 00:00:00',4,6,21,9),
   (10,'Enfin une personne qui aime travailler en agilité et qui s\'adapte à tout changement de planning','2016-02-03 00:00:00',5,6,22,10),
   (11,'une application developpé à temps et tres aimable','2016-02-03 00:00:00',5,8,23,11),
   (12,'une application developpé à temps ','2016-02-03 00:00:00',3,13,24,12),
