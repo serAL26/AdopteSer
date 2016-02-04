@@ -271,7 +271,20 @@ INSERT INTO note (id_note, COMMENTAIRE, DATE, NOTE, id_est_note, id_noteur, idPr
   (7,'Du bon travail mais il a du maitriser un outil technologique ce qui lui a fait perdre du temps et donc une etoile...','2016-02-03 00:00:00',4,6,21,7),
   (8,'je veux mon application qui tourne sous blackberry, donc je refuse tous conseils concernant le support d\'utilisation de mon application. le developpeur n\'est pas la pour conseiller un MOA mais pour appliquer les ordre qu\'on lui donne.','2016-02-03 00:00:00',2,6,21,8),
   (9,'une application developpé à temps ','2016-02-03 00:00:00',4,6,21,9),
-  (10,'Enfin une personne qui aime travailler en agilité et qui s\'adapte à tout changement de planning','2016-02-03 00:00:00',5,6,22,10);
+  (10,'Enfin une personne qui aime travailler en agilité et qui s\'adapte à tout changement de planning','2016-02-03 00:00:00',5,6,22,10),
+  (11,'une application developpé à temps et tres aimable','2016-02-03 00:00:00',5,8,23,11),
+  (12,'une application developpé à temps ','2016-02-03 00:00:00',3,13,24,12),
+  (13,'une application developpé à temps ','2016-02-03 00:00:00',4,2,25,13),
+  (14,'une application developpé à temps ','2016-02-03 00:00:00',2,3,26,14),
+  (15,'une application developpé à temps ','2016-02-03 00:00:00',1,4,27,15),
+  (16,'une application developpé à temps ','2016-02-03 00:00:00',3,5,27,16),
+  (17,'une application developpé à temps ','2016-02-03 00:00:00',1,7,27,17),
+  (18,'une application developpé à temps ','2016-02-03 00:00:00',1,9,28,18),
+  (19,'une application developpé à temps ','2016-02-03 00:00:00',1,10,29,19),
+  (20,'une application developpé à temps ','2016-02-03 00:00:00',1,11,30,20),
+  (21,'une application developpé à temps ','2016-02-03 00:00:00',3,12,31,21),
+  (22,'une application developpé à temps ','2016-02-03 00:00:00',2,14,31,22),
+  (23,'une application developpé à temps ','2016-02-03 00:00:00',3,15,31,23);
 /*!40000 ALTER TABLE `note` ENABLE KEYS */;
 
 --
@@ -302,7 +315,20 @@ INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeSer
   (7,'ApplicationMobile',21,2,'portfolio5.jpg',8),
   (8,'ApplicationMobile',21,2,'portfolio7.jpg',9),
   (9,'ApplicationMobile',21,2,'portfolio8.jpg',6),
-  (10,'ConversionModeleEnSite',22,1,'portfolio6.jpg',3);
+  (10,'ConversionModeleEnSite',22,1,'portfolio6.jpg',3),
+  (11,'siteEcommerce',23,2,'portfolio7.jpg',3),
+  (12,'siteEcommerce',24,2,'portfolio7.jpg',3),
+  (13,'siteEcommerce',25,2,'portfolio2.jpg',3),
+  (14,'siteEcommerce',26,2,'portfolio4.jpg',3),
+  (15,'siteEcommerce',26,2,'portfolio8.jpg',3),
+  (16,'siteEcommerce',26,2,'portfolio8.jpg',3),
+  (17,'siteEcommerce',27,2,'portfolio8.jpg',3),
+  (18,'siteEcommerce',27,2,'portfolio8.jpg',3),
+  (19,'siteEcommerce',27,2,'portfolio8.jpg',3),
+  (20,'siteEcommerce',28,2,'portfolio8.jpg',3),
+  (21,'siteEcommerce',29,2,'portfolio8.jpg',3),
+  (22,'siteEcommerce',30,2,'portfolio8.jpg',3),
+  (23,'siteEcommerce',31,2,'portfolio8.jpg',3);
 /*!40000 ALTER TABLE `projet` ENABLE KEYS */;
 --
 -- Definition of table `propostion`
@@ -310,7 +336,32 @@ INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeSer
 --
 -- Dumping data for table `propostion`
 --
-
+/*!40000 ALTER TABLE `propostion` DISABLE KEYS */;
+INSERT INTO `propostion` (id_proposition, Lu, date, titre, idDeveloppeur, idProjet, idTypeProposition) VALUES
+  (1, 1,'2015-02-12 00:00:00','siteEcomnerce',1,11,3),
+  (2, 1,'2015-02-12 00:00:00','siteEcomnerce',2,12,3),
+  (3, 1,'2015-02-12 00:00:00','siteEcomnerce',3,13,3),
+  (4, 1,'2015-02-12 00:00:00','siteEcomnerce',4,14,3),
+  (8, 1,'2015-02-12 00:00:00','siteEcomnerce',5,15,3),
+  (9, 1,'2015-02-12 00:00:00','DoYouKnow',6,1,3),
+  (10,1,'2015-02-12 00:00:00','ShowMeYourFace',6,2,3),
+  (11,1,'2015-02-12 00:00:00','HugNeeded',6,3,3),
+  (12,1,'2015-02-12 00:00:00','BoutiqueDeVetement',6,4,3),
+  (13,1,'2015-02-12 00:00:00','SiteWebPerso',6,5,3),
+  (14,1,'2015-02-12 00:00:00','siteEcommerce',6,6,3),
+  (15,1,'2015-02-12 00:00:00','ApplicationMobile',6,7,3),
+  (16,1,'2015-02-12 00:00:00','ApplicationMobile',6,8,3),
+  (17,1,'2015-02-12 00:00:00','ApplicationMobile',6,9,3),
+  (18,1,'2015-02-12 00:00:00','ConversionModeleEnSite',6,10,3),
+  (19,1,'2015-02-12 00:00:00','siteEcommerce',7,16,3),
+  (20,1,'2015-02-12 00:00:00','siteEcommerce',8,17,3),
+  (21,1,'2015-02-12 00:00:00','siteEcommerce',9,18,3),
+  (22,1,'2015-02-12 00:00:00','siteEcommerce',10,19,3),
+  (23,1,'2015-02-12 00:00:00','siteEcommerce',11,20,3),
+  (24,1,'2015-02-12 00:00:00','siteEcommerce',12,21,3),
+  (25,1,'2015-02-12 00:00:00','siteEcommerce',13,22,3),
+  (26,1,'2015-02-12 00:00:00','siteEcommerce',14,23,3);
+/*!40000 ALTER TABLE `technologie` ENABLE KEYS */;
 --
 -- Definition of table `technologie`
 --
@@ -430,14 +481,29 @@ INSERT INTO `typeoperation` (`id_type_operation`, `LIBELLE`) VALUES
 /*!40000 ALTER TABLE `typeproposition` DISABLE KEYS */;
 INSERT INTO `typeproposition` (`id_type_proposition`, `LIBELLE`) VALUES
   (1, 'EN ATTENTE'),
-  (2, 'ACCEPTÃ© PAR LE DEV'),
-  (3, 'VALIDÃ© PAR LE CLIENT'),
-  (4, 'REFUSÃ©');
+  (2, 'ACCEPTE PAR LE DEV'),
+  (3, 'VALIDE PAR LE CLIENT'),
+  (4, 'REFUSE');
 /*!40000 ALTER TABLE `typeproposition` ENABLE KEYS */;
 
 --
 -- Definition of table `typeservice`
 --
+--
+--
+
+/*!40000 ALTER TABLE `typeservice` DISABLE KEYS */;
+INSERT INTO `typeservice` (id_type_service, libelle, idTypeAppli) VALUES
+  (1, 'CODEZ UN LOGICIEL',2),
+  (2, 'DEVELOPPEZ UNE APPLICATION MAC',2),
+  (3, 'CONVERTISSEZ UN MODELE EN UN SITE WEB',1),
+  (4, 'CREER UNE BOUTIQUE EN LIGNE',1),
+  (5, 'CODEZ UNE APPLICATION IPHONE',3),
+  (6, 'CODEZ UNE APPLICATION IPAD',3),
+  (7, 'CODEZ UNE APPLICATION ANDROID',3),
+  (8, 'CODEZ UNE APPLICATION BLACKBERRY',3),
+  (9, 'CODEZ UN SITE WEB MOBILE',3);
+/*!40000 ALTER TABLE `typeproposition` ENABLE KEYS */;
 
 --
 -- Definition of table `utilisateur`
