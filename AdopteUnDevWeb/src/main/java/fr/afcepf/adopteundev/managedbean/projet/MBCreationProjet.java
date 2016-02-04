@@ -183,7 +183,7 @@ public class MBCreationProjet {
 		for (DiskFileItem diskFileItem : params) {
 			String path = this.getClass().getResource("").getPath();
 			path = path.split("/WEB-INF")[0];
-			File file1 = new File(path + "/Livrables");
+			File file1 = new File(path + "/Photos");
 			if (!file1.exists())
 				file1.mkdirs();
 			file1 = new File(path + "/Photos/" + diskFileItem.getName());
@@ -193,7 +193,7 @@ public class MBCreationProjet {
 				fileOutputStream.close();
 				log.info("photo : " + path + "/Photos/"
 						+ diskFileItem.getName());
-				projetcree.setPhoto(path + "/Photos/" + diskFileItem.getName());
+				projetcree.setPhoto(diskFileItem.getName());
 				log.info("projet.photo : " + projetcree.getPhoto());
 			} catch (IOException e) {
 				e.printStackTrace();
