@@ -10,7 +10,7 @@ public interface IDaoGestionProjet {
 
 	public List<Projet> recupProjetParIdClient(Integer id);
 
-	public void modifierProjet(Projet projet);
+	public Projet modifierProjet(Projet projet);
 	
 	public List<Projet> recupProjerParEtat(String etat);
 	
@@ -18,6 +18,7 @@ public interface IDaoGestionProjet {
 	public List<Projet> recupProjerParEtatParIdClient(String etat, Integer id);
 	public List<Projet> recupProjetParEtatParIdDev(String etat, Integer id);
 	List<Projet> recupProjetEnAttenteParIdClient(int id);
+	Projet trouverProjet(Projet projet);
 	Projet recupProjetParId(int idProjet);
 	
 

@@ -10,11 +10,15 @@ import javax.persistence.Query;
 
 import entity.Proposition;
 import entity.TypeProposition;
+import fr.afcepf.adopteundev.gestion.proposition.DaoTypeProposition;
+import fr.afcepf.adopteundev.idao.gestion.proposition.IDaoTypeProposition;
 import fr.afcepf.adopteundev.idao.projet.IDaoProposition;
 
 @Remote(IDaoProposition.class)
 @Stateless
 public class DaoProposition implements IDaoProposition {
+	
+	IDaoTypeProposition daoType = new DaoTypeProposition();
 	
 	 @PersistenceContext(unitName="AdopteUnDev")
 	    EntityManager em;
@@ -25,9 +29,10 @@ public class DaoProposition implements IDaoProposition {
 
 	@Override
 	public Proposition modifierEtatProposition(Proposition proposition) {
-		em.merge(proposition);
-		
-		return proposition;
+		Proposition prop = em.find(Proposition.class, proposition.getIdProposition());
+		em.merge(prop);
+		em.flush();
+		return prop;
 	}
 
 
@@ -67,6 +72,13 @@ public class DaoProposition implements IDaoProposition {
 		Query query = em.createQuery(recupListPropValideePourProjet);
 		query.setParameter("idProjet", idProjet);
 		return query.getResultList();
+	}
+
+
+	@Override
+	public Proposition trouverProposition(Proposition proposition) {
+		proposition = em.find(Proposition.class, proposition.getIdProposition());
+		return proposition;
 	}
 
 }
