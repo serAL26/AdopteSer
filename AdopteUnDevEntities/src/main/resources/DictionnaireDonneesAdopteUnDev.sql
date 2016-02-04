@@ -74,7 +74,13 @@ INSERT INTO `adresse` (`id_adresse`, `NUMERO`, `RUE`, `idVille`) VALUES
 --
 -- Dumping data for table `association_cdc_fonctionnalite`
 --
-
+/*!40000 ALTER TABLE `association_cdc_fonctionnalite` DISABLE KEYS */;
+INSERT INTO `association_cdc_fonctionnalite` (id_assoc_cdc_fonctionnalite, idCdc, idFonctionnalite) VALUES
+  (1,1,1),
+  (2,2,2),
+  (3,3,3),
+  (4,4,4);
+/*!40000 ALTER TABLE `association_cdc_fonctionnalite` ENABLE KEYS */;
 
 --
 -- Definition of table `association_dev_techno`
@@ -148,7 +154,13 @@ INSERT INTO association_typeservice_techno (id_association_typeservice_techno, i
 --
 -- Definition of table `cdc`
 --
-
+/*!40000 ALTER TABLE `cdc` DISABLE KEYS */;
+INSERT INTO `cdc` (id_cdc, Besoin, Contexte, EXISTANT, date_fin_estimee, lu, tarif, id_developpeur, idProjet, id_remarque, idTypeCdc) VALUES
+  (1,'Notre site internet veut répondre a cette problematique en centralisant, dÃ¢Â?Â?une part, une majoritÃ?Â© des dÃ?Â©veloppeurs freelances sur un mÃ?Âªme espace mais Ã?Â©galement en accompagnant le particulier au maximum.','Les solutions de mise en relation de professionnels de lÃ¢Â?Â?informatique avec des clients Ã?Â  la recherche de dÃ?Â©veloppeurs ne sont pas prÃ?Â©vues aux particuliers ou aux micro-entreprises.','La majoritÃ?Â© des sites proposent un systÃ?Â¨me dÃ¢Â?Â?abonnement en plus de se rÃ?Â©munÃ?Â©rer en rÃ?Â©cupÃ?Â©rant un pourcentage des transactions.',	2015-02-04 00:00:00,	1,1500,null,11,NULL ,2),
+  (2,'Notre site internet veut répondre a cette problematique en centralisant, dÃ¢Â?Â?une part, une majoritÃ?Â© des dÃ?Â©veloppeurs freelances sur un mÃ?Âªme espace mais Ã?Â©galement en accompagnant le particulier au maximum.','Les solutions de mise en relation de professionnels de lÃ¢Â?Â?informatique avec des clients Ã?Â  la recherche de dÃ?Â©veloppeurs ne sont pas prÃ?Â©vues aux particuliers ou aux micro-entreprises.','La majoritÃ?Â© des sites proposent un systÃ?Â¨me dÃ¢Â?Â?abonnement en plus de se rÃ?Â©munÃ?Â©rer en rÃ?Â©cupÃ?Â©rant un pourcentage des transactions.',	2015-02-04 00:00:00,	1,1500,null,12,NULL ,2),
+  (3,'Notre site internet veut répondre a cette problematique en centralisant, dÃ¢Â?Â?une part, une majoritÃ?Â© des dÃ?Â©veloppeurs freelances sur un mÃ?Âªme espace mais Ã?Â©galement en accompagnant le particulier au maximum.','Les solutions de mise en relation de professionnels de lÃ¢Â?Â?informatique avec des clients Ã?Â  la recherche de dÃ?Â©veloppeurs ne sont pas prÃ?Â©vues aux particuliers ou aux micro-entreprises.','La majoritÃ?Â© des sites proposent un systÃ?Â¨me dÃ¢Â?Â?abonnement en plus de se rÃ?Â©munÃ?Â©rer en rÃ?Â©cupÃ?Â©rant un pourcentage des transactions.',	2015-02-04 00:00:00,	1,1500,null,13,NULL ,2),
+  (4,'Notre site internet veut répondre a cette problematique en centralisant, dÃ¢Â?Â?une part, une majoritÃ?Â© des dÃ?Â©veloppeurs freelances sur un mÃ?Âªme espace mais Ã?Â©galement en accompagnant le particulier au maximum.','Les solutions de mise en relation de professionnels de lÃ¢Â?Â?informatique avec des clients Ã?Â  la recherche de dÃ?Â©veloppeurs ne sont pas prÃ?Â©vues aux particuliers ou aux micro-entreprises.','La majoritÃ?Â© des sites proposent un systÃ?Â¨me dÃ¢Â?Â?abonnement en plus de se rÃ?Â©munÃ?Â©rer en rÃ?Â©cupÃ?Â©rant un pourcentage des transactions.',	2015-02-04 00:00:00,	1,1500,null,14,NULL ,2);
+/*!40000 ALTER TABLE `cdc` ENABLE KEYS */;
 --
 -- Dumping data for table `cdc`
 --
@@ -209,7 +221,14 @@ INSERT INTO `etat_projet` (`id_etat_projet`, `LIBELLE`) VALUES
 --
 -- Definition of table `fonctionnalite`
 --
+/*!40000 ALTER TABLE `fonctionnalite` DISABLE KEYS */;
+INSERT INTO fonctionnalite (id_fonctionnalite, commentaire, id_type_fonctionnalite) VALUES
+  (1,'recruter',3),
+  (2,	'recruter un dev en lui ajoutant en panier',3)
+  (3,	'recruter un dev en lui ajoutant en panier',	3)
+  (4,	'recruter',3)
 
+  /*!40000 ALTER TABLE `fonctionnalite` ENABLE KEYS */;
 --
 -- Dumping data for table `fonctionnalite`
 --
