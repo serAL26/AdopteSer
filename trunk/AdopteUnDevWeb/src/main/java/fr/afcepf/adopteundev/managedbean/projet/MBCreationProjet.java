@@ -120,9 +120,9 @@ public class MBCreationProjet {
 	}
 
 	public void remplirChamps() {
-		besoin = "Notre site internet veut répondre à cette problématique en centralisant, d’une part, une majorité des développeurs freelances sur un même espace mais également en accompagnant le particulier au maximum.";
-		contexte = "Les solutions de mise en relation de professionnels de l’informatique avec des clients à la recherche de développeurs ne sont pas prévues aux particuliers ou aux micro-entreprises. ";
-		existant = "La majorité des sites proposent un système d’abonnement en plus de se rémunérer en récupérant un pourcentage des transactions.";
+		besoin = "Notre site internet veut repondre a cette problematique en centralisant, d’une part, une majorite des developpeurs freelances sur un meme espace mais egalement en accompagnant le particulier au maximum.";
+		contexte = "Les solutions de mise en relation de professionnels de l’informatique avec des clients a la recherche de developpeurs ne sont pas prevues aux particuliers ou aux micro-entreprises. ";
+		existant = "La majorite des sites proposent un systeme d’abonnement en plus de se remunerer en recuperant un pourcentage des transactions.";
 		tarif = 1500.0;
 		dateFin = "04/02/2015";
 
