@@ -156,8 +156,9 @@ public class MBCreationProjet {
 		projetcree.setClient(gestionUtilisateur.recupClientById(mBConnexion
 				.getUtilisateur().getIdUtilisateur()));
 		projetcree.setService(selectedService);
-		if (file != null)
+		if (file != null) {
 			projetcree.setPhoto(file.getFileName());
+		}
 		projetcree = ucProjet.creerProjet(projetcree);
 		if (projetcree.getIdProjet() != 0) {
 			cdc = ajouterCDC(projetcree);

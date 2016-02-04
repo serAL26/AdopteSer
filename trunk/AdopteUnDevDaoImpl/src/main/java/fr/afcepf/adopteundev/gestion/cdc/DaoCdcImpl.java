@@ -119,7 +119,13 @@ public class DaoCdcImpl implements IDaoCdc {
 	@Override
 	public List<Cdc> recupCdcParidProjet(Integer idProjet) {
 		Query query = em.createQuery(recupCdcParIdProjet);
+		log.info(idProjet);
 		query.setParameter("idProjet", idProjet);
-		return query.getResultList();
+		List<Cdc> liste = query.getResultList();
+		for (Cdc cdc : liste) {
+			log.info(cdc.getIdCdc() + "=>"+ cdc.getTarif());	
+		}
+		
+		return liste;
 	}
 }

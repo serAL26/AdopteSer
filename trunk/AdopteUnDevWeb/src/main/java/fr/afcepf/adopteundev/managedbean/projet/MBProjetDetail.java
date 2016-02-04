@@ -182,6 +182,7 @@ public class MBProjetDetail {
 
     public Double getTarifRestant() {
         Double tarif = cdc.getTarif();
+        log.info(tarif);
         List<DTOOperation> operationList = ucProjet.recupListOperationParProjetEtType(mBProjetParUtilisateur.getProjet().getIdProjet(), 3);
         if (operationList != null) {
             for (DTOOperation anOperationList : operationList) {

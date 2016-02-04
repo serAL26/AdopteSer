@@ -54,8 +54,13 @@ public class DaoLivrable implements IDaoLivrable {
 
     @Override
     public void ajouterLeFichierDansLeLivrable(Livrable livrable) {
-        TypedQuery<Livrable> query = em.createQuery("UPDATE l FROM Livrable l WHERE l.idLivrable = :idLivrable", Livrable.class)
-                .setParameter("idLivrable",livrable.getIdLivrable());
+    	// UPDATE TABLE SET Att = VALUE, Att2 = VALUE2 WHERE ...
+    	// ou : em.merge(entity)
+    	Livrable amodif = em.find(Livrable.class, livrable.getIdLivrable());
+    	amodif.setDateLivraison(livrable.getDateLivraison());
+    	em.merge(amodif);
+//        TypedQuery<Livrable> query = em.createQuery("UPDATE l FROM Livrable l WHERE l.idLivrable = :idLivrable", Livrable.class)
+//                .setParameter("idLivrable",livrable.getIdLivrable());
     }
 
 }
