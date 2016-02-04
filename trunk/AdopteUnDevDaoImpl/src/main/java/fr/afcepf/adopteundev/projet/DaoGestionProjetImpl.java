@@ -12,12 +12,15 @@ import javax.persistence.TypedQuery;
 import entity.Client;
 import entity.Developpeur;
 import entity.Projet;
+import fr.afcepf.adopteundev.idao.projet.IDaoEtatProjet;
 import fr.afcepf.adopteundev.idao.projet.IDaoGestionProjet;
 
 @Remote(IDaoGestionProjet.class)
 @Stateless
 public class DaoGestionProjetImpl implements IDaoGestionProjet {
 
+	IDaoEtatProjet daoEtat = new DaoEtatProjet();
+	
 	@PersistenceContext(unitName = "AdopteUnDev")
 	EntityManager em;
 	
@@ -41,10 +44,16 @@ public class DaoGestionProjetImpl implements IDaoGestionProjet {
 		return projet;
 	}
 
+	public Projet trouverProjet(Projet projet) {
+		Projet pro = em.find(Projet.class, projet.getIdProjet());
+		return pro;
+	}
+	
 	@Override
-	public void modifierProjet(Projet projet) {
+	public Projet modifierProjet(Projet projet) {
 		em.merge(projet);
 		em.flush();
+		return projet;
 	}
 
 	@Override

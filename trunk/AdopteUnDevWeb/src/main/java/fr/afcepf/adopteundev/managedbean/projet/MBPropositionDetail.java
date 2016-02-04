@@ -108,7 +108,8 @@ public class MBPropositionDetail {
 		ucProjet.modifierProposition(proposition);
 	}
 	
-	public String redirigeVersMesPropossitions() {
+	public String redirigeVersMesPropossitions(DTOProposition proposition) {
+		ucProjet.passerProjetDemarre(proposition);
 		return "/ListeProjets.xhtml?faces-redirect=true";
 	}
 	
@@ -124,7 +125,7 @@ public class MBPropositionDetail {
 	{
 		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
 		paiement=true;
-		ucProjet.passerProjetDemarre(proposition.getProjet());
+		
 		return "";
 	}
 	

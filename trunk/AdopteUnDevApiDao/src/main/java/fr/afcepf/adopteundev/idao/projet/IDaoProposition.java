@@ -14,4 +14,5 @@ public interface IDaoProposition {
 	List<Proposition> recupPropositionValideeParDev(int idDev);
 	List<Proposition> recupListPropParProjetSaufPropValidee(int idProjet);
 	List<Proposition> recupPropValideePourProjet(Integer idProjet);
+	Proposition trouverProposition(Proposition proposition);
 }

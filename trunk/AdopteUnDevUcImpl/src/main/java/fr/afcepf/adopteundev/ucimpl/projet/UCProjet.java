@@ -197,4 +197,10 @@ public class UCProjet implements IUCProjet {
 		return businessOperation.recupListOperationParClientEtType(idUtilisateur, idTypeOperation);
 	}
 
+	@Override
+	public void passerProjetDemarre(DTOProposition proposition) {
+		businessGestionProjet.modifierProjet(proposition);
+		
+	}
+
 }

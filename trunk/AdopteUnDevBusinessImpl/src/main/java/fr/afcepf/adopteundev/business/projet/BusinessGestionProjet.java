@@ -70,8 +70,30 @@ public class BusinessGestionProjet implements IBusinessGestionProjet {
 	}
 
 	@Override
-	public void modifierProjet(DTOProjet projet) {
-		daoGestionProjet.modifierProjet(DTOToEntity.dtoProjetToProjet(projet));
+	public void modifierProjet(DTOProposition proposition) {
+		Projet projet = DTOToEntity.dtoProjetToProjet(proposition.getProjet());
+		Proposition prop = DTOToEntity.dtoPropositionToProposition(proposition);
+		projet = daoGestionProjet.trouverProjet(projet);
+		projet.setEtatProjet(daoEtatProjet.recupEtatProjetByLibelle(EtatProjetEnum.ENCOURS.toString()));
+		
+		daoGestionProjet.modifierProjet(projet);
+//		Projet proj = new Projet();
+//		proj.setClient(projet.getClient());
+//		proj.setEtatProjet(daoEtatProjet.recupEtatProjetByLibelle(EtatProjetEnum.ENCOURS.toString()));
+//		proj.setIdProjet(projet.getIdProjet());
+//		proj.setLesCdc(projet.getLesCdc());
+//		proj.setLesLitige(projet.getLesLitige());
+//		proj.setLesLivrable(projet.getLesLivrable());
+//		proj.setLesNotes(projet.getLesNotes());
+//		proj.setLesProposition(projet.getLesProposition());
+//		proj.setLibelle(projet.getLibelle());
+//		proj.setPhoto(projet.getPhoto());
+//		proj.setService(projet.getService());
+//		prop.setProjet(proj);
+		daoProposition.trouverProposition(prop);
+		prop.setTypeProposition(daoTypeProposition.recupTypePropositionParId(3));
+		
+		daoProposition.modifierEtatProposition(prop);
 	}
 
 	@Override

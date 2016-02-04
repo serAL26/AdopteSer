@@ -70,4 +70,6 @@ public interface IUCProjet {
 	int obtenirMontantLivrable(DTOLivrable dtoLivrable);
 	List<DTOOperation> obtenirSommeDev(int idUtilisateur, int idTypeProposition);
 	List<DTOOperation> obtenirSommeClient(int idUtilisateur, int idTypeProposition);
+
+	public void passerProjetDemarre(DTOProposition proposition);
 }
