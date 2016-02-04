@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import dto.DTODeveloppeur;
@@ -30,20 +31,29 @@ public class MbCreationLivrable {
 	private IUCProjet ucProjet;
 	private List<DTOLivrable> listeLivrableCrees;
 	private boolean actionAjout = false;
+	private DTOProjet projet;
+	@ManagedProperty(value = "#{mBPropositionDetail}")
+	private MBPropositionDetail mbPropositionDetail;
 
 	@PostConstruct
 	public void obtenirLesInterfaces() {
 		ucProjet = (IUCProjet) ContextFactory
 				.createProxy(UcName.UCGESTIONPROJET);
+		projet = mbPropositionDetail.getmBPropositionParUtilisateur().getCdc()
+				.getProjet();
+		developpeur = mbPropositionDetail.getmBPropositionParUtilisateur()
+				.getProposition().getDeveloppeur();
 	}
-	
-	public void remplirListeLivrable(DTOProjet dtoProjet, Integer idDeveloppeur)
-	{
-		listeLivrableCrees = ucProjet.recupListLivrableParProjetEtParDev(dtoProjet, idDeveloppeur);
+
+	public void remplirListeLivrable() {
+		listeLivrableCrees = ucProjet.recupListLivrableParProjetEtParDev(
+				projet, developpeur.getIdUtilisateur());
 	}
 
 	public String creerLivrable() {
 		livrablecree = new DTOLivrable();
+		livrablecree.setProjet(projet);
+		livrablecree.setDeveloppeur(developpeur);
 		livrablecree.setDescription(description);
 		livrablecree.setEcheance(dateEcheance);
 		livrablecree = ucProjet.creerLivrable(livrablecree);
@@ -128,6 +138,22 @@ public class MbCreationLivrable {
 
 	public void setActionAjout(boolean actionAjout) {
 		this.actionAjout = actionAjout;
+	}
+
+	public DTOProjet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(DTOProjet projet) {
+		this.projet = projet;
+	}
+
+	public MBPropositionDetail getMbPropositionDetail() {
+		return mbPropositionDetail;
+	}
+
+	public void setMbPropositionDetail(MBPropositionDetail mbPropositionDetail) {
+		this.mbPropositionDetail = mbPropositionDetail;
 	}
 
 }
