@@ -95,6 +95,12 @@ public class MBPropositionParUtilisateur {
 		listeRefuse = gestionProposition.recupPropositionParEtatParUtilisateur("refuse", mBConnexion.getUtilisateur().getIdUtilisateur());
 	}
 	
+	public void initLesListes() {
+		listeAccepteParDev = gestionProposition.recupPropositionParEtatParUtilisateur("Accepte par le dev", mBConnexion.getUtilisateur().getIdUtilisateur());
+		listeEnAttente = gestionProposition.recupPropositionParEtatParUtilisateur("En attente", mBConnexion.getUtilisateur().getIdUtilisateur());
+		listeRefuse = gestionProposition.recupPropositionParEtatParUtilisateur("refuse", mBConnexion.getUtilisateur().getIdUtilisateur());
+	}
+	
 	public DTOCdc recupInfoCdc(DTOProjet projet)
 	{
 		cdc = gestionCdc.recupCdcFinalParidProjet(projet.getIdProjet());

@@ -7,6 +7,7 @@
     <ui:define name="head">
     </ui:define>
     <ui:define name="title">Mes Propositions</ui:define>
+    <ui:define name="methodeAuChargement"> #{mBPropositionParUtilisateur.initLesListes()} </ui:define>
     <ui:define name="body">
     
 		<!-- Proposition en attente  -->
@@ -65,7 +66,7 @@
 	       <div class="section">
 	        <div class="container">
 	        <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 2}">
-	        	<h2>Proposition(s) validée par le dev(s)</h2>
+	        	<h2>Proposition(s) validée par le dev</h2>
 	        </h:panelGroup>
 	          <h:panelGroup rendered="#{mBConnexion.typeUtilisateur == 1}">
 	        	<h2>Proposition(s) en attente de validation du client</h2>
