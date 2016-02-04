@@ -293,16 +293,16 @@ INSERT INTO operation (id_operation, DATE, MONTANT, idLivrable, idTypeOperation)
 --
 /*!40000 ALTER TABLE `projet` DISABLE KEYS */;
 INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeService) VALUES
-  (1,'DoYouKnow',17,4,'/resources/img/portfolio1.jpg',3),
-  (2,'ShowMeYourFace',17,4,'/resources/img/portfolio2.jpg',8),
-  (3,'HugNeeded',17,1,'/resources/img/portfolio3.jpg',8),
-  (4,'BoutiqueDeVetement',17,1,'/resources/img/portfolio4.jpg',5),
-  (5,'SiteWebPerso',19,2,'/resources/img/portfolio5.jpg',4),
-  (6,'siteEcommerce',20,2,'/resources/img/portfolio4.jpg',5),
-  (7,'ApplicationMobile',21,2,'/resources/img/portfolio5.jpg',8),
-  (8,'ApplicationMobile',21,2,'/resources/img/portfolio7.jpg',9),
-  (9,'ApplicationMobile',21,2,'/resources/img/portfolio8.jpg',6),
-  (10,'ConversionModeleEnSite',22,1,'/resources/img/portfolio6.jpg',3);
+  (1,'DoYouKnow',17,4,'portfolio1.jpg',3),
+  (2,'ShowMeYourFace',17,4,'portfolio2.jpg',8),
+  (3,'HugNeeded',17,1,'portfolio3.jpg',8),
+  (4,'BoutiqueDeVetement',17,1,'portfolio4.jpg',5),
+  (5,'SiteWebPerso',19,2,'portfolio5.jpg',4),
+  (6,'siteEcommerce',20,2,'portfolio4.jpg',5),
+  (7,'ApplicationMobile',21,2,'portfolio5.jpg',8),
+  (8,'ApplicationMobile',21,2,'portfolio7.jpg',9),
+  (9,'ApplicationMobile',21,2,'portfolio8.jpg',6),
+  (10,'ConversionModeleEnSite',22,1,'portfolio6.jpg',3);
 /*!40000 ALTER TABLE `projet` ENABLE KEYS */;
 --
 -- Definition of table `propostion`
