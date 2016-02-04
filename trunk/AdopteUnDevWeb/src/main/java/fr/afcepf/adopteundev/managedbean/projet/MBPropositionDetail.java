@@ -100,9 +100,16 @@ public class MBPropositionDetail {
 	public void accepterProposition(DTOProposition proposition)
 	{
 		List<DTOTypeProposition> listeType = ucProjet.recupTousLesTypesProps();
-		
-		proposition.setTypeProposition(listeType.get(1));
+		for (DTOTypeProposition dtoTypeProposition : listeType) {
+			if(dtoTypeProposition.getIdTypeProposition() == 2){
+				proposition.setTypeProposition(dtoTypeProposition);
+			}
+		}
 		ucProjet.modifierProposition(proposition);
+	}
+	
+	public String redirigeVersMesPropossitions() {
+		return "/ListeProjets.xhtml?faces-redirect=true";
 	}
 	
 	public void refuserProposition(DTOProposition prop)
@@ -117,7 +124,7 @@ public class MBPropositionDetail {
 	{
 		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
 		paiement=true;
-		return "/ListePropositions.xhtml?faces-redirect=true";
+		return "";
 	}
 	
 	public void payerProjet()
