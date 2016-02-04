@@ -124,7 +124,7 @@ public class MBPropositionDetail {
 	{
 		//ucProjet.validerProjet(proposition, proposition.projet.getIdProjet());
 		paiement=true;
-		ucProjet.creerProjet(proposition.getProjet());
+		ucProjet.passerProjetDemarre(proposition.getProjet());
 		return "";
 	}
 	
