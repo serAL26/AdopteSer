@@ -325,10 +325,10 @@ INSERT INTO operation (id_operation, DATE, MONTANT, idLivrable, idTypeOperation)
 --
 /*!40000 ALTER TABLE `projet` DISABLE KEYS */;
 INSERT INTO projet (id_projet, LIBELLE, idClient, idEtatProjet, photo, idTypeService) VALUES
-  (1,'DoYouKnow',17,4,'portfolio1.jpg',3),
-  (2,'ShowMeYourFace',17,4,'portfolio2.jpg',8),
-  (3,'HugNeeded',17,1,'portfolio3.jpg',8),
-  (4,'BoutiqueDeVetement',17,1,'portfolio4.jpg',5),
+  (1,'DoYouKnow',9,4,'portfolio1.jpg',3),
+  (2,'ShowMeYourFace',9,4,'portfolio2.jpg',8),
+  (3,'HugNeeded',9,1,'portfolio3.jpg',8),
+  (4,'BoutiqueDeVetement',9,1,'portfolio4.jpg',5),
   (5,'SiteWebPerso',19,2,'portfolio5.jpg',4),
   (6,'siteEcommerce',20,2,'portfolio4.jpg',5),
   (7,'ApplicationMobile',21,2,'portfolio5.jpg',8),
@@ -373,7 +373,7 @@ INSERT INTO `propostion` (id_proposition, Lu, date, titre, idDeveloppeur, idProj
   (17,1,'2015-02-12 00:00:00','ApplicationMobile',6,9,3),
   (18,1,'2015-02-12 00:00:00','ConversionModeleEnSite',6,10,3),
   (19,1,'2015-02-12 00:00:00','siteEcommerce',7,16,3),
-  (20,1,'2015-02-12 00:00:00','siteEcommerce',8,17,3),
+  (20,1,'2015-02-12 00:00:00','siteEcommerce',8,17,2),
   (21,1,'2015-02-12 00:00:00','siteEcommerce',9,18,3),
   (22,1,'2015-02-12 00:00:00','siteEcommerce',10,19,3),
   (23,1,'2015-02-12 00:00:00','siteEcommerce',11,20,3),
